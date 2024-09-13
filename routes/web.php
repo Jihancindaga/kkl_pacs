@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminLoginController;
 
+Route::get('/', function () {
+    return view('/admin/dashboard');
+});
 // Rute untuk Dashboard Admin
 Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
@@ -18,7 +21,8 @@ Route::get('/home', function () {
     return view('home'); // Pastikan file 'home.blade.php' ada di 'resources/views/'
 })->name('home');
 
-// Rute untuk Halaman Utama
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/pajak', function () {
+    return view('pajak');
 });
+
+

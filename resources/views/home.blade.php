@@ -176,7 +176,7 @@
 
     <div class="navbar">
         <div class="logo">
-            <div class="hamburger" onclick="openNav()">&#9776;</div> <!-- Icon hamburger untuk sidebar -->
+            <div class="hamburger" onclick="openNav()">&#9776;</div>
             <img src="/images/pacs.png" alt="Logo">
         </div>
         <button class="logout">Logout</button>
@@ -203,7 +203,7 @@
         <!-- Container 1 -->
         <div class="container">
             <img src="/images/logo_kendaraan.jpg" alt="Image 1">
-            <button onclick="alert('Pemeliharaan Pajak Kendaraan')">Pemeliharaan Pajak Kendaraan</button>
+            <button onclick="navigateTo('/pajak')">Pemeliharaan Pajak Kendaraan</button>
         </div>
 
         <!-- Container 2 -->
@@ -234,6 +234,11 @@
             } else {
                 subMenu.classList.add('show');
             }
+        }
+
+        /* Navigate to a different page */
+        function navigateTo(url) {
+            window.location.href = url;
         }
     </script>
 
