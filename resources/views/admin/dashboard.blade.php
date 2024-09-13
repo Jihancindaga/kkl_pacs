@@ -7,29 +7,42 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #007bff;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
         }
-        .login-container {
+        .container-wrapper {
             background-color: #ffffff;
-            padding: 30px;
             border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
+            max-width: 900px;
             width: 100%;
+            display: flex;
+            overflow: hidden;
+        }
+        .logo-container {
+            background-color: #007bff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40%;
+        }
+        .logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* memastikan gambar mengisi seluruh container tanpa terdistorsi */
+        }
+        .form-container {
+            padding: 30px;
+            width: 60%;
+        }
+        .form-container h2 {
             text-align: center;
-        }
-        .login-container img {
-            width: 100px;
             margin-bottom: 20px;
-        }
-        .login-container h2 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+            color: #007bff;
         }
         .form-control {
             margin-bottom: 20px;
@@ -40,20 +53,30 @@
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <img src="{{ asset('/images/logo_pacs.jpg') }}" alt="Logo" class="img-fluid">
-        <h2>Admin Login</h2>
+    <div class="container-wrapper">
+        <!-- Container Kiri: Logo -->
+        <div class="logo-container">
+            <img src="{{ asset('/images/logo_pacs.jpg') }}" alt="Logo" class="img-fluid">
+        </div>
 
-        <form action="{{ route('admin.login') }}" method="POST">
-            @csrf
-            <div class="form-group">
-                <input type="text" name="nip" class="form-control" placeholder="Enter NIP" required>
-            </div>
-            <div class="form-group">
-                <input type="password" name="password" class="form-control" placeholder="Enter Password" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-        </form>
+        <!-- Container Kanan: Form Login -->
+        <div class="form-container">
+            <h2>Admin Login</h2>
+            <form action="{{ route('admin.login') }}" method="POST">
+                @csrf
+                <div class="form-group">
+                    <p>NIP</p>
+                    <input type="text" name="nip" class="form-control" placeholder="Masukkan NIP" required>
+                </div>
+                <div class="form-group">
+                    <p>KATA SANDI</p>
+                    <input type="password" name="password" class="form-control" placeholder="Masukkan Katasandi" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

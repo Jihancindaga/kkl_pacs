@@ -65,7 +65,6 @@
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            text-align: center;
             width: 100%; /* Full width */
         }
         .container img {
@@ -75,22 +74,43 @@
             margin-bottom: 15px;
         }
         .container button {
-            background-color: #007bff; /* Blue */
             border: none;
             color: white;
             padding: 10px 20px;
             cursor: pointer;
             border-radius: 5px;
+            margin: 5px 0;
+        }
+        .container button.btn-1 {
+            background-color: #17a2b8; /* Teal */
+        }
+        .container button.btn-2 {
+            background-color: #28a745; /* Green */
+        }
+        .container button.btn-3 {
+            background-color: #e09a17; /* Orange */
         }
         .container button:hover {
-            background-color: #0056b3; /* Darker Blue */
+            opacity: 0.8;
+        }
+        /* Style for table */
+        .table thead th {
+            background-color: #007bff; /* Blue */
+            color: white;
+        }
+        .table th, .table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .table-container .btn {
+            margin: 2px;
         }
     </style>
 </head>
 <body>
     <div class="navbar">
         <button class="home-btn" onclick="navigateTo('/home')">
-            <i class="fas fa-arrow-left"></i> <!-- Font Awesome home icon -->
+            <i class="fas fa-arrow-left"></i> <!-- Font Awesome arrow-left icon -->
         </button>
         <div class="logo">
             <img src="/images/pacs.png" alt="Logo">
@@ -104,13 +124,13 @@
             <div class="btn-container">
                 <div class="row">
                     <div class="col-md-4">
-                        <button class="btn btn-primary btn-block" onclick="navigateTo('/tombol1')">Tombol 1</button>
+                        <button class="btn btn-1 btn-block" onclick="navigateTo('/pajak')">Data Pokok Kendaraan</button>
                     </div>
                     <div class="col-md-4">
-                        <button class="btn btn-success btn-block" onclick="navigateTo('/tombol2')">Tombol 2</button>
+                        <button class="btn btn-2 btn-block" onclick="navigateTo('/riwayat')">Riwayat Pembayaran Pajak</button>
                     </div>
                     <div class="col-md-4">
-                        <button class="btn btn-danger btn-block" onclick="navigateTo('/tombol3')">Tombol 3</button>
+                        <button class="btn btn-3 btn-block" onclick="navigateTo('/formdata')">Masukkan Data Kendaraan</button>
                     </div>
                 </div>
             </div>
@@ -120,44 +140,54 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Nama</th>
-                            <th>Jenis Pajak</th>
-                            <th>Jumlah</th>
-                            <th>Tanggal</th>
+                            <th>No</th>
+                            <th>Pengguna</th>
+                            <th>Plat</th>
+                            <th>Jenis Kendaraan</th>
+                            <th>Waktu Pajak</th>
+                            <th>Ganti Plat</th>
+                            <th>Usia Kendaraan</th>
+                            <th>CC</th>
+                            <th>Nomor Telepon</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Data Pajak di sini -->
-                        <tr>
-                            <td>1</td>
-                            <td>Contoh Pajak 1</td>
-                            <td>Jenis 1</td>
-                            <td>Rp 1.000.000</td>
-                            <td>2024-09-13</td>
-                            <td>
-                                <button class="btn btn-warning btn-sm">Edit</button>
-                                <button class="btn btn-danger btn-sm">Hapus</button>
-                            </td>
-                        </tr>
-                        <!-- Tambahkan baris lain sesuai kebutuhan -->
+                        @foreach($vehicles as $index => $vehicle)
+                            <tr>
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $vehicle->pengguna }}</td>
+                                <td>{{ $vehicle->plat }}</td>
+                                <td>{{ $vehicle->jenis_kendaraan }}</td>
+                                <td>{{ $vehicle->waktu_pajak }}</td>
+                                <td>{{ $vehicle->ganti_plat }}</td>
+                                <td>{{ $vehicle->usia_kendaraan }}</td>
+                                <td>{{ $vehicle->cc }}</td>
+                                <td>{{ $vehicle->nomor_telepon }}</td>
+                                <td>
+                                    <a href="{{ route('vehicles.edit', $vehicle->plat) }}" class="btn btn-warning btn-sm">Edit</a>
+                                    <form action="{{ route('vehicles.destroy', $vehicle->plat) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- Include Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        /* Navigate to a different page */
         function navigateTo(url) {
             window.location.href = url;
         }
     </script>
-
-    <!-- Include Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

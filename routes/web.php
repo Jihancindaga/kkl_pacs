@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminLoginController;
+use App\Http\Controllers\VehicleController;
 
 Route::get('/', function () {
     return view('/admin/dashboard');
@@ -26,3 +27,8 @@ Route::get('/pajak', function () {
 });
 
 
+Route::resource('vehicles', VehicleController::class);
+Route::get('/pajak', [VehicleController::class, 'index'])->name('vehicles.index');
+
+Route::get('/vehicles/{plat}/edit', [VehicleController::class, 'edit'])->name('vehicles.edit');
+Route::put('/vehicles/{plat}', [VehicleController::class, 'update'])->name('vehicles.update');
