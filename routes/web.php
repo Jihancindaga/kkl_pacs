@@ -32,3 +32,11 @@ Route::get('/pajak', [VehicleController::class, 'index'])->name('vehicles.index'
 
 Route::get('/vehicles/{plat}/edit', [VehicleController::class, 'edit'])->name('vehicles.edit');
 Route::put('/vehicles/{plat}', [VehicleController::class, 'update'])->name('vehicles.update');
+
+// routes/web.php
+// Route untuk menampilkan riwayat
+Route::get('/riwayat', [VehicleController::class, 'riwayat'])->name('riwayat');
+
+// Route untuk menampilkan detail riwayat
+Route::get('/riwayat/{plat}', [VehicleController::class, 'showDetail'])->name('riwayat.detail');
+
