@@ -170,6 +170,143 @@
         .container button:hover {
             background-color: #0056b3; /* Darker Blue */
         }
+
+        #addAdminModal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 15px 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    z-index: 1000;
+    width: 320px;
+    max-width: 90%;
+    animation: fadeIn 0.3s ease;
+}
+
+#addAdminModal h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+    text-align: center;
+}
+
+#addAdminForm {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+#addAdminForm label {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 2px; /* Jarak antara teks label dan kotak input */
+    color: #444;
+}
+
+#addAdminForm input {
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 13px;
+    transition: all 0.2s;
+    width: 100%;
+}
+
+#addAdminForm input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+    outline: none;
+}
+
+#addAdminForm .input-container {
+    position: relative;
+}
+
+#addAdminForm i {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888;
+    transition: color 0.2s;
+}
+
+#addAdminForm i:hover {
+    color: #007bff;
+}
+
+#addAdminForm .error-message {
+    color: #f44336;
+    margin-top: -5px;
+    margin-bottom: 5px;
+    font-size: 12px;
+    display: none;
+    text-align: center;
+}
+
+#addAdminForm button {
+    padding: 8px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+    margin-top: 6px;
+}
+
+#addAdminForm button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+#addAdminForm button[type="button"] {
+    background-color: #f44336;
+    margin-top: 4px;
+}
+
+#addAdminForm button[type="button"]:hover {
+    background-color: #d32f2f;
+}
+
+/* Spacing for form elements and container */
+#addAdminForm {
+    margin-bottom: 12px; /* Space between form fields and container */
+}
+
+/* Animation for modal fade-in */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -40%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 400px) {
+    #addAdminModal {
+        width: 90%;
+        padding: 10px 20px;
+    }
+
+    #addAdminForm button {
+        font-size: 12px;
+        padding: 7px;
+    }
+}
+
+
     </style>
 </head>
 <body>
@@ -192,12 +329,94 @@
             <h4>Admin Name</h4>
             <p>Administrator</p>
         </div>
-
-        <a href="#" onclick="toggleSubMenu('subMenu1')"><span class="icon">&#128100;</span>Kelola Pengguna</a>
-        <div class="sub-buttons" id="subMenu1">
-            <a href="#">Tambah</a>
+      
+    <a href="#" onclick="toggleSubMenu('subMenu1')"><span class="icon">&#128100;</span>Kelola Pengguna</a>
+    <div class="sub-buttons" id="subMenu1">
+        <a href="#" onclick="openModal()">Tambah</a>
+        <a href="{{ route('admin.list') }}">Daftar Pengguna</a>
+    </div>
+</div>
+        
         </div>
     </div>
+    <!-- Modal for Adding Admin -->
+<div id="addAdminModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background-color:white; padding:20px; box-shadow:0 2px 10px rgba(0, 0, 0, 0.3); z-index:1000; width:300px;">
+    <h2>Tambah Admin Baru</h2>
+    <form id="addAdminForm" action="{{ route('admin.store') }}" method="POST">
+        @csrf
+        <label for="nip">NIP:</label><br>
+        <input type="text" id="nip" name="nip" required><br><br>
+
+            <label for="password">Password:</label><br>
+    <div style="position: relative;">
+        <input type="password" id="password" name="password" required>
+        <i class="fas fa-eye" id="togglePassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
+    </div>
+    <br>
+
+    <label for="confirm_password">Konfirmasi Password:</label><br>
+    <div style="position: relative;">
+        <input type="password" id="confirm_password" required>
+        <i class="fas fa-eye" id="toggleConfirmPassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
+    </div>
+    <br>
+
+
+        <div class="error-message" id="error-message" style="color:red; display:none;">Password tidak cocok.</div>
+
+        <button type="submit">Simpan</button>
+        <button type="button" onclick="closeModal()">Batal</button>
+    </form>
+</div>
+
+<!-- FontAwesome CDN untuk ikon mata -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+
+<script>
+    // Validasi password dan konfirmasi password
+    document.getElementById('addAdminForm').addEventListener('submit', function(event) {
+        var password = document.getElementById('password').value;
+        var confirmPassword = document.getElementById('confirm_password').value;
+        var errorMessage = document.getElementById('error-message');
+
+        if (password !== confirmPassword) {
+            event.preventDefault(); // Mencegah pengiriman form jika password tidak cocok
+            errorMessage.style.display = 'block'; // Menampilkan pesan error
+        } else {
+            errorMessage.style.display = 'none'; // Sembunyikan pesan error jika cocok
+        }
+    });
+
+    // Toggle show/hide password
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordField = document.getElementById('password');
+
+    togglePassword.addEventListener('click', function () {
+        // Toggle the type attribute
+        const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordField.setAttribute('type', type);
+
+        // Toggle the eye icon
+        this.classList.toggle('fa-eye-slash');
+    });
+
+    // Toggle show/hide confirm password
+    const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+    const confirmPasswordField = document.getElementById('confirm_password');
+
+    toggleConfirmPassword.addEventListener('click', function () {
+        // Toggle the type attribute
+        const type = confirmPasswordField.getAttribute('type') === 'password' ? 'text' : 'password';
+        confirmPasswordField.setAttribute('type', type);
+
+        // Toggle the eye icon
+        this.classList.toggle('fa-eye-slash');
+    });
+</script>
+
+
+<!-- Overlay background -->
+<div id="modalOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0, 0, 0, 0.5); z-index:999;"></div>
 
     <div id="mainContent" class="content">
         <!-- Container 1 -->
@@ -240,7 +459,21 @@
         function navigateTo(url) {
             window.location.href = url;
         }
+
+        // Open the modal
+function openModal() {
+    document.getElementById('addAdminModal').style.display = 'block';
+    document.getElementById('modalOverlay').style.display = 'block';
+}
+
+// Close the modal
+function closeModal() {
+    document.getElementById('addAdminModal').style.display = 'none';
+    document.getElementById('modalOverlay').style.display = 'none';
+}
+
     </script>
+
 
 </body>
 </html>

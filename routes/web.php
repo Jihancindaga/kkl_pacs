@@ -80,3 +80,21 @@ Route::delete('/vehicles/{plat}', [VehicleController::class, 'destroy'])->name('
 // Route untuk menampilkan detail riwayat kendaraan dengan pencarian
 Route::get('/vehicles/{plat}/riwayat/search', [VehicleController::class, 'showRiwayat'])->name('vehicles.showRiwayat');
 
+
+// web.php
+Route::post('/admin/store', [AdminDashboardController::class, 'store'])->name('admin.store');
+Route::get('/admin/list', [AdminDashboardController::class, 'index'])->name('admin.list');
+
+// Rute untuk halaman daftar pengguna
+Route::get('/admin/list', [AdminDashboardController::class, 'list'])->name('admin.list');
+
+// Rute untuk mengedit admin
+Route::get('/admin/edit/{id}', [AdminDashboardController::class, 'edit'])->name('admin.edit');
+
+// Rute untuk memperbarui admin
+Route::post('/admin/update/{id}', [AdminDashboardController::class, 'update'])->name('admin.update');
+
+// Rute untuk menghapus admin
+Route::delete('/admin/delete/{id}', [AdminDashboardController::class, 'destroy'])->name('admin.delete');
+
+
