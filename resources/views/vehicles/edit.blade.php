@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -97,7 +97,7 @@
 </head>
 <body>
     <div class="container">
-        <a href="/pajak" class="back-icon">
+        <a href="{{ route('vehicles.index') }}" class="back-icon">
             <i class="fas fa-arrow-left"></i>
         </a>
 
@@ -119,48 +119,54 @@
 
             <div class="form-group">
                 <label for="pengguna">Pengguna</label>
-                <input type="text" name="pengguna" class="form-control" value="{{ $vehicle->pengguna }}" required>
+                <input type="text" name="pengguna" class="form-control" value="{{ old('pengguna', $vehicle->pengguna) }}" required>
             </div>
 
             <div class="form-group">
                 <label for="plat">Plat</label>
-                <input type="text" name="plat" class="form-control" value="{{ $vehicle->plat }}" required>
+                <input type="text" name="plat" class="form-control" value="{{ old('plat', $vehicle->plat) }}" required readonly>
             </div>
 
             <div class="form-group">
                 <label for="jenis_kendaraan">Jenis Kendaraan</label>
-                <input type="text" name="jenis_kendaraan" class="form-control" value="{{ $vehicle->jenis_kendaraan }}" required>
+                <input type="text" name="jenis_kendaraan" class="form-control" value="{{ old('jenis_kendaraan', $vehicle->jenis_kendaraan) }}" required>
             </div>
 
             <div class="form-group">
                 <label for="waktu_pajak">Waktu Pajak</label>
-                <input type="date" name="waktu_pajak" class="form-control" value="{{ $vehicle->waktu_pajak }}" required>
+                <input type="date" name="waktu_pajak" class="form-control" value="{{ old('waktu_pajak', $vehicle->waktu_pajak) }}" required>
             </div>
 
             <div class="form-group">
                 <label for="ganti_plat">Ganti Plat</label>
-                <input type="date" name="ganti_plat" class="form-control" value="{{ $vehicle->ganti_plat }}" required>
+                <input type="date" name="ganti_plat" class="form-control" value="{{ old('ganti_plat', $vehicle->ganti_plat) }}" required>
             </div>
 
             <div class="form-group">
                 <label for="usia_kendaraan">Usia Kendaraan</label>
-                <input type="number" name="usia_kendaraan" class="form-control" value="{{ $vehicle->usia_kendaraan }}" required>
+                <input type="number" name="usia_kendaraan" class="form-control" value="{{ old('usia_kendaraan', $vehicle->usia_kendaraan) }}" required>
             </div>
 
             <div class="form-group">
                 <label for="cc">CC</label>
-                <input type="number" name="cc" class="form-control" value="{{ $vehicle->cc }}" required>
+                <input type="number" name="cc" class="form-control" value="{{ old('cc', $vehicle->cc) }}" required>
             </div>
 
             <div class="form-group">
                 <label for="nomor_telepon">Nomor Telepon</label>
-                <input type="text" name="nomor_telepon" class="form-control" value="{{ $vehicle->nomor_telepon }}">
+                <input type="text" name="nomor_telepon" class="form-control" value="{{ old('nomor_telepon', $vehicle->nomor_telepon) }}">
             </div>
 
             <div class="form-group">
-                <label for="bukti_pembayaran">Bukti Pembayaran Pajak</label>
-                <input type="file" name="bukti_pembayaran" class="form-control-file" required>
+                <label for="total_bayar">Total Bayar</label>
+                <input type="number" name="total_bayar" class="form-control" value="{{ old('total_bayar') }}" required>
             </div>
+            <div class="form-group">
+                <label for="bukti_pembayaran">Bukti Pembayaran Pajak </label>
+                <input type="file" name="bukti_pembayaran" class="form-control-file">
+                
+            </div>
+
 
             <div class="form-group checkbox-label">
                 <label for="sudah_bayar">

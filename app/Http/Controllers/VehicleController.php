@@ -4,40 +4,43 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Vehicle;
+use App\Models\RiwayatPembayaran;
+use Illuminate\Support\Facades\Storage;
 
 class VehicleController extends Controller
 {
-    // Metode untuk menampilkan semua kendaraan (tabel pajak)
+    // Menampilkan semua kendaraan (tabel pajak)
     public function index()
     {
         $vehicles = Vehicle::all();
-        return view('pajak', compact('vehicles')); // Mengarahkan ke view pajak
+        return view('pajak', compact('vehicles'));
     }
 
-    // Metode untuk menampilkan riwayat kendaraan (tabel riwayat)
+    // Menampilkan riwayat kendaraan (tabel riwayat)
     public function riwayat()
     {
         $vehicles = Vehicle::all();
-        return view('riwayat', compact('vehicles')); // Mengarahkan ke view riwayat
+        return view('riwayat', compact('vehicles'));
     }
 
-    // Metode untuk menampilkan detail riwayat kendaraan
+    // Menampilkan detail riwayat kendaraan
     public function showDetail($plat)
-    {
-        $vehicle = Vehicle::where('plat', $plat)->firstOrFail();
-        // Ambil riwayat pembayaran kendaraan
-        $riwayatPembayaran = $vehicle->riwayatPembayaran()->latest()->get();
+{
+    $vehicle = Vehicle::where('plat', $plat)->firstOrFail();
+    $riwayatPembayaran = RiwayatPembayaran::where('plat', $plat)->latest()->get();
 
-        return view('riwayat_detail', compact('vehicle', 'riwayatPembayaran')); // Mengarahkan ke view riwayat_detail
-    }
+    return view('riwayat_detail', compact('vehicle', 'riwayatPembayaran'));
+}
 
-    // Metode untuk menampilkan form tambah kendaraan
+    
+
+    // Menampilkan form tambah kendaraan
     public function create()
     {
         return view('vehicles.create');
     }
 
-    // Metode untuk menyimpan kendaraan baru
+    // Menyimpan kendaraan baru
     public function store(Request $request)
     {
         $request->validate([
@@ -56,60 +59,83 @@ class VehicleController extends Controller
         return redirect()->route('vehicles.index')->with('success', 'Kendaraan berhasil ditambahkan.');
     }
 
-    // Metode untuk menampilkan form edit kendaraan
+    // Menampilkan form edit kendaraan
     public function edit($plat)
     {
         $vehicle = Vehicle::where('plat', $plat)->firstOrFail();
         return view('vehicles.edit', compact('vehicle'));
     }
 
-    // Metode untuk mengupdate kendaraan
+    // Mengupdate kendaraan
     public function update(Request $request, $plat)
-    {
-        $request->validate([
-            'pengguna' => 'required|string',
-            'plat' => 'required|string|unique:vehicles,plat,' . $plat . ',plat',
-            'jenis_kendaraan' => 'required|string',
-            'waktu_pajak' => 'required|date',
-            'ganti_plat' => 'required|date',
-            'usia_kendaraan' => 'required|integer',
-            'cc' => 'required|integer',
-            'nomor_telepon' => 'nullable|string',
-            'bukti_pembayaran' => 'nullable|file|mimes:jpg,png,pdf|max:2048',
-            'sudah_bayar' => 'nullable|boolean',
-        ]);
+{
+    $request->validate([
+        'pengguna' => 'required|string',
+        'plat' => 'required|string|unique:vehicles,plat,' . $plat . ',plat',
+        'jenis_kendaraan' => 'required|string',
+        'waktu_pajak' => 'required|date',
+        'ganti_plat' => 'required|date',
+        'usia_kendaraan' => 'required|integer',
+        'cc' => 'required|integer',
+        'nomor_telepon' => 'nullable|string',
+        'bukti_pembayaran' => 'nullable|file|mimes:jpg,png,pdf|max:2048',
+        'sudah_bayar' => 'nullable|boolean',
+        'total_bayar' => 'required|numeric', // Pastikan total_bayar diisi
+    ]);
 
-        $vehicle = Vehicle::where('plat', $plat)->firstOrFail();
+    $vehicle = Vehicle::where('plat', $plat)->firstOrFail();
 
-        if ($request->hasFile('bukti_pembayaran')) {
-            $buktiPembayaranPath = $request->file('bukti_pembayaran')->store('bukti_pembayaran', 'public');
-            $vehicle->bukti_pembayaran = $buktiPembayaranPath;
+    if ($request->hasFile('bukti_pembayaran')) {
+        // Hapus file yang lama jika ada
+        if ($vehicle->bukti_pembayaran) {
+            Storage::delete('public/' . $vehicle->bukti_pembayaran);
         }
-
-        $vehicle->update($request->except('bukti_pembayaran'));
-
-        return redirect()->route('vehicles.index')->with('success', 'Kendaraan berhasil diperbarui.');
+        $buktiPembayaranPath = $request->file('bukti_pembayaran')->store('bukti_pembayaran', 'public');
+        $vehicle->bukti_pembayaran = $buktiPembayaranPath;
     }
 
-    // Metode untuk menghapus kendaraan
+    // Update data kendaraan
+    $vehicle->update($request->except('bukti_pembayaran'));
+
+    // Simpan riwayat pembayaran jika total_bayar diisi
+    if ($request->filled('total_bayar')) {
+        RiwayatPembayaran::create([
+            'plat' => $plat,
+            'waktu_pajak' => $request->input('waktu_pajak'),
+            'total_bayar' => $request->input('total_bayar'),
+            'bukti_pembayaran' => $buktiPembayaranPath,
+        ]);
+    }
+
+    // Ambil data riwayat pembayaran yang terupdate
+    $riwayatPembayaran = RiwayatPembayaran::where('plat', $vehicle->plat)->latest()->get();
+
+    return redirect()->route('vehicles.showDetail', $vehicle->plat)
+                     ->with(compact('vehicle', 'riwayatPembayaran'))
+                     ->with('success', 'Kendaraan berhasil diperbarui.');
+}
+
+    // Menghapus kendaraan
     public function destroy($plat)
     {
         $vehicle = Vehicle::where('plat', $plat)->firstOrFail();
+        // Hapus file bukti pembayaran jika ada
+        if ($vehicle->bukti_pembayaran) {
+            Storage::delete('public/' . $vehicle->bukti_pembayaran);
+        }
         $vehicle->delete();
 
         return redirect()->route('vehicles.index')->with('success', 'Kendaraan berhasil dihapus.');
     }
 
-    // Metode untuk menampilkan detail riwayat kendaraan dengan pencarian
+    // Menampilkan detail riwayat kendaraan dengan pencarian
     public function showRiwayat(Request $request, $plat)
     {
         $vehicle = Vehicle::where('plat', $plat)->firstOrFail();
         
-        // Ambil kata kunci pencarian dari request
         $search = $request->input('search');
         
-        // Filter riwayat pembayaran berdasarkan pencarian
-        $riwayatPembayaran = $vehicle->riwayatPembayaran()
+        $riwayatPembayaran = RiwayatPembayaran::where('plat', $vehicle->plat)
             ->when($search, function ($query, $search) {
                 return $query->where('waktu_pajak', 'like', '%' . $search . '%');
             })
@@ -118,4 +144,5 @@ class VehicleController extends Controller
 
         return view('riwayat_detail', compact('vehicle', 'riwayatPembayaran'));
     }
+    
 }

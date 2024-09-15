@@ -19,4 +19,9 @@ class Vehicle extends Model
         'plat', 'pengguna', 'jenis_kendaraan', 'waktu_pajak', 'ganti_plat', 
         'usia_kendaraan', 'cc', 'nomor_telepon'
     ];
+    // Relasi dengan model RiwayatPembayaran
+    public function riwayatPembayaran()
+    {
+        return $this->hasMany(RiwayatPembayaran::class, 'vehicle_id');
+    }
 }

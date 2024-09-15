@@ -38,5 +38,45 @@ Route::put('/vehicles/{plat}', [VehicleController::class, 'update'])->name('vehi
 Route::get('/riwayat', [VehicleController::class, 'riwayat'])->name('riwayat');
 
 // Route untuk menampilkan detail riwayat
+// Route::get('/riwayat/{plat}', [VehicleController::class, 'showDetail'])->name('riwayat.detail');
+
+// Route::get('vehicles', [VehicleController::class, 'index'])->name('vehicles.index');
+// Route::get('vehicles/riwayat', [VehicleController::class, 'riwayat'])->name('vehicles.riwayat');
+// Route::get('vehicles/{plat}/riwayat/detail', [VehicleController::class, 'showDetail'])->name('vehicles.riwayat.detail');
+// Route::get('vehicles/{plat}/riwayat/search', [VehicleController::class, 'showRiwayat'])->name('vehicles.riwayat.search');
+
+// Route::get('vehicles/{plat}', [VehicleController::class, 'showDetail'])->name('vehicles.showDetail');
+// Route::put('vehicles/{plat}', [VehicleController::class, 'update'])->name('vehicles.update');
+// Route::get('vehicles/{plat}/riwayat', [VehicleController::class, 'showRiwayat'])->name('vehicles.showRiwayat');
+
+
 Route::get('/riwayat/{plat}', [VehicleController::class, 'showDetail'])->name('riwayat.detail');
+
+
+// Route untuk menampilkan semua kendaraan (tabel pajak)
+Route::get('/vehicles', [VehicleController::class, 'index'])->name('vehicles.index');
+
+// Route untuk menampilkan riwayat kendaraan (tabel riwayat)
+Route::get('/vehicles/riwayat', [VehicleController::class, 'riwayat'])->name('vehicles.riwayat');
+
+// Route untuk menampilkan detail riwayat kendaraan
+Route::get('/vehicles/{plat}/riwayat', [VehicleController::class, 'showDetail'])->name('vehicles.showDetail');
+
+// Route untuk menampilkan form tambah kendaraan
+Route::get('/vehicles/create', [VehicleController::class, 'create'])->name('vehicles.create');
+
+// Route untuk menyimpan kendaraan baru
+Route::post('/vehicles', [VehicleController::class, 'store'])->name('vehicles.store');
+
+// Route untuk menampilkan form edit kendaraan
+Route::get('/vehicles/{plat}/edit', [VehicleController::class, 'edit'])->name('vehicles.edit');
+
+// Route untuk mengupdate kendaraan
+Route::put('/vehicles/{plat}', [VehicleController::class, 'update'])->name('vehicles.update');
+
+// Route untuk menghapus kendaraan
+Route::delete('/vehicles/{plat}', [VehicleController::class, 'destroy'])->name('vehicles.destroy');
+
+// Route untuk menampilkan detail riwayat kendaraan dengan pencarian
+Route::get('/vehicles/{plat}/riwayat/search', [VehicleController::class, 'showRiwayat'])->name('vehicles.showRiwayat');
 

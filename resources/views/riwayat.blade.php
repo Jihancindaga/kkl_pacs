@@ -121,6 +121,7 @@
 
 <div class="content">
 <div class="container">
+    <h2>RIWAYAT</h2>
     <!-- Tombol Navigasi -->
     <div class="btn-container mb-4">
         <div class="row">
