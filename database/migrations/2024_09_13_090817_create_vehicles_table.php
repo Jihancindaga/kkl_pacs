@@ -13,7 +13,7 @@ class CreateVehiclesTable extends Migration
             $table->string('plat')->unique(); // Kolom plat sebagai unique key
             $table->string('pengguna');
             $table->string('jenis_kendaraan');
-            $table->string('waktu_pajak');
+            $table->date('waktu_pajak');
             $table->string('ganti_plat');
             $table->string('usia_kendaraan');
             $table->integer('cc');

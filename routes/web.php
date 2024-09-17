@@ -5,7 +5,7 @@ use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\FormDataController;
-
+use App\Http\Controllers\MessageController;
 
 Route::get('/', function () {
     return view('/admin/dashboard');
@@ -40,21 +40,7 @@ Route::put('/vehicles/{plat}', [VehicleController::class, 'update'])->name('vehi
 // Route untuk menampilkan riwayat
 Route::get('/riwayat', [VehicleController::class, 'riwayat'])->name('riwayat');
 
-// Route untuk menampilkan detail riwayat
-// Route::get('/riwayat/{plat}', [VehicleController::class, 'showDetail'])->name('riwayat.detail');
-
-// Route::get('vehicles', [VehicleController::class, 'index'])->name('vehicles.index');
-// Route::get('vehicles/riwayat', [VehicleController::class, 'riwayat'])->name('vehicles.riwayat');
-// Route::get('vehicles/{plat}/riwayat/detail', [VehicleController::class, 'showDetail'])->name('vehicles.riwayat.detail');
-// Route::get('vehicles/{plat}/riwayat/search', [VehicleController::class, 'showRiwayat'])->name('vehicles.riwayat.search');
-
-// Route::get('vehicles/{plat}', [VehicleController::class, 'showDetail'])->name('vehicles.showDetail');
-// Route::put('vehicles/{plat}', [VehicleController::class, 'update'])->name('vehicles.update');
-// Route::get('vehicles/{plat}/riwayat', [VehicleController::class, 'showRiwayat'])->name('vehicles.showRiwayat');
-
-
 Route::get('/riwayat/{plat}', [VehicleController::class, 'showDetail'])->name('riwayat.detail');
-
 
 // Route untuk menampilkan semua kendaraan (tabel pajak)
 Route::get('/vehicles', [VehicleController::class, 'index'])->name('vehicles.index');
@@ -106,3 +92,7 @@ Route::get('/admin/dashboard', function () {
 
 Route::get('/form_data', [FormDataController::class, 'create'])->name('form_data.create');
 Route::post('/form_data', [FormDataController::class, 'store'])->name('form_data.store');
+
+
+
+Route::post('/tabelpajak/send/{id}', [MessageController::class, 'send'])->name('send.notification');
