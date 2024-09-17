@@ -64,6 +64,7 @@
             padding: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             width: 100%; /* Full width */
+            text-align: center; /* Center text alignment */
         }
         /* Style for table */
         .table thead th {

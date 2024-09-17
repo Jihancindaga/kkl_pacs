@@ -61,11 +61,12 @@
             margin-top: 20px;
         }
         .container {
-            background-color: white;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            width: 100%; /* Full width */
+        background-color: white;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        width: 100%; /* Full width */
+        text-align: center; /* Center text alignment */
         }
         .container img {
             width: 100%;

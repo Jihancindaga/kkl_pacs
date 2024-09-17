@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\FormDataController;
+
 
 Route::get('/', function () {
     return view('/admin/dashboard');
@@ -16,7 +18,8 @@ Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name
 Route::post('/admin/login', [AdminLoginController::class, 'login'])->name('admin.login.post');
 
 // Rute untuk Logout Admin
-Route::post('/admin/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
+Route::post('/logout', [AdminLoginController::class, 'logout'])->name('logout');
+
 
 Route::get('/home', function () {
     return view('home'); // Pastikan file 'home.blade.php' ada di 'resources/views/'
@@ -97,4 +100,9 @@ Route::post('/admin/update/{id}', [AdminDashboardController::class, 'update'])->
 // Rute untuk menghapus admin
 Route::delete('/admin/delete/{id}', [AdminDashboardController::class, 'destroy'])->name('admin.delete');
 
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+})->name('admin.dashboard');
 
+Route::get('/form_data', [FormDataController::class, 'create'])->name('form_data.create');
+Route::post('/form_data', [FormDataController::class, 'store'])->name('form_data.store');

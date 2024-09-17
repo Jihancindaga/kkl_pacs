@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <title>Dashboard</title>
     <style>
         body {
@@ -172,20 +173,20 @@
         }
 
         #addAdminModal {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 15px 25px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    z-index: 1000;
-    width: 320px;
-    max-width: 90%;
-    animation: fadeIn 0.3s ease;
-}
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 15px 25px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        z-index: 1000;
+        width: 320px;
+        max-width: 90%;
+        animation: fadeIn 0.3s ease;
+    }
 
 #addAdminModal h2 {
     font-size: 18px;
@@ -310,13 +311,12 @@
     </style>
 </head>
 <body>
-
     <div class="navbar">
         <div class="logo">
             <div class="hamburger" onclick="openNav()">&#9776;</div>
             <img src="/images/pacs.png" alt="Logo">
         </div>
-        <button class="logout">Logout</button>
+        <button type="button" class="logout" onclick="window.location.href='{{ url('admin/dashboard') }}'">Logout</button>
     </div>
 
     <!-- Sidebar -->
@@ -325,14 +325,14 @@
 
         <!-- Admin Biodata -->
         <div class="admin-info">
-            <img src="https://via.placeholder.com/100" alt="Admin Photo">
-            <h4>Admin Name</h4>
+            <i class="fas fa-user-circle" style="font-size: 100px; color: #007bff;"></i> <!-- Ikon orang -->
+            <h4>Admin</h4>
             <p>Administrator</p>
         </div>
       
     <a href="#" onclick="toggleSubMenu('subMenu1')"><span class="icon">&#128100;</span>Kelola Pengguna</a>
     <div class="sub-buttons" id="subMenu1">
-        <a href="#" onclick="openModal()">Tambah</a>
+        <a href="#" onclick="openModal()">Tambah Admin</a>
         <a href="{{ route('admin.list') }}">Daftar Pengguna</a>
     </div>
 </div>
@@ -340,34 +340,32 @@
         </div>
     </div>
     <!-- Modal for Adding Admin -->
-<div id="addAdminModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background-color:white; padding:20px; box-shadow:0 2px 10px rgba(0, 0, 0, 0.3); z-index:1000; width:300px;">
-    <h2>Tambah Admin Baru</h2>
-    <form id="addAdminForm" action="{{ route('admin.store') }}" method="POST">
-        @csrf
-        <label for="nip">NIP:</label><br>
-        <input type="text" id="nip" name="nip" required><br><br>
+    <div id="addAdminModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background-color:white; padding:20px; box-shadow:0 2px 10px rgba(0, 0, 0, 0.3); z-index:1000; width:350px;">
+        <h2>Tambah Admin Baru</h2>
+        <form id="addAdminForm" action="{{ route('admin.store') }}" method="POST">
+            @csrf
+            <label for="nip" style="margin-bottom: 2px;">NIP:</label><br>
+            <input type="text" id="nip" name="nip" required style="margin-bottom: 10px;"><br><br>
 
-            <label for="password">Password:</label><br>
-    <div style="position: relative;">
-        <input type="password" id="password" name="password" required>
-        <i class="fas fa-eye" id="togglePassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
+            <label for="password" style="margin-bottom: 2px;">Password:</label><br>
+            <div style="position: relative; margin-bottom: 10px;">
+                <input type="password" id="password" name="password" required>
+            </div>
+            <br>
+
+            <label for="confirm_password" style="margin-bottom: 2px;">Konfirmasi Password:</label><br>
+            <div style="position: relative; margin-bottom: 10px;">
+                <input type="password" id="confirm_password" required>
+            </div>
+            <br>
+
+            <div class="error-message" id="error-message" style="color:red; display:none;">Password tidak cocok.</div>
+
+            <button type="submit">Simpan</button>
+            <button type="button" onclick="closeModal()">Batal</button>
+        </form>
     </div>
-    <br>
 
-    <label for="confirm_password">Konfirmasi Password:</label><br>
-    <div style="position: relative;">
-        <input type="password" id="confirm_password" required>
-        <i class="fas fa-eye" id="toggleConfirmPassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
-    </div>
-    <br>
-
-
-        <div class="error-message" id="error-message" style="color:red; display:none;">Password tidak cocok.</div>
-
-        <button type="submit">Simpan</button>
-        <button type="button" onclick="closeModal()">Batal</button>
-    </form>
-</div>
 
 <!-- FontAwesome CDN untuk ikon mata -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
@@ -413,6 +411,7 @@
         this.classList.toggle('fa-eye-slash');
     });
 </script>
+
 
 
 <!-- Overlay background -->

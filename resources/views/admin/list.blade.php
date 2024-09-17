@@ -22,14 +22,26 @@
             position: fixed;
             width: 100%;
             top: 0;
-            z-index: 10;
+            z-index: 1000;
         }
-        .navbar .logo {
-            display: flex;
-            align-items: center;
+        .navbar .logout {
+            background-color: #f44336; /* Red */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: 20px;
         }
         .navbar .logo img {
             height: 40px;
+        }
+        .navbar .home-btn {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
         }
         .container {
             padding: 20px;
@@ -122,14 +134,16 @@
 <body>
 
     <div class="navbar">
-        <div class="logo">
-            <img src="/images/pacs.png" alt="Logo">
+    <button class="home-btn" onclick="navigateTo('/home')">
+            <i class="fas fa-arrow-left"></i> <!-- Font Awesome arrow-left icon -->
+            </button>
+            <div class="logo">
+                <img src="/images/pacs.png" alt="Logo">
+            </div>
+            <button type="button" class="logout" onclick="window.location.href='{{ url('admin/dashboard') }}'">Logout</button>
         </div>
-        <button class="logout" onclick="window.location.href='/logout'">Logout</button>
-    </div>
 
     <div class="container">
-        <button class="home-button" onclick="window.location.href='/home'"><i class="fas fa-arrow-left"></i></button>
         <h1>Daftar Pengguna</h1>
         <table>
             <thead>
@@ -160,5 +174,14 @@
         </table>
     </div>
 
+        <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- Include Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function navigateTo(url) {
+            window.location.href = url;
+        }
+    </script>
 </body>
 </html>

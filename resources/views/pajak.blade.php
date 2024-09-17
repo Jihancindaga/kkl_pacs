@@ -36,10 +36,6 @@
             cursor: pointer;
             border-radius: 5px;
         }
-        .navbar .logo {
-            display: flex;
-            align-items: center;
-        }
         .navbar .logo img {
             height: 40px;
         }
@@ -65,7 +61,7 @@
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            width: 100%; /* Full width */
+            text-align: center;
         }
         .container img {
             width: 100%;
@@ -93,7 +89,6 @@
         .container button:hover {
             opacity: 0.8;
         }
-        /* Style for table */
         .table thead th {
             background-color: #007bff; /* Blue */
             color: white;
@@ -103,7 +98,24 @@
             vertical-align: middle;
         }
         .table-container .btn {
-            margin: 2px;
+            margin-right: 5px; /* Atur jarak antar tombol */
+            display: inline-block; /* Pastikan tombol dalam satu baris */
+        }
+
+        @media (max-width: 768px) {
+            .navbar .logo img {
+                height: 30px;
+            }
+            .container {
+                padding: 10px;
+            }
+            .container button {
+                padding: 8px 16px;
+                font-size: 0.875rem;
+            }
+            .table td, .table th {
+                font-size: 0.75rem;
+            }
         }
     </style>
 </head>
@@ -115,7 +127,7 @@
         <div class="logo">
             <img src="/images/pacs.png" alt="Logo">
         </div>
-        <button class="logout">Logout</button>
+        <button type="button" class="logout" onclick="window.location.href='{{ url('admin/dashboard') }}'">Logout</button>
     </div>
 
     <div class="content">
@@ -124,59 +136,63 @@
             <!-- Tombol -->
             <div class="btn-container">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-sm-12 mb-3">
                         <button class="btn btn-1 btn-block" onclick="navigateTo('/pajak')">Data Pokok Kendaraan</button>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-sm-12 mb-3">
                         <button class="btn btn-2 btn-block" onclick="navigateTo('/riwayat')">Riwayat Pembayaran Pajak</button>
                     </div>
-                    <div class="col-md-4">
-                        <button class="btn btn-3 btn-block" onclick="navigateTo('/formdata')">Masukkan Data Kendaraan</button>
+                    <div class="col-md-4 col-sm-12 mb-3">
+                        <button class="btn btn-3 btn-block" onclick="navigateTo('/form_data')">Masukkan Data Kendaraan</button>
                     </div>
                 </div>
             </div>
 
             <!-- Tabel Pajak -->
             <div class="table-container">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Pengguna</th>
-                            <th>Plat</th>
-                            <th>Jenis Kendaraan</th>
-                            <th>Waktu Pajak</th>
-                            <th>Ganti Plat</th>
-                            <th>Usia Kendaraan</th>
-                            <th>CC</th>
-                            <th>Nomor Telepon</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($vehicles as $index => $vehicle)
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
                             <tr>
-                                <td>{{ $index + 1 }}</td>
-                                <td>{{ $vehicle->pengguna }}</td>
-                                <td>{{ $vehicle->plat }}</td>
-                                <td>{{ $vehicle->jenis_kendaraan }}</td>
-                                <td>{{ $vehicle->waktu_pajak }}</td>
-                                <td>{{ $vehicle->ganti_plat }}</td>
-                                <td>{{ $vehicle->usia_kendaraan }}</td>
-                                <td>{{ $vehicle->cc }}</td>
-                                <td>{{ $vehicle->nomor_telepon }}</td>
-                                <td>
-                                    <a href="{{ route('vehicles.edit', $vehicle->plat) }}" class="btn btn-warning btn-sm">Edit</a>
-                                    <form action="{{ route('vehicles.destroy', $vehicle->plat) }}" method="POST" style="display:inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
-                                    </form>
-                                </td>
+                                <th>No</th>
+                                <th>Pengguna</th>
+                                <th>Plat</th>
+                                <th>Jenis Kendaraan</th>
+                                <th>Waktu Pajak</th>
+                                <th>Ganti Plat</th>
+                                <th>Usia Kendaraan</th>
+                                <th>CC</th>
+                                <th>Nomor Telepon</th>
+                                <th>Aksi</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach($vehicles as $index => $vehicle)
+                                <tr>
+                                    <td>{{ $index + 1 }}</td>
+                                    <td>{{ $vehicle->pengguna }}</td>
+                                    <td>{{ $vehicle->plat }}</td>
+                                    <td>{{ $vehicle->jenis_kendaraan }}</td>
+                                    <td>{{ $vehicle->waktu_pajak }}</td>
+                                    <td>{{ $vehicle->ganti_plat }}</td>
+                                    <td>{{ $vehicle->usia_kendaraan }}</td>
+                                    <td>{{ $vehicle->cc }}</td>
+                                    <td>{{ $vehicle->nomor_telepon }}</td>
+                                    <td>
+                                        <div style="display: flex; gap: 5px;">
+                                            <a href="{{ route('vehicles.edit', $vehicle->plat) }}" class="btn btn-warning btn-sm" style="flex: 1; text-align: center; width: 100%; font-size: 0.875rem; padding: 0.375rem 0.75rem; box-sizing: border-box; border-radius: 5px;">Edit</a>
+                                            <form action="{{ route('vehicles.destroy', $vehicle->plat) }}" method="POST" style="flex: 1; margin: 0; padding: 0;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm" style="width: 100%; font-size: 0.875rem; padding: 0.375rem 0.75rem; box-sizing: border-box; height: 40px; border-radius: 5px;">Hapus</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
