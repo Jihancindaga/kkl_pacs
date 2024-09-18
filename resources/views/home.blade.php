@@ -427,7 +427,7 @@
         <!-- Container 2 -->
         <div class="container">
             <img src="/images/logo_pegawai.jpg" alt="Image 2">
-            <button onclick="alert('Kenaikan Gaji dan Pangkat Pegawai')">Kenaikan Gaji dan Pangkat Pegawai</button>
+            <button onclick="navigateTo('/datakaryawan')">Kenaikan Gaji dan Pangkat Pegawai</button>
         </div>
     </div>
 

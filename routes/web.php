@@ -10,6 +10,9 @@ use App\Http\Controllers\MessageController;
 Route::get('/', function () {
     return view('/admin/dashboard');
 });
+Route::get('/datakaryawan', function () {
+    return view('/datakaryawan');
+});
 // Rute untuk Dashboard Admin
 Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
