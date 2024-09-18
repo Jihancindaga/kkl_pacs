@@ -124,7 +124,7 @@
                                     <td>{{ $riwayat->total_bayar }}</td>
                                     <td>
                                         @if($riwayat->bukti_pembayaran && Storage::disk('public')->exists($riwayat->bukti_pembayaran))
-                                            <a href="{{ asset('storage/' . $riwayat->bukti_pembayaran) }}" target="_blank">Lihat Bukti</a>
+                                        <a href="{{ asset('storage/' . $riwayat->bukti_pembayaran) }}" target="_blank">Lihat Bukti</a>
                                         @else
                                             Tidak ada bukti
                                         @endif

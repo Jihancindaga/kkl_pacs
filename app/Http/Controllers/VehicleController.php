@@ -32,8 +32,6 @@ class VehicleController extends Controller
     return view('riwayat_detail', compact('vehicle', 'riwayatPembayaran'));
 }
 
-    
-
     // Menampilkan form tambah kendaraan
     public function create()
     {
@@ -69,21 +67,28 @@ class VehicleController extends Controller
     // Mengupdate kendaraan
     public function update(Request $request, $plat)
 {
+     // Log data request untuk debugging
+     \Log::info('Request Data:', $request->all());
     $request->validate([
         'pengguna' => 'required|string',
-        'plat' => 'required|string|unique:vehicles,plat,' . $plat . ',plat',
         'jenis_kendaraan' => 'required|string',
         'waktu_pajak' => 'required|date',
         'ganti_plat' => 'required|date',
         'usia_kendaraan' => 'required|integer',
         'cc' => 'required|integer',
-        'nomor_telepon' => 'nullable|string',
-        'bukti_pembayaran' => 'nullable|file|mimes:jpg,png,pdf|max:2048',
-        'sudah_bayar' => 'nullable|boolean',
-        'total_bayar' => 'required|numeric', // Pastikan total_bayar diisi
+        'total_bayar' => 'required|integer',
+        'bukti_pembayaran' => 'nullable|file|mimes:pdf,jpeg,png,jpg|max:2048',
     ]);
 
     $vehicle = Vehicle::where('plat', $plat)->firstOrFail();
+    
+    $vehicle->pengguna = $request->input('pengguna');
+    $vehicle->jenis_kendaraan = $request->input('jenis_kendaraan');
+    $vehicle->waktu_pajak = $request->input('waktu_pajak');
+    $vehicle->ganti_plat = $request->input('ganti_plat');
+    $vehicle->usia_kendaraan = $request->input('usia_kendaraan');
+    $vehicle->cc = $request->input('cc');
+    $vehicle->total_bayar = $request->input('total_bayar');
 
     if ($request->hasFile('bukti_pembayaran')) {
         // Hapus file yang lama jika ada
@@ -94,8 +99,8 @@ class VehicleController extends Controller
         $vehicle->bukti_pembayaran = $buktiPembayaranPath;
     }
 
-    // Update data kendaraan
-    $vehicle->update($request->except('bukti_pembayaran'));
+    // Simpan perubahan data kendaraan
+    $vehicle->save();
 
     // Simpan riwayat pembayaran jika total_bayar diisi
     if ($request->filled('total_bayar')) {
@@ -103,7 +108,7 @@ class VehicleController extends Controller
             'plat' => $plat,
             'waktu_pajak' => $request->input('waktu_pajak'),
             'total_bayar' => $request->input('total_bayar'),
-            'bukti_pembayaran' => $buktiPembayaranPath,
+            'bukti_pembayaran' => isset($buktiPembayaranPath) ? $buktiPembayaranPath : $vehicle->bukti_pembayaran,
         ]);
     }
 
@@ -114,6 +119,7 @@ class VehicleController extends Controller
                      ->with(compact('vehicle', 'riwayatPembayaran'))
                      ->with('success', 'Kendaraan berhasil diperbarui.');
 }
+
 
     // Menghapus kendaraan
     public function destroy($plat)
@@ -142,6 +148,13 @@ class VehicleController extends Controller
             ->latest()
             ->get();
 
+        return view('riwayat_detail', compact('vehicle', 'riwayatPembayaran'));
+    }
+
+    public function riwayatDetail($plat)
+    {
+        $vehicle = Vehicle::where('plat', $plat)->firstOrFail();
+        $riwayatPembayaran = Vehicle::where('plat', $plat)->get();
         return view('riwayat_detail', compact('vehicle', 'riwayatPembayaran'));
     }
     

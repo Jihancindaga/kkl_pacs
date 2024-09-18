@@ -93,6 +93,6 @@ Route::get('/admin/dashboard', function () {
 Route::get('/form_data', [FormDataController::class, 'create'])->name('form_data.create');
 Route::post('/form_data', [FormDataController::class, 'store'])->name('form_data.store');
 
-
-
 Route::post('/tabelpajak/send/{id}', [MessageController::class, 'send'])->name('send.notification');
+
+Route::put('/vehicles/{plat}', [VehicleController::class, 'update'])->name('vehicles.update');

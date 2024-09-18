@@ -167,14 +167,18 @@
                 
             </div>
 
-
             <div class="form-group checkbox-label">
                 <label for="sudah_bayar">
                     <input type="checkbox" name="sudah_bayar" value="1" {{ $vehicle->sudah_bayar ? 'checked' : '' }}> Konfirmasi Sudah Bayar Pajak
                 </label>
             </div>
 
-            <button type="submit" class="btn btn-primary">Update</button>
+            <form action="{{ route('vehicles.update', $vehicle->plat) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <!-- Input fields -->
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
             <a href="{{ route('vehicles.index') }}" class="btn btn-secondary">Batal</a>
         </form>
     </div>
