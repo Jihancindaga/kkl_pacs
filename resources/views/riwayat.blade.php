@@ -133,7 +133,7 @@
                 <button class="btn btn-success btn-block" onclick="navigateTo('/riwayat')">Riwayat Pembayaran Pajak</button>
             </div>
             <div class="col-md-4">
-                <button class="btn btn-warning btn-block" onclick="navigateTo('/formdata')">Masukkan Data Kendaraan</button>
+                <button class="btn btn-warning btn-block" onclick="navigateTo('/form_data')">Masukkan Data Kendaraan</button>
             </div>
         </div>
     </div>
