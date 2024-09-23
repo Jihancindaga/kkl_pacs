@@ -16,21 +16,46 @@ class FormDataController extends Controller
 
     public function store(Request $request)
     {
-        // Validasi dan simpan data
+        // Validasi data yang masuk
         $request->validate([
-            'pengguna' => 'required|string|max:255',
-            'plat' => 'required|string|max:10',
-            'jenis_kendaraan' => 'required|string|max:255',
-            'waktu_pajak' => 'required|string|max:255',
-            'ganti_plat' => 'nullable|string|max:255',
+            'plat' => 'required|string|unique:vehicles',
+            'pengguna' => 'required|string',
+            'jenis_kendaraan' => 'required|string',
+            'waktu_pajak' => 'required|date',
+            'ganti_plat' => 'nullable|date',
             'usia_kendaraan' => 'required|integer',
-            'cc' => 'required|string|max:10',
-            'nomor_telepon' => 'required|string|max:20',
+            'cc' => 'required|integer',
+            'nomor_telepon' => 'nullable|string'
         ]);
+    // Tentukan prefix kode kendaraan berdasarkan jenis kendaraan
+    $prefix = ($request->jenis_kendaraan == 'Motor') ? 'mtr-' : 'mbl-';
 
-        // Simpan data kendaraan
-        Vehicle::create($request->all());
+    // Hitung jumlah kendaraan dari jenis yang sama untuk menentukan nomor urut
+    $lastVehicle = Vehicle::where('jenis_kendaraan', $request->jenis_kendaraan)
+                        ->orderBy('id', 'desc')
+                        ->first();
 
-        return redirect()->route('form_data.create')->with('success', 'Data berhasil disimpan!');
+    $nextNumber = $lastVehicle ? ((int)str_replace($prefix, '', $lastVehicle->kode_kendaraan) + 1) : 1;
+
+    // Buat kode kendaraan dengan format: prefix + nomor urut
+    $kodeKendaraan = $prefix . $nextNumber;
+    
+        // Simpan data kendaraan dengan kode_kendaraan
+        $vehicle = Vehicle::create([
+            'plat' => $request->plat,
+            'pengguna' => $request->pengguna,
+            'jenis_kendaraan' => $request->jenis_kendaraan,
+            'waktu_pajak' => $request->waktu_pajak,
+            'ganti_plat' => $request->ganti_plat,
+            'usia_kendaraan' => $request->usia_kendaraan,
+            'cc' => $request->cc,
+            'nomor_telepon' => $request->nomor_telepon,
+            'kode_kendaraan' => $kodeKendaraan // Tambahkan kode kendaraan sebelum penyimpanan
+        ]);
+    
+        // Redirect ke halaman daftar kendaraan dengan pesan sukses
+        return redirect()->route('vehicles.index')->with('success', 'Kendaraan berhasil ditambahkan.');
     }
+    
+    
 }

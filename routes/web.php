@@ -77,8 +77,8 @@ Route::get('/vehicles/{plat}/riwayat/search', [VehicleController::class, 'showRi
 Route::post('/admin/store', [AdminDashboardController::class, 'store'])->name('admin.store');
 Route::get('/admin/list', [AdminDashboardController::class, 'index'])->name('admin.list');
 
-// Rute untuk halaman daftar pengguna
-Route::get('/admin/list', [AdminDashboardController::class, 'list'])->name('admin.list');
+// // Rute untuk halaman daftar pengguna
+// Route::get('/admin/list', [AdminDashboardController::class, 'list'])->name('admin.list');
 
 // Rute untuk mengedit admin
 Route::get('/admin/edit/{id}', [AdminDashboardController::class, 'edit'])->name('admin.edit');
@@ -89,13 +89,19 @@ Route::post('/admin/update/{id}', [AdminDashboardController::class, 'update'])->
 // Rute untuk menghapus admin
 Route::delete('/admin/delete/{id}', [AdminDashboardController::class, 'destroy'])->name('admin.delete');
 
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-})->name('admin.dashboard');
+// Route::get('/admin/dashboard', function () {
+//     return view('admin.dashboard');
+// })->name('admin.dashboard');
 
 Route::get('/form_data', [FormDataController::class, 'create'])->name('form_data.create');
 Route::post('/form_data', [FormDataController::class, 'store'])->name('form_data.store');
 
 Route::post('/tabelpajak/send/{id}', [MessageController::class, 'send'])->name('send.notification');
 
-Route::put('/vehicles/{plat}', [VehicleController::class, 'update'])->name('vehicles.update');
+// Route::put('/vehicles/{plat}', [VehicleController::class, 'update'])->name('vehicles.update');
+
+// route ganti password 
+Route::get('/admin/change-password/{id}', [AdminDashboardController::class, 'changePassword'])->name('admin.change_password');
+Route::put('/admin/update-password/{id}', [AdminDashboardController::class, 'updatePassword'])->name('admin.update_password');
+
+Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin.index');

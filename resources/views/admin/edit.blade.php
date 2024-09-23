@@ -35,7 +35,10 @@
             color: #333;
         }
 
-        input[type="text"] {
+        input[type="text"],
+        input[type="tel"],
+        textarea,
+        select {
             width: 100%;
             padding: 10px;
             margin-bottom: 20px;
@@ -95,16 +98,43 @@
             @csrf
             @method('POST')
 
+            <!-- Form Group for Nama -->
+            <div class="form-group">
+                <label for="nama">Nama:</label>
+                <input type="text" id="nama" name="nama" value="{{ $admin->nama }}" required>
+            </div>
+
             <!-- Form Group for NIP -->
             <div class="form-group">
                 <label for="nip">NIP:</label>
                 <input type="text" id="nip" name="nip" value="{{ $admin->nip }}" required>
             </div>
 
-            <!-- Form Group for Password -->
+            <!-- Form Group for Jabatan -->
             <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="text" id="password" name="password" value="{{ $admin->password }}" required>
+                <label for="jabatan">Jabatan:</label>
+                <input type="text" id="jabatan" name="jabatan" value="{{ $admin->jabatan }}" required>
+            </div>
+
+            <!-- Form Group for Alamat -->
+            <div class="form-group">
+                <label for="alamat">Alamat:</label>
+                <textarea id="alamat" name="alamat" required>{{ $admin->alamat }}</textarea>
+            </div>
+
+            <!-- Form Group for No Telp -->
+            <div class="form-group">
+                <label for="no_telp">No. Telp:</label>
+                <input type="tel" id="no_telp" name="no_telp" value="{{ $admin->no_telp }}" required>
+            </div>
+
+            <!-- Form Group for Jenis Kelamin -->
+            <div class="form-group">
+                <label for="jenis_kelamin">Jenis Kelamin:</label>
+                <select id="jenis_kelamin" name="jenis_kelamin" required>
+                    <option value="Laki-laki" {{ $admin->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                    <option value="Perempuan" {{ $admin->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                </select>
             </div>
 
             <!-- Submit Button -->

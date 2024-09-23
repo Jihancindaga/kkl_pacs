@@ -84,15 +84,16 @@
                 @csrf
                 <div class="form-group">
                     <label for="pengguna">Pengguna</label>
-                    <input type="text" class="form-control" id="pengguna" name="pengguna" required>
+                    <input type="text" class="form-control" id="pengguna" name="pengguna" placeholder="Nama Pengguna" required>
                 </div>
                 <div class="form-group">
                     <label for="plat">Plat</label>
-                    <input type="text" class="form-control" id="plat" name="plat" required>
+                    <input type="text" class="form-control" id="plat" name="plat" placeholder="Nomor Plat Kendaraan" required>
                 </div>
                 <div class="form-group">
                     <label for="jenis_kendaraan">Jenis Kendaraan</label>
                     <select class="form-control" id="jenis_kendaraan" name="jenis_kendaraan" required>
+                        <option value="">--- Pilih Jenis Kendaraan ---</option>
                         <option value="Motor">Motor</option>
                         <option value="Mobil">Mobil</option>
                     </select>
@@ -112,16 +113,16 @@
                 <div class="form-group">
                     <label for="usia_kendaraan">Usia Kendaraan</label>
                     <div class="input-group">
-                        <input type="number" class="form-control" id="usia_kendaraan" name="usia_kendaraan" required>
+                        <input type="number" class="form-control" id="usia_kendaraan" name="usia_kendaraan" placeholder="Usia Kendaraan" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="cc">CC</label>
-                    <input type="text" class="form-control" id="cc" name="cc" required>
+                    <input type="number" class="form-control" id="cc" name="cc" placeholder="Kapasitas Mesin (CC)" required>
                 </div>
                 <div class="form-group">
                     <label for="nomor_telepon">Nomor Telepon</label>
-                    <input type="text" class="form-control" id="nomor_telepon" name="nomor_telepon" required>
+                    <input type="text" class="form-control" id="nomor_telepon" name="nomor_telepon" placeholder="Nomor Telepon (Opsional)">
                 </div>
                 <button type="submit" class="btn btn-primary">Simpan Data</button>
             </form>

@@ -150,52 +150,52 @@
 
             <!-- Tabel Pajak -->
             <div class="table-container">
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Pengguna</th>
-                                <th>Plat</th>
-                                <th>Jenis Kendaraan</th>
-                                <th>Waktu Pajak</th>
-                                <th>Ganti Plat</th>
-                                <th>Usia Kendaraan</th>
-                                <th>CC</th>
-                                <th>Nomor Telepon</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($vehicles as $index => $vehicle)
-                                <tr>
-                                    <td>{{ $index + 1 }}</td>
-                                    <td>{{ $vehicle->pengguna }}</td>
-                                    <td>{{ $vehicle->plat }}</td>
-                                    <td>{{ $vehicle->jenis_kendaraan }}</td>
-                                    <td>{{ $vehicle->waktu_pajak }}</td>
-                                    <td>{{ $vehicle->ganti_plat }}</td>
-                                    <td>{{ $vehicle->usia_kendaraan }}</td>
-                                    <td>{{ $vehicle->cc }}</td>
-                                    <td>{{ $vehicle->nomor_telepon }}</td>
-                                    <td>
-                                        <div style="display: flex; gap: 5px;">
-                                            <a href="{{ route('vehicles.edit', $vehicle->plat) }}" class="btn btn-warning btn-sm" style="flex: 1; text-align: center; width: 100%; font-size: 0.875rem; padding: 0.375rem 0.75rem; box-sizing: border-box; border-radius: 5px;">Edit</a>
-                                            <form action="{{ route('vehicles.destroy', $vehicle->plat) }}" method="POST" style="flex: 1; margin: 0; padding: 0;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm" style="width: 100%; font-size: 0.875rem; padding: 0.375rem 0.75rem; box-sizing: border-box; height: 40px; border-radius: 5px;">Hapus</button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>ID Kendaraan</th>
+                    <th>Plat</th>
+                    <th>Jenis Kendaraan</th>
+                    <th>Pengguna</th>
+                    <th>Waktu Pajak</th>
+                    <th>Ganti Plat</th>
+                    <th>Usia Kendaraan</th>
+                    <th>CC</th>
+                    <th>Nomor Telepon</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($vehicles as $index => $vehicle)
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $vehicle->kode_kendaraan }}</td>
+                        <td>{{ $vehicle->plat }}</td>
+                        <td>{{ $vehicle->jenis_kendaraan }}</td>
+                        <td>{{ $vehicle->pengguna }}</td>
+                        <td>{{ $vehicle->waktu_pajak }}</td>
+                        <td>{{ $vehicle->ganti_plat }}</td>
+                        <td>{{ $vehicle->usia_kendaraan }}</td>
+                        <td>{{ $vehicle->cc }}</td>
+                        <td>{{ $vehicle->nomor_telepon }}</td>
+                        <td>
+                            <div style="display: flex; gap: 5px;">
+                                <a href="{{ route('vehicles.edit', $vehicle->plat) }}" class="btn btn-warning btn-sm" style="flex: 1; text-align: center; width: 100%; font-size: 0.875rem; padding: 0.375rem 0.75rem; box-sizing: border-box; border-radius: 5px;">Edit</a>
+                                <form action="{{ route('vehicles.destroy', $vehicle->plat) }}" method="POST" style="flex: 1; margin: 0; padding: 0;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm" style="width: 100%; font-size: 0.875rem; padding: 0.375rem 0.75rem; box-sizing: border-box; height: 40px; border-radius: 5px;">Hapus</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
+</div>
 
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

@@ -99,7 +99,7 @@
             transition: background-color 0.3s;
         }
         .sidebar a:hover {
-            background-color: #004080; /* Medium Blue */
+            background-color: #002244; /* Even Darker Blue */
             color: #fff;
         }
         .sidebar .icon {
@@ -115,7 +115,7 @@
         }
         .sub-buttons a {
             display: block;
-            background-color: #002244; /* Even Darker Blue */
+            background-color: #003366; /* Dark Blue */
             color: white;
             padding: 10px 15px;
             margin: 5px 0;
@@ -126,7 +126,7 @@
             transition: background-color 0.3s;
         }
         .sub-buttons a:hover {
-            background-color: #003366; /* Dark Blue */
+            background-color: #002244; /* Even Dark Blue */
         }
 
         /* Content styles */
@@ -224,6 +224,22 @@
     outline: none;
 }
 
+
+#addAdminForm input:focus, select:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+            outline: none;
+        }
+
+#addAdminForm input, select {
+            padding: 6px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 13px;
+            transition: all 0.2s;
+            width: 100%;
+        }
+
 #addAdminForm .input-container {
     position: relative;
 }
@@ -238,9 +254,16 @@
     transition: color 0.2s;
 }
 
-#addAdminForm i:hover {
-    color: #007bff;
-}
+
+.container button:hover {
+            background-color: #0056b3; /* Darker blue */
+        }
+
+        .container button:active {
+            background-color: #000d1a !important; /* Lebih gelap untuk kontras */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6); /* Bayangan lebih kuat */
+            transform: scale(0.92); /* Sedikit mengecil */
+        } 
 
 #addAdminForm .error-message {
     color: #f44336;
@@ -267,6 +290,14 @@
     background-color: #0056b3;
     transform: translateY(-2px);
 }
+
+.container button:active {
+    background-color: #001a33; /* Warna lebih gelap dari sidebar */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Efek bayangan lebih kuat */
+    transform: scale(0.95); /* Efek sedikit mengecil */
+}
+
+
 
 #addAdminForm button[type="button"] {
     background-color: #f44336;
@@ -339,25 +370,35 @@
         
         </div>
     </div>
-    <!-- Modal for Adding Admin -->
-    <div id="addAdminModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background-color:white; padding:20px; box-shadow:0 2px 10px rgba(0, 0, 0, 0.3); z-index:1000; width:350px;">
+ <!-- Modal for Adding Admin -->
+ <div id="addAdminModal">
         <h2>Tambah Admin Baru</h2>
         <form id="addAdminForm" action="{{ route('admin.store') }}" method="POST">
             @csrf
-            <label for="nip" style="margin-bottom: 2px;">NIP:</label><br>
-            <input type="text" id="nip" name="nip" required style="margin-bottom: 10px;"><br><br>
+            <label for="name">Nama:</label>
+            <input type="text" id="name" name="name" required>
 
-            <label for="password" style="margin-bottom: 2px;">Password:</label><br>
-            <div style="position: relative; margin-bottom: 10px;">
-                <input type="password" id="password" name="password" required>
-            </div>
-            <br>
+            <label for="nip">NIP:</label>
+            <input type="text" id="nip" name="nip" required>
 
-            <label for="confirm_password" style="margin-bottom: 2px;">Konfirmasi Password:</label><br>
-            <div style="position: relative; margin-bottom: 10px;">
-                <input type="password" id="confirm_password" required>
-            </div>
-            <br>
+            <label for="jabatan">Jabatan:</label>
+            <input type="text" id="jabatan" name="jabatan" required>
+
+            <label for="no_telp">Nomor Telepon:</label>
+            <input type="text" id="no_telp" name="no_telp" required>
+
+            <label for="jenis_kelamin">Jenis Kelamin:</label>
+            <select id="jenis_kelamin" name="jenis_kelamin" required>
+                <option value="">Pilih Jenis Kelamin</option>
+                <option value="Laki-laki">Laki-laki</option>
+                <option value="Perempuan">Perempuan</option>
+            </select>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="confirm_password">Konfirmasi Password:</label>
+            <input type="password" id="confirm_password" required>
 
             <div class="error-message" id="error-message" style="color:red; display:none;">Password tidak cocok.</div>
 
@@ -366,24 +407,20 @@
         </form>
     </div>
 
+    <script>
+        // Validasi password dan konfirmasi password
+        document.getElementById('addAdminForm').addEventListener('submit', function(event) {
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirm_password').value;
+            var errorMessage = document.getElementById('error-message');
 
-<!-- FontAwesome CDN untuk ikon mata -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
-
-<script>
-    // Validasi password dan konfirmasi password
-    document.getElementById('addAdminForm').addEventListener('submit', function(event) {
-        var password = document.getElementById('password').value;
-        var confirmPassword = document.getElementById('confirm_password').value;
-        var errorMessage = document.getElementById('error-message');
-
-        if (password !== confirmPassword) {
-            event.preventDefault(); // Mencegah pengiriman form jika password tidak cocok
-            errorMessage.style.display = 'block'; // Menampilkan pesan error
-        } else {
-            errorMessage.style.display = 'none'; // Sembunyikan pesan error jika cocok
-        }
-    });
+            if (password !== confirmPassword) {
+                event.preventDefault();
+                errorMessage.style.display = 'block';
+            } else {
+                errorMessage.style.display = 'none';
+            }
+        });
 
     // Toggle show/hide password
     const togglePassword = document.getElementById('togglePassword');
@@ -410,6 +447,16 @@
         // Toggle the eye icon
         this.classList.toggle('fa-eye-slash');
     });
+
+    // Open modal function
+    function openModal() {
+            document.getElementById('addAdminModal').style.display = 'block';
+        }
+
+        // Close modal function
+        function closeModal() {
+            document.getElementById('addAdminModal').style.display = 'none';
+        }
 </script>
 
 
@@ -427,7 +474,7 @@
         <!-- Container 2 -->
         <div class="container">
             <img src="/images/logo_pegawai.jpg" alt="Image 2">
-            <button onclick="navigateTo('/datakaryawan')">Kenaikan Gaji dan Pangkat Pegawai</button>
+            <button onclick="alert('Kenaikan Gaji dan Pangkat Pegawai')">Kenaikan Gaji dan Pangkat Pegawai</button>
         </div>
     </div>
 

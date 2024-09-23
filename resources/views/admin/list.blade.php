@@ -46,7 +46,7 @@
         .container {
             padding: 20px;
             position: relative;
-            max-width: 800px; /* Membatasi lebar maksimum kontainer */
+            max-width: 1000px; /* Membatasi lebar maksimum kontainer */
             margin: 80px auto 20px; /* Menambahkan margin atas untuk menghindari konflik dengan navbar */
             background-color: #fff;
             border-radius: 8px;
@@ -67,10 +67,7 @@
             color: white;
         }
         th:nth-child(1), td:nth-child(1) {
-            width: 30%; /* Lebar kolom NIP */
-        }
-        th:nth-child(3), td:nth-child(3) {
-            width: 15%; /* Lebar kolom aksi */
+            width: 15%; /* Lebar kolom NIP */
         }
         tr:nth-child(even) {
             background-color: #f2f2f2;
@@ -104,14 +101,14 @@
         }
         .action-buttons {
             display: flex;
-            gap: 5px; /* Jarak antar tombol lebih kecil */
-            justify-content: center;
+            justify-content: center; /* Menyelaraskan tombol ke kiri */
+            gap: 10px; /* Jarak antar tombol */
         }
         .action-buttons button {
             background-color: #007bff;
             border: none;
             color: white;
-            padding: 5px 10px; /* Padding lebih kecil */
+            padding: 5px 10px; /* Padding tombol */
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
@@ -128,45 +125,63 @@
         }
         .action-buttons button i {
             font-size: 14px; /* Ukuran ikon lebih kecil */
+        
         }
     </style>
 </head>
 <body>
 
     <div class="navbar">
-    <button class="home-btn" onclick="navigateTo('/home')">
+        <button class="home-btn" onclick="navigateTo('/home')">
             <i class="fas fa-arrow-left"></i> <!-- Font Awesome arrow-left icon -->
-            </button>
-            <div class="logo">
-                <img src="/images/pacs.png" alt="Logo">
-            </div>
-            <button type="button" class="logout" onclick="window.location.href='{{ url('admin/dashboard') }}'">Logout</button>
+        </button>
+        <div class="logo">
+            <img src="/images/pacs.png" alt="Logo">
         </div>
+        <button type="button" class="logout" onclick="window.location.href='{{ url('admin/dashboard') }}'">Logout</button>
+    </div>
 
     <div class="container">
         <h1>Daftar Pengguna</h1>
         <table>
             <thead>
                 <tr>
+                    <th>Nama</th>
                     <th>NIP</th>
+                    <th>Jabatan</th>
+                    <th>Alamat</th>
+                    <th>No. Telp</th>
+                    <th>Jenis Kelamin</th>
                     <th>Aksi</th> <!-- Kolom baru untuk tombol aksi -->
                 </tr>
             </thead>
             <tbody>
                 @foreach ($admins as $admin)
                 <tr>
+                    <td>{{ $admin->nama }}</td>
                     <td>{{ $admin->nip }}</td>
+                    <td>{{ $admin->jabatan }}</td>
+                    <td>{{ $admin->alamat }}</td>
+                    <td>{{ $admin->no_telp }}</td>
+                    <td>{{ $admin->jenis_kelamin }}</td>
                     <td class="action-buttons">
-                        <button onclick="window.location.href='{{ route('admin.edit', $admin->id) }}'">
-                            <i class="fas fa-edit"></i> Edit
-                        </button>
-                        <form action="{{ route('admin.delete', $admin->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit">
-                                <i class="fas fa-trash"></i> Hapus
+                            <button onclick="window.location.href='{{ route('admin.edit', $admin->id) }}'">
+                                <i class="fas fa-user-edit"></i> Edit Data Pokok
                             </button>
-                        </form>
+                            <button onclick="window.location.href='{{ route('admin.change_password', $admin->id) }}'">
+                                <i class="fas fa-key"></i> Ubah Password
+                            </button>
+                            <form action="{{ route('admin.delete', $admin->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus admin ini?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">
+                                    <i class="fas fa-trash"></i> Hapus
+                                </button>
+                            </form>
+</td>
+
+</td>
+
                     </td>
                 </tr>
                 @endforeach
@@ -174,7 +189,7 @@
         </table>
     </div>
 
-        <!-- Include jQuery -->
+    <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <!-- Include Bootstrap JS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

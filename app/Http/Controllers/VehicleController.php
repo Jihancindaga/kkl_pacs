@@ -9,6 +9,25 @@ use Illuminate\Support\Facades\Storage;
 
 class VehicleController extends Controller
 {
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            // Tentukan prefix berdasarkan jenis kendaraan
+            if ($model->jenis_kendaraan === 'motor') {
+                $prefix = 'mtr-';
+            } elseif ($model->jenis_kendaraan === 'mobil') {
+                $prefix = 'mbl-';
+            } else {
+                $prefix = 'unk-'; // Jika jenis kendaraan tidak diketahui
+            }
+
+            // Ambil ID auto-increment dan tambahkan prefix
+            $model->kode_kendaraan = $prefix . $model->id;
+        });
+    }
+
     // Menampilkan semua kendaraan (tabel pajak)
     public function index()
     {
@@ -41,21 +60,49 @@ class VehicleController extends Controller
     // Menyimpan kendaraan baru
     public function store(Request $request)
     {
+        // Validasi data yang masuk
         $request->validate([
             'plat' => 'required|string|unique:vehicles',
             'pengguna' => 'required|string',
             'jenis_kendaraan' => 'required|string',
             'waktu_pajak' => 'required|date',
-            'ganti_plat' => 'required|date',
+            'ganti_plat' => 'nullable|date',
             'usia_kendaraan' => 'required|integer',
             'cc' => 'required|integer',
             'nomor_telepon' => 'nullable|string'
         ]);
+    
+        // Simpan data kendaraan sementara tanpa kode_kendaraan
+        $vehicle = Vehicle::create([
+            'plat' => $request->plat,
+            'pengguna' => $request->pengguna,
+            'jenis_kendaraan' => $request->jenis_kendaraan,
+            'waktu_pajak' => $request->waktu_pajak,
+            'ganti_plat' => $request->ganti_plat,
+            'usia_kendaraan' => $request->usia_kendaraan,
+            'cc' => $request->cc,
+            'nomor_telepon' => $request->nomor_telepon,
+        ]);
 
-        Vehicle::create($request->all());
-
+        dd($vehicle);
+    
+        // Tentukan prefix kode kendaraan berdasarkan jenis kendaraan
+        $prefix = ($vehicle->jenis_kendaraan == 'Motor') ? 'mtr-' : 'mbl-';
+    
+        // Buat kode kendaraan menggunakan prefix dan ID kendaraan
+        $kodeKendaraan = $prefix . $vehicle->id;
+    
+        // Update kode_kendaraan di database
+        $vehicle->update(['kode_kendaraan' => $kodeKendaraan]);
+    
+        // Redirect ke halaman daftar kendaraan dengan pesan sukses
         return redirect()->route('vehicles.index')->with('success', 'Kendaraan berhasil ditambahkan.');
     }
+    
+    
+
+    
+
 
     // Menampilkan form edit kendaraan
     public function edit($plat)
