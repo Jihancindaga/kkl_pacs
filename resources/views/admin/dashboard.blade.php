@@ -62,7 +62,7 @@
         <!-- Container Kanan: Form Login -->
         <div class="form-container">
             <h2>Admin Login</h2>
-            <form action="{{ route('admin.login') }}" method="POST">
+            <form action="{{ route('admin.login.post') }}" method="POST">
                 @csrf
                 <div class="form-group">
                     <p>NIP</p>

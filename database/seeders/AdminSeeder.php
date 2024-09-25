@@ -14,7 +14,7 @@ class AdminSeeder extends Seeder
             'password' => bcrypt('password123'),
         ]);
         Admin::create([
-            'nip' => '22020882',
+            'nip' => '22020881',
             'password' => bcrypt('jihanc'),
         ]);
         Admin::create([

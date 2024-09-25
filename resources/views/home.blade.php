@@ -347,7 +347,10 @@
             <div class="hamburger" onclick="openNav()">&#9776;</div>
             <img src="/images/pacs.png" alt="Logo">
         </div>
-        <button type="button" class="logout" onclick="window.location.href='{{ url('admin/dashboard') }}'">Logout</button>
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit" class="logout">Logout</button>
+        </form>
     </div>
 
     <!-- Sidebar -->

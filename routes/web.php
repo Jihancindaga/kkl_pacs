@@ -18,7 +18,7 @@ Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name
 
 // Rute untuk Login Admin
 Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
-Route::post('/admin/login', [AdminLoginController::class, 'login'])->name('admin.login.post');
+Route::post('/admin/login/store', [AdminLoginController::class, 'login'])->name('admin.login.post');
 
 // Rute untuk Logout Admin
 Route::post('/logout', [AdminLoginController::class, 'logout'])->name('logout');

@@ -173,14 +173,15 @@
                 </label>
             </div>
 
-            <form action="{{ route('vehicles.update', $vehicle->plat) }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                @method('PUT')
-                <!-- Input fields -->
-                <button type="submit" class="btn btn-primary">Update</button>
-            </form>
-            <a href="{{ route('vehicles.index') }}" class="btn btn-secondary">Batal</a>
-        </form>
+            <div class="form-group d-flex justify-content-start">
+    <form action="{{ route('vehicles.update', $vehicle->plat) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
+        <button type="submit" class="btn btn-primary mx-1">Update</button>
+    </form>
+    <a href="{{ route('vehicles.index') }}" class="btn btn-secondary mx-1">Batal</a>
+</div>
+
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

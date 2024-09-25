@@ -9,6 +9,8 @@ class Admin extends Authenticatable
 {
     use HasFactory;
 
+    protected $table = 'admins';
+
     protected $fillable = [
         'nama',
         'nip',
@@ -28,10 +30,10 @@ class Admin extends Authenticatable
      *
      * @param string $password
      */
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = bcrypt($password);
-    }
+    // public function setPasswordAttribute($password)
+    // {
+    //     $this->attributes['password'] = bcrypt($password);
+    // }
 
     /**
      * Mengatur kolom yang harus ditampilkan dalam JSON response.
