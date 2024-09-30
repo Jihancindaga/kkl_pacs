@@ -13,6 +13,16 @@ Route::get('/', function () {
 Route::get('/datakaryawan', function () {
     return view('/datakaryawan');
 });
+Route::get('/home', function () {
+    return view('home'); // Pastikan file 'home.blade.php' ada di 'resources/views/'
+})->name('home');
+
+Route::get('/pajak', function () {
+    return view('pajak');
+});
+Route::get('/alasan_hapus', function () {
+    return view('alasan_hapus');
+});
 // Rute untuk Dashboard Admin
 Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
@@ -22,16 +32,6 @@ Route::post('/admin/login/store', [AdminLoginController::class, 'login'])->name(
 
 // Rute untuk Logout Admin
 Route::post('/logout', [AdminLoginController::class, 'logout'])->name('logout');
-
-
-Route::get('/home', function () {
-    return view('home'); // Pastikan file 'home.blade.php' ada di 'resources/views/'
-})->name('home');
-
-Route::get('/pajak', function () {
-    return view('pajak');
-});
-
 
 Route::resource('vehicles', VehicleController::class);
 Route::get('/pajak', [VehicleController::class, 'index'])->name('vehicles.index');
