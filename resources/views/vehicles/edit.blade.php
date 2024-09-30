@@ -129,7 +129,7 @@
 
             <div class="form-group">
                 <label for="jenis_kendaraan">Jenis Kendaraan</label>
-                <input type="text" name="jenis_kendaraan" class="form-control" value="{{ old('jenis_kendaraan', $vehicle->jenis_kendaraan) }}" required>
+                <input type="text" name="jenis_kendaraan" class="form-control" value="{{ old('jenis_kendaraan', $vehicle->jenis_kendaraan) }}" required readonly>
             </div>
 
             <div class="form-group">
@@ -155,22 +155,6 @@
             <div class="form-group">
                 <label for="nomor_telepon">Nomor Telepon</label>
                 <input type="text" name="nomor_telepon" class="form-control" value="{{ old('nomor_telepon', $vehicle->nomor_telepon) }}">
-            </div>
-
-            <div class="form-group">
-                <label for="total_bayar">Total Bayar</label>
-                <input type="number" name="total_bayar" class="form-control" value="{{ old('total_bayar') }}" required>
-            </div>
-            <div class="form-group">
-                <label for="bukti_pembayaran">Bukti Pembayaran Pajak </label>
-                <input type="file" name="bukti_pembayaran" class="form-control-file">
-                
-            </div>
-
-            <div class="form-group checkbox-label">
-                <label for="sudah_bayar">
-                    <input type="checkbox" name="sudah_bayar" value="1" {{ $vehicle->sudah_bayar ? 'checked' : '' }}> Konfirmasi Sudah Bayar Pajak
-                </label>
             </div>
 
             <div class="form-group d-flex justify-content-start">

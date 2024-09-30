@@ -182,9 +182,9 @@
                         <td>{{ $vehicle->nomor_telepon }}</td>
                         <td>
                         <div style="display: flex; gap: 5px;">
-                        <a href="{{ route('vehicles.edit', $vehicle->plat) }}" class="btn btn-success btn-sm" style="flex: 1; text-align: center; width: 100%; font-size: 0.875rem; padding: 0.375rem 0.75rem; box-sizing: border-box; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 5px;">
-                            Bayar
-                        </a>
+                        <a href="{{ route('bayar.create', ['id' => $vehicle->id]) }}" class="btn btn-success btn-sm" style="flex: 1; text-align: center; width: 100%; font-size: 0.875rem; padding: 0.375rem 0.75rem; box-sizing: border-box; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 5px;">
+                                Bayar
+                            </a>
                         <a href="{{ route('vehicles.edit', $vehicle->plat) }}" class="btn btn-warning btn-sm" style="flex: 1; text-align: center; width: 100%; font-size: 0.875rem; padding: 0.375rem 0.75rem; box-sizing: border-box; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 5px;">
                             Edit
                         </a>
