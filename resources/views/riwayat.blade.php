@@ -36,19 +36,8 @@
             cursor: pointer;
             border-radius: 5px;
         }
-        .navbar .logo {
-            display: flex;
-            align-items: center;
-        }
         .navbar .logo img {
             height: 40px;
-        }
-        .navbar .home-btn {
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 24px;
-            cursor: pointer;
         }
         .content {
             margin-top: 70px; /* Adjust based on navbar height */
@@ -61,38 +50,12 @@
             margin-top: 20px;
         }
         .container {
-        background-color: white;
-        border-radius: 8px;
-        padding: 20px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        width: 100%; /* Full width */
-        text-align: center; /* Center text alignment */
-        }
-        .container img {
-            width: 100%;
-            height: auto;
+            background-color: white;
             border-radius: 8px;
-            margin-bottom: 15px;
-        }
-        .container button {
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin: 5px 0;
-        }
-        .container button.btn-1 {
-            background-color: #17a2b8; /* Teal */
-        }
-        .container button.btn-2 {
-            background-color: #28a745; /* Green */
-        }
-        .container button.btn-3 {
-            background-color: #e09a17; /* Orange */
-        }
-        .container button:hover {
-            opacity: 0.8;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%; /* Full width */
+            text-align: center; /* Center text alignment */
         }
         /* Style for table */
         .table thead th {
@@ -103,82 +66,74 @@
             text-align: center;
             vertical-align: middle;
         }
-        .table-container .btn {
-            margin: 2px;
-        }
     </style>
 </head>
 <body>
     <div class="navbar">
-        <button class="home-btn" onclick="navigateTo('/home')">
+        <button class="home-btn" onclick="navigateTo('/pajak')">
             <i class="fas fa-arrow-left"></i> <!-- Font Awesome arrow-left icon -->
         </button>
-        <div class="logo">
-            <img src="/images/pacs.png" alt="Logo">
-        </div>
-        <button class="logout">Logout</button>
     </div>
 
+    <div class="content">
+        <div class="container">
+            <h3>Riwayat Pembayaran Pajak</h3>
 
-<div class="content">
-<div class="container">
-    <h2>RIWAYAT</h2>
-    <!-- Tombol Navigasi -->
-    <div class="btn-container mb-4">
-        <div class="row">
-            <div class="col-md-4">
-                <button class="btn btn-info btn-block" onclick="navigateTo('/pajak')">Data Pokok Kendaraan</button>
-            </div>
-            <div class="col-md-4">
-                <button class="btn btn-success btn-block" onclick="navigateTo('/riwayat')">Riwayat Pembayaran Pajak</button>
-            </div>
-            <div class="col-md-4">
-                <button class="btn btn-warning btn-block" onclick="navigateTo('/form_data')">Masukkan Data Kendaraan</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Tabel Riwayat Pajak -->
-    <div class="table-container">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Pengguna</th>
-                    <th>Plat</th>
-                    <th>Jenis Kendaraan</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($vehicles as $index => $vehicle)
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+            
+            <table class="table table-bordered">
+                <thead class="thead-dark">
                     <tr>
-                        <td>{{ $index + 1 }}</td>
-                        <td>{{ $vehicle->pengguna }}</td>
-                        <td>{{ $vehicle->plat }}</td>
-                        <td>{{ $vehicle->jenis_kendaraan }}</td>
+                        <th>Kode Kendaraan</th>
+                        <th>Plat</th>
+                        <th>Jenis Kendaraan</th>
+                        <th>Pengguna</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($riwayats as $riwayat)
+                    <tr>
+                        <td>{{ $riwayat->vehicle->kode_kendaraan }}</td>
+                        <td>{{ $riwayat->vehicle->plat }}</td>
+                        <td>{{ $riwayat->vehicle->jenis_kendaraan }}</td>
+                        <td>{{ $riwayat->vehicle->pengguna }}</td>
                         <td>
-                            <a href="{{ route('riwayat.detail', $vehicle->plat) }}" class="btn btn-primary btn-sm">
-                                <i class="fas fa-eye"></i> Lihat Detail
-                            </a>
+                            <button class="btn btn-info btn-sm" onclick="toggleDetails({{ $riwayat->id }})">Lihat Detail</button>
                         </td>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                    <tr id="details-{{ $riwayat->id }}" style="display:none;">
+                        <td colspan="5">
+                            <strong>Waktu Pajak:</strong> {{ $riwayat->vehicle->waktu_pajak }}<br>
+                            <strong>Tanggal Bayar:</strong> {{ $riwayat->tanggal_bayar }}<br>
+                            <strong>Total Bayar:</strong> Rp {{ number_format($riwayat->total_bayar, 2) }}<br>
+                            <strong>Bukti Pembayaran:</strong> 
+                            <a href="{{ asset('storage/'.$riwayat->bukti_pembayaran) }}" target="_blank">Lihat Bukti</a>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 
-<!-- Include jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<!-- Include Bootstrap JS -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script>
-    function navigateTo(url) {
-        window.location.href = url;
-    }
-</script>
+    <script>
+        function toggleDetails(id) {
+            var detailsRow = document.getElementById('details-' + id);
+            if(detailsRow.style.display === 'none') {
+                detailsRow.style.display = 'table-row';
+            } else {
+                detailsRow.style.display = 'none';
+            }
+        }
 
+        function navigateTo(url) {
+            window.location.href = url;
+        }
+    </script>
 </body>
 </html>
-

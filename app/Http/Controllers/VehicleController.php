@@ -100,20 +100,40 @@ class VehicleController extends Controller
     }
     
     
-
-    
-
-
     // Menampilkan form edit kendaraan
     public function edit($plat)
-    {
-        $vehicle = Vehicle::where('plat', $plat)->firstOrFail();
-        return view('vehicles.edit', compact('vehicle'));
-    }
+{
+    $vehicle = Vehicle::where('plat', $plat)->firstOrFail();
+
+    return view('vehicles.edit', compact('vehicle', 'plat'));
+}
 
     // Mengupdate kendaraan
     public function update(Request $request, $plat)
 {
+    $vehicle = Vehicle::where('plat', $plat)->first();
+
+   
+
+    // Validasi data
+    $validatedData = $request->validate([
+        'pengguna' => 'required|string|max:255',
+        'ganti_plat' => 'required|date',
+        'plat' => 'required|string',
+        'cc' => 'required|integer',
+        'nomor_telepon' => 'nullable|string',
+    ]);
+
+    // Hitung usia kendaraan saat ini berdasarkan tahun pembuatan
+    $validatedData['usia_kendaraan'] = now()->year - $vehicle->tahun_pembuatan;
+
+    // Update data kendaraan
+    $vehicle->update($validatedData);
+
+    // Redirect ke halaman index
+    return redirect()->route('vehicles.index')->with('success', 'Data kendaraan berhasil diperbarui.');
+
+
      // Log data request untuk debugging
      \Log::info('Request Data:', $request->all());
     $request->validate([
@@ -127,7 +147,7 @@ class VehicleController extends Controller
         'bukti_pembayaran' => 'nullable|file|mimes:pdf,jpeg,png,jpg|max:2048',
     ]);
 
-    $vehicle = Vehicle::where('plat', $plat)->firstOrFail();
+     $vehicle = Vehicle::where('plat', $plat)->firstOrFail();
     
     $vehicle->pengguna = $request->input('pengguna');
     $vehicle->jenis_kendaraan = $request->input('jenis_kendaraan');
@@ -160,7 +180,16 @@ class VehicleController extends Controller
     }
 
     // Ambil data riwayat pembayaran yang terupdate
+    
+    $riwayatPembayaran = RiwayatPembayaran::where('plat', $request->plat)->get();
+
     $riwayatPembayaran = RiwayatPembayaran::where('plat', $vehicle->plat)->latest()->get();
+
+   // Menyimpan pesan notifikasi dalam session
+    return redirect()->route('vehicles.index')->with('success', 'Data kendaraan berhasil diperbarui.');
+    session()->flash('success', 'Data kendaraan berhasil di-update!');
+
+    
 
     return redirect()->route('vehicles.showDetail', $vehicle->plat)
                      ->with(compact('vehicle', 'riwayatPembayaran'))
@@ -206,3 +235,16 @@ class VehicleController extends Controller
     }
     
 }
+// // BELUM RAMPUNG SIK YAA
+
+//  // Temukan kendaraan berdasarkan plat
+//  $vehicle = Vehicle::where('plat', $plat)->firstOrFail();
+
+//  // Update data kendaraan
+//  $vehicle->update($validatedData);
+
+//  // Flash pesan sukses ke session
+//  session()->flash('success', 'Data kendaraan berhasil di-update!');
+
+//  // Redirect kembali ke halaman edit (atau list kendaraan)
+//  return redirect()->route('vehicles.edit', $plat);

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,14 +10,15 @@ class RiwayatPembayaran extends Model
     use HasFactory;
 
     protected $fillable = [
-        'plat',
+        'id_vehicles',
+        'tanggal_bayar',
         'total_bayar',
         'bukti_pembayaran',
+        'konfirmasi_pembayaran',
     ];
 
-    // Relasi ke model Vehicle
     public function vehicle()
     {
-        return $this->belongsTo(Vehicle::class, 'plat', 'plat'); // Relasi ke vehicles
+        return $this->belongsTo(Vehicle::class, 'id_vehicles');
     }
 }

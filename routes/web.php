@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\FormDataController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\PembayaranController;
 
 Route::get('/', function () {
     return view('/admin/dashboard');
@@ -105,3 +106,21 @@ Route::get('/admin/change-password/{id}', [AdminDashboardController::class, 'cha
 Route::put('/admin/update-password/{id}', [AdminDashboardController::class, 'updatePassword'])->name('admin.update_password');
 
 Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin.index');
+
+//route baru
+
+// routes/web.php
+
+// Route untuk menampilkan form pembayaran
+Route::get('/bayar/{id}', [PembayaranController::class, 'create'])->name('bayar.create');
+
+// Route untuk menyimpan pembayaran
+Route::post('/bayar', [PembayaranController::class, 'store'])->name('bayar.store');
+
+// Route untuk menampilkan riwayat pembayaran
+Route::get('/riwayat', [PembayaranController::class, 'index'])->name('riwayat.index');
+
+// Route::get('/riwayat/{id}', [YourController::class, 'show'])->name('riwayat.show');
+// Route::get('/riwayat', [YourController::class, 'index'])->name('riwayat.index');
+
+
