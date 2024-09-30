@@ -61,13 +61,9 @@
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            text-align: center;
         }
-        .container img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin-bottom: 15px;
+        .container h2 {
+            margin-bottom: 20px;
         }
         .container button {
             border: none;
@@ -76,17 +72,18 @@
             cursor: pointer;
             border-radius: 5px;
             margin: 5px 0;
+            width: 100%; /* Make buttons full-width */
         }
-        .container button.btn-1 {
+        .btn-1 {
             background-color: #17a2b8; /* Teal */
         }
-        .container button.btn-2 {
+        .btn-2 {
             background-color: #28a745; /* Green */
         }
-        .container button.btn-3 {
+        .btn-3 {
             background-color: #e09a17; /* Orange */
         }
-        .container button:hover {
+        .btn:hover {
             opacity: 0.8;
         }
         .table thead th {
@@ -97,9 +94,14 @@
             text-align: center;
             vertical-align: middle;
         }
-        .table-container .btn {
-            margin-right: 5px; /* Atur jarak antar tombol */
-            display: inline-block; /* Pastikan tombol dalam satu baris */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .action-buttons .btn {
+            margin: 0 10px; /* Spacing between buttons */
+            flex: 1;
         }
 
         @media (max-width: 768px) {
@@ -108,10 +110,6 @@
             }
             .container {
                 padding: 10px;
-            }
-            .container button {
-                padding: 8px 16px;
-                font-size: 0.875rem;
             }
             .table td, .table th {
                 font-size: 0.75rem;
@@ -133,72 +131,78 @@
     <div class="content">
         <div class="container">
             <h2>DATA KENDARAAN</h2>
-            <!-- Tombol -->
+
+            <!-- Tombol Navigasi -->
             <div class="btn-container">
                 <div class="row">
                     <div class="col-md-4 col-sm-12 mb-3">
-                        <button class="btn btn-1 btn-block" onclick="navigateTo('/pajak')">Data Pokok Kendaraan</button>
+                        <button class="btn btn-1" onclick="navigateTo('/pajak')">Data Pokok Kendaraan</button>
                     </div>
                     <div class="col-md-4 col-sm-12 mb-3">
-                        <button class="btn btn-2 btn-block" onclick="navigateTo('/riwayat')">Riwayat Pembayaran Pajak</button>
+                        <button class="btn btn-2" onclick="navigateTo('/riwayat')">Riwayat Pembayaran Pajak</button>
                     </div>
                     <div class="col-md-4 col-sm-12 mb-3">
-                        <button class="btn btn-3 btn-block" onclick="navigateTo('/form_data')">Masukkan Data Kendaraan</button>
+                        <button class="btn btn-3" onclick="navigateTo('/form_data')">Masukkan Data Kendaraan</button>
                     </div>
                 </div>
             </div>
 
+            <!-- Tombol Aksi: Hapus Kendaraan dan Riwayat Penhapusan -->
+            <div class="action-buttons">
+                <a href="/daftar-hapus-kendaraan" class="btn btn-warning">Riwayat Kendaraan Non-aktif</a>
+                <a href="/hapus-kendaraan" class="btn btn-danger">Hapus Kendaraan</a>
+            </div>
+
             <!-- Tabel Pajak -->
             <div class="table-container">
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>ID Kendaraan</th>
-                    <th>Plat</th>
-                    <th>Jenis Kendaraan</th>
-                    <th>Pengguna</th>
-                    <th>Waktu Pajak</th>
-                    <th>Ganti Plat</th>
-                    <th>Usia Kendaraan</th>
-                    <th>CC</th>
-                    <th>Nomor Telepon</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($vehicles as $index => $vehicle)
-                    <tr>
-                        <td>{{ $index + 1 }}</td>
-                        <td>{{ $vehicle->kode_kendaraan }}</td>
-                        <td>{{ $vehicle->plat }}</td>
-                        <td>{{ $vehicle->jenis_kendaraan }}</td>
-                        <td>{{ $vehicle->pengguna }}</td>
-                        <td>{{ $vehicle->waktu_pajak }}</td>
-                        <td>{{ $vehicle->ganti_plat }}</td>
-                        <td>{{ $vehicle->usia_kendaraan }}</td>
-                        <td>{{ $vehicle->cc }}</td>
-                        <td>{{ $vehicle->nomor_telepon }}</td>
-                        <td>
-                        <div style="display: flex; gap: 5px;">
-                        <a href="{{ route('bayar.create', ['id' => $vehicle->id]) }}" class="btn btn-success btn-sm" style="flex: 1; text-align: center; width: 100%; font-size: 0.875rem; padding: 0.375rem 0.75rem; box-sizing: border-box; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 5px;">
-                                Bayar
-                            </a>
-                        <a href="{{ route('vehicles.edit', $vehicle->plat) }}" class="btn btn-warning btn-sm" style="flex: 1; text-align: center; width: 100%; font-size: 0.875rem; padding: 0.375rem 0.75rem; box-sizing: border-box; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 5px;">
-                            Edit
-                        </a>
-                        <a href="/alasan_hapus" class="btn btn-danger btn-sm" style="flex: 1; text-align: center; width: 100%; font-size: 0.875rem; padding: 0.375rem 0.75rem; box-sizing: border-box; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 5px;">
-                            hapus
-                        </a>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>ID Kendaraan</th>
+                                <th>Plat</th>
+                                <th>Jenis Kendaraan</th>
+                                <th>Pengguna</th>
+                                <th>Waktu Pajak</th>
+                                <th>Ganti Plat</th>
+                                <th>Usia Kendaraan</th>
+                                <th>CC</th>
+                                <th>Nomor Telepon</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($vehicles as $index => $vehicle)
+                                <tr>
+                                    <td>{{ $index + 1 }}</td>
+                                    <td>{{ $vehicle->kode_kendaraan }}</td>
+                                    <td>{{ $vehicle->plat }}</td>
+                                    <td>{{ $vehicle->jenis_kendaraan }}</td>
+                                    <td>{{ $vehicle->pengguna }}</td>
+                                    <td>{{ $vehicle->waktu_pajak }}</td>
+                                    <td>{{ $vehicle->ganti_plat }}</td>
+                                    <td>{{ $vehicle->usia_kendaraan }}</td>
+                                    <td>{{ $vehicle->cc }}</td>
+                                    <td>{{ $vehicle->nomor_telepon }}</td>
+                                    <td>
+                                        <div style="display: flex; gap: 5px; justify-content: center;">
+                                            <a href="{{ route('bayar.create', ['id' => $vehicle->id]) }}" class="btn btn-success btn-sm">
+                                                Bayar
+                                            </a>
+                                            <a href="{{ route('vehicles.edit', $vehicle->plat) }}" class="btn btn-warning btn-sm">
+                                                Edit
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+            </div>
+        </div>
     </div>
-</div>
 
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

@@ -7,6 +7,7 @@ use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\FormDataController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\VehicleDeletionController;
 
 Route::get('/', function () {
     return view('/admin/dashboard');
@@ -21,9 +22,17 @@ Route::get('/home', function () {
 Route::get('/pajak', function () {
     return view('pajak');
 });
-Route::get('/alasan_hapus', function () {
-    return view('alasan_hapus');
+Route::get('/hapus-kendaraan', function () {
+    return view('hapus-kendaraan');
 });
+Route::get('/daftar-hapus-kendaraan', function () {
+    return view('daftar-hapus-kendaraan');
+});
+
+Route::get('/hapus-kendaraan', [VehicleDeletionController::class, 'create'])->name('hapus.kendaraan');
+Route::post('/hapus-kendaraan', [VehicleDeletionController::class, 'store'])->name('hapus.kendaraan.store');
+Route::get('/daftar-hapus-kendaraan', [VehicleDeletionController::class, 'index'])->name('daftar.hapus.kendaraan');
+
 // Rute untuk Dashboard Admin
 Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 

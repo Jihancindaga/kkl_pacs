@@ -234,6 +234,7 @@ class VehicleController extends Controller
         return view('riwayat_detail', compact('vehicle', 'riwayatPembayaran'));
     }
     
+    
 }
 // // BELUM RAMPUNG SIK YAA
 

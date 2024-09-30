@@ -8,9 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Vehicle extends Model
 {
+    use SoftDeletes;
+
     protected $primaryKey = 'id'; // Menetapkan primary key
     // public $incrementing = false; // Karena primary key adalah string, bukan integer
     protected $keyType = 'string'; // Tipe data primary key adalah string
@@ -23,5 +26,9 @@ class Vehicle extends Model
     public function riwayatPembayaran()
     {
         return $this->hasMany(RiwayatPembayaran::class, 'id_vehicles');
+    }
+    public function deletions()
+    {
+        return $this->hasMany(VehicleDeletion::class, 'kode_kendaraan', 'kode_kendaraan');
     }
 }
