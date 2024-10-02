@@ -187,10 +187,9 @@
             <div class="error-message" id="error-message" style="color:red; display:none;">Password tidak cocok.</div>
 
             <button type="submit">Simpan</button>
-            <button type="button" class="cancel-button" onclick="history.back()">Batal</button>
+            <button type="button" class="cancel-button" onclick="history.back()">kembali</button>
         </form>
     </div>
-
 </body>
 
 </html>
