@@ -65,7 +65,7 @@
         /* Container for form */
         .form-container {
             background-color: white;
-            max-width: 500px;
+            max-width: 600px; /* Meningkatkan ukuran container */
             margin: 40px auto;
             padding: 30px;
             border-radius: 8px;
@@ -128,8 +128,11 @@
         }
     </style>
     <script>
-        function showSuccessAlert() {
-            alert("Admin baru berhasil ditambahkan!");
+        function showAlert() {
+            // Tampilkan alert
+            alert("Admin baru berhasil ditambahkan.");
+            // Alihkan ke halaman daftar admin setelah menekan OK
+            window.location.href = "{{ route('admin.list') }}"; // Ganti dengan route ke daftar admin
         }
     </script>
 </head>
@@ -151,11 +154,11 @@
     <!-- Form Container -->
     <div class="form-container">
         <h2>Tambah Admin Baru</h2>
-        <form action="{{ route('admin.store') }}" method="POST" onsubmit="showSuccessAlert()">
+        <form action="{{ route('admin.store') }}" method="POST" onsubmit="showAlert()">
             @csrf
             <label for="nip">NIP:</label>
             <input type="text" id="nip" name="nip" required>
-
+            
             <label for="name">Nama:</label>
             <input type="text" id="name" name="name" required>
 
