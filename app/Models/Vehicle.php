@@ -19,7 +19,7 @@ class Vehicle extends Model
     protected $keyType = 'string'; // Tipe data primary key adalah string
 
     protected $fillable = [
-        'kode_kendaraan', 'plat', 'pengguna', 'jenis_kendaraan', 'waktu_pajak', 'ganti_plat', 
+        'id','kode_kendaraan', 'plat', 'pengguna', 'jenis_kendaraan', 'waktu_pajak', 'ganti_plat', 
         'usia_kendaraan', 'cc', 'nomor_telepon'
     ];
     // Relasi dengan model RiwayatPembayaran

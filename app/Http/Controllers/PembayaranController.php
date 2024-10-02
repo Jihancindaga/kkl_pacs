@@ -26,6 +26,7 @@ class PembayaranController extends Controller
     {
         // Validasi input
         $request->validate([
+            'id_vehicles' => 'required|integer',
             'kode_kendaraan' => 'required|string|max:255',
             'tanggal_bayar' => 'required|date',
             'total_bayar' => 'required|numeric',
@@ -38,8 +39,11 @@ class PembayaranController extends Controller
             $path = $request->file('bukti_pembayaran')->store('bukti_pembayaran', 'public');
         }
 
+        // dd($request, $path);
+
         // Simpan data ke riwayat_pembayarans
         RiwayatPembayaran::create([
+            'id_vehicles' => $request->id_vehicles,
             'kode_kendaraan' => $request->kode_kendaraan,
             'tanggal_bayar' => $request->tanggal_bayar,
             'total_bayar' => $request->total_bayar,
@@ -56,13 +60,8 @@ class PembayaranController extends Controller
     public function index()
     {
         $riwayats = RiwayatPembayaran::with('vehicle')->latest()->get();
-        return view('riwayat', compact('riwayats'));
-
-        // Mengambil semua kendaraan
-    $vehicles = Vehicle::all(); 
-
-    // Mengirim data ke view
-    return view('riwayat', compact('vehicles'));
+        $vehicles = Vehicle::all(); 
+        return view('riwayat', compact('riwayats', 'vehicles'));
     }
 
     public function show($id)

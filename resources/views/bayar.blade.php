@@ -86,14 +86,14 @@
             <form action="{{ route('bayar.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <!-- Menyembunyikan id_vehicles -->
-                <input type="hidden" name="kode_kendaraan" value="{{ $vehicle->kode_kendaraan }}">
+                <input type="hidden" name="id_vehicles" value="{{ $vehicle->id }}">
 
 
                 <!-- Data Kendaraan Readonly -->
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="kode_kendaraan" class="form-label">Kode Kendaraan</label>
-                        <input type="text" class="form-control readonly-field" id="kode_kendaraan" value="{{ $vehicle->kode_kendaraan }}" readonly>
+                        <input type="text" class="form-control readonly-field" id="kode_kendaraan" name="kode_kendaraan" value="{{ $vehicle->kode_kendaraan }}" readonly>
                     </div>
                     <div class="col-md-6">
                         <label for="plat" class="form-label">Plat</label>

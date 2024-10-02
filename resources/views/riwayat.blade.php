@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,8 +17,10 @@
             background-color: #f4f4f4;
             transition: all 0.3s;
         }
+
         .navbar {
-            background-color: #007bff; /* Blue */
+            background-color: #007bff;
+            /* Blue */
             color: #fff;
             padding: 10px;
             display: flex;
@@ -28,46 +31,61 @@
             top: 0;
             z-index: 1000;
         }
+
         .navbar .logout {
-            background-color: #f44336; /* Red */
+            background-color: #f44336;
+            /* Red */
             border: none;
             color: white;
             padding: 10px 20px;
             cursor: pointer;
             border-radius: 5px;
         }
+
         .navbar .logo img {
             height: 40px;
         }
+
         .content {
-            margin-top: 70px; /* Adjust based on navbar height */
+            margin-top: 70px;
+            /* Adjust based on navbar height */
             padding: 20px;
         }
+
         .btn-container {
             margin-bottom: 20px;
         }
+
         .table-container {
             margin-top: 20px;
         }
+
         .container {
             background-color: white;
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            width: 100%; /* Full width */
-            text-align: center; /* Center text alignment */
+            width: 100%;
+            /* Full width */
+            text-align: center;
+            /* Center text alignment */
         }
+
         /* Style for table */
         .table thead th {
-            background-color: #007bff; /* Blue */
+            background-color: #007bff;
+            /* Blue */
             color: white;
         }
-        .table th, .table td {
+
+        .table th,
+        .table td {
             text-align: center;
             vertical-align: middle;
         }
     </style>
 </head>
+
 <body>
     <div class="navbar">
         <button class="home-btn" onclick="navigateTo('/pajak')">
@@ -79,12 +97,12 @@
         <div class="container">
             <h3>Riwayat Pembayaran Pajak</h3>
 
-            @if(session('success'))
+            @if (session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
                 </div>
             @endif
-            
+
             <table class="table table-bordered">
                 <thead class="thead-dark">
                     <tr>
@@ -96,25 +114,30 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($riwayats as $riwayat)
-                    <tr>
-                        <td>{{ $riwayat->kode_kendaraan }}</td>
-                        <td>{{ $riwayat->plat }}</td>
-                        <td>{{ $riwayat->jenis_kendaraan }}</td>
-                        <td>{{ $riwayat->pengguna }}</td>
-                        <td>
-                            <button class="btn btn-info btn-sm" onclick="toggleDetails({{ $riwayat->id }})">Lihat Detail</button>
-                        </td>
-                    </tr>
-                    <tr id="details-{{ $riwayat->id }}" style="display:none;">
-                        <td colspan="5">
-                            <strong>Waktu Pajak:</strong> {{ $vehicle->waktu_pajak }}<br>
-                            <strong>Tanggal Bayar:</strong> {{ $riwayat->tanggal_bayar }}<br>
-                            <strong>Total Bayar:</strong> Rp {{ number_format($riwayat->total_bayar, 2) }}<br>
-                            <strong>Bukti Pembayaran:</strong> 
-                            <a href="{{ asset('storage/'.$riwayat->bukti_pembayaran) }}" target="_blank">Lihat Bukti</a>
-                        </td>
-                    </tr>
+                    @foreach ($riwayats as $riwayat)
+                        <tr>
+                            <td>{{ $riwayat->kode_kendaraan }}</td>
+                            <td>{{ optional($riwayat->vehicle)->plat ?? 'N/A' }}</td>
+                            <td>{{ optional($riwayat->vehicle)->jenis_kendaraan ?? 'N/A' }}</td>
+                            <td>{{ optional($riwayat->vehicle)->pengguna ?? 'N/A' }}</td>
+                            <td>
+                                <button class="btn btn-info btn-sm" onclick="toggleDetails({{ $riwayat->id }})">Lihat
+                                    Detail</button>
+                            </td>
+                        </tr>
+                        <tr id="details-{{ $riwayat->id }}" style="display:none;">
+                            <td colspan="5">
+                                <strong>Waktu
+                                    Pajak:</strong>{{ \Carbon\Carbon::parse(optional($riwayat->vehicle)->waktu_pajak)->format('j F Y') }}<br>
+                                <strong>Tanggal Bayar:</strong>
+                                {{ \Carbon\Carbon::parse($riwayat->tanggal_bayar)->format('j F Y') }}
+                                <br>
+                                <strong>Total Bayar:</strong> Rp {{ number_format($riwayat->total_bayar, 2) }}<br>
+                                <strong>Bukti Pembayaran:</strong>
+                                <a href="{{ asset('storage/' . $riwayat->bukti_pembayaran) }}" target="_blank">Lihat
+                                    Bukti</a>
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
@@ -124,7 +147,7 @@
     <script>
         function toggleDetails(id) {
             var detailsRow = document.getElementById('details-' + id);
-            if(detailsRow.style.display === 'none') {
+            if (detailsRow.style.display === 'none') {
                 detailsRow.style.display = 'table-row';
             } else {
                 detailsRow.style.display = 'none';
@@ -136,4 +159,5 @@
         }
     </script>
 </body>
+
 </html>

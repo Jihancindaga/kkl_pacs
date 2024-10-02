@@ -13,6 +13,7 @@ class CreateRiwayatPembayaransTable extends Migration
     {
         Schema::create('riwayat_pembayarans', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_vehicles');
             $table->string('kode_kendaraan');
             $table->date('tanggal_bayar');
             $table->decimal('total_bayar', 10, 2);
@@ -20,7 +21,7 @@ class CreateRiwayatPembayaransTable extends Migration
             $table->boolean('konfirmasi_pembayaran')->default(false);
             $table->timestamps();
 
-            $table->foreign('kode_kendaraan')->references('kode_kendaraan')->on('vehicles')->onDelete('cascade');
+            $table->foreign('id_vehicles')->references('id')->on('vehicles')->onDelete('cascade');
         });
     }
 
