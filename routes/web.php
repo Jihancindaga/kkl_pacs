@@ -55,7 +55,7 @@ Route::put('/vehicles/{plat}', [VehicleController::class, 'update'])->name('vehi
 // Route untuk menampilkan riwayat
 Route::get('/riwayat', [VehicleController::class, 'riwayat'])->name('riwayat');
 
-Route::get('/riwayat/{plat}', [VehicleController::class, 'showDetail'])->name('riwayat.detail');
+Route::get('/riwayat/{id}', [VehicleController::class, 'showDetail'])->name('riwayat.detail');
 
 // Route untuk menampilkan semua kendaraan (tabel pajak)
 Route::get('/vehicles', [VehicleController::class, 'index'])->name('vehicles.index');

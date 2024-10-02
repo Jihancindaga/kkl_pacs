@@ -59,10 +59,13 @@ class PembayaranController extends Controller
      */
     public function index()
     {
+        // Mengambil riwayat pembayaran dan kendaraan terkait
         $riwayats = RiwayatPembayaran::with('vehicle')->latest()->get();
-        $vehicles = Vehicle::all(); 
+        $vehicles = Vehicle::all();  // Pastikan ini mengembalikan koleksi kendaraan
         return view('riwayat', compact('riwayats', 'vehicles'));
     }
+
+
 
     public function show($id)
 {

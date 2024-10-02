@@ -114,18 +114,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($riwayats as $riwayat)
+                    @foreach ($vehicles as $vehicle)
                         <tr>
-                            <td>{{ $riwayat->kode_kendaraan }}</td>
-                            <td>{{ optional($riwayat->vehicle)->plat ?? 'N/A' }}</td>
-                            <td>{{ optional($riwayat->vehicle)->jenis_kendaraan ?? 'N/A' }}</td>
-                            <td>{{ optional($riwayat->vehicle)->pengguna ?? 'N/A' }}</td>
+                            <td>{{ $vehicle->kode_kendaraan }}</td>
+                            <td>{{ $vehicle->plat }}</td>
+                            <td>{{ $vehicle->jenis_kendaraan }}</td>
+                            <td>{{ $vehicle->pengguna }}</td>
                             <td>
-                                <button class="btn btn-info btn-sm" onclick="toggleDetails({{ $riwayat->id }})">Lihat
-                                    Detail</button>
+                                <a href="{{ route('riwayat.detail', ['id' => $vehicle->id]) }}" class="btn btn-info btn-sm" onclick="toggleDetails({{ $vehicle->id }})">Lihat Detail</a>
                             </td>
                         </tr>
-                        <tr id="details-{{ $riwayat->id }}" style="display:none;">
+                        {{-- <tr id="details-{{ $vehicle->id }}" style="display:none;">
                             <td colspan="5">
                                 <strong>Waktu
                                     Pajak:</strong>{{ \Carbon\Carbon::parse(optional($riwayat->vehicle)->waktu_pajak)->format('j F Y') }}<br>
@@ -137,7 +136,7 @@
                                 <a href="{{ asset('storage/' . $riwayat->bukti_pembayaran) }}" target="_blank">Lihat
                                     Bukti</a>
                             </td>
-                        </tr>
+                        </tr> --}}
                     @endforeach
                 </tbody>
             </table>
