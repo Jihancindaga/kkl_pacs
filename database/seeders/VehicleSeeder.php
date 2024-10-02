@@ -11,7 +11,7 @@ class VehicleSeeder extends Seeder
     {
         DB::table('vehicles')->insert([
             [
-                'kode_kendaraan' => 'mbl-1',
+                'kode_kendaraan' => 'mbl-9',
                 'plat' => 'AB 41 CE',
                 'pengguna' => 'Edy winarya, S.Sn',
                 'jenis_kendaraan' => 'Rush, mini bus',

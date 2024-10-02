@@ -13,6 +13,41 @@
             padding: 20px;
         }
 
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .back-icon {
+            font-size: 20px;
+            cursor: pointer;
+        }
+
         h2 {
             text-align: center;
             color: #333;
@@ -105,10 +140,21 @@
             button {
                 font-size: 16px;
             }
+
+            nav ul li {
+                margin-right: 10px;
+            }
         }
     </style>
 </head>
 <body>
+
+    <nav>
+        <div class="back-icon">
+            <a href="/pajak"><i class="fas fa-arrow-left"></i> </a>
+        </div>
+
+    </nav>
 
     <h2>Form Penghapusan Kendaraan</h2>
 

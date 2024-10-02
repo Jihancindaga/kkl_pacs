@@ -10,7 +10,7 @@ class RiwayatPembayaran extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id_vehicles',
+        'kode_kendaraan',
         'tanggal_bayar',
         'total_bayar',
         'bukti_pembayaran',
@@ -19,6 +19,6 @@ class RiwayatPembayaran extends Model
 
     public function vehicle()
     {
-        return $this->belongsTo(Vehicle::class, 'id_vehicles');
+        return $this->belongsTo(Vehicle::class, 'kode_kendaraan');
     }
 }

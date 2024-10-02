@@ -4,16 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pajak</title>
-    <!-- Include Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Include Font Awesome CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f0f0f0;
             transition: all 0.3s;
         }
         .navbar {
@@ -61,58 +59,85 @@
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 2000px; /* Set maximum width */
+            width: 90%; /* Set width to 90% of the viewport */
+            margin: auto; /* Center the container */
         }
         .container h2 {
-            margin-bottom: 20px;
+            margin-bottom: 40px; /* Jarak lebih jauh dari tombol */
+            text-align: center; /* Center the text */
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-weight: bold; /* Bold font */
+            font-size: 50px; /* Ukuran font lebih besar */
+            color: #0056b3; /* Optional: change the font color */
         }
-        .container button {
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin: 5px 0;
-            width: 100%; /* Make buttons full-width */
+
+        /* Class for the buttons */
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
         }
+
+        .button-group .btn {
+            flex: 1;
+            padding: 8px; /* Mengurangi padding untuk tombol */
+            font-size: 12px; /* Ukuran font lebih kecil */
+            color: white; /* Set text color to white */
+            transition: transform 0.3s, background-color 0.3s;
+            border: none; /* Remove default border */
+        }
+
         .btn-1 {
             background-color: #17a2b8; /* Teal */
         }
         .btn-2 {
-            background-color: #28a745; /* Green */
+            background-color: #665cc0; /* Green */
         }
         .btn-3 {
-            background-color: #e09a17; /* Orange */
+            background-color: #aa1c9e; /* Orange */
+        }
+        .btn-warning, .btn-danger {
+            color: white; /* Set warning and danger button text to white */
         }
         .btn:hover {
             opacity: 0.8;
+            transform: scale(1.05); /* Hover effect: slightly enlarges the button */
+        }
+        .btn.active {
+            background-color: #0056b3; /* Change color for the active button */
+            color: white; /* Set active button text to white */
+            transform: scale(1.1); /* Slightly enlarges the active button */
         }
         .table thead th {
             background-color: #007bff; /* Blue */
-            color: white;
+            color: rgb(253, 251, 251);
+            border: 1px solid #dee2e6; /* Garis tepi pada header tabel */
         }
         .table th, .table td {
             text-align: center;
             vertical-align: middle;
+            border: 1px solid #dee2e6; /* Garis tepi pada sel tabel */
+            font-size: 12px; /* Ukuran font tabel lebih kecil */
         }
         .action-buttons {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             margin: 20px 0;
         }
-        .action-buttons .btn {
-            margin: 0 10px; /* Spacing between buttons */
-            flex: 1;
-        }
-
         @media (max-width: 768px) {
             .navbar .logo img {
                 height: 30px;
             }
             .container {
                 padding: 10px;
+                width: 100%; /* Adjust for smaller screens */
             }
             .table td, .table th {
                 font-size: 0.75rem;
+            }
+            .button-group {
+                flex-direction: column;
             }
         }
     </style>
@@ -120,7 +145,7 @@
 <body>
     <div class="navbar">
         <button class="home-btn" onclick="navigateTo('/home')">
-            <i class="fas fa-arrow-left"></i> <!-- Font Awesome arrow-left icon -->
+            <i class="fas fa-arrow-left"></i>
         </button>
         <div class="logo">
             <img src="/images/pacs.png" alt="Logo">
@@ -132,25 +157,15 @@
         <div class="container">
             <h2>DATA KENDARAAN</h2>
 
-            <!-- Tombol Navigasi -->
+            <!-- Tombol Navigasi dan Aksi dalam satu baris -->
             <div class="btn-container">
-                <div class="row">
-                    <div class="col-md-4 col-sm-12 mb-3">
-                        <button class="btn btn-1" onclick="navigateTo('/pajak')">Data Pokok Kendaraan</button>
-                    </div>
-                    <div class="col-md-4 col-sm-12 mb-3">
-                        <button class="btn btn-2" onclick="navigateTo('/riwayat')">Riwayat Pembayaran Pajak</button>
-                    </div>
-                    <div class="col-md-4 col-sm-12 mb-3">
-                        <button class="btn btn-3" onclick="navigateTo('/form_data')">Masukkan Data Kendaraan</button>
-                    </div>
+                <div class="button-group">
+                    <button class="btn btn-1" data-page="data-kendaraan" onclick="setActive(this); navigateTo('/pajak')">Data Pokok Kendaraan</button>
+                    <button class="btn btn-2" data-page="riwayat" onclick="setActive(this); navigateTo('/riwayat')">Riwayat Pembayaran Pajak</button>
+                    <button class="btn btn-3" data-page="masukkan-data" onclick="setActive(this); navigateTo('/form_data')">Tambah Data Kendaraan</button>
+                    <a href="/hapus-kendaraan" class="btn btn-danger" data-page="hapus-kendaraan" onclick="setActive(this);">Hapus Kendaraan</a>
+                    <a href="/daftar-hapus-kendaraan" class="btn btn-success" data-page="riwayat-non-aktif" onclick="setActive(this);">Riwayat Kendaraan Non-aktif</a>
                 </div>
-            </div>
-
-            <!-- Tombol Aksi: Hapus Kendaraan dan Riwayat Penhapusan -->
-            <div class="action-buttons">
-                <a href="/daftar-hapus-kendaraan" class="btn btn-warning">Riwayat Kendaraan Non-aktif</a>
-                <a href="/hapus-kendaraan" class="btn btn-danger">Hapus Kendaraan</a>
             </div>
 
             <!-- Tabel Pajak -->
@@ -164,8 +179,8 @@
                                 <th>Plat</th>
                                 <th>Jenis Kendaraan</th>
                                 <th>Pengguna</th>
-                                <th>Waktu Pajak</th>
-                                <th>Ganti Plat</th>
+                                <th>Waktu Pajak (Mendatang)</th>
+                                <th>Ganti Plat (Mendatang)</th>
                                 <th>Usia Kendaraan</th>
                                 <th>CC</th>
                                 <th>Nomor Telepon</th>
@@ -182,7 +197,7 @@
                                     <td>{{ $vehicle->pengguna }}</td>
                                     <td>{{ $vehicle->waktu_pajak }}</td>
                                     <td>{{ $vehicle->ganti_plat }}</td>
-                                    <td>{{ $vehicle->usia_kendaraan }}</td>
+                                    <td>{{ $vehicle->usia_kendaraan +1 }}</td>
                                     <td>{{ $vehicle->cc }}</td>
                                     <td>{{ $vehicle->nomor_telepon }}</td>
                                     <td>
@@ -209,8 +224,18 @@
     <!-- Include Bootstrap JS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        function navigateTo(url) {
-            window.location.href = url;
+        // Function to set active button
+        function setActive(button) {
+            const buttons = document.querySelectorAll('.button-group .btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            button.classList.add('active');
+        }
+
+        // Function to navigate to different pages
+        function navigateTo(page) {
+            window.location.href = page;
         }
     </script>
 </body>

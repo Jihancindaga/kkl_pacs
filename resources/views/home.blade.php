@@ -366,103 +366,13 @@
       
     <a href="#" onclick="toggleSubMenu('subMenu1')"><span class="icon">&#128100;</span>Kelola Pengguna</a>
     <div class="sub-buttons" id="subMenu1">
-        <a href="#" onclick="openModal()">Tambah Admin</a>
+        <a href="/tambahadmin">Tambah Admin</a>
         <a href="{{ route('admin.list') }}">Daftar Pengguna</a>
     </div>
 </div>
         
         </div>
     </div>
- <!-- Modal for Adding Admin -->
- <div id="addAdminModal">
-        <h2>Tambah Admin Baru</h2>
-        <form id="addAdminForm" action="{{ route('admin.store') }}" method="POST">
-            @csrf
-            <label for="name">Nama:</label>
-            <input type="text" id="name" name="name" required>
-
-            <label for="nip">NIP:</label>
-            <input type="text" id="nip" name="nip" required>
-
-            <label for="jabatan">Jabatan:</label>
-            <input type="text" id="jabatan" name="jabatan" required>
-
-            <label for="no_telp">Nomor Telepon:</label>
-            <input type="text" id="no_telp" name="no_telp" required>
-
-            <label for="jenis_kelamin">Jenis Kelamin:</label>
-            <select id="jenis_kelamin" name="jenis_kelamin" required>
-                <option value="">Pilih Jenis Kelamin</option>
-                <option value="Laki-laki">Laki-laki</option>
-                <option value="Perempuan">Perempuan</option>
-            </select>
-
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-
-            <label for="confirm_password">Konfirmasi Password:</label>
-            <input type="password" id="confirm_password" required>
-
-            <div class="error-message" id="error-message" style="color:red; display:none;">Password tidak cocok.</div>
-
-            <button type="submit">Simpan</button>
-            <button type="button" onclick="closeModal()">Batal</button>
-        </form>
-    </div>
-
-    <script>
-        // Validasi password dan konfirmasi password
-        document.getElementById('addAdminForm').addEventListener('submit', function(event) {
-            var password = document.getElementById('password').value;
-            var confirmPassword = document.getElementById('confirm_password').value;
-            var errorMessage = document.getElementById('error-message');
-
-            if (password !== confirmPassword) {
-                event.preventDefault();
-                errorMessage.style.display = 'block';
-            } else {
-                errorMessage.style.display = 'none';
-            }
-        });
-
-    // Toggle show/hide password
-    const togglePassword = document.getElementById('togglePassword');
-    const passwordField = document.getElementById('password');
-
-    togglePassword.addEventListener('click', function () {
-        // Toggle the type attribute
-        const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-        passwordField.setAttribute('type', type);
-
-        // Toggle the eye icon
-        this.classList.toggle('fa-eye-slash');
-    });
-
-    // Toggle show/hide confirm password
-    const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
-    const confirmPasswordField = document.getElementById('confirm_password');
-
-    toggleConfirmPassword.addEventListener('click', function () {
-        // Toggle the type attribute
-        const type = confirmPasswordField.getAttribute('type') === 'password' ? 'text' : 'password';
-        confirmPasswordField.setAttribute('type', type);
-
-        // Toggle the eye icon
-        this.classList.toggle('fa-eye-slash');
-    });
-
-    // Open modal function
-    function openModal() {
-            document.getElementById('addAdminModal').style.display = 'block';
-        }
-
-        // Close modal function
-        function closeModal() {
-            document.getElementById('addAdminModal').style.display = 'none';
-        }
-</script>
-
-
 
 <!-- Overlay background -->
 <div id="modalOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0, 0, 0, 0.5); z-index:999;"></div>

@@ -98,17 +98,17 @@
                 <tbody>
                     @foreach($riwayats as $riwayat)
                     <tr>
-                        <td>{{ $riwayat->vehicle->kode_kendaraan }}</td>
-                        <td>{{ $riwayat->vehicle->plat }}</td>
-                        <td>{{ $riwayat->vehicle->jenis_kendaraan }}</td>
-                        <td>{{ $riwayat->vehicle->pengguna }}</td>
+                        <td>{{ $riwayat->kode_kendaraan }}</td>
+                        <td>{{ $riwayat->plat }}</td>
+                        <td>{{ $riwayat->jenis_kendaraan }}</td>
+                        <td>{{ $riwayat->pengguna }}</td>
                         <td>
                             <button class="btn btn-info btn-sm" onclick="toggleDetails({{ $riwayat->id }})">Lihat Detail</button>
                         </td>
                     </tr>
                     <tr id="details-{{ $riwayat->id }}" style="display:none;">
                         <td colspan="5">
-                            <strong>Waktu Pajak:</strong> {{ $riwayat->vehicle->waktu_pajak }}<br>
+                            <strong>Waktu Pajak:</strong> {{ $vehicle->waktu_pajak }}<br>
                             <strong>Tanggal Bayar:</strong> {{ $riwayat->tanggal_bayar }}<br>
                             <strong>Total Bayar:</strong> Rp {{ number_format($riwayat->total_bayar, 2) }}<br>
                             <strong>Bukti Pembayaran:</strong> 

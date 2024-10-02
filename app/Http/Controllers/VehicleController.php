@@ -25,6 +25,7 @@ class VehicleController extends Controller
 
             // Ambil ID auto-increment dan tambahkan prefix
             $model->kode_kendaraan = $prefix . $model->id;
+            $model->save(); // Simpan perubahan ke database
         });
     }
 

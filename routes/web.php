@@ -28,7 +28,9 @@ Route::get('/hapus-kendaraan', function () {
 Route::get('/daftar-hapus-kendaraan', function () {
     return view('daftar-hapus-kendaraan');
 });
-
+Route::get('/tambahadmin', function () {
+    return view('tambahadmin');
+});
 Route::get('/hapus-kendaraan', [VehicleDeletionController::class, 'create'])->name('hapus.kendaraan');
 Route::post('/hapus-kendaraan', [VehicleDeletionController::class, 'store'])->name('hapus.kendaraan.store');
 Route::get('/daftar-hapus-kendaraan', [VehicleDeletionController::class, 'index'])->name('daftar.hapus.kendaraan');
@@ -129,7 +131,5 @@ Route::post('/bayar', [PembayaranController::class, 'store'])->name('bayar.store
 // Route untuk menampilkan riwayat pembayaran
 Route::get('/riwayat', [PembayaranController::class, 'index'])->name('riwayat.index');
 
-// Route::get('/riwayat/{id}', [YourController::class, 'show'])->name('riwayat.show');
-// Route::get('/riwayat', [YourController::class, 'index'])->name('riwayat.index');
 
 

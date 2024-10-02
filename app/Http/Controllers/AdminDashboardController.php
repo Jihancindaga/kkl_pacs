@@ -28,6 +28,7 @@ class AdminDashboardController extends Controller
             'nip' => 'required|unique:admins,nip',
             'name' => 'required|string|max:255',
             'jabatan' => 'required|string|max:255',
+            'alamat' => 'required|string|max:255',
             'no_telp' => 'required|string|max:15',
             'jenis_kelamin' => 'required|string',
             'password' => 'required|min:6',
@@ -40,6 +41,7 @@ class AdminDashboardController extends Controller
             'nip' => $validated['nip'],
             'nama' => $validated['name'],
             'jabatan' => $validated['jabatan'],
+            'alamat' => $validated['alamat'],
             'no_telp' => $validated['no_telp'],
             'jenis_kelamin' => $validated['jenis_kelamin'],
             'password' => bcrypt($validated['password']), // Password dienkripsi

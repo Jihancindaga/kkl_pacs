@@ -26,7 +26,7 @@ class PembayaranController extends Controller
     {
         // Validasi input
         $request->validate([
-            'id_vehicles' => 'required|exists:vehicles,id',
+            'kode_kendaraan' => 'required|string|max:255',
             'tanggal_bayar' => 'required|date',
             'total_bayar' => 'required|numeric',
             'bukti_pembayaran' => 'required|file|mimes:pdf,jpg,jpeg,png',
@@ -40,7 +40,7 @@ class PembayaranController extends Controller
 
         // Simpan data ke riwayat_pembayarans
         RiwayatPembayaran::create([
-            'id_vehicles' => $request->id_vehicles,
+            'kode_kendaraan' => $request->kode_kendaraan,
             'tanggal_bayar' => $request->tanggal_bayar,
             'total_bayar' => $request->total_bayar,
             'bukti_pembayaran' => $path,

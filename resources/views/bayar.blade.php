@@ -48,6 +48,10 @@
             margin-top: 10px;
             border-radius: 5px;
         }
+        .readonly-field {
+            background-color: #e9ecef; /* Warna lebih gelap untuk kolom readonly */
+            border: 1px solid #ced4da; /* Border yang konsisten */
+        }
     </style>
 </head>
 <body>
@@ -82,54 +86,55 @@
             <form action="{{ route('bayar.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <!-- Menyembunyikan id_vehicles -->
-                <input type="hidden" name="id_vehicles" value="{{ $vehicle->id }}">
+                <input type="hidden" name="kode_kendaraan" value="{{ $vehicle->kode_kendaraan }}">
+
 
                 <!-- Data Kendaraan Readonly -->
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="kode_kendaraan" class="form-label">Kode Kendaraan</label>
-                        <input type="text" class="form-control" id="kode_kendaraan" value="{{ $vehicle->kode_kendaraan }}" readonly>
+                        <input type="text" class="form-control readonly-field" id="kode_kendaraan" value="{{ $vehicle->kode_kendaraan }}" readonly>
                     </div>
                     <div class="col-md-6">
                         <label for="plat" class="form-label">Plat</label>
-                        <input type="text" class="form-control" id="plat" value="{{ $vehicle->plat }}" readonly>
+                        <input type="text" class="form-control readonly-field" id="plat" value="{{ $vehicle->plat }}" readonly>
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="jenis_kendaraan" class="form-label">Jenis Kendaraan</label>
-                        <input type="text" class="form-control" id="jenis_kendaraan" value="{{ $vehicle->jenis_kendaraan }}" readonly>
+                        <input type="text" class="form-control readonly-field" id="jenis_kendaraan" value="{{ $vehicle->jenis_kendaraan }}" readonly>
                     </div>
                     <div class="col-md-6">
                         <label for="pengguna" class="form-label">Pengguna</label>
-                        <input type="text" class="form-control" id="pengguna" value="{{ $vehicle->pengguna }}" readonly>
+                        <input type="text" class="form-control readonly-field" id="pengguna" value="{{ $vehicle->pengguna }}" readonly>
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        <label for="waktu_pajak" class="form-label">Waktu Pajak</label>
-                        <input type="text" class="form-control" id="waktu_pajak" value="{{ $vehicle->waktu_pajak }}" readonly>
+                        <label for="waktu_pajak" class="form-label">Waktu Pajak (Mendatang)</label>
+                        <input type="text" class="form-control readonly-field" id="waktu_pajak" value="{{ $vehicle->waktu_pajak }}" readonly>
                     </div>
                     <div class="col-md-6">
                         <label for="ganti_plat" class="form-label">Ganti Plat</label>
-                        <input type="text" class="form-control" id="ganti_plat" value="{{ $vehicle->ganti_plat }}" readonly>
+                        <input type="text" class="form-control readonly-field" id="ganti_plat" value="{{ $vehicle->ganti_plat }}" readonly>
                     </div>
                 </div>
 
                 <div class="row mb-4">
                     <div class="col-md-4">
                         <label for="usia_kendaraan" class="form-label">Usia Kendaraan (Tahun)</label>
-                        <input type="text" class="form-control" id="usia_kendaraan" value="{{ $vehicle->usia_kendaraan }}" readonly>
+                        <input type="text" class="form-control readonly-field" id="usia_kendaraan" value="{{ $vehicle->usia_kendaraan }}" readonly>
                     </div>
                     <div class="col-md-4">
                         <label for="cc" class="form-label">CC Kendaraan</label>
-                        <input type="text" class="form-control" id="cc" value="{{ $vehicle->cc }}" readonly>
+                        <input type="text" class="form-control readonly-field" id="cc" value="{{ $vehicle->cc }}" readonly>
                     </div>
                     <div class="col-md-4">
                         <label for="nomor_telepon" class="form-label">Nomor Telepon</label>
-                        <input type="text" class="form-control" id="nomor_telepon" value="{{ $vehicle->nomor_telepon }}" readonly>
+                        <input type="text" class="form-control readonly-field" id="nomor_telepon" value="{{ $vehicle->nomor_telepon }}" readonly>
                     </div>
                 </div>
 
@@ -149,6 +154,12 @@
                     </div>
                 </div>
 
+                <hr> 
+                <div class="form-group">
+                    <label for="waktu_pajak">Waktu Pajak Berikutnya</label>
+                    <input type="date" name="waktu_pajak" class="form-control" value="{{ old('waktu_pajak', $vehicle->waktu_pajak) }}" required>
+                </div>
+                
                 <div class="mb-3">
                     <label for="bukti_pembayaran" class="form-label">Bukti Pembayaran</label>
                     <input type="file" class="form-control" id="bukti_pembayaran" name="bukti_pembayaran" accept=".pdf, .jpg, .jpeg, .png" required>
@@ -161,7 +172,7 @@
                     <input type="checkbox" class="form-check-input" id="konfirmasi_pembayaran" name="konfirmasi_pembayaran" {{ old('konfirmasi_pembayaran') ? 'checked' : '' }} required>
                     <label class="form-check-label" for="konfirmasi_pembayaran">Saya telah melakukan pembayaran dan data di atas benar.</label>
                 </div>
-
+                
                 <button type="submit" class="btn btn-primary">Bayar</button>
             </form>
         </div>
@@ -185,7 +196,7 @@
                     preview.appendChild(img);
                 } else {
                     const fileInfo = document.createElement('p');
-                    fileInfo.textContent = `File yang dipilih: ${file.name}`;
+                    fileInfo.textContent = `File yang diunggah: ${file.name}`;
                     preview.appendChild(fileInfo);
                 }
             }
