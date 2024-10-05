@@ -65,7 +65,7 @@
         /* Container for form */
         .form-container {
             background-color: white;
-            max-width: 600px; /* Meningkatkan ukuran container */
+            max-width: 600px;
             margin: 40px auto;
             padding: 30px;
             border-radius: 8px;
@@ -131,6 +131,41 @@
             color: red;
             display: none;
         }
+
+        /* Pop-Up styles */
+        .popup {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            width: 300px;
+        }
+
+        .popup-content button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .popup-content button:hover {
+            background-color: #0056b3;
+        }
     </style>
     <script>
         function validatePassword() {
@@ -147,19 +182,44 @@
             }
         }
 
-        function showAlert() {
+        function showPopup() {
+            var popup = document.getElementById('success-popup');
+            popup.style.display = 'flex'; // Tampilkan pop-up
+        }
+
+        function hidePopup() {
+            var popup = document.getElementById('success-popup');
+            popup.style.display = 'none'; // Sembunyikan pop-up
+            window.location.href = "{{ route('admin.list') }}"; // Alihkan ke halaman daftar admin
+        }
+
+        async function handleSubmit(event) {
+            event.preventDefault(); // Mencegah pengiriman form default
             if (validatePassword()) {
-                // Tampilkan alert hanya jika password valid
-                alert("Admin baru berhasil ditambahkan.");
-                // Alihkan ke halaman daftar admin setelah menekan OK
-                window.location.href = "{{ route('admin.list') }}"; // Ganti dengan route ke daftar admin
+                const form = event.target;
+
+                // Mengirim data ke server
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}', // Menyertakan token CSRF
+                    },
+                });
+
+                if (response.ok) {
+                    // Jika data berhasil ditambahkan
+                    showPopup();
+                } else {
+                    // Menangani kesalahan jika diperlukan
+                    alert("Terjadi kesalahan saat menambahkan admin.");
+                }
             }
         }
     </script>
 </head>
 
 <body>
-    
     <!-- Navbar -->
     <div class="navbar">
         <button class="back-button" onclick="history.back()">
@@ -171,11 +231,10 @@
         <button class="logout">Logout</button>
     </div>
 
-    
     <!-- Form Container -->
     <div class="form-container">
         <h2>Tambah Admin Baru</h2>
-        <form action="{{ route('admin.store') }}" method="POST" onsubmit="return validatePassword()">
+        <form action="{{ route('admin.store') }}" method="POST" onsubmit="handleSubmit(event)">
             @csrf
             <label for="nip">NIP:</label>
             <input type="text" id="nip" name="nip" required>
@@ -185,7 +244,6 @@
                 </div>
             @endif
 
-            
             <label for="name">Nama:</label>
             <input type="text" id="name" name="name" required>
 
@@ -214,15 +272,18 @@
             <div class="error-message" id="error-message">Password tidak cocok.</div>
 
             <button type="submit">Simpan</button>
-            <button type="button" class="cancel-button" onclick="history.back()">kembali</button>
+            <button type="button" class="cancel-button" onclick="history.back()">Kembali</button>
         </form>
     </div>
-    <div id="successModal" class="modal">
-        <div class="modal-content">
-            <h3>Admin baru berhasil ditambahkan!</h3>
-            <button onclick="closeModal()">OK</button>
+
+    <!-- Pop-Up -->
+    <div class="popup" id="success-popup">
+        <div class="popup-content">
+            <h3>Admin Baru Berhasil Ditambahkan!</h3>
+            <button onclick="hidePopup()">OK</button>
         </div>
     </div>
+    
 </body>
 
 </html>

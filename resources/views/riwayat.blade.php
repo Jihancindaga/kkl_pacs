@@ -124,35 +124,23 @@
                                 <a href="{{ route('riwayat.detail', ['id' => $vehicle->id]) }}" class="btn btn-info btn-sm" onclick="toggleDetails({{ $vehicle->id }})">Lihat Detail</a>
                             </td>
                         </tr>
-                        {{-- <tr id="details-{{ $vehicle->id }}" style="display:none;">
+                        <tr id="details-{{ $vehicle->id }}" style="display:none;">
                             <td colspan="5">
-                                <strong>Waktu
-                                    Pajak:</strong>{{ \Carbon\Carbon::parse(optional($riwayat->vehicle)->waktu_pajak)->format('j F Y') }}<br>
-                                <strong>Tanggal Bayar:</strong>
-                                {{ \Carbon\Carbon::parse($riwayat->tanggal_bayar)->format('j F Y') }}
-                                <br>
-                                <strong>Total Bayar:</strong> Rp {{ number_format($riwayat->total_bayar, 2) }}<br>
+                                <strong>Waktu Pajak:</strong> {{ optional($vehicle->riwayat)->waktu_pajak ? \Carbon\Carbon::parse($vehicle->riwayat->waktu_pajak)->format('j F Y') : '-' }}<br>
+                                <strong>Tanggal Bayar:</strong> {{ optional($vehicle->riwayat)->tanggal_bayar ? \Carbon\Carbon::parse($vehicle->riwayat->tanggal_bayar)->format('j F Y') : '-' }}<br>
+                                <strong>Total Bayar:</strong> Rp {{ optional($vehicle->riwayat)->total_bayar ? number_format($vehicle->riwayat->total_bayar, 2) : '-' }}<br>
                                 <strong>Bukti Pembayaran:</strong>
-                                <a href="{{ asset('storage/' . $riwayat->bukti_pembayaran) }}" target="_blank">Lihat
-                                    Bukti</a>
+                                <a href="{{ optional($vehicle->riwayat)->bukti_pembayaran ? asset('storage/' . $vehicle->riwayat->bukti_pembayaran) : '#' }}" target="_blank">Lihat Bukti</a>
                             </td>
-                        </tr> --}}
+                        </tr>
                     @endforeach
                 </tbody>
+                
             </table>
         </div>
     </div>
 
     <script>
-        function toggleDetails(id) {
-            var detailsRow = document.getElementById('details-' + id);
-            if (detailsRow.style.display === 'none') {
-                detailsRow.style.display = 'table-row';
-            } else {
-                detailsRow.style.display = 'none';
-            }
-        }
-
         function navigateTo(url) {
             window.location.href = url;
         }
