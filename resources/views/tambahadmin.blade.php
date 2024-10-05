@@ -126,38 +126,65 @@
         .form-container .cancel-button:hover {
             background-color: #d32f2f;
         }
+
+        .form-container .error-message {
+            color: red;
+            display: none;
+        }
     </style>
     <script>
+        function validatePassword() {
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirm_password').value;
+            var errorMessage = document.getElementById('error-message');
+
+            if (password !== confirmPassword) {
+                errorMessage.style.display = 'block';
+                return false; // Jangan kirim form jika password tidak cocok
+            } else {
+                errorMessage.style.display = 'none';
+                return true; // Lanjutkan pengiriman form
+            }
+        }
+
         function showAlert() {
-            // Tampilkan alert
-            alert("Admin baru berhasil ditambahkan.");
-            // Alihkan ke halaman daftar admin setelah menekan OK
-            window.location.href = "{{ route('admin.list') }}"; // Ganti dengan route ke daftar admin
+            if (validatePassword()) {
+                // Tampilkan alert hanya jika password valid
+                alert("Admin baru berhasil ditambahkan.");
+                // Alihkan ke halaman daftar admin setelah menekan OK
+                window.location.href = "{{ route('admin.list') }}"; // Ganti dengan route ke daftar admin
+            }
         }
     </script>
 </head>
 
 <body>
-
+    
     <!-- Navbar -->
     <div class="navbar">
         <button class="back-button" onclick="history.back()">
-            <i class="fas fa-arrow-left"></i> Kembali
+            <i class="fas fa-arrow-left"></i> 
         </button>
         <div class="logo">
             <img src="/images/pacs.png" alt="Logo">
-            <h1>Dashboard Admin</h1>
         </div>
         <button class="logout">Logout</button>
     </div>
 
+    
     <!-- Form Container -->
     <div class="form-container">
         <h2>Tambah Admin Baru</h2>
-        <form action="{{ route('admin.store') }}" method="POST" onsubmit="showAlert()">
+        <form action="{{ route('admin.store') }}" method="POST" onsubmit="return validatePassword()">
             @csrf
             <label for="nip">NIP:</label>
             <input type="text" id="nip" name="nip" required>
+            @if($errors->has('nip'))
+                <div style="color:red;">
+                    {{ $errors->first('nip') }}
+                </div>
+            @endif
+
             
             <label for="name">Nama:</label>
             <input type="text" id="name" name="name" required>
@@ -184,11 +211,17 @@
             <label for="confirm_password">Konfirmasi Password:</label>
             <input type="password" id="confirm_password" required>
 
-            <div class="error-message" id="error-message" style="color:red; display:none;">Password tidak cocok.</div>
+            <div class="error-message" id="error-message">Password tidak cocok.</div>
 
             <button type="submit">Simpan</button>
             <button type="button" class="cancel-button" onclick="history.back()">kembali</button>
         </form>
+    </div>
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <h3>Admin baru berhasil ditambahkan!</h3>
+            <button onclick="closeModal()">OK</button>
+        </div>
     </div>
 </body>
 
