@@ -52,37 +52,30 @@
             background-color: #e9ecef; /* Warna lebih gelap untuk kolom readonly */
             border: 1px solid #ced4da; /* Border yang konsisten */
         }
-        /* Navbar customization */
-        .navbar-custom {
-            background-color: #0d6efd; /* Biru Bootstrap */
+        .navbar {
+            width: 100%; /* Membuat navbar lebar penuh */
+            padding: 10px 15px; /* Menambah padding vertikal */
         }
-        .navbar-custom .navbar-brand {
-            color: #ffffff;
+        .back-icon {
+            font-size: 24px;
+            color: white; /* Mengubah warna ikon menjadi putih */
+            text-decoration: none;
         }
-        .navbar-custom .navbar-brand:hover {
-            color: #d1d1d1;
+        .back-icon:hover {
+            color: #e0e0e0; /* Warna saat hover */
         }
-        /* Icon customization */
-        .navbar-custom .bi-arrow-left {
-            font-size: 1.8rem;
-            color: #ffffff;
-            transition: color 0.3s ease, transform 0.3s ease;
-            transform: scale(1.3); /* Memperbesar ikon untuk tampak lebih tebal */
-        }
-        .navbar-custom .bi-arrow-left:hover {
-            color: #d1d1d1;
-            transform: scale(1.4);
+        /* Tambahan untuk menyesuaikan konten di bawah navbar */
+        body {
+            padding-top: 70px; /* Sesuaikan dengan tinggi navbar */
         }
     </style>
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-custom">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{{ route('pajak') }}" aria-label="Kembali ke halaman Pajak" title="Kembali">
-                <i class="bi bi-arrow-left"></i>
-            </a>
-        </div>
+    <nav class="navbar navbar-light bg-primary fixed-top">
+        <a href="{{ route('pajak') }}" class="back-icon">
+            <i class="bi bi-arrow-left"></i> <!-- Gunakan icon Bootstrap untuk panah kiri -->
+        </a>
     </nav>
     
     <div class="container">
@@ -192,14 +185,13 @@
                 <div class="mb-3">
                     <label for="bukti_pembayaran" class="form-label">Bukti Pembayaran</label>
                     <input type="file" class="form-control" id="bukti_pembayaran" name="bukti_pembayaran" accept=".pdf, .jpg, .jpeg, .png" required>
-                    <div class="form-text">Format yang diperbolehkan: PDF, JPG, JPEG, PNG. Maksimal ukuran file: 2MB.</div>
-                    <!-- Preview File -->
+                    <div class="form-text">Format yang diperbolehkan: PDF, JPG, JPEG, PNG. Maksimal ukuran file: 5MB.</div>
                     <div class="file-preview" id="file-preview"></div>
                 </div>
 
-                <div class="form-check mb-4">
-                    <input type="checkbox" class="form-check-input" id="konfirmasi_pembayaran" name="konfirmasi_pembayaran" {{ old('konfirmasi_pembayaran') ? 'checked' : '' }} required>
-                    <label class="form-check-label" for="konfirmasi_pembayaran">Saya mengkonfirmasi bahwa semua informasi yang diberikan adalah benar.</label>
+                <div class="form-check mb-3">
+                    <input type="checkbox" class="form-check-input" id="confirm" name="confirm" required>
+                    <label class="form-check-label" for="confirm">Saya telah memverifikasi informasi di atas.</label>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Kirim Pembayaran</button>
@@ -209,26 +201,5 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Preview file
-        document.getElementById('bukti_pembayaran').addEventListener('change', function() {
-            const filePreview = document.getElementById('file-preview');
-            const file = this.files[0];
-
-            if (file) {
-                const reader = new FileReader();
-
-                reader.onload = function(e) {
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-                    img.alt = file.name;
-                    filePreview.innerHTML = ''; // Clear previous preview
-                    filePreview.appendChild(img);
-                }
-
-                reader.readAsDataURL(file);
-            }
-        });
-    </script>
 </body>
 </html>

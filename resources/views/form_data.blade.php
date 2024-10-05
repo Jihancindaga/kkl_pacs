@@ -72,10 +72,6 @@
         <button class="home-btn" onclick="navigateTo('/pajak')">
             <i class="fas fa-arrow-left"></i> <!-- Font Awesome arrow-left icon -->
         </button>
-        <div class="logo">
-            <img src="/images/pacs.png" alt="Logo">
-        </div>
-        <button type="button" class="logout" onclick="window.location.href='{{ url('admin/dashboard') }}'">Logout</button>
     </div>
     <div class="content">
         <div class="container">

@@ -12,6 +12,11 @@
             font-family: Arial, sans-serif;
         }
 
+        .navbar {
+            width: 100%; /* Membuat navbar lebar penuh */
+            padding: 10px 15px; /* Menambah padding vertikal */
+        }
+
         .container {
             background-color: white;
             padding: 30px;
@@ -83,24 +88,30 @@
 
         .back-icon {
             font-size: 24px;
-            color: #007bff;
+            color: white; /* Mengubah warna ikon menjadi putih */
             text-decoration: none;
-            position: absolute;
-            top: 15px;
-            left: 15px;
         }
 
         .back-icon:hover {
-            color: #0056b3;
+            color: #e0e0e0; /* Warna saat hover */
+        }
+
+        /* Tambahan untuk menyesuaikan konten di bawah navbar */
+        body {
+            padding-top: 70px; /* Sesuaikan dengan tinggi navbar */
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="{{ route('vehicles.index') }}" class="back-icon">
+    <!-- Navbar hanya dengan ikon panah kembali -->
+    <nav class="navbar navbar-light bg-primary fixed-top">
+        <a href="{{ route('pajak') }}" class="back-icon">
             <i class="fas fa-arrow-left"></i>
         </a>
+    </nav>
+    <!-- Akhir Navbar -->
 
+    <div class="container">
         <h2>Edit Data Kendaraan</h2>
 
         @if ($errors->any())
@@ -119,56 +130,62 @@
 
             <div class="form-group">
                 <label for="jenis_kendaraan">Jenis Kendaraan</label>
-                <input type="text" name="jenis_kendaraan" class="form-control" value="{{ old('jenis_kendaraan', $vehicle->jenis_kendaraan) }}" required readonly>
+                <input type="text" name="jenis_kendaraan" class="form-control" 
+                       value="{{ old('jenis_kendaraan', $vehicle->jenis_kendaraan) }}" required readonly>
             </div>
 
             <div class="form-group">
                 <label for="pengguna">Pengguna</label>
-                <input type="text" name="pengguna" class="form-control" value="{{ old('pengguna', $vehicle->pengguna) }}" required>
+                <input type="text" name="pengguna" class="form-control" 
+                       value="{{ old('pengguna', $vehicle->pengguna) }}" required>
             </div>
 
             <div class="form-group">
                 <label for="plat">Plat</label>
-                <input type="text" name="plat" class="form-control" value="{{ old('plat', $vehicle->plat) }}" required >
+                <input type="text" name="plat" class="form-control" 
+                       value="{{ old('plat', $vehicle->plat) }}" required>
             </div>
 
             <div class="form-group">
                 <label for="waktu_pajak">Waktu Pajak</label>
-                <input type="date" name="waktu_pajak" class="form-control" value="{{ old('waktu_pajak', $vehicle->waktu_pajak) }}" required>
+                <input type="date" name="waktu_pajak" class="form-control" 
+                       value="{{ old('waktu_pajak', $vehicle->waktu_pajak) }}" required>
             </div>
 
             <div class="form-group">
                 <label for="ganti_plat">Ganti Plat</label>
-                <input type="date" name="ganti_plat" class="form-control" value="{{ old('ganti_plat', $vehicle->ganti_plat) }}" required>
+                <input type="date" name="ganti_plat" class="form-control" 
+                       value="{{ old('ganti_plat', $vehicle->ganti_plat) }}" required>
             </div>
 
             <div class="form-group">
                 <label for="usia_kendaraan">Usia Kendaraan</label>
-                <input type="number" name="usia_kendaraan" class="form-control" value="{{ old('usia_kendaraan', $vehicle->usia_kendaraan) }}" required>
+                <input type="number" name="usia_kendaraan" class="form-control" 
+                       value="{{ old('usia_kendaraan', $vehicle->usia_kendaraan) }}" required>
             </div>
 
             <div class="form-group">
                 <label for="cc">CC</label>
-                <input type="number" name="cc" class="form-control" value="{{ old('cc', $vehicle->cc) }}" required>
+                <input type="number" name="cc" class="form-control" 
+                       value="{{ old('cc', $vehicle->cc) }}" required>
             </div>
 
             <div class="form-group">
                 <label for="nomor_telepon">Nomor Telepon</label>
-                <input type="text" name="nomor_telepon" class="form-control" value="{{ old('nomor_telepon', $vehicle->nomor_telepon) }}">
+                <input type="text" name="nomor_telepon" class="form-control" 
+                       value="{{ old('nomor_telepon', $vehicle->nomor_telepon) }}">
             </div>
 
             <div class="form-group d-flex justify-content-start">
-    <form action="{{ route('vehicles.update', $vehicle->plat) }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        @method('PUT')
-        <button type="submit" class="btn btn-primary mx-1">Update</button>
-    </form>
-    <a href="{{ route('vehicles.index') }}" class="btn btn-secondary mx-1">Batal</a>
-</div>
-
+                <button type="submit" class="btn btn-primary mx-1">Update</button>
+                <a href="{{ route('vehicles.index') }}" class="btn btn-secondary mx-1">Batal</a>
+            </div>
+        </form>
     </div>
 
+    <!-- Skrip JavaScript Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
