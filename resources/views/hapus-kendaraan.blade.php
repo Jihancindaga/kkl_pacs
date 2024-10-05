@@ -16,31 +16,13 @@
         nav {
             background-color: #0d6efd;
             color: white;
-            padding: 15px;
+            padding: 10px; /* Padding hanya di atas dan bawah */
             display: flex;
-            justify-content: space-between;
             align-items: center;
-        }
-
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
-
-        nav ul li {
-            margin-right: 20px;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        nav ul li a:hover {
-            text-decoration: underline;
+            position: fixed; /* Agar tetap di atas saat di-scroll */
+            width: 100%; /* Agar memenuhi lebar halaman */
+            top: 0; /* Menempatkan navbar di bagian atas */
+            z-index: 1000; /* Menjaga navbar di atas elemen lain */
         }
 
         .back-icon {
@@ -51,6 +33,7 @@
         h2 {
             text-align: center;
             color: #333;
+            margin-top: 80px; /* Tambahkan margin top untuk memberi ruang setelah navbar */
             margin-bottom: 20px;
         }
 
@@ -140,10 +123,6 @@
             button {
                 font-size: 16px;
             }
-
-            nav ul li {
-                margin-right: 10px;
-            }
         }
     </style>
 </head>
@@ -151,9 +130,8 @@
 
     <nav>
         <div class="back-icon">
-            <a href="/pajak"><i class="fas fa-arrow-left"></i> </a>
+            <a href="/pajak"><i class="fas fa-arrow-left" style="color: white;"></i></a>
         </div>
-
     </nav>
 
     <h2>Form Penghapusan Kendaraan</h2>
