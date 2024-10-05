@@ -99,13 +99,13 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="waktu_pajak">Waktu Pajak</label>
+                    <label for="waktu_pajak">Waktu Pajak (Mendatang)</label>
                     <div class="input-group">
                         <input type="date" class="form-control" id="waktu_pajak" name="waktu_pajak" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="ganti_plat">Ganti Plat</label>
+                    <label for="ganti_plat">Ganti Plat (Mendatang)</label>
                     <div class="input-group">
                         <input type="date" class="form-control" id="ganti_plat" name="ganti_plat">
                     </div>
@@ -122,7 +122,7 @@
                 </div>
                 <div class="form-group">
                     <label for="nomor_telepon">Nomor Telepon</label>
-                    <input type="text" class="form-control" id="nomor_telepon" name="nomor_telepon" placeholder="Nomor Telepon (Opsional)">
+                    <input type="text" class="form-control" id="nomor_telepon" name="nomor_telepon" placeholder="Nomor Telepon">
                 </div>
                 <button type="submit" class="btn btn-primary">Simpan Data</button>
             </form>
