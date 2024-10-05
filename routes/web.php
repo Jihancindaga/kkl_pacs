@@ -131,5 +131,6 @@ Route::post('/bayar', [PembayaranController::class, 'store'])->name('bayar.store
 // Route untuk menampilkan riwayat pembayaran
 Route::get('/riwayat', [PembayaranController::class, 'index'])->name('riwayat.index');
 
+Route::get('/pajak', [VehicleController::class, 'index'])->name('pajak');
 
 

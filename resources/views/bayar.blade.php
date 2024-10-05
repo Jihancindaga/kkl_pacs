@@ -1,5 +1,3 @@
-<!-- resources/views/bayar.blade.php -->
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -8,6 +6,8 @@
     <title>Form Pembayaran Pajak Kendaraan</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Custom CSS -->
     <style>
         body {
@@ -52,9 +52,39 @@
             background-color: #e9ecef; /* Warna lebih gelap untuk kolom readonly */
             border: 1px solid #ced4da; /* Border yang konsisten */
         }
+        /* Navbar customization */
+        .navbar-custom {
+            background-color: #0d6efd; /* Biru Bootstrap */
+        }
+        .navbar-custom .navbar-brand {
+            color: #ffffff;
+        }
+        .navbar-custom .navbar-brand:hover {
+            color: #d1d1d1;
+        }
+        /* Icon customization */
+        .navbar-custom .bi-arrow-left {
+            font-size: 1.8rem;
+            color: #ffffff;
+            transition: color 0.3s ease, transform 0.3s ease;
+            transform: scale(1.3); /* Memperbesar ikon untuk tampak lebih tebal */
+        }
+        .navbar-custom .bi-arrow-left:hover {
+            color: #d1d1d1;
+            transform: scale(1.4);
+        }
     </style>
 </head>
 <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ route('pajak') }}" aria-label="Kembali ke halaman Pajak" title="Kembali">
+                <i class="bi bi-arrow-left"></i>
+            </a>
+        </div>
+    </nav>
+    
     <div class="container">
         <div class="form-container">
             <!-- Header -->
@@ -87,7 +117,6 @@
                 @csrf
                 <!-- Menyembunyikan id_vehicles -->
                 <input type="hidden" name="id_vehicles" value="{{ $vehicle->id }}">
-
 
                 <!-- Data Kendaraan Readonly -->
                 <div class="row mb-3">
@@ -170,35 +199,34 @@
 
                 <div class="form-check mb-4">
                     <input type="checkbox" class="form-check-input" id="konfirmasi_pembayaran" name="konfirmasi_pembayaran" {{ old('konfirmasi_pembayaran') ? 'checked' : '' }} required>
-                    <label class="form-check-label" for="konfirmasi_pembayaran">Saya telah melakukan pembayaran dan data di atas benar.</label>
+                    <label class="form-check-label" for="konfirmasi_pembayaran">Saya mengkonfirmasi bahwa semua informasi yang diberikan adalah benar.</label>
                 </div>
-                
-                <button type="submit" class="btn btn-primary">Bayar</button>
+
+                <button type="submit" class="btn btn-primary">Kirim Pembayaran</button>
             </form>
         </div>
     </div>
 
-    <!-- Bootstrap JS dan Dependensinya -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- JavaScript untuk Preview File -->
     <script>
-        document.getElementById('bukti_pembayaran').addEventListener('change', function(event) {
-            const preview = document.getElementById('file-preview');
-            preview.innerHTML = '';
-            const file = event.target.files[0];
+        // Preview file
+        document.getElementById('bukti_pembayaran').addEventListener('change', function() {
+            const filePreview = document.getElementById('file-preview');
+            const file = this.files[0];
+
             if (file) {
-                if (file.type.startsWith('image/')) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
                     const img = document.createElement('img');
-                    img.src = URL.createObjectURL(file);
-                    img.alt = 'Preview Bukti Pembayaran';
-                    img.style.maxWidth = '200px';
-                    img.classList.add('img-thumbnail');
-                    preview.appendChild(img);
-                } else {
-                    const fileInfo = document.createElement('p');
-                    fileInfo.textContent = `File yang diunggah: ${file.name}`;
-                    preview.appendChild(fileInfo);
+                    img.src = e.target.result;
+                    img.alt = file.name;
+                    filePreview.innerHTML = ''; // Clear previous preview
+                    filePreview.appendChild(img);
                 }
+
+                reader.readAsDataURL(file);
             }
         });
     </script>

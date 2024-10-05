@@ -118,18 +118,18 @@
             @method('PUT')
 
             <div class="form-group">
+                <label for="jenis_kendaraan">Jenis Kendaraan</label>
+                <input type="text" name="jenis_kendaraan" class="form-control" value="{{ old('jenis_kendaraan', $vehicle->jenis_kendaraan) }}" required readonly>
+            </div>
+
+            <div class="form-group">
                 <label for="pengguna">Pengguna</label>
                 <input type="text" name="pengguna" class="form-control" value="{{ old('pengguna', $vehicle->pengguna) }}" required>
             </div>
 
             <div class="form-group">
                 <label for="plat">Plat</label>
-                <input type="text" name="plat" class="form-control" value="{{ old('plat', $vehicle->plat) }}" required readonly>
-            </div>
-
-            <div class="form-group">
-                <label for="jenis_kendaraan">Jenis Kendaraan</label>
-                <input type="text" name="jenis_kendaraan" class="form-control" value="{{ old('jenis_kendaraan', $vehicle->jenis_kendaraan) }}" required readonly>
+                <input type="text" name="plat" class="form-control" value="{{ old('plat', $vehicle->plat) }}" required >
             </div>
 
             <div class="form-group">

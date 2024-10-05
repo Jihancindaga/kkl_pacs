@@ -14,7 +14,7 @@
         }
 
         nav {
-            background-color: #333;
+            background-color: #0d6efd;
             color: white;
             padding: 15px;
             display: flex;
@@ -123,7 +123,7 @@
             text-align: center;
             margin-top: 20px;
             text-decoration: none;
-            color: #007bff;
+            color: #FFFFFF;
             font-weight: bold;
         }
 
