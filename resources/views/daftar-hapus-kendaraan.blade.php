@@ -164,8 +164,8 @@
                 <tr>
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->kode_kendaraan }}</td>
-                    <td>{{ $item->jenis_kendaraan }}</td>
-                    <td>{{ $item->plat }}</td>
+                    <td>{{ $item->vehicle->jenis_kendaraan }}</td>
+                    <td>{{ $item->vehicle->plat }}</td>
                     <td>{{ $item->alasan }}</td>
                     <td>{{ $item->tanggal_hapus }}</td>
                 </tr>

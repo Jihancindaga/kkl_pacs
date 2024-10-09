@@ -40,7 +40,7 @@ class VehicleController extends Controller
     // Menampilkan riwayat kendaraan (tabel riwayat)
     public function riwayat()
     {
-        $vehicles = Vehicle::all();
+        $vehicles = Vehicle::where('deleted_at', null)->get();
         return view('riwayat', compact('vehicles'));
     }
 

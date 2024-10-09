@@ -147,7 +147,7 @@
             <select id="kode_kendaraan" name="kode_kendaraan" required>
                 <option value="">-- Pilih Kendaraan --</option>
                 @foreach($vehicles as $vehicle)
-                    <option value="{{ $vehicle->kode_kendaraan }}">{{ $vehicle->jenis_kendaraan }} ({{ $vehicle->plat }})</option>
+                    <option value="{{ $vehicle->kode_kendaraan }}">{{ $vehicle->kode_kendaraan }} | {{ $vehicle->jenis_kendaraan }} | {{ $vehicle->plat }}</option>
                 @endforeach
             </select>
         </div>
@@ -155,10 +155,10 @@
             <label for="alasan">Alasan Penghapusan</label>
             <textarea id="alasan" name="alasan" placeholder="Masukkan alasan penghapusan kendaraan..." required></textarea>
         </div>
-        <div>
+        {{-- <div>
             <label for="tanggal-hapus">Tanggal Penghapusan</label>
             <input type="date" id="tanggal-hapus" name="tanggal_hapus" required>
-        </div>
+        </div> --}}
         <button type="submit">Hapus</button>
     </form>
     

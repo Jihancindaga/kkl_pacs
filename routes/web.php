@@ -30,7 +30,7 @@ Route::get('/daftar-hapus-kendaraan', function () {
 });
 Route::get('/tambahadmin', function () {
     return view('tambahadmin');
-});
+})->name('tambah.admin');
 Route::get('/hapus-kendaraan', [VehicleDeletionController::class, 'create'])->name('hapus.kendaraan');
 Route::post('/hapus-kendaraan', [VehicleDeletionController::class, 'store'])->name('hapus.kendaraan.store');
 Route::get('/daftar-hapus-kendaraan', [VehicleDeletionController::class, 'index'])->name('daftar.hapus.kendaraan');
@@ -126,10 +126,11 @@ Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin.in
 Route::get('/bayar/{id}', [PembayaranController::class, 'create'])->name('bayar.create');
 
 // Route untuk menyimpan pembayaran
-Route::post('/bayar', [PembayaranController::class, 'store'])->name('bayar.store');
+Route::post('/bayar/{id}', [PembayaranController::class, 'store'])->name('bayar.store');
 
 // Route untuk menampilkan riwayat pembayaran
 Route::get('/riwayat', [PembayaranController::class, 'index'])->name('riwayat.index');
+Route::get('/riwayat-detail/{id}', [PembayaranController::class, 'show'])->name('riwayat.show.detail');
 
 Route::get('/pajak', [VehicleController::class, 'index'])->name('pajak');
 

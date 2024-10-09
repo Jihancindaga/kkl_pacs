@@ -20,6 +20,6 @@ class VehicleDeletion extends Model
 
     public function vehicle()
     {
-        return $this->belongsTo(Vehicle::class, 'kode_kendaraan', 'kode_kendaraan');
+        return $this->belongsTo(Vehicle::class, 'kode_kendaraan', 'kode_kendaraan')->withTrashed();
     }
 }

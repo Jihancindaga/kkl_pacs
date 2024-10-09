@@ -7,7 +7,6 @@ use App\Models\Vehicle;
 use App\Models\RiwayatPembayaran;
 use Illuminate\Support\Facades\Storage;
 
-
 class PembayaranController extends Controller
 {
     /**
@@ -22,8 +21,10 @@ class PembayaranController extends Controller
     /**
      * Simpan data pembayaran ke database.
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
+        $vehicle = Vehicle::findOrFail($id);
+
         // Validasi input
         $request->validate([
             'id_vehicles' => 'required|integer',
@@ -51,7 +52,9 @@ class PembayaranController extends Controller
             'konfirmasi_pembayaran' => $request->konfirmasi_pembayaran ? true : false,
         ]);
 
-        return redirect()->route('riwayat.index')->with('success', 'Pembayaran berhasil dilakukan.');
+        return redirect()
+            ->route('riwayat.show.detail', $vehicle->id)
+            ->with('success', 'Pembayaran berhasil dilakukan.');
     }
 
     /**
@@ -61,17 +64,13 @@ class PembayaranController extends Controller
     {
         // Mengambil riwayat pembayaran dan kendaraan terkait
         $riwayats = RiwayatPembayaran::with('vehicle')->latest()->get();
-        $vehicles = Vehicle::all();  // Pastikan ini mengembalikan koleksi kendaraan
+        $vehicles = Vehicle::all(); // Pastikan ini mengembalikan koleksi kendaraan
         return view('riwayat', compact('riwayats', 'vehicles'));
     }
 
-
-
     public function show($id)
-{
-    $vehicle = Vehicle::with('riwayatPembayaran')->findOrFail($id);
-    return view('riwayat_detail', compact('vehicle'));
-}
-
-
+    {
+        $vehicle = Vehicle::with('riwayatPembayaran')->findOrFail($id);
+        return view('riwayat_detail', compact('vehicle'));
+    }
 }

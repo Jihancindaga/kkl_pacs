@@ -190,7 +190,11 @@
         function hidePopup() {
             var popup = document.getElementById('success-popup');
             popup.style.display = 'none'; // Sembunyikan pop-up
-            window.location.href = "{{ route('admin.list') }}"; // Alihkan ke halaman daftar admin
+
+            // Alihkan ke halaman daftar admin setelah sedikit delay
+            setTimeout(function() {
+                window.location.href = "{{ route('admin.list') }}";
+            }, 500); // Delay 500 ms
         }
 
         async function handleSubmit(event) {
@@ -223,7 +227,7 @@
     <!-- Navbar -->
     <div class="navbar">
         <button class="back-button" onclick="history.back()">
-            <i class="fas fa-arrow-left"></i> 
+            <i class="fas fa-arrow-left"></i>
         </button>
         <div class="logo">
             <img src="/images/pacs.png" alt="Logo">
@@ -238,11 +242,14 @@
             @csrf
             <label for="nip">NIP:</label>
             <input type="text" id="nip" name="nip" required>
-            @if($errors->has('nip'))
+            {{-- @if ($errors->has('nip'))
                 <div style="color:red;">
                     {{ $errors->first('nip') }}
                 </div>
-            @endif
+            @endif --}}
+            @error('nip')
+                <div style="color:red;">{{ $message }}</div>
+            @enderror
 
             <label for="name">Nama:</label>
             <input type="text" id="name" name="name" required>
@@ -283,7 +290,7 @@
             <button onclick="hidePopup()">OK</button>
         </div>
     </div>
-    
+
 </body>
 
 </html>

@@ -141,7 +141,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($riwayatPembayaran as $index => $riwayat)
+                            @foreach ($vehicle->riwayatPembayaran as $index => $riwayat)
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ \Carbon\Carbon::parse($riwayat->waktu_pajak)->format('j F Y') }}</td>

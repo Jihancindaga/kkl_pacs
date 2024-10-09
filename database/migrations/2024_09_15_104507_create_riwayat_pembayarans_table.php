@@ -16,7 +16,7 @@ class CreateRiwayatPembayaransTable extends Migration
             $table->unsignedBigInteger('id_vehicles');
             $table->string('kode_kendaraan');
             $table->date('tanggal_bayar');
-            $table->decimal('total_bayar', 10, 2);
+            $table->integer('total_bayar');
             $table->string('bukti_pembayaran');
             $table->boolean('konfirmasi_pembayaran')->default(false);
             $table->timestamps();

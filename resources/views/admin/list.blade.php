@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,8 +13,10 @@
             padding: 0;
             background-color: #f4f4f4;
         }
+
         .navbar {
-            background-color: #007bff; /* Blue */
+            background-color: #007bff;
+            /* Blue */
             color: #fff;
             padding: 10px;
             display: flex;
@@ -24,8 +27,10 @@
             top: 0;
             z-index: 1000;
         }
+
         .navbar .logout {
-            background-color: #f44336; /* Red */
+            background-color: #f44336;
+            /* Red */
             border: none;
             color: white;
             padding: 10px 20px;
@@ -33,9 +38,11 @@
             border-radius: 5px;
             margin-left: 20px;
         }
+
         .navbar .logo img {
             height: 40px;
         }
+
         .navbar .home-btn {
             background: none;
             border: none;
@@ -43,40 +50,53 @@
             font-size: 24px;
             cursor: pointer;
         }
+
         .container {
             padding: 20px;
             position: relative;
-            max-width: 1000px; /* Membatasi lebar maksimum kontainer */
-            margin: 80px auto 20px; /* Menambahkan margin atas untuk menghindari konflik dengan navbar */
+            max-width: 1000px;
+            /* Membatasi lebar maksimum kontainer */
+            margin: 80px auto 20px;
+            /* Menambahkan margin atas untuk menghindari konflik dengan navbar */
             background-color: #fff;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
         }
-        th, td {
+
+        th,
+        td {
             padding: 10px;
             border: 1px solid #ddd;
             text-align: left;
         }
+
         th {
             background-color: #007bff;
             color: white;
         }
-        th:nth-child(1), td:nth-child(1) {
-            width: 15%; /* Lebar kolom NIP */
+
+        th:nth-child(1),
+        td:nth-child(1) {
+            width: 15%;
+            /* Lebar kolom NIP */
         }
+
         tr:nth-child(even) {
             background-color: #f2f2f2;
         }
+
         .home-button {
             position: absolute;
             top: 20px;
             left: 20px;
-            background-color: #007bff; /* Blue */
+            background-color: #007bff;
+            /* Blue */
             border: none;
             color: white;
             padding: 10px;
@@ -89,57 +109,79 @@
             height: 50px;
             z-index: 1;
         }
+
         .home-button i {
             font-size: 20px;
         }
+
         .home-button:hover {
             background-color: #0056b3;
         }
+
         h1 {
-            margin-top: 0; /* Menghilangkan margin atas */
+            margin-top: 0;
+            /* Menghilangkan margin atas */
             text-align: center;
         }
+
         .action-buttons {
             display: flex;
-            justify-content: center; /* Menyelaraskan tombol ke kiri */
-            gap: 10px; /* Jarak antar tombol */
+            justify-content: center;
+            /* Menyelaraskan tombol ke kiri */
+            gap: 10px;
+            /* Jarak antar tombol */
         }
+
         .action-buttons button {
             background-color: #007bff;
             border: none;
             color: white;
-            padding: 5px 10px; /* Padding tombol */
+            padding: 5px 10px;
+            /* Padding tombol */
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            font-size: 12px; /* Font size lebih kecil */
+            font-size: 12px;
+            /* Font size lebih kecil */
             display: flex;
             align-items: center;
-            gap: 5px; /* Jarak antara ikon dan teks */
+            gap: 5px;
+            /* Jarak antara ikon dan teks */
         }
+
         .action-buttons form button {
-            background-color: #dc3545; /* Warna merah */
+            background-color: #dc3545;
+            /* Warna merah */
         }
+
         .action-buttons form button:hover {
             background-color: #c82333;
         }
+
         .action-buttons button i {
-            font-size: 14px; /* Ukuran ikon lebih kecil */
+            font-size: 14px;
+            /* Ukuran ikon lebih kecil */
         }
+
         /* Box Pencarian */
         .search-box {
-        display: flex;
-        justify-content: center; /* Menyelaraskan box pencarian di tengah */
-        margin-bottom: 20px; /* Jarak bawah box pencarian */
-    }
+            display: flex;
+            justify-content: center;
+            /* Menyelaraskan box pencarian di tengah */
+            margin-bottom: 20px;
+            /* Jarak bawah box pencarian */
+        }
+
         .search-box input[type="text"] {
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            width: 300px; /* Lebar input pencarian */
+            width: 300px;
+            /* Lebar input pencarian */
         }
     </style>
 </head>
+
 <body>
 
     <div class="navbar">
@@ -149,8 +191,14 @@
         <div class="logo">
             <img src="/images/pacs.png" alt="Logo">
         </div>
-        <button type="button" class="logout" onclick="window.location.href='{{ url('admin/dashboard') }}'">Logout</button>
+        <button type="button" class="logout"
+            onclick="window.location.href='{{ url('admin/dashboard') }}'">Logout</button>
     </div>
+    @if (session('success'))
+        <div class="alert alert-success mt-3">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <div class="container">
         <h1>Daftar Pengguna</h1>
@@ -174,29 +222,31 @@
             </thead>
             <tbody>
                 @foreach ($admins as $admin)
-                <tr>
-                    <td>{{ $admin->nip }}</td>
-                    <td>{{ $admin->nama }}</td>
-                    <td>{{ $admin->jabatan }}</td>
-                    <td>{{ $admin->alamat }}</td>
-                    <td>{{ $admin->no_telp }}</td>
-                    <td>{{ $admin->jenis_kelamin }}</td>
-                    <td class="action-buttons">
-                        <button onclick="window.location.href='{{ route('admin.edit', $admin->id) }}'">
-                            <i class="fas fa-user-edit"></i> Edit Data Pokok
-                        </button>
-                        <button onclick="window.location.href='{{ route('admin.change_password', $admin->id) }}'">
-                            <i class="fas fa-key"></i> Ubah Password
-                        </button>
-                        <form action="{{ route('admin.delete', $admin->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus admin ini?');">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit">
-                                <i class="fas fa-trash"></i> Hapus
+                    <tr>
+                        <td>{{ $admin->nip }}</td>
+                        <td>{{ $admin->nama }}</td>
+                        <td>{{ $admin->jabatan }}</td>
+                        <td>{{ $admin->alamat }}</td>
+                        <td>{{ $admin->no_telp }}</td>
+                        <td>{{ $admin->jenis_kelamin }}</td>
+                        <td class="action-buttons">
+                            <button onclick="window.location.href='{{ route('admin.edit', $admin->id) }}'">
+                                <i class="fas fa-user-edit"></i> Edit Data Pokok
                             </button>
-                        </form>
-                    </td>
-                </tr>
+                            <button onclick="window.location.href='{{ route('admin.change_password', $admin->id) }}'">
+                                <i class="fas fa-key"></i> Ubah Password
+                            </button>
+                            <form action="{{ route('admin.delete', $admin->id) }}" method="POST"
+                                style="display:inline;"
+                                onsubmit="return confirm('Apakah Anda yakin ingin menghapus admin ini?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">
+                                    <i class="fas fa-trash"></i> Hapus
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>
@@ -233,4 +283,5 @@
         });
     </script>
 </body>
+
 </html>
