@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +15,7 @@
             transition: all 0.3s;
         }
         .navbar {
-            background-color: #007bff; /* Blue */
+            background-color: #007bff; /* Biru */
             color: #fff;
             padding: 10px;
             display: flex;
@@ -27,7 +27,7 @@
             z-index: 1000;
         }
         .navbar .logout {
-            background-color: #f44336; /* Red */
+            background-color: #f44336; /* Merah */
             border: none;
             color: white;
             padding: 10px 20px;
@@ -45,7 +45,7 @@
             cursor: pointer;
         }
         .content {
-            margin-top: 70px; /* Adjust based on navbar height */
+            margin-top: 70px; /* Sesuaikan berdasarkan tinggi navbar */
             padding: 20px;
         }
         .btn-container {
@@ -59,20 +59,20 @@
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            max-width: 2000px; /* Set maximum width */
-            width: 90%; /* Set width to 90% of the viewport */
-            margin: auto; /* Center the container */
+            max-width: 2000px; /* Atur lebar maksimum */
+            width: 90%; /* Atur lebar menjadi 90% dari viewport */
+            margin: auto; /* Pusatkan kontainer */
         }
         .container h2 {
             margin-bottom: 40px; /* Jarak lebih jauh dari tombol */
-            text-align: center; /* Center the text */
+            text-align: center; /* Pusatkan teks */
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-            font-weight: bold; /* Bold font */
+            font-weight: bold; /* Font tebal */
             font-size: 50px; /* Ukuran font lebih besar */
-            color: #0056b3; /* Optional: change the font color */
+            color: #0056b3; /* Opsional: ubah warna font */
         }
 
-        /* Class for the buttons */
+        /* Kelas untuk tombol */
         .button-group {
             display: flex;
             justify-content: space-between;
@@ -83,34 +83,34 @@
             flex: 1;
             padding: 8px; /* Mengurangi padding untuk tombol */
             font-size: 12px; /* Ukuran font lebih kecil */
-            color: white; /* Set text color to white */
+            color: white; /* Set warna teks menjadi putih */
             transition: transform 0.3s, background-color 0.3s;
-            border: none; /* Remove default border */
+            border: none; /* Hapus border default */
         }
 
         .btn-1 {
             background-color: #17a2b8; /* Teal */
         }
         .btn-2 {
-            background-color: #665cc0; /* Green */
+            background-color: #665cc0; /* Ungu */
         }
         .btn-3 {
-            background-color: #aa1c9e; /* Orange */
+            background-color: #aa1c9e; /* Oranye */
         }
-        .btn-warning, .btn-danger {
-            color: white; /* Set warning and danger button text to white */
+        .btn-warning, .btn-danger, .btn-success {
+            color: white; /* Set warna teks tombol */
         }
         .btn:hover {
             opacity: 0.8;
-            transform: scale(1.05); /* Hover effect: slightly enlarges the button */
+            transform: scale(1.05); /* Efek hover: sedikit memperbesar tombol */
         }
         .btn.active {
-            background-color: #0056b3; /* Change color for the active button */
-            color: white; /* Set active button text to white */
-            transform: scale(1.1); /* Slightly enlarges the active button */
+            background-color: #0056b3; /* Ubah warna tombol aktif */
+            color: white; /* Set warna teks tombol aktif menjadi putih */
+            transform: scale(1.1); /* Sedikit memperbesar tombol aktif */
         }
         .table thead th {
-            background-color: #007bff; /* Blue */
+            background-color: #007bff; /* Biru */
             color: rgb(253, 251, 251);
             border: 1px solid #dee2e6; /* Garis tepi pada header tabel */
         }
@@ -131,7 +131,7 @@
             }
             .container {
                 padding: 10px;
-                width: 100%; /* Adjust for smaller screens */
+                width: 100%; /* Sesuaikan untuk layar lebih kecil */
             }
             .table td, .table th {
                 font-size: 0.75rem;
@@ -150,7 +150,7 @@
         <div class="logo">
             <img src="/images/pacs.png" alt="Logo">
         </div>
-        <button type="button" class="logout" onclick="window.location.href='{{ url('admin/dashboard') }}'">Logout</button>
+        
     </div>
 
     <div class="content">
@@ -168,10 +168,15 @@
                 </div>
             </div>
 
+            <!-- Box Pencarian -->
+            <div class="search-box mb-3">
+                <input type="text" id="searchInput" class="form-control" placeholder="Cari data kendaraan...">
+            </div>
+
             <!-- Tabel Pajak -->
             <div class="table-container">
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped" id="vehiclesTable">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -224,7 +229,7 @@
     <!-- Include Bootstrap JS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        // Function to set active button
+        // Fungsi untuk mengatur tombol aktif
         function setActive(button) {
             const buttons = document.querySelectorAll('.button-group .btn');
             buttons.forEach(btn => {
@@ -233,10 +238,31 @@
             button.classList.add('active');
         }
 
-        // Function to navigate to different pages
+        // Fungsi untuk navigasi ke halaman lain
         function navigateTo(page) {
             window.location.href = page;
         }
+
+        // Fungsi Pencarian
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            const filter = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#vehiclesTable tbody tr');
+
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                let match = false;
+                cells.forEach(cell => {
+                    if (cell.textContent.toLowerCase().includes(filter)) {
+                        match = true;
+                    }
+                });
+                if (match) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
     </script>
 </body>
 </html>

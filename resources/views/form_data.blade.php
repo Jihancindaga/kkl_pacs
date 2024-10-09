@@ -55,6 +55,9 @@
             padding: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             margin-top: 20px;
+            max-width: 600px; /* Menambahkan max-width untuk mengecilkan ukuran container */
+            margin-left: auto; /* Menjaga agar container tetap berada di tengah */
+            margin-right: auto; /* Menjaga agar container tetap berada di tengah */
         }
         h2 {
             text-align: center;

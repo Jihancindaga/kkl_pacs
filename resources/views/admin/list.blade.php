@@ -125,7 +125,18 @@
         }
         .action-buttons button i {
             font-size: 14px; /* Ukuran ikon lebih kecil */
-        
+        }
+        /* Box Pencarian */
+        .search-box {
+        display: flex;
+        justify-content: center; /* Menyelaraskan box pencarian di tengah */
+        margin-bottom: 20px; /* Jarak bawah box pencarian */
+    }
+        .search-box input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 300px; /* Lebar input pencarian */
         }
     </style>
 </head>
@@ -143,11 +154,17 @@
 
     <div class="container">
         <h1>Daftar Pengguna</h1>
-        <table>
+
+        <!-- Box Pencarian -->
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Cari pengguna...">
+        </div>
+
+        <table id="usersTable">
             <thead>
                 <tr>
-                    <th>Nama</th>
                     <th>NIP</th>
+                    <th>Nama</th>
                     <th>Jabatan</th>
                     <th>Alamat</th>
                     <th>No. Telp</th>
@@ -158,30 +175,26 @@
             <tbody>
                 @foreach ($admins as $admin)
                 <tr>
-                    <td>{{ $admin->nama }}</td>
                     <td>{{ $admin->nip }}</td>
+                    <td>{{ $admin->nama }}</td>
                     <td>{{ $admin->jabatan }}</td>
                     <td>{{ $admin->alamat }}</td>
                     <td>{{ $admin->no_telp }}</td>
                     <td>{{ $admin->jenis_kelamin }}</td>
                     <td class="action-buttons">
-                            <button onclick="window.location.href='{{ route('admin.edit', $admin->id) }}'">
-                                <i class="fas fa-user-edit"></i> Edit Data Pokok
+                        <button onclick="window.location.href='{{ route('admin.edit', $admin->id) }}'">
+                            <i class="fas fa-user-edit"></i> Edit Data Pokok
+                        </button>
+                        <button onclick="window.location.href='{{ route('admin.change_password', $admin->id) }}'">
+                            <i class="fas fa-key"></i> Ubah Password
+                        </button>
+                        <form action="{{ route('admin.delete', $admin->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus admin ini?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">
+                                <i class="fas fa-trash"></i> Hapus
                             </button>
-                            <button onclick="window.location.href='{{ route('admin.change_password', $admin->id) }}'">
-                                <i class="fas fa-key"></i> Ubah Password
-                            </button>
-                            <form action="{{ route('admin.delete', $admin->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Apakah Anda yakin ingin menghapus admin ini?');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit">
-                                    <i class="fas fa-trash"></i> Hapus
-                                </button>
-                            </form>
-</td>
-
-</td>
-
+                        </form>
                     </td>
                 </tr>
                 @endforeach
@@ -197,6 +210,27 @@
         function navigateTo(url) {
             window.location.href = url;
         }
+
+        // Fungsi Pencarian
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            const filter = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#usersTable tbody tr');
+
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                let match = false;
+                cells.forEach(cell => {
+                    if (cell.textContent.toLowerCase().includes(filter)) {
+                        match = true;
+                    }
+                });
+                if (match) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
     </script>
 </body>
 </html>

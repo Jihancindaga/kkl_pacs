@@ -12,6 +12,7 @@
     <style>
         body {
             background-color: #f8f9fa;
+            padding-top: 70px; /* Sesuaikan dengan tinggi navbar */
         }
         .form-container {
             background-color: #ffffff;
@@ -49,24 +50,20 @@
             border-radius: 5px;
         }
         .readonly-field {
-            background-color: #e9ecef; /* Warna lebih gelap untuk kolom readonly */
-            border: 1px solid #ced4da; /* Border yang konsisten */
+            background-color: #e9ecef; 
+            border: 1px solid #ced4da; 
         }
         .navbar {
-            width: 100%; /* Membuat navbar lebar penuh */
-            padding: 10px 15px; /* Menambah padding vertikal */
+            width: 100%;
+            padding: 10px 15px; 
         }
         .back-icon {
             font-size: 24px;
-            color: white; /* Mengubah warna ikon menjadi putih */
+            color: white; 
             text-decoration: none;
         }
         .back-icon:hover {
-            color: #e0e0e0; /* Warna saat hover */
-        }
-        /* Tambahan untuk menyesuaikan konten di bawah navbar */
-        body {
-            padding-top: 70px; /* Sesuaikan dengan tinggi navbar */
+            color: #e0e0e0; 
         }
     </style>
 </head>
@@ -74,7 +71,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-light bg-primary fixed-top">
         <a href="{{ route('pajak') }}" class="back-icon">
-            <i class="bi bi-arrow-left"></i> <!-- Gunakan icon Bootstrap untuk panah kiri -->
+            <i class="bi bi-arrow-left"></i>
         </a>
     </nav>
     
@@ -108,7 +105,6 @@
             <!-- Form Pembayaran -->
             <form action="{{ route('bayar.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <!-- Menyembunyikan id_vehicles -->
                 <input type="hidden" name="id_vehicles" value="{{ $vehicle->id }}">
 
                 <!-- Data Kendaraan Readonly -->
@@ -176,12 +172,6 @@
                     </div>
                 </div>
 
-                <hr> 
-                <div class="form-group">
-                    <label for="waktu_pajak">Waktu Pajak Berikutnya</label>
-                    <input type="date" name="waktu_pajak" class="form-control" value="{{ old('waktu_pajak', $vehicle->waktu_pajak) }}" required>
-                </div>
-                
                 <div class="mb-3">
                     <label for="bukti_pembayaran" class="form-label">Bukti Pembayaran</label>
                     <input type="file" class="form-control" id="bukti_pembayaran" name="bukti_pembayaran" accept=".pdf, .jpg, .jpeg, .png" required>
@@ -194,6 +184,7 @@
                     <label class="form-check-label" for="confirm">Saya telah memverifikasi informasi di atas.</label>
                 </div>
 
+
                 <button type="submit" class="btn btn-primary">Kirim Pembayaran</button>
             </form>
         </div>
@@ -201,5 +192,38 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('bukti_pembayaran').addEventListener('change', function(event) {
+    const previewContainer = document.getElementById('file-preview');
+    previewContainer.innerHTML = ''; // Bersihkan pratinjau sebelumnya
+    const file = event.target.files[0];
+
+    if (file) {
+        const fileType = file.type;
+        if (fileType.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                previewContainer.appendChild(img);
+            };
+            reader.readAsDataURL(file);
+        } else if (fileType === 'application/pdf') {
+            const pdfIcon = document.createElement('i');
+            pdfIcon.className = 'bi bi-file-earmark-pdf'; // Ikon PDF menggunakan Bootstrap Icons
+            pdfIcon.style.fontSize = '48px';
+            previewContainer.appendChild(pdfIcon);
+            const message = document.createElement('p');
+            message.textContent = 'Pratinjau tidak tersedia untuk PDF.';
+            previewContainer.appendChild(message);
+        } else {
+            const message = document.createElement('p');
+            message.textContent = 'Format file tidak didukung untuk pratinjau.';
+            previewContainer.appendChild(message);
+        }
+    }
+});
+
+    </script>
 </body>
 </html>

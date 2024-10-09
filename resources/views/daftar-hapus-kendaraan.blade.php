@@ -10,7 +10,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
-            padding: 20px;
+            padding: 60px 20px 20px; /* Menambahkan padding atas untuk menghindari navbar */
         }
 
         h2 {
@@ -24,6 +24,52 @@
             text-align: center;
             margin-bottom: 20px;
             font-weight: bold;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            background-color: #007bff; /* Biru */
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            left: 0; /* Menambahkan agar navbar mepet kiri */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Bayangan untuk efek */
+        }
+
+        .navbar .logout {
+            background-color: #f44336; /* Merah */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: auto; /* Memindahkan tombol logout ke kanan */
+        }
+
+        .navbar .home-btn {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .search-box {
+            display: flex;
+            justify-content: center; /* Menyelaraskan box pencarian di tengah */
+            margin: 20px 0; /* Jarak atas dan bawah box pencarian */
+        }
+
+        .search-box input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 300px; /* Lebar input pencarian */
         }
 
         table {
@@ -84,17 +130,31 @@
 </head>
 <body>
 
+    <!-- Navbar -->
+    <div class="navbar">
+        <button class="home-btn" onclick="navigateTo('/pajak')">
+            <i class="fas fa-arrow-left"></i> <!-- Ikon panah kiri -->
+        </button>
+    </div>
+
     <h2>Daftar Kendaraan yang Dihapus</h2>
 
     @if(session('success'))
         <div class="success-message">{{ session('success') }}</div>
     @endif
 
+    <!-- Box Pencarian -->
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Cari kendaraan...">
+    </div>
+
     <table>
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Kode Kendaraan</th>
+                <th>Jenis Kendaraan</th>
+                <th>Plat</th>
                 <th>Alasan</th>
                 <th>Tanggal Hapus</th>
             </tr>
@@ -104,14 +164,19 @@
                 <tr>
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->kode_kendaraan }}</td>
+                    <td>{{ $item->jenis_kendaraan }}</td>
+                    <td>{{ $item->plat }}</td>
                     <td>{{ $item->alasan }}</td>
                     <td>{{ $item->tanggal_hapus }}</td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-    
-    <a href="/pajak">Kembali ke Form Penghapusan</a>
 
+    <script>
+        function navigateTo(url) {
+            window.location.href = url;
+        }
+    </script>
 </body>
 </html>

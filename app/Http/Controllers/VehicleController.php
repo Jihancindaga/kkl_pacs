@@ -34,6 +34,7 @@ class VehicleController extends Controller
     {
         $vehicles = Vehicle::all();
         return view('pajak', compact('vehicles'));
+        
     }
 
     // Menampilkan riwayat kendaraan (tabel riwayat)
