@@ -19,8 +19,7 @@
         }
 
         .navbar {
-            background-color: #007bff;
-            /* Blue */
+            background-color: #007bff; /* Biru */
             color: #fff;
             padding: 10px;
             display: flex;
@@ -32,32 +31,25 @@
             z-index: 1000;
         }
 
-        .navbar .logout {
-            background-color: #f44336;
-            /* Red */
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
+        .navbar .back-btn {
+            font-size: 24px; /* Ukuran font untuk panah */
+            color: white; /* Warna panah */
+            background: none; /* Menghilangkan latar belakang */
+            border: none; /* Menghilangkan border */
+            cursor: pointer; /* Menampilkan pointer saat hover */
+        }
+
+        .navbar .logo {
+            margin-left: auto; /* Memindahkan logo ke kanan */
         }
 
         .navbar .logo img {
-            height: 40px;
+            height: 40px; /* Ukuran logo */
         }
 
         .content {
-            margin-top: 70px;
-            /* Adjust based on navbar height */
+            margin-top: 70px; /* Adjust based on navbar height */
             padding: 20px;
-        }
-
-        .btn-container {
-            margin-bottom: 20px;
-        }
-
-        .table-container {
-            margin-top: 20px;
         }
 
         .container {
@@ -65,17 +57,14 @@
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            /* Full width */
-            text-align: center;
-            /* Center text alignment */
+            width: 100%; /* Full width */
+            text-align: center; /* Center text alignment */
         }
 
         /* Style for table */
-        .table thead th {
-            background-color: #007bff;
-            /* Blue */
-            color: white;
+        .table thead {
+            background-color: #007bff; /* Biru untuk header tabel */
+            color: white; /* Warna teks header tabel */
         }
 
         .table th,
@@ -88,9 +77,12 @@
 
 <body>
     <div class="navbar">
-        <button class="home-btn" onclick="navigateTo('/pajak')">
-            <i class="fas fa-arrow-left"></i> <!-- Font Awesome arrow-left icon -->
+        <button class="back-btn" onclick="navigateTo('/pajak')">
+            <i class="fas fa-arrow-left" style="font-weight: bold;"></i> <!-- Panah tebal -->
         </button>
+        <div class="logo">
+            <img src="/images/pacs.png" alt="Logo">
+        </div>
     </div>
 
     <div class="content">
@@ -104,7 +96,7 @@
             @endif
 
             <table class="table table-bordered">
-                <thead class="thead-dark">
+                <thead>
                     <tr>
                         <th>Kode Kendaraan</th>
                         <th>Plat</th>
@@ -135,7 +127,6 @@
                         </tr>
                     @endforeach
                 </tbody>
-                
             </table>
         </div>
     </div>

@@ -17,6 +17,34 @@
             /* Sesuaikan dengan tinggi navbar */
         }
 
+        .navbar {
+            background-color: #007bff;
+            color: #fff;
+            width: 100%;
+            padding: 10px 15px;
+        }
+
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+        }
+        .navbar .logo img {
+            height: 40px;
+            position: relative;
+            left: -10px; /* Ubah nilainya sesuai kebutuhan */
+        }
+
+        .back-icon {
+            font-size: 30px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .back-icon:hover {
+            color: #e0e0e0;
+        }
+
         .form-container {
             background-color: #ffffff;
             padding: 30px;
@@ -32,7 +60,7 @@
         }
 
         .form-header h3 {
-            color: #007bff;
+            color: #000000;
         }
 
         .btn-primary {
@@ -64,29 +92,18 @@
             border: 1px solid #ced4da;
         }
 
-        .navbar {
-            width: 100%;
-            padding: 10px 15px;
-        }
-
-        .back-icon {
-            font-size: 24px;
-            color: white;
-            text-decoration: none;
-        }
-
-        .back-icon:hover {
-            color: #e0e0e0;
-        }
     </style>
 </head>
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-light bg-primary fixed-top">
+    <nav class="navbar fixed-top">
         <a href="{{ route('pajak') }}" class="back-icon">
             <i class="bi bi-arrow-left"></i>
         </a>
+        <div class="logo">
+            <img src="/images/pacs.png" alt="Logo">
+        </div>
     </nav>
 
     <div class="container">
@@ -206,71 +223,38 @@
                     <div class="file-preview" id="file-preview"></div>
                 </div>
 
-                <div class="form-check mb-3">
-                    <input type="checkbox" class="form-check-input" id="confirm" name="confirm" required>
-                    <label class="form-check-label" for="confirm">Saya telah memverifikasi informasi di atas.</label>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="confirmation" name="confirmation" required>
+                    <label class="form-check-label" for="confirmation">Saya menyatakan bahwa data di atas adalah benar.</label>
                 </div>
 
-
-                <button type="submit" class="btn btn-primary">Kirim Pembayaran</button>
+                <button type="submit" class="btn btn-primary">Bayar</button>
             </form>
         </div>
     </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
-        document.getElementById('bukti_pembayaran').addEventListener('change', function(event) {
-            const previewContainer = document.getElementById('file-preview');
-            previewContainer.innerHTML = ''; // Bersihkan pratinjau sebelumnya
-            const file = event.target.files[0];
+        // Menampilkan preview file
+        document.getElementById('bukti_pembayaran').addEventListener('change', function (event) {
+            const filePreview = document.getElementById('file-preview');
+            filePreview.innerHTML = '';
 
-            if (file) {
-                const fileType = file.type;
-                if (fileType.startsWith('image/')) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        const img = document.createElement('img');
-                        img.src = e.target.result;
-                        previewContainer.appendChild(img);
-                    };
-                    reader.readAsDataURL(file);
-                } else if (fileType === 'application/pdf') {
-                    const pdfIcon = document.createElement('i');
-                    pdfIcon.className = 'bi bi-file-earmark-pdf'; // Ikon PDF menggunakan Bootstrap Icons
-                    pdfIcon.style.fontSize = '48px';
-                    previewContainer.appendChild(pdfIcon);
-                    const message = document.createElement('p');
-                    message.textContent = 'Pratinjau tidak tersedia untuk PDF.';
-                    previewContainer.appendChild(message);
-                } else {
-                    const message = document.createElement('p');
-                    message.textContent = 'Format file tidak didukung untuk pratinjau.';
-                    previewContainer.appendChild(message);
-                }
-            }
-        });
+            const files = event.target.files;
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const reader = new FileReader();
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const costInput = document.getElementById('total_bayar');
-            // Function to format the number with dots
-            function formatNumber(value) {
-                return value
-                    .replace(/\D/g, '') // Remove non-digit characters
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, '.'); // Add dot as thousand separator
+                reader.onload = function (e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    filePreview.appendChild(img);
+                };
+
+                reader.readAsDataURL(file);
             }
-            // Function to remove dots before form submission
-            function unformatNumber(value) {
-                return value.replace(/\./g, '');
-            }
-            // Add event listener for input event
-            costInput.addEventListener('input', function() {
-                this.value = formatNumber(this.value);
-            });
-            // Handle form submission
-            document.getElementById('bayarForm').addEventListener('submit', function() {
-                costInput.value = unformatNumber(costInput.value);
-            });
         });
     </script>
 </body>

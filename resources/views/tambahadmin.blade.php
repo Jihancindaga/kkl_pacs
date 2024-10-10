@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <title>Tambah Admin</title>
+    <!-- Font Awesome untuk ikon -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,7 +15,7 @@
             background-color: #f4f4f4;
         }
 
-        /* Navbar styles */
+        /* Styles Navbar */
         .navbar {
             background-color: #007bff;
             color: #fff;
@@ -24,45 +25,22 @@
             align-items: center;
         }
 
-        .navbar .logo {
-            display: flex;
-            align-items: center;
-        }
-
         .navbar .logo img {
             height: 40px;
             margin-right: 10px;
-        }
-
-        .navbar h1 {
-            font-size: 20px;
-            margin: 0;
-        }
-
-        .navbar .logout {
-            background-color: #f44336;
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
         }
 
         .navbar .back-button {
             background: none;
             border: none;
             color: white;
-            font-size: 16px;
+            font-size: 25px;
             cursor: pointer;
             display: flex;
             align-items: center;
         }
 
-        .navbar .back-button i {
-            margin-right: 5px;
-        }
-
-        /* Container for form */
+        /* Styles Form Container */
         .form-container {
             background-color: white;
             max-width: 600px;
@@ -103,6 +81,7 @@
         .form-container select:focus {
             border-color: #007bff;
             box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+            outline: none;
         }
 
         .form-container button {
@@ -132,7 +111,7 @@
             display: none;
         }
 
-        /* Pop-Up styles */
+        /* Styles Pop-Up */
         .popup {
             display: none;
             position: fixed;
@@ -152,75 +131,28 @@
             border-radius: 5px;
             text-align: center;
             width: 300px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .popup-content h3 {
+            margin-bottom: 20px;
+            color: #333;
         }
 
         .popup-content button {
             background-color: #007bff;
             color: white;
             border: none;
-            padding: 10px;
+            padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
+            font-size: 16px;
         }
 
         .popup-content button:hover {
             background-color: #0056b3;
         }
     </style>
-    <script>
-        function validatePassword() {
-            var password = document.getElementById('password').value;
-            var confirmPassword = document.getElementById('confirm_password').value;
-            var errorMessage = document.getElementById('error-message');
-
-            if (password !== confirmPassword) {
-                errorMessage.style.display = 'block';
-                return false; // Jangan kirim form jika password tidak cocok
-            } else {
-                errorMessage.style.display = 'none';
-                return true; // Lanjutkan pengiriman form
-            }
-        }
-
-        function showPopup() {
-            var popup = document.getElementById('success-popup');
-            popup.style.display = 'flex'; // Tampilkan pop-up
-        }
-
-        function hidePopup() {
-            var popup = document.getElementById('success-popup');
-            popup.style.display = 'none'; // Sembunyikan pop-up
-
-            // Alihkan ke halaman daftar admin setelah sedikit delay
-            setTimeout(function() {
-                window.location.href = "{{ route('admin.list') }}";
-            }, 500); // Delay 500 ms
-        }
-
-        async function handleSubmit(event) {
-            event.preventDefault(); // Mencegah pengiriman form default
-            if (validatePassword()) {
-                const form = event.target;
-
-                // Mengirim data ke server
-                const response = await fetch(form.action, {
-                    method: 'POST',
-                    body: new FormData(form),
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}', // Menyertakan token CSRF
-                    },
-                });
-
-                if (response.ok) {
-                    // Jika data berhasil ditambahkan
-                    showPopup();
-                } else {
-                    // Menangani kesalahan jika diperlukan
-                    alert("Terjadi kesalahan saat menambahkan admin.");
-                }
-            }
-        }
-    </script>
 </head>
 
 <body>
@@ -232,7 +164,6 @@
         <div class="logo">
             <img src="/images/pacs.png" alt="Logo">
         </div>
-        <button class="logout">Logout</button>
     </div>
 
     <!-- Form Container -->
@@ -240,29 +171,28 @@
         <h2>Tambah Admin Baru</h2>
         <form action="{{ route('admin.store') }}" method="POST" onsubmit="handleSubmit(event)">
             @csrf
+            <!-- NIP -->
             <label for="nip">NIP:</label>
-            <input type="text" id="nip" name="nip" required>
-            {{-- @if ($errors->has('nip'))
-                <div style="color:red;">
-                    {{ $errors->first('nip') }}
-                </div>
-            @endif --}}
-            @error('nip')
-                <div style="color:red;">{{ $message }}</div>
-            @enderror
+            <input type="text" id="nip" name="nip" required oninput="checkNIP()">
+            <div id="nip-message" style="color:red; display:none;"></div>
 
+            <!-- Nama -->
             <label for="name">Nama:</label>
             <input type="text" id="name" name="name" required>
 
+            <!-- Jabatan -->
             <label for="jabatan">Jabatan:</label>
             <input type="text" id="jabatan" name="jabatan" required>
 
+            <!-- Alamat -->
             <label for="alamat">Alamat:</label>
             <input type="text" id="alamat" name="alamat" required>
 
+            <!-- Nomor Telepon -->
             <label for="no_telp">Nomor Telepon:</label>
             <input type="text" id="no_telp" name="no_telp" required>
 
+            <!-- Jenis Kelamin -->
             <label for="jenis_kelamin">Jenis Kelamin:</label>
             <select id="jenis_kelamin" name="jenis_kelamin" required>
                 <option value="">Pilih Jenis Kelamin</option>
@@ -270,20 +200,24 @@
                 <option value="Perempuan">Perempuan</option>
             </select>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+            <!-- Password -->
+            <label for="password">Password: <span style="font-weight: lighter;">(Minimal 6 karakter)</span></label>
+            <input type="password" id="password" name="password" required minlength="6">
 
-            <label for="confirm_password">Konfirmasi Password:</label>
-            <input type="password" id="confirm_password" required>
+            <!-- Konfirmasi Password -->
+            <label for="confirm_password">Konfirmasi Password: <span style="font-weight: lighter;">(Minimal 6 karakter)</span></label>
+            <input type="password" id="confirm_password" required minlength="6">
 
+            <!-- Error Message -->
             <div class="error-message" id="error-message">Password tidak cocok.</div>
 
+            <!-- Tombol Submit dan Cancel -->
             <button type="submit">Simpan</button>
             <button type="button" class="cancel-button" onclick="history.back()">Kembali</button>
         </form>
     </div>
 
-    <!-- Pop-Up -->
+    <!-- Pop-up Sukses -->
     <div class="popup" id="success-popup">
         <div class="popup-content">
             <h3>Admin Baru Berhasil Ditambahkan!</h3>
@@ -291,6 +225,112 @@
         </div>
     </div>
 
+    <script>
+        let nipExists = false; // Variabel untuk mengecek apakah NIP sudah ada
+
+        // Fungsi untuk memvalidasi password
+        function validatePassword() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm_password').value;
+            const errorMessage = document.getElementById('error-message');
+
+            if (password !== confirmPassword) {
+                errorMessage.style.display = 'block';
+                return false;
+            } else {
+                errorMessage.style.display = 'none';
+                return true;
+            }
+        }
+
+        // Fungsi untuk menampilkan popup
+        function showPopup() {
+            const popup = document.getElementById('success-popup');
+            popup.style.display = 'flex';
+        }
+
+        // Fungsi untuk menyembunyikan popup dan mengarahkan ke halaman daftar admin
+        function hidePopup() {
+            const popup = document.getElementById('success-popup');
+            popup.style.display = 'none';
+            // Gantilah URL di bawah ini sesuai dengan rute daftar admin Anda
+            setTimeout(function () {
+                window.location.href = "{{ route('admin.list') }}";
+            }, 500);
+        }
+
+        // Fungsi untuk menangani submit form
+        async function handleSubmit(event) {
+            event.preventDefault(); // Mencegah form submit secara default
+
+            if (nipExists) {
+                alert("NIP ini sudah terdaftar. Harap gunakan NIP lain.");
+                return;
+            }
+
+            if (validatePassword()) {
+                const form = event.target;
+                try {
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: new FormData(form),
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        },
+                    });
+
+                    if (response.ok) {
+                        showPopup(); // Memunculkan popup ketika berhasil
+                    } else {
+                        const errorData = await response.json();
+                        alert("Terjadi kesalahan: " + (errorData.message || "Tidak dapat menambahkan admin."));
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert("Terjadi kesalahan saat menghubungi server.");
+                }
+            }
+        }
+
+        // Fungsi untuk memeriksa apakah NIP sudah terdaftar
+        async function checkNIP() {
+            const nip = document.getElementById('nip').value.trim();
+            const message = document.getElementById('nip-message');
+
+            if (nip.length === 0) {
+                nipExists = false;
+                message.style.display = 'none';
+                return;
+            }
+
+            try {
+                const response = await fetch(`/check-nip?nip=${encodeURIComponent(nip)}`, {
+                    method: 'GET',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    if (result.exists) {
+                        nipExists = true;
+                        message.style.display = 'block';
+                        message.textContent = 'NIP ini sudah terdaftar sebagai admin. Harap gunakan NIP lain.';
+                    } else {
+                        nipExists = false;
+                        message.style.display = 'none';
+                    }
+                } else {
+                    console.error('Gagal memeriksa NIP.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+    </script>
 </body>
 
 </html>

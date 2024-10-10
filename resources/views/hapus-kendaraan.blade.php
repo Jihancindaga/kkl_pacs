@@ -6,34 +6,55 @@
     <title>Form Penghapusan Kendaraan</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
-        body {
+        html, body {
+            margin: 0;
+            padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
         }
 
         nav {
-            background-color: #0d6efd;
+            background-color: #007bff; /* Mengganti dengan warna biru yang diinginkan */
             color: white;
-            padding: 10px; /* Padding hanya di atas dan bawah */
+            padding: 10px 15px; /* Padding atas dan bawah lebih kecil */
             display: flex;
             align-items: center;
             position: fixed; /* Agar tetap di atas saat di-scroll */
-            width: 100%; /* Agar memenuhi lebar halaman */
+            width: 100vw; /* Agar memenuhi lebar halaman penuh */
+            left: 0; /* Pastikan mulai dari sisi kiri */
             top: 0; /* Menempatkan navbar di bagian atas */
             z-index: 1000; /* Menjaga navbar di atas elemen lain */
+            box-sizing: border-box; /* Pastikan padding tidak menambah lebar */
+            height: 50px; /* Tinggi navbar yang lebih kecil */
         }
 
         .back-icon {
-            font-size: 20px;
-            cursor: pointer;
+            font-size: 24px; /* Ukuran ikon lebih kecil */
+            color: white; /* Mengubah warna ikon menjadi putih */
+            text-decoration: none;
+            position: absolute; /* Memposisikan secara absolut */
+            left: 15px; /* Jarak dari sisi kiri */
+            top: 30%; /* Angkat ikon sedikit lebih tinggi dari tengah */
+            transform: translateY(-50%); /* Mengatur posisi vertikal agar tepat di tengah */
+        }
+
+        .back-icon:hover {
+            color: #e0e0e0; /* Warna saat hover */
+        }
+
+        .logo {
+            margin-left: auto; /* Memindahkan logo ke sebelah kanan */
+        }
+
+        .logo img {
+            height: 40px; /* Atur tinggi logo sesuai kebutuhan */
+            width: auto; /* Menjaga rasio aspek gambar */
         }
 
         h2 {
             text-align: center;
             color: #333;
-            margin-top: 80px; /* Tambahkan margin top untuk memberi ruang setelah navbar */
+            margin-top: 60px; /* Tambahkan margin top untuk memberi ruang setelah navbar */
             margin-bottom: 20px;
         }
 
@@ -130,7 +151,10 @@
 
     <nav>
         <div class="back-icon">
-            <a href="/pajak"><i class="fas fa-arrow-left" style="color: white;"></i></a>
+            <a href="/pajak"><i class="fas fa-arrow-left"></i></a>
+        </div>
+        <div class="logo">
+            <img src="/images/pacs.png" alt="Logo">
         </div>
     </nav>
 

@@ -30,7 +30,7 @@
         .navbar {
             background-color: #007bff; /* Biru */
             color: #fff;
-            padding: 10px;
+            padding: 5px 10px; /* Mengurangi padding */
             display: flex;
             align-items: center;
             position: fixed;
@@ -39,6 +39,7 @@
             z-index: 1000;
             left: 0; /* Menambahkan agar navbar mepet kiri */
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Bayangan untuk efek */
+            justify-content: space-between; /* Menyelaraskan isi navbar */
         }
 
         .navbar .logout {
@@ -55,8 +56,16 @@
             background: none;
             border: none;
             color: #fff;
-            font-size: 24px;
+            font-size: 20px; /* Mengurangi ukuran font ikon */
             cursor: pointer;
+        }
+
+        .navbar .logo {
+            margin-right: 20px; /* Memberi jarak antara logo dan tepi kanan */
+        }
+
+        .navbar .logo img {
+            height: 40px; /* Mengatur tinggi logo lebih kecil */
         }
 
         .search-box {
@@ -74,17 +83,18 @@
 
         table {
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: collapse; /* Pastikan border tidak ada celah */
             margin: 20px 0;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd; /* Menambahkan border pada tabel */
         }
 
         th, td {
             padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
+            text-align: center; /* Mengubah text-align menjadi center */
+            border: 1px solid #ddd; /* Border pada sel */
         }
 
         th {
@@ -135,6 +145,9 @@
         <button class="home-btn" onclick="navigateTo('/pajak')">
             <i class="fas fa-arrow-left"></i> <!-- Ikon panah kiri -->
         </button>
+        <div class="logo">
+            <img src="/images/pacs.png" alt="Logo">
+        </div>
     </div>
 
     <h2>Daftar Kendaraan yang Dihapus</h2>

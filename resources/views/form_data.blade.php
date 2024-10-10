@@ -27,17 +27,12 @@
             top: 0;
             z-index: 1000;
         }
-        .navbar .logout {
-            background-color: #f44336;
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
         .navbar .logo img {
-            height: 40px;
+        height: 40px;
+        position: relative;
+        left: -10px; /* Ubah nilainya sesuai kebutuhan */
         }
+    
         .navbar .home-btn {
             background: none;
             border: none;
@@ -75,6 +70,9 @@
         <button class="home-btn" onclick="navigateTo('/pajak')">
             <i class="fas fa-arrow-left"></i> <!-- Font Awesome arrow-left icon -->
         </button>
+        <div class="logo">
+            <img src="/images/pacs.png" alt="Logo">
+        </div>
     </div>
     <div class="content">
         <div class="container">
@@ -110,7 +108,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="usia_kendaraan">Usia Kendaraan</label>
+                    <label for="usia_kendaraan">Usia Kendaraan (Tahun) </label>
                     <div class="input-group">
                         <input type="number" class="form-control" id="usia_kendaraan" name="usia_kendaraan" placeholder="Usia Kendaraan" required>
                     </div>

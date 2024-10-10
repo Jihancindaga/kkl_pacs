@@ -17,6 +17,12 @@
             padding: 10px 15px; /* Menambah padding vertikal */
         }
 
+        .navbar .logo img {
+        height: 40px;
+        position: relative;
+        left: -10px; /* Ubah nilainya sesuai kebutuhan */
+        }
+
         .container {
             background-color: white;
             padding: 30px;
@@ -108,6 +114,9 @@
         <a href="{{ route('pajak') }}" class="back-icon">
             <i class="fas fa-arrow-left"></i>
         </a>
+        <div class="logo">
+            <img src="/images/pacs.png" alt="Logo">
+        </div>
     </nav>
     <!-- Akhir Navbar -->
 
