@@ -8,6 +8,7 @@ use App\Http\Controllers\FormDataController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\VehicleDeletionController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('/admin/dashboard');
@@ -134,4 +135,5 @@ Route::get('/riwayat-detail/{id}', [PembayaranController::class, 'show'])->name(
 
 Route::get('/pajak', [VehicleController::class, 'index'])->name('pajak');
 
-
+// route cek NIP
+Route::get('/check-nip', [AdminController::class, 'checkNIP'])->name('check.nip');

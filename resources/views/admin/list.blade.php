@@ -15,8 +15,7 @@
         }
 
         .navbar {
-            background-color: #007bff;
-            /* Blue */
+            background-color: #007bff; /* Blue */
             color: #fff;
             padding: 10px;
             display: flex;
@@ -27,22 +26,11 @@
             top: 0;
             z-index: 1000;
         }
-
-        .navbar .logout {
-            background-color: #f44336;
-            /* Red */
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-left: 20px;
-        }
-
         .navbar .logo img {
-            height: 40px;
+        height: 40px;
+        position: relative;
+        left: -20px; /* Ubah nilainya sesuai kebutuhan */
         }
-
         .navbar .home-btn {
             background: none;
             border: none;
@@ -95,8 +83,7 @@
             position: absolute;
             top: 20px;
             left: 20px;
-            background-color: #007bff;
-            /* Blue */
+            background-color: #007bff; /* Blue */
             border: none;
             color: white;
             padding: 10px;
@@ -191,8 +178,6 @@
         <div class="logo">
             <img src="/images/pacs.png" alt="Logo">
         </div>
-        <button type="button" class="logout"
-            onclick="window.location.href='{{ url('admin/dashboard') }}'">Logout</button>
     </div>
     @if (session('success'))
         <div class="alert alert-success mt-3">

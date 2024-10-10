@@ -30,16 +30,6 @@
             z-index: 1000;
         }
 
-        .navbar .logout {
-            background-color: #f44336;
-            /* Red */
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
         .navbar .logo {
             display: flex;
             align-items: center;
@@ -117,7 +107,6 @@
         <div class="logo">
             <img src="/images/pacs.png" alt="Logo">
         </div>
-        <button class="logout">Logout</button>
     </div>
 
     <div class="content">
@@ -144,7 +133,7 @@
                             @foreach ($vehicle->riwayatPembayaran as $index => $riwayat)
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($riwayat->waktu_pajak)->format('j F Y') }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($vehicle->waktu_pajak)->format('j F Y') }}</td>
                                     <td>{{ \Carbon\Carbon::parse($riwayat->tanggal_bayar)->format('j F Y') }}</td>
                                     <td>{{ $riwayat->total_bayar }}</td>
                                     <td>
