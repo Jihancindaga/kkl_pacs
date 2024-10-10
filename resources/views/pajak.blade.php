@@ -187,7 +187,7 @@
                                 <th>Waktu Pajak (Mendatang)</th>
                                 <th>Ganti Plat (Mendatang)</th>
                                 <th>Usia Kendaraan</th>
-                                <th>CC</th>
+                                <th>CC kendaraan</th>
                                 <th>Nomor Telepon</th>
                                 <th>Aksi</th>
                             </tr>
