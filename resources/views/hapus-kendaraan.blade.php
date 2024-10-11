@@ -4,60 +4,132 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Penghapusan Kendaraan</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Include Font Awesome CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
-        html, body {
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif; /* Sesuaikan font dengan file contoh */
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f4f4f4;
         }
 
-        nav {
-            background-color: #007bff; /* Mengganti dengan warna biru yang diinginkan */
-            color: white;
-            padding: 10px 15px; /* Padding atas dan bawah lebih kecil */
+        /* Navbar Styles */
+        .navbar {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px; /* Sesuai dengan file contoh */
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            position: fixed; /* Agar tetap di atas saat di-scroll */
-            width: 100vw; /* Agar memenuhi lebar halaman penuh */
-            left: 0; /* Pastikan mulai dari sisi kiri */
-            top: 0; /* Menempatkan navbar di bagian atas */
-            z-index: 1000; /* Menjaga navbar di atas elemen lain */
-            box-sizing: border-box; /* Pastikan padding tidak menambah lebar */
-            height: 50px; /* Tinggi navbar yang lebih kecil */
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
         }
 
-        .back-icon {
-            font-size: 24px; /* Ukuran ikon lebih kecil */
-            color: white; /* Mengubah warna ikon menjadi putih */
-            text-decoration: none;
-            position: absolute; /* Memposisikan secara absolut */
-            left: 15px; /* Jarak dari sisi kiri */
-            top: 30%; /* Angkat ikon sedikit lebih tinggi dari tengah */
-            transform: translateY(-50%); /* Mengatur posisi vertikal agar tepat di tengah */
+        .navbar .logo img {
+            height: 40px;
+            position: relative;
+            left: -5px; /* Sesuaikan posisi logo jika diperlukan */
         }
 
-        .back-icon:hover {
-            color: #e0e0e0; /* Warna saat hover */
+        .navbar .home-btn {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px; /* Sesuai dengan file contoh */
+            cursor: pointer;
+            padding: 0; /* Hilangkan padding default */
         }
 
-        .logo {
-            margin-left: auto; /* Memindahkan logo ke sebelah kanan */
+        /* Content Styles */
+        .content {
+            margin-top: 70px; /* Sesuaikan berdasarkan tinggi navbar */
+            padding: 20px;
         }
 
-        .logo img {
-            height: 40px; /* Atur tinggi logo sesuai kebutuhan */
-            width: auto; /* Menjaga rasio aspek gambar */
+        /* Container Styles */
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 2000px; /* Sesuai dengan file contoh */
+            width: 90%;
+            margin: auto;
         }
 
-        h2 {
-            text-align: center;
-            color: #333;
-            margin-top: 60px; /* Tambahkan margin top untuk memberi ruang setelah navbar */
+        /* Heading Styles */
+        .container h2 {
+            margin-bottom: 40px; /* Jarak lebih jauh dari tombol */
+            text-align: center; /* Pusatkan teks */
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-weight: bold;
+            font-size: 50px; /* Sesuai dengan file contoh */
+            color: #0056b3;
+        }
+
+        /* Button Container Styles */
+        .btn-container {
             margin-bottom: 20px;
         }
 
+        /* Button Group Styles */
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .button-group .btn {
+            flex: 1; /* Agar semua tombol memiliki lebar yang sama */
+            padding: 8px; /* Sesuai dengan file contoh */
+            font-size: 12px; /* Sesuai dengan file contoh */
+            color: white;
+            transition: transform 0.3s, background-color 0.3s;
+            border: none;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px; /* Tambahkan border-radius agar tombol lebih lembut */
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        /* Specific Button Colors */
+        .btn-1 {
+            background-color: #17a2b8; /* Teal */
+        }
+        .btn-2 {
+            background-color: #665cc0; /* Ungu */
+        }
+        .btn-3 {
+            background-color: #aa1c9e; /* Oranye */
+        }
+        .btn-danger {
+            background-color: #dc3545; /* Warna Bootstrap untuk danger */
+        }
+        .btn-success {
+            background-color: #28a745; /* Warna Bootstrap untuk success */
+        }
+
+        /* Button Hover Effects */
+        .btn:hover {
+            opacity: 0.8;
+            transform: scale(1.05); /* Efek hover: sedikit memperbesar tombol */
+        }
+
+        /* Active Button Styles */
+        .btn.active {
+            background-color: #0056b3; /* Ubah warna tombol aktif */
+            color: white;
+            transform: scale(1.1); /* Sedikit memperbesar tombol aktif */
+        }
+
+        /* Success Message Styles */
         .success-message {
             color: green;
             text-align: center;
@@ -65,6 +137,7 @@
             font-weight: bold;
         }
 
+        /* Form Styles */
         form {
             background-color: #fff;
             padding: 30px;
@@ -88,7 +161,9 @@
 
         select,
         textarea,
-        input[type="date"] {
+        input[type="date"],
+        input[type="text"],
+        input[type="number"] {
             width: 100%;
             padding: 12px;
             margin-bottom: 20px;
@@ -100,12 +175,14 @@
 
         select:focus,
         textarea:focus,
-        input[type="date"]:focus {
+        input[type="date"]:focus,
+        input[type="text"]:focus,
+        input[type="number"]:focus {
             border-color: #ff0022;
             outline: none;
         }
 
-        button {
+        button[type="submit"] {
             width: 100%;
             padding: 15px;
             background-color: #ff0022;
@@ -117,76 +194,139 @@
             transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
-        button:hover {
+        button[type="submit"]:hover {
             background-color: #f70b2a;
             transform: translateY(-2px);
         }
 
-        a {
+        /* Link Styles */
+        a.form-link {
             display: block;
             text-align: center;
             margin-top: 20px;
             text-decoration: none;
-            color: #FFFFFF;
+            color: #007bff; /* Sesuaikan warna link */
             font-weight: bold;
         }
 
-        a:hover {
+        a.form-link:hover {
             text-decoration: underline;
         }
 
-        /* Responsive styles */
-        @media (max-width: 600px) {
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .button-group .btn {
+                flex: 1 1 calc(33.333% - 10px); /* Tiga tombol per baris */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .button-group .btn {
+                flex: 1 1 calc(50% - 10px); /* Dua tombol per baris */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .button-group .btn {
+                flex: 1 1 100%; /* Satu tombol per baris */
+            }
+
             form {
                 padding: 20px;
             }
 
-            button {
+            button[type="submit"] {
                 font-size: 16px;
             }
         }
     </style>
 </head>
 <body>
-
-    <nav>
-        <div class="back-icon">
-            <a href="/pajak"><i class="fas fa-arrow-left"></i></a>
-        </div>
+    <!-- Navbar -->
+    <div class="navbar">
+        <button class="home-btn" onclick="navigateTo('/home')">
+            <i class="fas fa-arrow-left"></i> <!-- Font Awesome arrow-left icon -->
+        </button>
         <div class="logo">
             <img src="/images/pacs.png" alt="Logo">
         </div>
-    </nav>
+    </div>
 
-    <h2>Form Penghapusan Kendaraan</h2>
+    <!-- Content -->
+    <div class="content">
+        <div class="container">
+            <h2>Form Penghapusan Kendaraan</h2>
 
-    @if(session('success'))
-        <div class="success-message">{{ session('success') }}</div>
-    @endif
+            <!-- Tombol Navigasi dan Aksi dalam satu baris -->
+            <div class="btn-container">
+                <div class="button-group">
+                    <button class="btn btn-1" data-page="data-kendaraan" onclick="setActive(this); navigateTo('/pajak')">Data Pokok Kendaraan</button>
+                    <button class="btn btn-2" data-page="riwayat" onclick="setActive(this); navigateTo('/riwayat')">Riwayat Pembayaran Pajak</button>
+                    <button class="btn btn-3" data-page="masukkan-data" onclick="setActive(this); navigateTo('/form_data')">Tambah Data Kendaraan</button>
+                    <a href="/hapus-kendaraan" class="btn btn-danger" data-page="hapus-kendaraan" onclick="setActive(this);">Hapus Kendaraan</a>
+                    <a href="/daftar-hapus-kendaraan" class="btn btn-success" data-page="riwayat-non-aktif" onclick="setActive(this);">Riwayat Kendaraan Non-aktif</a>
+                </div>
+            </div>
 
-    <form action="{{ route('hapus.kendaraan.store') }}" method="POST">
-        @csrf
-        <div>
-            <label for="kode_kendaraan">Pilih Kendaraan</label>
-            <select id="kode_kendaraan" name="kode_kendaraan" required>
-                <option value="">-- Pilih Kendaraan --</option>
-                @foreach($vehicles as $vehicle)
-                    <option value="{{ $vehicle->kode_kendaraan }}">{{ $vehicle->kode_kendaraan }} | {{ $vehicle->jenis_kendaraan }} | {{ $vehicle->plat }}</option>
-                @endforeach
-            </select>
+            <!-- Garis Pembatas -->
+            <hr>
+
+            @if(session('success'))
+                <div class="success-message">{{ session('success') }}</div>
+            @endif
+
+            <!-- Form Penghapusan Kendaraan -->
+            <form action="{{ route('hapus.kendaraan.store') }}" method="POST">
+                @csrf
+                <div>
+                    <label for="kode_kendaraan">Pilih Kendaraan</label>
+                    <select id="kode_kendaraan" name="kode_kendaraan" required>
+                        <option value="">-- Pilih Kendaraan --</option>
+                        @foreach($vehicles as $vehicle)
+                            <option value="{{ $vehicle->kode_kendaraan }}">{{ $vehicle->kode_kendaraan }} | {{ $vehicle->jenis_kendaraan }} | {{ $vehicle->plat }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div>
+                    <label for="alasan">Alasan Penghapusan</label>
+                    <textarea id="alasan" name="alasan" placeholder="Masukkan alasan penghapusan kendaraan..." required></textarea>
+                </div>
+                {{-- <div>
+                    <label for="tanggal-hapus">Tanggal Penghapusan</label>
+                    <input type="date" id="tanggal-hapus" name="tanggal_hapus" required>
+                </div> --}}
+                <button type="submit">Hapus</button>
+            </form>
+            
+            <a href="{{ route('daftar.hapus.kendaraan') }}" class="form-link">Lihat Daftar Kendaraan yang Dihapus</a>
         </div>
-        <div>
-            <label for="alasan">Alasan Penghapusan</label>
-            <textarea id="alasan" name="alasan" placeholder="Masukkan alasan penghapusan kendaraan..." required></textarea>
-        </div>
-        {{-- <div>
-            <label for="tanggal-hapus">Tanggal Penghapusan</label>
-            <input type="date" id="tanggal-hapus" name="tanggal_hapus" required>
-        </div> --}}
-        <button type="submit">Hapus</button>
-    </form>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        function navigateTo(url) {
+            window.location.href = url;
+        }
+
+        // Fungsi untuk mengatur tombol aktif
+        function setActive(button) {
+            const buttons = document.querySelectorAll('.button-group .btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            button.classList.add('active');
+        }
+
+        // Fungsi untuk menampilkan atau menyembunyikan detail (Jika diperlukan)
+        function toggleDetails(id) {
+            const detailsRow = document.getElementById('details-' + id);
+            detailsRow.style.display = detailsRow.style.display === 'none' ? 'table-row' : 'none';
+        }
+    </script>
     
-    <a href="{{ route('daftar.hapus.kendaraan') }}">Lihat Daftar Kendaraan yang Dihapus</a>
-
+    <!-- Include jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Include Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -118,7 +118,7 @@
             text-align: center;
             vertical-align: middle;
             border: 1px solid #dee2e6; /* Garis tepi pada sel tabel */
-            font-size: 12px; /* Ukuran font tabel lebih kecil */
+            font-size: 14px; /* Ukuran font tabel lebih kecil */
         }
         .action-buttons {
             display: flex;
@@ -187,7 +187,7 @@
                                 <th>Waktu Pajak (Mendatang)</th>
                                 <th>Ganti Plat (Mendatang)</th>
                                 <th>Usia Kendaraan</th>
-                                <th>CC kendaraan</th>
+                                <th>CC Kendaraan</th>
                                 <th>Nomor Telepon</th>
                                 <th>Aksi</th>
                             </tr>

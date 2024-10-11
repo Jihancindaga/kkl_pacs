@@ -162,19 +162,19 @@
             </div>
 
             <div class="form-group">
-                <label for="ganti_plat">Ganti Plat</label>
+                <label for="ganti_plat">Ganti Plat (Mendatang) </label>
                 <input type="date" name="ganti_plat" class="form-control" 
                        value="{{ old('ganti_plat', $vehicle->ganti_plat) }}" required>
             </div>
 
             <div class="form-group">
-                <label for="usia_kendaraan">Usia Kendaraan</label>
+                <label for="usia_kendaraan">Usia Kendaraan (Tahun) </label>
                 <input type="number" name="usia_kendaraan" class="form-control" 
                        value="{{ old('usia_kendaraan', $vehicle->usia_kendaraan) }}" required>
             </div>
 
             <div class="form-group">
-                <label for="cc">CC</label>
+                <label for="cc">CC Kendaraan</label>
                 <input type="number" name="cc" class="form-control" 
                        value="{{ old('cc', $vehicle->cc) }}" required>
             </div>

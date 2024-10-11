@@ -179,7 +179,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="cc">CC</label>
+                    <label for="cc">CC Kendaraan</label>
                     <input type="number" class="form-control" id="cc" name="cc" placeholder="Kapasitas Mesin (CC)" required>
                 </div>
                 <div class="form-group">
