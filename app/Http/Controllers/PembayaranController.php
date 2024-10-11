@@ -32,7 +32,7 @@ class PembayaranController extends Controller
             'tanggal_bayar' => 'required|date',
             'total_bayar' => 'required|numeric',
             'bukti_pembayaran' => 'required|file|mimes:pdf,jpg,jpeg,png',
-            'confirm' => 'accepted',
+            'confirmation' => 'accepted',
         ]);
 
         // Upload bukti pembayaran

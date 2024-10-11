@@ -30,7 +30,7 @@
         .navbar .logo img {
         height: 40px;
         position: relative;
-        left: -10px; /* Ubah nilainya sesuai kebutuhan */
+        left: -5px; /* Ubah nilainya sesuai kebutuhan */
         }
     
         .navbar .home-btn {
@@ -41,19 +41,69 @@
             cursor: pointer;
         }
         .content {
-            margin-top: 70px;
+            margin-top: 70px; /* Adjust based on navbar height */
             padding: 20px;
         }
+
         .container {
             background-color: white;
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-            max-width: 600px; /* Menambahkan max-width untuk mengecilkan ukuran container */
-            margin-left: auto; /* Menjaga agar container tetap berada di tengah */
-            margin-right: auto; /* Menjaga agar container tetap berada di tengah */
+            max-width: 2000px; /* Atur lebar maksimum */
+            width: 90%; /* Atur lebar menjadi 90% dari viewport */
+            margin: auto; /* Pusatkan kontainer */
         }
+        .container h2 {
+            margin-bottom: 40px; /* Jarak lebih jauh dari tombol */
+            text-align: center; /* Pusatkan teks */
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-weight: bold; /* Font tebal */
+            font-size: 50px; /* Ukuran font lebih besar */
+            color: #0056b3; /* Opsional: ubah warna font */
+        }
+
+        .btn-container {
+            margin-bottom: 20px;
+        }
+         /* Kelas untuk tombol */
+         .button-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .button-group .btn {
+            flex: 1;
+            padding: 8px; /* Mengurangi padding untuk tombol */
+            font-size: 12px; /* Ukuran font lebih kecil */
+            color: white; /* Set warna teks menjadi putih */
+            transition: transform 0.3s, background-color 0.3s;
+            border: none; /* Hapus border default */
+        }
+
+        .btn-1 {
+            background-color: #17a2b8; /* Teal */
+        }
+        .btn-2 {
+            background-color: #665cc0; /* Ungu */
+        }
+        .btn-3 {
+            background-color: #aa1c9e; /* Oranye */
+        }
+        .btn-warning, .btn-danger, .btn-success {
+            color: white; /* Set warna teks tombol */
+        }
+        .btn:hover {
+            opacity: 0.8;
+            transform: scale(1.05); /* Efek hover: sedikit memperbesar tombol */
+        }
+        .btn.active {
+            background-color: #0056b3; /* Ubah warna tombol aktif */
+            color: white; /* Set warna teks tombol aktif menjadi putih */
+            transform: scale(1.1); /* Sedikit memperbesar tombol aktif */
+        }
+
         h2 {
             text-align: center;
         }
@@ -67,7 +117,7 @@
 </head>
 <body>
     <div class="navbar">
-        <button class="home-btn" onclick="navigateTo('/pajak')">
+        <button class="home-btn" onclick="navigateTo('/home')">
             <i class="fas fa-arrow-left"></i> <!-- Font Awesome arrow-left icon -->
         </button>
         <div class="logo">
@@ -77,6 +127,21 @@
     <div class="content">
         <div class="container">
             <h2>Masukkan Data Kendaraan</h2>
+
+             <!-- Tombol Navigasi dan Aksi dalam satu baris -->
+             <div class="btn-container">
+                <div class="button-group">
+                    <button class="btn btn-1" data-page="data-kendaraan" onclick="setActive(this); navigateTo('/pajak')">Data Pokok Kendaraan</button>
+                    <button class="btn btn-2" data-page="riwayat" onclick="setActive(this); navigateTo('/riwayat')">Riwayat Pembayaran Pajak</button>
+                    <button class="btn btn-3" data-page="masukkan-data" onclick="setActive(this); navigateTo('/form_data')">Tambah Data Kendaraan</button>
+                    <a href="/hapus-kendaraan" class="btn btn-danger" data-page="hapus-kendaraan" onclick="setActive(this);">Hapus Kendaraan</a>
+                    <a href="/daftar-hapus-kendaraan" class="btn btn-success" data-page="riwayat-non-aktif" onclick="setActive(this);">Riwayat Kendaraan Non-aktif</a>
+                </div>
+            </div>
+
+            <!-- Menambahkan garis di bawah grup tombol -->
+            <hr>
+
             <form action="{{ route('form_data.store') }}" method="POST">
                 @csrf
                 <div class="form-group">
@@ -133,6 +198,15 @@
     <script>
         function navigateTo(url) {
             window.location.href = url;
+        }
+
+        // Fungsi untuk mengatur tombol aktif
+        function setActive(button) {
+            const buttons = document.querySelectorAll('.button-group .btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            button.classList.add('active');
         }
     </script>
 </body>

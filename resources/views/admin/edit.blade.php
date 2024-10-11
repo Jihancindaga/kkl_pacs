@@ -47,6 +47,13 @@
             font-size: 16px;
         }
 
+        /* Styling for readonly inputs */
+        input[readonly] {
+            background-color: #e9ecef; /* Light gray background */
+            color: #495057; /* Darker text color */
+            cursor: not-allowed; /* Indicate that it’s not editable */
+        }
+
         button {
             width: 100%;
             background-color: #007bff;
@@ -97,17 +104,16 @@
         <form action="{{ route('admin.update', $admin->id) }}" method="POST">
             @csrf
             @method('POST')
+            <!-- Form Group for NIP -->
+            <div class="form-group">
+                <label for="nip">NIP:</label>
+                <input type="text" id="nip" name="nip" value="{{ $admin->nip }}" required readonly>
+            </div>
 
             <!-- Form Group for Nama -->
             <div class="form-group">
                 <label for="nama">Nama:</label>
                 <input type="text" id="nama" name="nama" value="{{ $admin->nama }}" required>
-            </div>
-
-            <!-- Form Group for NIP -->
-            <div class="form-group">
-                <label for="nip">NIP:</label>
-                <input type="text" id="nip" name="nip" value="{{ $admin->nip }}" required>
             </div>
 
             <!-- Form Group for Jabatan -->

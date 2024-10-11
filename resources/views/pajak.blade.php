@@ -155,7 +155,7 @@
 
     <div class="content">
         <div class="container">
-            <h2>DATA KENDARAAN</h2>
+            <h2>Data Kendaraan</h2>
 
             <!-- Tombol Navigasi dan Aksi dalam satu baris -->
             <div class="btn-container">
@@ -229,14 +229,16 @@
     <!-- Include Bootstrap JS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        // Fungsi untuk mengatur tombol aktif
-        function setActive(button) {
+    // Fungsi untuk mengatur tombol aktif
+    function setActive(button, url) {
             const buttons = document.querySelectorAll('.button-group .btn');
             buttons.forEach(btn => {
-                btn.classList.remove('active');
+                btn.classList.remove('active'); // Hapus kelas aktif dari semua tombol
             });
-            button.classList.add('active');
+            button.classList.add('active'); // Tambahkan kelas aktif ke tombol yang dipilih
+            navigateTo(url); // Navigasi ke URL yang ditentukan
         }
+
 
         // Fungsi untuk navigasi ke halaman lain
         function navigateTo(page) {

@@ -57,8 +57,59 @@
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            width: 100%; /* Full width */
-            text-align: center; /* Center text alignment */
+            max-width: 2000px; /* Atur lebar maksimum */
+            width: 90%; /* Atur lebar menjadi 90% dari viewport */
+            margin: auto; /* Pusatkan kontainer */
+        }
+        
+        .container h2 {
+            margin-bottom: 40px; /* Jarak lebih jauh dari tombol */
+            text-align: center; /* Pusatkan teks */
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-weight: bold; /* Font tebal */
+            font-size: 50px; /* Ukuran font lebih besar */
+            color: #0056b3; /* Opsional: ubah warna font */
+        }
+
+        .btn-container {
+            margin-bottom: 20px;
+        }
+         /* Kelas untuk tombol */
+         .button-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .button-group .btn {
+            flex: 1;
+            padding: 8px; /* Mengurangi padding untuk tombol */
+            font-size: 12px; /* Ukuran font lebih kecil */
+            color: white; /* Set warna teks menjadi putih */
+            transition: transform 0.3s, background-color 0.3s;
+            border: none; /* Hapus border default */
+        }
+
+        .btn-1 {
+            background-color: #17a2b8; /* Teal */
+        }
+        .btn-2 {
+            background-color: #665cc0; /* Ungu */
+        }
+        .btn-3 {
+            background-color: #aa1c9e; /* Oranye */
+        }
+        .btn-warning, .btn-danger, .btn-success {
+            color: white; /* Set warna teks tombol */
+        }
+        .btn:hover {
+            opacity: 0.8;
+            transform: scale(1.05); /* Efek hover: sedikit memperbesar tombol */
+        }
+        .btn.active {
+            background-color: #0056b3; /* Ubah warna tombol aktif */
+            color: white; /* Set warna teks tombol aktif menjadi putih */
+            transform: scale(1.1); /* Sedikit memperbesar tombol aktif */
         }
 
         /* Style for table */
@@ -77,7 +128,7 @@
 
 <body>
     <div class="navbar">
-        <button class="back-btn" onclick="navigateTo('/pajak')">
+        <button class="back-btn" onclick="navigateTo('/home')">
             <i class="fas fa-arrow-left" style="font-weight: bold;"></i> <!-- Panah tebal -->
         </button>
         <div class="logo">
@@ -87,7 +138,23 @@
 
     <div class="content">
         <div class="container">
-            <h3>Riwayat Pembayaran Pajak</h3>
+            <h2>Riwayat Pembayaran Pajak</h2>
+
+            <!-- Tombol Navigasi dan Aksi dalam satu baris -->
+            <div class="btn-container">
+                <div class="button-group">
+                    <button class="btn btn-1" data-page="data-kendaraan" onclick="setActive(this); navigateTo('/pajak')">Data Pokok Kendaraan</button>
+                    <button class="btn btn-2" data-page="riwayat" onclick="setActive(this); navigateTo('/riwayat')">Riwayat Pembayaran Pajak</button>
+                    <button class="btn btn-3" data-page="masukkan-data" onclick="setActive(this); navigateTo('/form_data')">Tambah Data Kendaraan</button>
+                    <a href="/hapus-kendaraan" class="btn btn-danger" data-page="hapus-kendaraan" onclick="setActive(this);">Hapus Kendaraan</a>
+                    <a href="/daftar-hapus-kendaraan" class="btn btn-success" data-page="riwayat-non-aktif" onclick="setActive(this);">Riwayat Kendaraan Non-aktif</a>
+                </div>
+            </div>
+
+            <!-- Box Pencarian -->
+            <div class="search-box mb-3">
+                <input type="text" id="searchInput" class="form-control" placeholder="Cari data kendaraan...">
+            </div>
 
             @if (session('success'))
                 <div class="alert alert-success">
@@ -95,7 +162,7 @@
                 </div>
             @endif
 
-            <table class="table table-bordered">
+            <table class="table table-bordered" id="vehiclesTable">
                 <thead>
                     <tr>
                         <th>Kode Kendaraan</th>
@@ -135,7 +202,49 @@
         function navigateTo(url) {
             window.location.href = url;
         }
+
+        // Fungsi untuk mengatur tombol aktif
+        function setActive(button) {
+            const buttons = document.querySelectorAll('.button-group .btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            button.classList.add('active');
+        }
+
+        // Fungsi untuk menampilkan atau menyembunyikan detail
+        function toggleDetails(id) {
+            const detailsRow = document.getElementById('details-' + id);
+            detailsRow.style.display = detailsRow.style.display === 'none' ? 'table-row' : 'none';
+        }
+
+        // Pencarian
+        document.getElementById('searchInput').addEventListener('keyup', function () {
+            const searchValue = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#vehiclesTable tbody tr');
+
+            rows.forEach(row => {
+                const cells = row.getElementsByTagName('td');
+                let found = false;
+
+                // Loop through each cell in the row
+                for (let i = 0; i < cells.length - 1; i++) { // Exclude the last cell (Aksi)
+                    if (cells[i].innerText.toLowerCase().includes(searchValue)) {
+                        found = true;
+                        break;
+                    }
+                }
+
+                // Show or hide the row based on the search
+                row.style.display = found ? '' : 'none';
+            });
+        });
     </script>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
