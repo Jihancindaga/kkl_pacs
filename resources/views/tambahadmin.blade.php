@@ -152,6 +152,105 @@
         .popup-content button:hover {
             background-color: #0056b3;
         }
+        .container {
+            padding: 20px;
+            position: relative;
+            max-width: 1000px;
+            /* Membatasi lebar maksimum kontainer */
+            margin: 80px auto 20px;
+            /* Menambahkan margin atas untuk menghindari konflik dengan navbar */
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+                /* Styles for Table */
+        .table-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+            text-align: left;
+        }
+
+        thead {
+            background-color: #007bff;
+            color: white;
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        td {
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover td {
+            background-color: #eaeaea;
+        }
+
+        .table-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Responsive Table */
+        @media (max-width: 768px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+                width: 100%;
+            }
+            
+            thead {
+                display: none;
+            }
+
+            tr {
+                margin-bottom: 10px;
+                border-bottom: 2px solid #ddd;
+            }
+
+            td {
+                display: flex;
+                justify-content: space-between;
+                padding: 10px 5px;
+            }
+
+            td::before {
+                content: attr(data-label);
+                font-weight: bold;
+                color: #333;
+                flex: 1;
+                text-align: left;
+            }
+        }
+
     </style>
 </head>
 
@@ -165,7 +264,35 @@
             <img src="/images/pacs.png" alt="Logo">
         </div>
     </div>
+    <div class="table-container">
+        <h2>Daftar Admin</h2>
+        <table border="1" cellpadding="10" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>NIP</th>
+                    <th>Nama</th>
+                    <th>Jabatan</th>
+                    <th>Alamat</th>
+                    <th>Nomor Telepon</th>
+                    <th>Jenis Kelamin</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($admins as $admin)
+                <tr>
+                    <td>{{ $admin->nip }}</td>
+                    <td>{{ $admin->nama }}</td>
+                    <td>{{ $admin->jabatan }}</td>
+                    <td>{{ $admin->alamat }}</td>
+                    <td>{{ $admin->no_telp }}</td>
+                    <td>{{ $admin->jenis_kelamin }}</td>
 
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
     <!-- Form Container -->
     <div class="form-container">
         <h2>Tambah Admin Baru</h2>
@@ -216,7 +343,7 @@
             <button type="button" class="cancel-button" onclick="history.back()">Kembali</button>
         </form>
     </div>
-
+  
     <!-- Pop-up Sukses -->
     <div class="popup" id="success-popup">
         <div class="popup-content">
