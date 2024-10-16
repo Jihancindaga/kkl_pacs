@@ -34,7 +34,14 @@ class SendReminderNotification extends Command
         foreach ($kendaraans as $kendaraan) {
             $nowa = $kendaraan->nomor_telepon;
             Carbon::setLocale('id');
-            $pesan = 'Reminder: Pajak kendaraan Anda akan jatuh tempo pada ' . Carbon::parse($kendaraan->waktu_pajak)->translatedFormat('d F Y');
+            $pesan = 'Reminder: Pajak kendaraan Anda akan jatuh tempo pada ' . Carbon::parse($kendaraan->waktu_pajak)->translatedFormat('d F Y') . ".\n" .
+                     'Dengan detail Kendaraan: ' . "\n" .
+                     'Plat: ' . $kendaraan->plat . "\n" .
+                     'Jenis: ' . $kendaraan->jenis_kendaraan . "\n" .
+                     'Merk: ' . $kendaraan->merk_kendaraan . "\n" .
+                     'Pengguna: ' . $kendaraan->pengguna . "\n\n" .
+                     'Mohon segera melakukan pembayaran pajak sebelum tanggal jatuh tempo. Terima kasih😊😊.';
+
             $token = '##tZKBP_Dp_gHypkBQVJ';
 
             // Mengirim notifikasi menggunakan Fonnte API

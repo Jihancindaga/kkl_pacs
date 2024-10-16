@@ -152,6 +152,7 @@ class VehicleController extends Controller
         $request->validate([
             'pengguna' => 'required|string',
             'jenis_kendaraan' => 'required|string',
+            'merk_kendaraan' => 'required|string',
             'waktu_pajak' => 'required|date',
             'ganti_plat' => 'required|date',
             'usia_kendaraan' => 'required|integer',
@@ -164,6 +165,7 @@ class VehicleController extends Controller
 
         $vehicle->pengguna = $request->input('pengguna');
         $vehicle->jenis_kendaraan = $request->input('jenis_kendaraan');
+        $vehicle->merk_kendaraan = $request->input('merk_kendaraan');
         $vehicle->waktu_pajak = $request->input('waktu_pajak');
         $vehicle->ganti_plat = $request->input('ganti_plat');
         $vehicle->usia_kendaraan = $request->input('usia_kendaraan');

@@ -183,6 +183,7 @@
                                 <th>ID Kendaraan</th>
                                 <th>Plat</th>
                                 <th>Jenis Kendaraan</th>
+                                <th>Merk Kendaraan</th>
                                 <th>Pengguna</th>
                                 <th>Waktu Pajak (Mendatang)</th>
                                 <th>Ganti Plat (Mendatang)</th>
@@ -199,6 +200,7 @@
                                     <td>{{ $vehicle->kode_kendaraan }}</td>
                                     <td>{{ $vehicle->plat }}</td>
                                     <td>{{ $vehicle->jenis_kendaraan }}</td>
+                                    <td>{{ $vehicle->merk_kendaraan }}</td>
                                     <td>{{ $vehicle->pengguna }}</td>
                                     <td>{{ $vehicle->waktu_pajak }}</td>
                                     <td>{{ $vehicle->ganti_plat }}</td>

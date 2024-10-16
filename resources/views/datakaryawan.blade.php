@@ -28,14 +28,7 @@
             top: 0;
             z-index: 1000;
         }
-        .navbar .logout {
-            background-color: #f44336; /* Red */
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
+        
         .navbar .logo img {
             height: 40px;
         }
@@ -104,7 +97,6 @@
         <div class="logo">
             <img src="/images/pacs.png" alt="Logo">
         </div>
-        <button type="button" class="logout" onclick="window.location.href='{{ url('admin/dashboard') }}'">Logout</button>
     </div>
 
     <div class="content">

@@ -161,6 +161,10 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <label for="merk_kendaraan">Merk Kendaraan</label>
+                    <input type="text" class="form-control" id="merk_kendaraan" name="merk_kendaraan" placeholder="Merk Kendaraan" required>
+                </div>
+                <div class="form-group">
                     <label for="waktu_pajak">Waktu Pajak (Mendatang)</label>
                     <div class="input-group">
                         <input type="date" class="form-control" id="waktu_pajak" name="waktu_pajak" required>

@@ -345,6 +345,8 @@
     <div class="navbar">
         <div class="logo">
             <div class="hamburger" onclick="openNav()">&#9776;</div>
+            <img src="/images/logo_sleman.jpeg" alt="Logo Sleman" style="height: 40px; margin-right: 5px; margin-left: 10px;"> <!-- Logo Sleman -->
+            <img src="/images/logo_kundha_kabudayan.png" alt="Logo Kundha Kabudayan" style="height: 40px; margin-right: 5px; margin-left: 10px;"> <!-- Logo Sleman -->
             <img src="/images/pacs.png" alt="Logo">
         </div>
         <form action="{{ route('logout') }}" method="POST">
@@ -387,7 +389,7 @@
         <!-- Container 2 -->
         <div class="container">
             <img src="/images/logo_pegawai.jpg" alt="Image 2">
-            <button onclick="alert('Kenaikan Gaji dan Pangkat Pegawai')">Kenaikan Gaji dan Pangkat Pegawai</button>
+            <button onclick="navigateTo('/datakaryawan')">Kenaikan Gaji dan Pangkat Pegawai</button>
         </div>
     </div>
 
