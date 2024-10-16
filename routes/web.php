@@ -32,6 +32,9 @@ Route::get('/daftar-hapus-kendaraan', function () {
 Route::get('/tambahadmin', function () {
     return view('tambahadmin');
 })->name('tambah.admin');
+// web.php
+Route::get('/tambahadmin', [AdminDashboardController::class, 'create'])->name('admin.tambah');
+
 Route::get('/hapus-kendaraan', [VehicleDeletionController::class, 'create'])->name('hapus.kendaraan');
 Route::post('/hapus-kendaraan', [VehicleDeletionController::class, 'store'])->name('hapus.kendaraan.store');
 Route::get('/daftar-hapus-kendaraan', [VehicleDeletionController::class, 'index'])->name('daftar.hapus.kendaraan');

@@ -13,6 +13,12 @@ class AdminDashboardController extends Controller
         $admins = Admin::all(); // Ambil semua data admin dari database
         return view('admin.list', ['admins' => $admins]); // Tampilkan di view 'admin.list'
     }
+    // AdminController.php
+    public function create()
+    {
+        $admins = Admin::all(); // Ambil data admin dari database
+        return view('tambahadmin', compact('admins')); // Kirim data ke view
+    }
 
     // Metode untuk menampilkan halaman dashboard
     public function index()
