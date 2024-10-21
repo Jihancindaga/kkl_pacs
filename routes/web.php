@@ -9,6 +9,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\VehicleDeletionController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\KaryawanController;
 
 Route::get('/', function () {
     return view('/admin/dashboard');
@@ -140,3 +141,23 @@ Route::get('/pajak', [VehicleController::class, 'index'])->name('pajak');
 
 // route cek NIP
 Route::get('/check-nip', [AdminController::class, 'checkNIP'])->name('check.nip');
+
+//route data karyawan
+Route::resource('karyawan', KaryawanController::class);
+Route::get('/datakaryawan', [KaryawanController::class, 'index']);
+
+// Route untuk halaman edit karyawan
+Route::get('/edit-karyawan/{id}', [KaryawanController::class, 'edit'])->name('edit_karyawan');
+
+// Route untuk menyimpan perubahan karyawan setelah di-edit
+Route::post('/update-karyawan/{id}', [KaryawanController::class, 'update'])->name('karyawan.update');
+
+// Route untuk halaman Data Karyawan
+Route::get('/datakaryawan', [KaryawanController::class, 'index'])->name('datakaryawan');
+
+// Route untuk halaman tambah Data Karyawan
+Route::get('/tambah-karyawan', [KaryawanController::class, 'create'])->name('karyawan.create');
+Route::post('/tambah-karyawan', [KaryawanController::class, 'store'])->name('karyawan.store');
+
+Route::get('/karyawan', [KaryawanController::class, 'index'])->name('karyawan.index');
+Route::post('/karyawan/store', [KaryawanController::class, 'store'])->name('karyawan.store');

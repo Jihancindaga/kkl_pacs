@@ -82,6 +82,14 @@
             border: none; /* Hapus border default */
         }
 
+        
+        /* Tombol yang aktif akan mendapatkan frame hitam */
+        .button-group .btn.active {
+            background-color: #0056b3; /* Warna gelap untuk tombol aktif */
+            color: white; /* Warna teks tetap putih */
+            border: 1px solid black; /* Tambahkan border hitam */
+            transform: scale(1.05); /* Sedikit memperbesar tombol aktif */
+        }
         .btn-1 {
             background-color: #17a2b8; /* Teal */
         }
@@ -133,11 +141,11 @@
              <!-- Tombol Navigasi dan Aksi dalam satu baris -->
              <div class="btn-container">
                 <div class="button-group">
-                    <button class="btn btn-1" data-page="data-kendaraan" onclick="setActive(this); navigateTo('/pajak')">Data Pokok Kendaraan</button>
-                    <button class="btn btn-2" data-page="riwayat" onclick="setActive(this); navigateTo('/riwayat')">Riwayat Pembayaran Pajak</button>
-                    <button class="btn btn-3" data-page="masukkan-data" onclick="setActive(this); navigateTo('/form_data')">Tambah Data Kendaraan</button>
-                    <a href="/hapus-kendaraan" class="btn btn-danger" data-page="hapus-kendaraan" onclick="setActive(this);">Hapus Kendaraan</a>
-                    <a href="/daftar-hapus-kendaraan" class="btn btn-success" data-page="riwayat-non-aktif" onclick="setActive(this);">Riwayat Kendaraan Non-aktif</a>
+                    <button class="btn btn-1 {{ Request::is('pajak') ? 'active' : '' }}" onclick="navigateTo('/pajak')">Data Pokok Kendaraan</button>
+                    <button class="btn btn-2 {{ Request::is('riwayat') ? 'active' : '' }}" onclick="navigateTo('/riwayat')">Riwayat Pembayaran Pajak</button>
+                    <button class="btn btn-3 {{ Request::is('form_data') ? 'active' : '' }}" onclick="navigateTo('/form_data')">Tambah Data Kendaraan</button>
+                    <a href="/hapus-kendaraan" class="btn btn-danger {{ Request::is('hapus-kendaraan') ? 'active' : '' }}">Hapus Kendaraan</a>
+                    <a href="/daftar-hapus-kendaraan" class="btn btn-success {{ Request::is('daftar-hapus-kendaraan') ? 'active' : '' }}">Riwayat Kendaraan Non-aktif</a>
                 </div>
             </div>
 
