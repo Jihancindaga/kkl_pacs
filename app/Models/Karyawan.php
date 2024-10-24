@@ -16,6 +16,7 @@ class Karyawan extends Model
     protected $fillable = [
         'nip',
         'nama',
+        'tahun_kenaikan',
         'golongan',
         'pangkat',
         'jabatan',

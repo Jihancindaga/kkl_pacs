@@ -171,6 +171,10 @@
                     <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Karyawan" required>
                 </div>
                 <div class="form-group">
+                    <label for="tahun_kenaikan">Tahun Kenaikan</label>
+                    <input type="text" class="form-control" id="tahun_kenaikan" name="tahun_kenaikan" placeholder="Tahun Kenaikan" required>
+                </div>
+                <div class="form-group">
                     <label for="golongan">Golongan</label>
                     <input type="text" class="form-control" id="golongan" name="golongan" placeholder="Golongan" required>
                 </div>

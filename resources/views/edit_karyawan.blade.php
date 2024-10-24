@@ -84,6 +84,11 @@
             </div>
 
             <div class="form-group">
+                <label for="tahun_kenaikan">Tahun Kenaikan:</label>
+                <input type="text" class="form-control" id="tahun_kenaikan" name="tahun_kenaikan" value="{{ old('tahun_kenaikan', $karyawan->tahun_kenaikan) }}" required>
+            </div>
+
+            <div class="form-group">
                 <label for="golongan">Golongan:</label>
                 <input type="text" class="form-control" id="golongan" name="golongan" value="{{ old('golongan', $karyawan->golongan) }}" required>
             </div>

@@ -251,6 +251,7 @@
                             <th>No</th>
                             <th>NIP</th>
                             <th>Nama</th>
+                            <th>Tahun Kenaikan</th>
                             <th>Golongan</th>
                             <th>Pangkat</th>
                             <th>Jabatan</th>
@@ -263,6 +264,7 @@
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $karyawan->nip }}</td>
                             <td class="nama">{{ $karyawan->nama }}</td>
+                            <td>{{ $karyawan->tahun_kenaikan }}</td>
                             <td>{{ $karyawan->golongan }}</td>
                             <td>{{ $karyawan->pangkat }}</td>
                             <td class="jabatan">{{ $karyawan->jabatan }}</td>

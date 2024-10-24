@@ -28,6 +28,7 @@ class KaryawanController extends Controller
         $validateData = $request->validate([
             'nama' => 'required|string|max:255',
             'nip' => 'required|string|max:20|unique:karyawans',
+            'tahun_kenaikan' => 'required|string|max:255',
             'jabatan' => 'required|string|max:255',
             'golongan' => 'required|string|max:255',
             'pangkat' => 'required|string|max:255',
@@ -36,6 +37,7 @@ class KaryawanController extends Controller
         Karyawan::create([
             'nama' => $validateData['nama'],
             'nip' => $validateData['nip'],
+            'tahun_kenaikan' => $validateData['tahun_kenaikan'],
             'jabatan' => $validateData['jabatan'],
             'golongan' => $validateData['golongan'],
             'pangkat' => $validateData['pangkat'],
@@ -57,6 +59,7 @@ class KaryawanController extends Controller
         $request->validate([
             'nip' => 'required',
             'nama' => 'required',
+            'tahun_kenikan' => 'required',
             'golongan' => 'required',
             'pangkat' => 'required',
             'jabatan' => 'required',
@@ -66,6 +69,7 @@ class KaryawanController extends Controller
         $karyawan->update([
             'nip' => $request->nip,
             'nama' => $request->nama,
+            'tahun_kenaikan' => $request->tahun_kenaikan,
             'golongan' => $request->golongan,
             'pangkat' => $request->pangkat,
             'jabatan' => $request->jabatan,
@@ -73,7 +77,7 @@ class KaryawanController extends Controller
 
         return redirect()->route('karyawan.index')->with('success', 'Data Karyawan berhasil diperbarui');
     }
-    
+
 
     // Menghapus data karyawan
     public function destroy($id)
@@ -86,4 +90,3 @@ class KaryawanController extends Controller
         return redirect()->route('karyawan.index')->with('success', 'Karyawan berhasil dihapus!');
     }
 }
-
