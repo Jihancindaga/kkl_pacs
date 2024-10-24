@@ -32,6 +32,7 @@ class KaryawanController extends Controller
             'jabatan' => 'required|string|max:255',
             'golongan' => 'required|string|max:255',
             'pangkat' => 'required|string|max:255',
+            'no_telp' => 'required|string|max:255',
         ]);
 
         Karyawan::create([
@@ -41,6 +42,7 @@ class KaryawanController extends Controller
             'jabatan' => $validateData['jabatan'],
             'golongan' => $validateData['golongan'],
             'pangkat' => $validateData['pangkat'],
+            'no_telp' => $validateData['no_telp'],
         ]);
 
         return redirect()->route('karyawan.index')->with('success', 'Karyawan berhasil ditambahkan!');
@@ -63,6 +65,7 @@ class KaryawanController extends Controller
             'golongan' => 'required',
             'pangkat' => 'required',
             'jabatan' => 'required',
+            'no_telp' => 'required',
         ]);
 
         $karyawan = Karyawan::findOrFail($id);
@@ -73,6 +76,7 @@ class KaryawanController extends Controller
             'golongan' => $request->golongan,
             'pangkat' => $request->pangkat,
             'jabatan' => $request->jabatan,
+            'no_telp' => $request->no_telp,
         ]);
 
         return redirect()->route('karyawan.index')->with('success', 'Data Karyawan berhasil diperbarui');
@@ -88,5 +92,12 @@ class KaryawanController extends Controller
 
         // Redirect ke halaman data karyawan setelah berhasil dihapus
         return redirect()->route('karyawan.index')->with('success', 'Karyawan berhasil dihapus!');
+    }
+
+    //Mengecek validasi NIP
+    public function checkNip(Request $request)
+    {
+        $exists = Karyawan::where('nip', $request->nip)->exists();
+        return response()->json(['exists' => $exists]);
     }
 }

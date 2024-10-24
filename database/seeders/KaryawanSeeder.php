@@ -13,18 +13,20 @@ class KaryawanSeeder extends Seeder
             [
                 'nip' => '19661212 199403 1 008',
                 'nama' => 'Edy Winarya, S.Sn., M.Si',
-                'tahun_kenaikan' => '2010',
+                'tahun_kenaikan' => '2029',
                 'golongan' => 'IV/c',
                 'pangkat' => 'Pembina Utama Muda',
                 'jabatan' => 'Kepala Dinas Kebudayaan (Kundha Kabudayan)',
+                'no_telp' => '085869278611',
             ],
             [
                 'nip' => '19990519 202421 1 001',
                 'nama' => 'Omar Alvaro, A.Md',
-                'tahun_kenaikan' => '2010',
+                'tahun_kenaikan' => '2029',
                 'golongan' => 'VII',
                 'pangkat' => 'Penata Muda Tingkat I',
                 'jabatan' => 'Arsiparis Terampil',
+                'no_telp' => '085869278611',
             ],
             [
                 'nip' => '19670301 199403 1 005',
@@ -33,6 +35,7 @@ class KaryawanSeeder extends Seeder
                 'golongan' => 'IV/b',
                 'pangkat' => 'Pembina Tingkat I',
                 'jabatan' => 'Sekretaris Dinas Kebudayaan (Kundha Kabudayan)',
+                'no_telp' => '085869278611',
             ],
             [
                 'nip' => '19700909 199603 2 003',
@@ -41,6 +44,7 @@ class KaryawanSeeder extends Seeder
                 'golongan' => 'III/d',
                 'pangkat' => 'Penata Tingkat I',
                 'jabatan' => 'Kepala Subbagian Umum dan Kepegawaian Sekretariat',
+                'no_telp' => '085869278611',
             ],
             [
                 'nip' => '19910408 202202 2 002',
@@ -49,6 +53,7 @@ class KaryawanSeeder extends Seeder
                 'golongan' => 'III/a',
                 'pangkat' => 'Penata Muda',
                 'jabatan' => 'Penelaah Teknis Kebijakan pada Subbagian Umum dan Kepegawaian Sekretariat',
+                'no_telp' => '085869278611',
             ],
             [
                 'nip' => '19731221 200701 1 008',
@@ -57,6 +62,7 @@ class KaryawanSeeder extends Seeder
                 'golongan' => 'II/d',
                 'pangkat' => 'Pengatur Tingkat I',
                 'jabatan' => 'Pengolah Data dan Informasi pada Subbagian Umum dan Kepegawaian Sekretariat',
+                'no_telp' => '085869278611',
             ],
             [
                 'nip' => '19730721 200901 2 001',
@@ -65,6 +71,7 @@ class KaryawanSeeder extends Seeder
                 'golongan' => 'II/d',
                 'pangkat' => 'Pengatur Tingkat I',
                 'jabatan' => 'Pengadministrasi Perkantoran pada Subbagian Umum dan Kepegawaian Sekretariat',
+                'no_telp' => '085869278611',
             ],
             [
                 'nip' => '19780223 199803 2 002',
@@ -73,6 +80,7 @@ class KaryawanSeeder extends Seeder
                 'golongan' => 'III/c',
                 'pangkat' => 'Penata',
                 'jabatan' => 'Kepala Subbagian Keuangan Sekretariat',
+                'no_telp' => '085869278611',
             ],
             [
                 'nip' => '19760925 200901 1 001',
@@ -81,6 +89,7 @@ class KaryawanSeeder extends Seeder
                 'golongan' => 'II/d',
                 'pangkat' => 'Pengatur Tingkat I',
                 'jabatan' => 'Penelaah Teknis Kebijakan pada Subbagian Keuangan Sekretariat',
+                'no_telp' => '085869278611',
             ],
             [
                 'nip' => '19940407 202012 2 007',
@@ -89,6 +98,7 @@ class KaryawanSeeder extends Seeder
                 'golongan' => 'II/c',
                 'pangkat' => 'Pengatur',
                 'jabatan' => 'Pengolah Data dan Informasi pada Subbagian Keuangan Sekretariat',
+                'no_telp' => '085869278611',
             ],
             [
                 'nip' => '19800405 201001 2 005',
@@ -97,6 +107,7 @@ class KaryawanSeeder extends Seeder
                 'golongan' => 'II/d',
                 'pangkat' => 'Pengatur Tingkat I',
                 'jabatan' => 'Pengolah Data dan Informas pada Subbagian Keuangan Sekretariat',
+                'no_telp' => '085869278611',
             ],
             [
                 'nip' => '19820106 200901 1 002',
@@ -105,6 +116,7 @@ class KaryawanSeeder extends Seeder
                 'golongan' => 'II/b',
                 'pangkat' => 'Pengatur Muda Tingkat I',
                 'jabatan' => 'Pengolah Data dan Informasi pada Subbagian Keuangan Sekretariat',
+                'no_telp' => '085869278611',
             ],
             [
                 'nip' => '19740709 199803 2 005',
@@ -113,6 +125,7 @@ class KaryawanSeeder extends Seeder
                 'golongan' => 'IV/a',
                 'pangkat' => 'Pembina',
                 'jabatan' => 'Kepala Subbagian Perencanaan dan Evaluasi Sekretariat',
+                'no_telp' => '085869278611',
             ],
             [
                 'nama' => 'Nur Ainun Ervina, S.E.',
@@ -120,7 +133,8 @@ class KaryawanSeeder extends Seeder
                 'tahun_kenaikan' => '2010',
                 'golongan' => 'III/d',
                 'pangkat' => 'Penata Tingkat I',
-                'jabatan' => 'Penelaah Teknis Kebijakan pada Subbagian Perencanaan dan Evaluasi Sekretariat'
+                'jabatan' => 'Penelaah Teknis Kebijakan pada Subbagian Perencanaan dan Evaluasi Sekretariat',
+                'no_telp' => '085869278611',
             ],
             [
                 'nama' => 'Esti Listyowati, SE, MM',
@@ -128,7 +142,8 @@ class KaryawanSeeder extends Seeder
                 'tahun_kenaikan' => '2010',
                 'golongan' => 'IV/a',
                 'pangkat' => 'Pembina',
-                'jabatan' => 'Kepala Bidang Warisan Budaya'
+                'jabatan' => 'Kepala Bidang Warisan Budaya',
+                'no_telp' => '085869278611',
             ],
             [
                 'nama' => 'Endah Kusuma Wardani, S.Ant',
@@ -136,7 +151,8 @@ class KaryawanSeeder extends Seeder
                 'tahun_kenaikan' => '2010',
                 'golongan' => 'III/d',
                 'pangkat' => 'Penata Tingkat I',
-                'jabatan' => 'Kepala Seksi Warisan Budaya Benda Bidang Warisan Budaya'
+                'jabatan' => 'Kepala Seksi Warisan Budaya Benda Bidang Warisan Budaya',
+                'no_telp' => '085869278611',
             ],
             [
                 'nama' => 'Davit Sadri Husin',
@@ -144,7 +160,8 @@ class KaryawanSeeder extends Seeder
                 'tahun_kenaikan' => '2010',
                 'golongan' => 'II/d',
                 'pangkat' => 'Pengatur Tingkat I',
-                'jabatan' => 'Pengolah Data dan Informasi Warisan Budaya pada Seksi Warisan Budaya Benda Bidang Warisan Budaya'
+                'jabatan' => 'Pengolah Data dan Informasi Warisan Budaya pada Seksi Warisan Budaya Benda Bidang Warisan Budaya',
+                'no_telp' => '085869278611',
             ],
             [
                 'nama' => 'Dekhi Nugroho, SE, M.Ec.Dev',
@@ -152,7 +169,8 @@ class KaryawanSeeder extends Seeder
                 'tahun_kenaikan' => '2010',
                 'golongan' => 'IV/a',
                 'pangkat' => 'Pembina',
-                'jabatan' => 'Kepala Seksi Warisan Budaya Tak Benda Bidang Warisan Budaya'
+                'jabatan' => 'Kepala Seksi Warisan Budaya Tak Benda Bidang Warisan Budaya',
+                'no_telp' => '085869278611',
             ],
             [
                 'nama' => 'Qoswan Indraprastanti Pramudian Nugroho',
@@ -160,7 +178,8 @@ class KaryawanSeeder extends Seeder
                 'tahun_kenaikan' => '2010',
                 'golongan' => 'III/a',
                 'pangkat' => 'Penata Muda',
-                'jabatan' => 'Penelaah Teknis Kebijakan pada Seksi Warisan Budaya Tak Benda Bidang Warisan Budaya'
+                'jabatan' => 'Penelaah Teknis Kebijakan pada Seksi Warisan Budaya Tak Benda Bidang Warisan Budaya',
+                'no_telp' => '085869278611',
             ],
             [
                 'nama' => 'Ignatius Eko Ferianto, S.Sn., M.E',
@@ -168,7 +187,8 @@ class KaryawanSeeder extends Seeder
                 'tahun_kenaikan' => '2010',
                 'golongan' => 'IV/a',
                 'pangkat' => 'Pembina',
-                'jabatan' => 'Kepala Bidang Adat, Tradisi, Lembaga Budaya dan Seni (Bidang ATLAS)'
+                'jabatan' => 'Kepala Bidang Adat, Tradisi, Lembaga Budaya dan Seni (Bidang ATLAS)',
+                'no_telp' => '085869278611',
             ],
             [
                 'nama' => 'Yohanes Jasminto, S.Pd',
@@ -176,7 +196,8 @@ class KaryawanSeeder extends Seeder
                 'tahun_kenaikan' => '2010',
                 'golongan' => 'III/b',
                 'pangkat' => 'Penata Muda Tingkat I',
-                'jabatan' => 'Kepala Seksi Adat dan Tradisi'
+                'jabatan' => 'Kepala Seksi Adat dan Tradisi',
+                'no_telp' => '085869278611',
             ],
             [
                 'nama' => 'Gregorius Khrisna Wicaksono, S.S',
@@ -184,7 +205,8 @@ class KaryawanSeeder extends Seeder
                 'tahun_kenaikan' => '2010',
                 'golongan' => 'III/d',
                 'pangkat' => 'Penata Tingkat I',
-                'jabatan' => 'Penelaah Teknis Kebijakan Pada Seksi Adat dan Tradisi Bidang ATLAS'
+                'jabatan' => 'Penelaah Teknis Kebijakan Pada Seksi Adat dan Tradisi Bidang ATLAS',
+                'no_telp' => '085869278611',
             ],
             [
                 'nama' => 'Heri Nur Susanto',
@@ -192,7 +214,8 @@ class KaryawanSeeder extends Seeder
                 'tahun_kenaikan' => '2010',
                 'golongan' => 'II/d',
                 'pangkat' => 'Pengatur Tingkat I',
-                'jabatan' => 'Pengolah Data dan Informasi pada Seksi Adat dan Tradisi Bidang ATLAS'
+                'jabatan' => 'Pengolah Data dan Informasi pada Seksi Adat dan Tradisi Bidang ATLAS',
+                'no_telp' => '085869278611',
             ],
             [
                 'nama' => 'Suwarsi, S.Sn',
@@ -200,7 +223,8 @@ class KaryawanSeeder extends Seeder
                 'tahun_kenaikan' => '2010',
                 'golongan' => 'III/a',
                 'pangkat' => 'Penata Muda',
-                'jabatan' => 'Penelaah Teknis Kebijakan pada Seksi Lembaga Budaya Bidang ATLAS'
+                'jabatan' => 'Penelaah Teknis Kebijakan pada Seksi Lembaga Budaya Bidang ATLAS',
+                'no_telp' => '085869278611',
             ],
             [
                 'nama' => 'Sidiq Rokhmadi',
@@ -208,7 +232,8 @@ class KaryawanSeeder extends Seeder
                 'tahun_kenaikan' => '2010',
                 'golongan' => 'III/b',
                 'pangkat' => 'Penata Muda Tingkat I',
-                'jabatan' => 'Pengadministrasi Perkantoran Seksi Lembaga Budaya Bidang ATLAS'
+                'jabatan' => 'Pengadministrasi Perkantoran Seksi Lembaga Budaya Bidang ATLAS',
+                'no_telp' => '085869278611',
             ],
             [
                 'nama' => 'Arief Bowolaksono, S.Sn',
@@ -216,7 +241,8 @@ class KaryawanSeeder extends Seeder
                 'tahun_kenaikan' => '2010',
                 'golongan' => 'III/d',
                 'pangkat' => 'Penata Tingkat I',
-                'jabatan' => 'Kepala Seksi Seni Bidang ATLAS'
+                'jabatan' => 'Kepala Seksi Seni Bidang ATLAS',
+                'no_telp' => '085869278611',
             ],
             [
                 'nama' => 'Anas Mubakkir, SS',
@@ -224,7 +250,8 @@ class KaryawanSeeder extends Seeder
                 'tahun_kenaikan' => '2010',
                 'golongan' => 'III/d',
                 'pangkat' => 'Penata Tingkat I',
-                'jabatan' => 'Kepala Bidang Sejarah, Bahasa, Sastra dan Permuseuman (Bidang SBSP)'
+                'jabatan' => 'Kepala Bidang Sejarah, Bahasa, Sastra dan Permuseuman (Bidang SBSP)',
+                'no_telp' => '085869278611',
             ],
             [
                 'nama' => 'Mei Hartini, SS',
@@ -232,7 +259,8 @@ class KaryawanSeeder extends Seeder
                 'tahun_kenaikan' => '2010',
                 'golongan' => 'III/d',
                 'pangkat' => 'Penata Tingkat I',
-                'jabatan' => 'Kepala Seksi Sejarah dan Permuseuman Bidang SBSP'
+                'jabatan' => 'Kepala Seksi Sejarah dan Permuseuman Bidang SBSP',
+                'no_telp' => '085869278611',
             ],
             [
                 'nama' => 'Ruslaini, SS',
@@ -240,7 +268,8 @@ class KaryawanSeeder extends Seeder
                 'tahun_kenaikan' => '2010',
                 'golongan' => 'III/d',
                 'pangkat' => 'Penata Tingkat I',
-                'jabatan' => 'Penelaah Teknis Kebijakan pada Seksi Sejarah dan Permuseuman Bidang SBSP'
+                'jabatan' => 'Penelaah Teknis Kebijakan pada Seksi Sejarah dan Permuseuman Bidang SBSP',
+                'no_telp' => '085869278611',
             ],
             [
                 'nama' => 'Ita Kurniawati, S.IP., MPA',
@@ -248,7 +277,8 @@ class KaryawanSeeder extends Seeder
                 'tahun_kenaikan' => '2010',
                 'golongan' => 'III/c',
                 'pangkat' => 'Penata',
-                'jabatan' => 'Kepala Seksi Bahasa dan Sastra Bidang SBSP'
+                'jabatan' => 'Kepala Seksi Bahasa dan Sastra Bidang SBSP',
+                'no_telp' => '085869278611',
             ],
             [
                 'nama' => 'Eko Widodo, SH',
@@ -256,7 +286,8 @@ class KaryawanSeeder extends Seeder
                 'tahun_kenaikan' => '2010',
                 'golongan' => 'III/a',
                 'pangkat' => 'Penata Muda',
-                'jabatan' => 'Penelaah Teknis Kebijakan pada Seksi Bahasa dan Sastra Bidang SBSP'
+                'jabatan' => 'Penelaah Teknis Kebijakan pada Seksi Bahasa dan Sastra Bidang SBSP',
+                'no_telp' => '085869278611',
             ],
             [
                 'nama' => 'Imam Muslikh Mahmudi, SIP',
@@ -264,7 +295,8 @@ class KaryawanSeeder extends Seeder
                 'tahun_kenaikan' => '2010',
                 'golongan' => 'III/c',
                 'pangkat' => 'Penata',
-                'jabatan' => 'Kepala UPTD Museum Gunungapi Merapi'
+                'jabatan' => 'Kepala UPTD Museum Gunungapi Merapi',
+                'no_telp' => '085869278611',
             ],
             [
                 'nama' => 'Rini Setyawati, A.Md.',
@@ -272,7 +304,8 @@ class KaryawanSeeder extends Seeder
                 'tahun_kenaikan' => '2010',
                 'golongan' => 'III/c',
                 'pangkat' => 'Penata',
-                'jabatan' => 'Kepala Subbagian Tata Usaha UPTD Museum Gunungapi Merapi'
+                'jabatan' => 'Kepala Subbagian Tata Usaha UPTD Museum Gunungapi Merapi',
+                'no_telp' => '085869278611',
             ],
             [
                 'nama' => 'Sumarji',
@@ -280,7 +313,8 @@ class KaryawanSeeder extends Seeder
                 'tahun_kenaikan' => '2010',
                 'golongan' => 'II/d',
                 'pangkat' => 'Pengatur Tingkat I',
-                'jabatan' => 'Operator Layanan Operasional pada Subbagian Tata Usaha UPTD Museum Gunungapi Merapi'
+                'jabatan' => 'Operator Layanan Operasional pada Subbagian Tata Usaha UPTD Museum Gunungapi Merapi',
+                'no_telp' => '085869278611',
             ],
             [
                 'nama' => 'Suraji',
@@ -288,7 +322,8 @@ class KaryawanSeeder extends Seeder
                 'tahun_kenaikan' => '2010',
                 'golongan' => 'II/c',
                 'pangkat' => 'Pengatur',
-                'jabatan' => 'Pengelola Layanan Operasional pada Subbagian Tata Usaha UPTD MGM'
+                'jabatan' => 'Pengelola Layanan Operasional pada Subbagian Tata Usaha UPTD MGM',
+                'no_telp' => '085869278611',
             ],
             [
                 'nama' => 'Maryana',
@@ -296,7 +331,8 @@ class KaryawanSeeder extends Seeder
                 'tahun_kenaikan' => '2010',
                 'golongan' => 'I/d',
                 'pangkat' => 'Juru Tingkat I',
-                'jabatan' => 'Pengadministrasi Perkantoran pada Subbagian Tata Usaha UPTD Museum Gunungapi Merapi'
+                'jabatan' => 'Pengadministrasi Perkantoran pada Subbagian Tata Usaha UPTD Museum Gunungapi Merapi',
+                'no_telp' => '085869278611',
             ],
         ]);
     }
