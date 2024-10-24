@@ -33,6 +33,23 @@ Route::get('/daftar-hapus-kendaraan', function () {
 Route::get('/tambahadmin', function () {
     return view('tambahadmin');
 })->name('tambah.admin');
+
+Route::get('/upload/kpo', function () {
+    return view('/upload/kpo');
+});
+Route::get('/upload/struktural', function () {
+    return view('/upload/struktural');
+});
+Route::get('/upload/penyesuaian-ijasah', function () {
+    return view('/upload/penyesuaian-ijasah');
+});
+Route::get('/upload/fungsional', function () {
+    return view('/upload/fungsional');
+});
+Route::get('/upload/tugas-belajar', function () {
+    return view('/upload/tugas-belajar');
+});
+
 // web.php
 Route::get('/tambahadmin', [AdminDashboardController::class, 'create'])->name('admin.tambah');
 
