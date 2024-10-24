@@ -28,7 +28,8 @@ class KaryawanController extends Controller
         $validateData = $request->validate([
             'nama' => 'required|string|max:255',
             'nip' => 'required|string|max:20|unique:karyawans',
-            'tahun_kenaikan' => 'required|string|max:255',
+            'tahun_kenaikan_gaji' => 'required|string|max:255',
+            'tahun_kenaikan_pangkat' => 'required|string|max:255',
             'jabatan' => 'required|string|max:255',
             'golongan' => 'required|string|max:255',
             'pangkat' => 'required|string|max:255',
@@ -38,7 +39,8 @@ class KaryawanController extends Controller
         Karyawan::create([
             'nama' => $validateData['nama'],
             'nip' => $validateData['nip'],
-            'tahun_kenaikan' => $validateData['tahun_kenaikan'],
+            'tahun_kenaikan_gaji' => $validateData['tahun_kenaikan_gaji'],
+            'tahun_kenaikan_pangkat' => $validateData['tahun_kenaikan_pangkat'],
             'jabatan' => $validateData['jabatan'],
             'golongan' => $validateData['golongan'],
             'pangkat' => $validateData['pangkat'],
@@ -61,7 +63,8 @@ class KaryawanController extends Controller
         $request->validate([
             'nip' => 'required',
             'nama' => 'required',
-            'tahun_kenikan' => 'required',
+            'tahun_kenikan_gaji' => 'required',
+            'tahun_kenikan_pangkat' => 'required',
             'golongan' => 'required',
             'pangkat' => 'required',
             'jabatan' => 'required',
@@ -72,7 +75,8 @@ class KaryawanController extends Controller
         $karyawan->update([
             'nip' => $request->nip,
             'nama' => $request->nama,
-            'tahun_kenaikan' => $request->tahun_kenaikan,
+            'tahun_kenaikan_gaji' => $request->tahun_kenaikan_gaji,
+            'tahun_kenaikan_pangkat' => $request->tahun_kenaikan_pangkat,
             'golongan' => $request->golongan,
             'pangkat' => $request->pangkat,
             'jabatan' => $request->jabatan,

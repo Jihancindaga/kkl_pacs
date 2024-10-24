@@ -176,8 +176,12 @@
                     <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Karyawan" required>
                 </div>
                 <div class="form-group">
-                    <label for="tahun_kenaikan">Tahun Kenaikan</label>
-                    <input type="text" class="form-control" id="tahun_kenaikan" name="tahun_kenaikan" placeholder="Tahun Kenaikan" required>
+                    <label for="tahun_kenaikan_gaji">Tahun Kenaikan Gaji</label>
+                    <input type="text" class="form-control" id="tahun_kenaikan_gaji" name="tahun_kenaikan_gaji" placeholder="Tahun Kenaikan Gaji" required>
+                </div>
+                <div class="form-group">
+                    <label for="tahun_kenaikan_pangkat">Tahun Kenaikan Pangkat</label>
+                    <input type="text" class="form-control" id="tahun_kenaikan_pangkat" name="tahun_kenaikan_pangkat" placeholder="Tahun Kenaikan Pangkat" required>
                 </div>
                 <div class="form-group">
                     <label for="golongan">Golongan</label>
@@ -195,9 +199,9 @@
                     <label for="no_telp">Nomor Telepon</label>
                     <input type="text" class="form-control" id="no_telp" name="no_telp" placeholder="Nomor Telepon" required>
                 </div>
-        <button type="submit" class="btn btn-primary" id="submit-btn" disabled>Tambah Karyawan</button>
-        </form>
-    </div>
+                <button type="submit" class="btn btn-primary" id="submit-btn" disabled>Tambah Karyawan</button>
+            </form>
+        </div>
     </div>
 
     <!-- Include jQuery -->

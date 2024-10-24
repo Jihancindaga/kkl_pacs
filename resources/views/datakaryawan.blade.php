@@ -126,23 +126,33 @@
             vertical-align: middle;
             border: 1px solid #dee2e6;
             font-size: 12px;
-            padding: 8px;
+            padding: 5px;
             white-space: normal;
             word-break: break-word;
         }
 
         .table .jabatan {
             white-space: normal;
+            /* Memungkinkan teks melanjutkan ke baris berikutnya */
             word-wrap: break-word;
-            word-break: break-word;
+            /* Memecah kata jika terlalu panjang */
             max-width: 150px;
+            /* Membatasi lebar kolom jabatan */
         }
 
-        .table .nama {
+        .table .nama,
+        .table .nip {
             max-width: 150px;
+            /* Lebar maksimum untuk kolom nama */
             white-space: normal;
+            /* Memungkinkan teks melanjutkan ke baris berikutnya */
             word-wrap: break-word;
-            word-break: break-word;
+            /* Memecah kata jika terlalu panjang */
+        }
+
+        .table .tahun {
+            width: 50px;
+            /* Lebar kolom yang lebih kecil */
         }
 
         .action-buttons {
@@ -207,102 +217,104 @@
                 gap: 5px;
             }
         }
+
         .modal-content {
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        overflow: hidden;
-        animation: fadeInModal 0.3s ease-out;
-    }
-
-    .modal-header {
-        background-color: #0056b3;
-        color: white;
-        border-bottom: 1px solid #dee2e6;
-    }
-
-    .modal-header h5 {
-        font-size: 18px;
-        font-weight: bold;
-    }
-
-    .modal-header .close {
-        color: white;
-        opacity: 0.9;
-    }
-
-    .modal-header .close:hover {
-        opacity: 1;
-    }
-
-    .modal-body {
-        padding: 20px;
-        background-color: #f7f7f7;
-    }
-
-    .modal-footer {
-        background-color: #f1f1f1;
-        padding: 15px;
-        border-top: 1px solid #dee2e6;
-    }
-
-    .list-group-item {
-        border: 1px solid #ddd;
-        margin-bottom: 10px;
-        border-radius: 5px;
-        transition: background-color 0.2s ease;
-    }
-
-    .list-group-item:hover {
-        background-color: #e9ecef;
-        cursor: pointer;
-    }
-
-    .list-group-item-action {
-        text-align: center;
-        font-size: 14px;
-        padding: 10px;
-    }
-
-    .modal-footer .btn-secondary {
-        background-color: #6c757d;
-        border: none;
-    }
-
-    .modal-footer .btn-secondary:hover {
-        background-color: #5a6268;
-    }
-
-    /* Animasi Modal */
-    @keyframes fadeInModal {
-        from {
-            opacity: 0;
-            transform: scale(0.9);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            animation: fadeInModal 0.3s ease-out;
         }
-        to {
-            opacity: 1;
-            transform: scale(1);
-        }
-    }
 
-    /* Responsif untuk layar kecil */
-    @media (max-width: 768px) {
-        .modal-dialog {
-            margin: 10px;
+        .modal-header {
+            background-color: #0056b3;
+            color: white;
+            border-bottom: 1px solid #dee2e6;
         }
 
         .modal-header h5 {
-            font-size: 16px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .modal-header .close {
+            color: white;
+            opacity: 0.9;
+        }
+
+        .modal-header .close:hover {
+            opacity: 1;
+        }
+
+        .modal-body {
+            padding: 20px;
+            background-color: #f7f7f7;
+        }
+
+        .modal-footer {
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .list-group-item {
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            transition: background-color 0.2s ease;
+        }
+
+        .list-group-item:hover {
+            background-color: #e9ecef;
+            cursor: pointer;
         }
 
         .list-group-item-action {
-            font-size: 12px;
-            padding: 8px;
+            text-align: center;
+            font-size: 14px;
+            padding: 10px;
         }
 
         .modal-footer .btn-secondary {
-            font-size: 14px;
+            background-color: #6c757d;
+            border: none;
         }
-    }
+
+        .modal-footer .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        /* Animasi Modal */
+        @keyframes fadeInModal {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Responsif untuk layar kecil */
+        @media (max-width: 768px) {
+            .modal-dialog {
+                margin: 10px;
+            }
+
+            .modal-header h5 {
+                font-size: 16px;
+            }
+
+            .list-group-item-action {
+                font-size: 12px;
+                padding: 8px;
+            }
+
+            .modal-footer .btn-secondary {
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 
@@ -346,12 +358,9 @@
                             <th>No</th>
                             <th>NIP</th>
                             <th>Nama</th>
-<<<<<<< HEAD
-                            <th>Tahun Kenaikan</th>
+                            <th>Tahun Kenaikan Gaji</th>
+                            <th>Tahun Kenaikan Pangkat</th>
                             <th>Gol</th>
-=======
-                            <th>Golongan</th>
->>>>>>> 6084b741b4305a3998cd89c5b430629dc5cc7afa
                             <th>Pangkat</th>
                             <th>Jabatan</th>
                             <th>Nomor Telepon</th>
@@ -364,23 +373,20 @@
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $karyawan->nip }}</td>
                             <td class="nama">{{ $karyawan->nama }}</td>
+                            <td>{{ $karyawan->tahun_kenaikan_gaji }}</td>
+                            <td>{{ $karyawan->tahun_kenaikan_pangkat }}</td>
                             <td>{{ $karyawan->golongan }}</td>
                             <td>{{ $karyawan->pangkat }}</td>
                             <td class="jabatan">{{ $karyawan->jabatan }}</td>
                             <td>{{ $karyawan->no_telp }}</td>
                             <td class="action-buttons">
-<<<<<<< HEAD
-                                <a href="#" class="btn btn-success btn-sm">Upload Berkas Pengajuan</a>
-                                <a href="{{ route('edit_karyawan', $karyawan->id) }}" class="btn btn-warning btn-sm">Edit</a>
-=======
                                 <div style="display: flex; gap: 5px; justify-content: center;">
                                     <a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#uploadModal">
-                                        Upload Berkas Pengajuan
+                                        Upload 
                                     </a>
                                     <a href="{{ route('edit_karyawan', $karyawan->id) }}" class="btn btn-warning btn-sm">
                                         Edit
                                     </a>
->>>>>>> 6084b741b4305a3998cd89c5b430629dc5cc7afa
                             </td>
                         </tr>
                         @endforeach
@@ -408,8 +414,8 @@
                         <a href="/upload/tugas-belajar" class="list-group-item list-group-item-action">Kenaikan Pangkat Karena Sedang Menjalankan Tugas Belajar</a>
                     </div>
                 </div>
-                
-                
+
+
             </div>
         </div>
     </div>
@@ -426,7 +432,7 @@
             });
         });
     </script>
-    
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>

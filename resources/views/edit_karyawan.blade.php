@@ -84,8 +84,13 @@
             </div>
 
             <div class="form-group">
-                <label for="tahun_kenaikan">Tahun Kenaikan:</label>
-                <input type="text" class="form-control" id="tahun_kenaikan" name="tahun_kenaikan" value="{{ old('tahun_kenaikan', $karyawan->tahun_kenaikan) }}" required>
+                <label for="tahun_kenaikan_gaji">Tahun Kenaikan Gaji:</label>
+                <input type="text" class="form-control" id="tahun_kenaikan_gaji" name="tahun_kenaikan_gaji" value="{{ old('tahun_kenaikan_gaji', $karyawan->tahun_kenaikan_gaji) }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="tahun_kenaikan_pangkat">Tahun Kenaikan Pangkat:</label>
+                <input type="text" class="form-control" id="tahun_kenaikan_pangkat" name="tahun_kenaikan_pangkat" value="{{ old('tahun_kenaikan_pangkat', $karyawan->tahun_kenaikan_pangkat) }}" required>
             </div>
 
             <div class="form-group">
