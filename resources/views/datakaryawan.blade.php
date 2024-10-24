@@ -391,7 +391,7 @@
                                         data-target="#uploadModal"
                                         data-nip="{{ $karyawan->nip }}"
                                         data-nama="{{ $karyawan->nama }}">
-                                        Upload Berkas Pengajuan
+                                        Upload 
                                     </a>
 
                                     <a href="{{ route('edit_karyawan', $karyawan->id) }}" class="btn btn-warning btn-sm">
