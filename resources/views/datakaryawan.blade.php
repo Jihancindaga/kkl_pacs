@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +15,7 @@
             background-color: #f0f0f0;
             transition: all 0.3s;
         }
+
         .navbar {
             background-color: #007bff;
             color: #fff;
@@ -26,10 +28,12 @@
             top: 0;
             z-index: 1000;
         }
+
         .navbar .logo img {
             height: 40px;
             margin-left: 10px;
         }
+
         .navbar .home-btn {
             background: none;
             border: none;
@@ -37,16 +41,20 @@
             font-size: 24px;
             cursor: pointer;
         }
+
         .content {
             margin-top: 70px;
             padding: 20px;
         }
+
         .btn-container {
             margin-bottom: 20px;
         }
+
         .table-container {
             margin-top: 20px;
         }
+
         .container {
             background-color: white;
             border-radius: 8px;
@@ -56,6 +64,7 @@
             max-width: 1200px;
             margin: auto;
         }
+
         .container h2 {
             margin-bottom: 40px;
             text-align: center;
@@ -64,11 +73,13 @@
             font-size: 40px;
             color: #0056b3;
         }
+
         .button-group {
             display: flex;
             justify-content: space-between;
             gap: 10px;
         }
+
         .button-group .btn {
             flex: 1;
             padding: 8px;
@@ -77,79 +88,121 @@
             transition: transform 0.3s, background-color 0.3s;
             border: none;
         }
+
         .button-group .btn.active {
             background-color: #0056b3;
             color: white;
             border: 1px solid black;
             transform: scale(1.05);
         }
-        .btn-1 { background-color: #17a2b8; }
-        .btn-2 { background-color: #665cc0; }
-        .btn-3 { background-color: #aa1c9e; }
+
+        .btn-1 {
+            background-color: #17a2b8;
+        }
+
+        .btn-2 {
+            background-color: #665cc0;
+        }
+
+        .btn-3 {
+            background-color: #aa1c9e;
+        }
+
         .btn:hover {
             opacity: 0.8;
             transform: scale(1.05);
         }
+
         .table thead th {
             background-color: #007bff;
             color: rgb(253, 251, 251);
             border: 1px solid #dee2e6;
-            font-size: 12px; /* Reduced font size */
+            font-size: 12px;
+            /* Reduced font size */
         }
-        .table th, .table td {
+
+        .table th,
+        .table td {
             text-align: center;
             vertical-align: middle;
             border: 1px solid #dee2e6;
-            font-size: 12px; /* Reduced font size */
-            padding: 8px; /* Reduced padding */
-            white-space: nowrap; /* Prevent content from wrapping */
+            font-size: 12px;
+            /* Reduced font size */
+            padding: 8px;
+            /* Reduced padding */
+            white-space: normal;
+            /* Allow content to wrap */
+            word-break: break-word;
+            /* Prevent long words from breaking the layout */
         }
-        .table td {
+
+        .table .jabatan {
+            white-space: normal;
+            word-wrap: break-word;
+            word-break: break-word;
+            max-width: 150px;
+            /* Set a maximum width for the Jabatan column */
+        }
+
+        .table .nama {
+            max-width: 150px;
+            /* Limit width of Nama column */
+            white-space: normal;
+            word-wrap: break-word;
             word-break: break-word;
         }
-        .table-responsive {
-            max-height: none; /* Remove height limit for full-page layout */
-            overflow: visible;
-        }
+
         .action-buttons {
             display: flex;
             justify-content: center;
             gap: 10px;
         }
+
         .search-box {
             margin-bottom: 20px;
         }
+
         @media (max-width: 768px) {
             .navbar .logo img {
                 height: 30px;
                 margin: 0 10px;
             }
+
             .container {
                 padding: 10px;
                 width: 100%;
             }
+
             .container h2 {
                 font-size: 28px;
             }
+
             .button-group {
                 flex-direction: column;
             }
+
             .button-group .btn {
                 margin-bottom: 10px;
             }
-            .table th, .table td {
+
+            .table th,
+            .table td {
                 font-size: 0.75rem;
             }
+
             .search-box input {
                 font-size: 14px;
             }
         }
 
         @media (max-width: 576px) {
-            .table th, .table td {
+
+            .table th,
+            .table td {
                 font-size: 0.7rem;
                 padding: 5px;
             }
+
             .button-group {
                 flex-direction: column;
                 gap: 5px;
@@ -157,15 +210,16 @@
         }
     </style>
 </head>
+
 <body>
     <div class="navbar">
         <button class="home-btn" onclick="navigateTo('/home')">
             <i class="fas fa-arrow-left"></i>
         </button>
         <div class="logo">
-            <img src="/images/pacs.png" alt="Logo PACS">
-            <img src="/images/logo_kundha_kabudayan.png" alt="Logo Kundha Kabudayan">
-            <img src="/images/logo_sleman.jpeg" alt="Logo Sleman">
+            <img src="/images/pacs.png" alt="Logo PACS" style="height: 40px; margin-right: 520px;">
+            <img src="/images/logo_kundha_kabudayan.png" alt="Logo Kundha Kabudayan" style="height: 40px; margin-right: 5px; margin-left: 5px;">
+            <img src="/images/logo_sleman.jpeg" alt="Logo Sleman" style="height: 40px; margin-right: 5px; margin-left: 10px;">
         </div>
     </div>
 
@@ -176,9 +230,9 @@
             <!-- Tombol Navigasi dan Aksi dalam satu baris -->
             <div class="btn-container">
                 <div class="button-group">
-                    <button class="btn btn-1">Data Pokok Karyawan </button>
-                    <button class="btn btn-2" onclick="navigateTo('/tambah-karyawan')">Tambah Karyawan Baru</button>
-                    <button class="btn btn-3">Upload Berkas Pengajuan</button>
+                    <button class="btn btn-1" onclick="navigateTo('/datakaryawan')">Data Pokok Karyawan</button>
+                    <button class=" btn btn-2" onclick="navigateTo('/tambah-karyawan')">Tambah Karyawan Baru</button>
+                    <button class="btn btn-3">Riwayat Kenaikan</button>
                     <a href="/hapus-data-karyawan" class="btn btn-danger">Hapus Karyawan</a>
                     <a href="/daftar-hapus-karyawan" class="btn btn-success">Riwayat Karyawan Non-aktif</a>
                 </div>
@@ -191,39 +245,40 @@
 
             <!-- Tabel Data Karyawan -->
             <div class="table-container">
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>NIP</th>
-                                <th>Nama</th>
-                                <th>Golongan</th>
-                                <th>Pangkat</th>
-                                <th>Jabatan</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($karyawans as $index => $karyawan)
-                                <tr>
-                                    <td>{{ $index + 1 }}</td>
-                                    <td>{{ $karyawan->nip }}</td>
-                                    <td>{{ $karyawan->nama }}</td>
-                                    <td>{{ $karyawan->golongan }}</td>
-                                    <td>{{ $karyawan->pangkat }}</td>
-                                    <td>{{ $karyawan->jabatan }}</td>
-                                    <td class="action-buttons">
-                                        <a href="{{ route('edit_karyawan', $karyawan->id) }}" class="btn btn-warning btn-sm">
-                                            Edit
-                                        </a>
-                                        <!-- Aksi lainnya -->
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>NIP</th>
+                            <th>Nama</th>
+                            <th>Golongan</th>
+                            <th>Pangkat</th>
+                            <th>Jabatan</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="karyawanTableBody">
+                        @foreach ($karyawans as $index => $karyawan)
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+                            <td>{{ $karyawan->nip }}</td>
+                            <td class="nama">{{ $karyawan->nama }}</td>
+                            <td>{{ $karyawan->golongan }}</td>
+                            <td>{{ $karyawan->pangkat }}</td>
+                            <td class="jabatan">{{ $karyawan->jabatan }}</td>
+                            <td class="action-buttons">
+                                <div style="display: flex; gap: 5px; justify-content: center;">
+                                    <a href="#" class="btn btn-success btn-sm">
+                                        Upload Berkas Pengajuan
+                                    </a>
+                                    <a href="{{ route('edit_karyawan', $karyawan->id) }}" class="btn btn-warning btn-sm">
+                                        Edit
+                                    </a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -234,6 +289,22 @@
         function navigateTo(page) {
             window.location.href = page;
         }
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            let searchValue = this.value.toLowerCase();
+            let rows = document.querySelectorAll('#karyawanTableBody tr');
+
+            rows.forEach(function(row) {
+                let nama = row.querySelector('.nama').textContent.toLowerCase();
+                let nip = row.cells[1].textContent.toLowerCase();
+
+                if (nama.includes(searchValue) || nip.includes(searchValue)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
     </script>
 </body>
+
 </html>

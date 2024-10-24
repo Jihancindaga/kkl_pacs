@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,26 +10,28 @@
 </head>
 <style>
     .navbar {
-        width: 100%; /* Navbar lebar penuh */
-        padding: 10px 15px; /* Padding vertikal navbar */
+        width: 100%;
+        /* Navbar lebar penuh */
+        padding: 10px 15px;
+        /* Padding vertikal navbar */
     }
 
     .navbar .logo img {
         height: 40px;
         position: relative;
-        left: -10px; /* Menyesuaikan posisi logo */
+        left: -10px;
+        /* Menyesuaikan posisi logo */
     }
 
-    .container 
-    {
+    .container {
         background-color: white;
         padding: 30px;
         border-radius: 8px;
         margin-top: 50px;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     }
-    h2 
-    {
+
+    h2 {
         text-align: center;
         color: #007bff;
         margin-bottom: 20px;
@@ -41,14 +44,16 @@
     }
 
     .back-icon:hover {
-        color: #e0e0e0; /* Warna saat hover */
+        color: #e0e0e0;
+        /* Warna saat hover */
     }
 
     body {
-        padding-top: 70px; /* Menyesuaikan konten di bawah navbar */
+        padding-top: 70px;
+        /* Menyesuaikan konten di bawah navbar */
     }
-
 </style>
+
 <body>
     <!-- Navbar hanya dengan ikon panah kembali -->
     <nav class="navbar navbar-light bg-primary fixed-top">
@@ -67,7 +72,7 @@
         <form action="{{ route('karyawan.update', $karyawan->id) }}" method="POST">
             @csrf
             @method('POST')
-            
+
             <div class="form-group">
                 <label for="nip">NIP:</label>
                 <input type="text" class="form-control" id="nip" name="nip" value="{{ old('nip', $karyawan->nip) }}" required readonly>
@@ -100,4 +105,5 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>

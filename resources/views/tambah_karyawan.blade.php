@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +16,7 @@
             padding: 0;
             background-color: #f4f4f4;
         }
+
         .navbar {
             background-color: #007bff;
             color: #fff;
@@ -27,6 +29,7 @@
             top: 0;
             z-index: 1000;
         }
+
         .navbar .logo img {
             height: 40px;
             position: relative;
@@ -40,6 +43,7 @@
             font-size: 24px;
             cursor: pointer;
         }
+
         .content {
             margin-top: 70px;
             padding: 20px;
@@ -54,12 +58,13 @@
             width: 90%;
             margin: auto;
         }
+
         .container h2 {
             margin-bottom: 40px;
             text-align: center;
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
             font-weight: bold;
-            font-size: 50px;
+            font-size: 40px;
             color: #0056b3;
         }
 
@@ -88,19 +93,24 @@
             border: 1px solid black;
             transform: scale(1.05);
         }
+
         .btn-1 {
             background-color: #17a2b8;
         }
+
         .btn-2 {
             background-color: #665cc0;
         }
+
         .btn-3 {
             background-color: #aa1c9e;
         }
+
         .btn:hover {
             opacity: 0.8;
             transform: scale(1.05);
         }
+
         .btn.active {
             background-color: #0056b3;
             color: white;
@@ -110,14 +120,17 @@
         h2 {
             text-align: center;
         }
+
         .form-group label {
             font-weight: bold;
         }
+
         .input-group-text {
             background-color: #f4f4f4;
         }
     </style>
 </head>
+
 <body>
     <div class="navbar">
         <button class="home-btn" onclick="navigateTo('/datakaryawan')">
@@ -133,6 +146,19 @@
     <div class="content">
         <div class="container">
             <h2>Tambah Karyawan</h2>
+
+            <!-- Tombol Navigasi dan Aksi dalam satu baris -->
+            <div class="btn-container">
+                <div class="button-group">
+                    <button class="btn btn-1" onclick="navigateTo('/datakaryawan')">Data Pokok Karyawan </button>
+                    <button class="btn btn-2" onclick="navigateTo('/tambah-karyawan')">Tambah Karyawan Baru</button>
+                    <button class="btn btn-3">Riwayat Kenaikan</button>
+                    <a href="/hapus-data-karyawan" class="btn btn-danger">Hapus Karyawan</a>
+                    <a href="/daftar-hapus-karyawan" class="btn btn-success">Riwayat Karyawan Non-aktif</a>
+                </div>
+            </div>
+
+            <hr>
 
             <form action="{{ route('karyawan.store') }}" method="POST">
                 @csrf
@@ -171,4 +197,5 @@
         }
     </script>
 </body>
+
 </html>
