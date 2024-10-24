@@ -208,6 +208,102 @@
                 gap: 5px;
             }
         }
+        .modal-content {
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        animation: fadeInModal 0.3s ease-out;
+    }
+
+    .modal-header {
+        background-color: #0056b3;
+        color: white;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .modal-header h5 {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .modal-header .close {
+        color: white;
+        opacity: 0.9;
+    }
+
+    .modal-header .close:hover {
+        opacity: 1;
+    }
+
+    .modal-body {
+        padding: 20px;
+        background-color: #f7f7f7;
+    }
+
+    .modal-footer {
+        background-color: #f1f1f1;
+        padding: 15px;
+        border-top: 1px solid #dee2e6;
+    }
+
+    .list-group-item {
+        border: 1px solid #ddd;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        transition: background-color 0.2s ease;
+    }
+
+    .list-group-item:hover {
+        background-color: #e9ecef;
+        cursor: pointer;
+    }
+
+    .list-group-item-action {
+        text-align: center;
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .modal-footer .btn-secondary {
+        background-color: #6c757d;
+        border: none;
+    }
+
+    .modal-footer .btn-secondary:hover {
+        background-color: #5a6268;
+    }
+
+    /* Animasi Modal */
+    @keyframes fadeInModal {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    /* Responsif untuk layar kecil */
+    @media (max-width: 768px) {
+        .modal-dialog {
+            margin: 10px;
+        }
+
+        .modal-header h5 {
+            font-size: 16px;
+        }
+
+        .list-group-item-action {
+            font-size: 12px;
+            padding: 8px;
+        }
+
+        .modal-footer .btn-secondary {
+            font-size: 14px;
+        }
+    }
     </style>
 </head>
 
@@ -251,7 +347,6 @@
                             <th>No</th>
                             <th>NIP</th>
                             <th>Nama</th>
-                            <th>Tahun Kenaikan</th>
                             <th>Golongan</th>
                             <th>Pangkat</th>
                             <th>Jabatan</th>
@@ -264,13 +359,12 @@
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $karyawan->nip }}</td>
                             <td class="nama">{{ $karyawan->nama }}</td>
-                            <td>{{ $karyawan->tahun_kenaikan }}</td>
                             <td>{{ $karyawan->golongan }}</td>
                             <td>{{ $karyawan->pangkat }}</td>
                             <td class="jabatan">{{ $karyawan->jabatan }}</td>
                             <td class="action-buttons">
                                 <div style="display: flex; gap: 5px; justify-content: center;">
-                                    <a href="#" class="btn btn-success btn-sm">
+                                    <a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#uploadModal">
                                         Upload Berkas Pengajuan
                                     </a>
                                     <a href="{{ route('edit_karyawan', $karyawan->id) }}" class="btn btn-warning btn-sm">
@@ -284,7 +378,44 @@
             </div>
         </div>
     </div>
-
+    <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="uploadModalLabel">Pilih Jenis Kenaikan Pangkat</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="employee-info"></div> <!-- Tempat untuk menampilkan informasi karyawan -->
+                    <div class="list-group">
+                        <a href="/upload/kpo" class="list-group-item list-group-item-action">Kenaikan Pangkat Reguler (KPO)</a>
+                        <a href="/upload/struktural" class="list-group-item list-group-item-action">Kenaikan Pangkat Pilihan Struktural</a>
+                        <a href="/upload/penyesuaian-ijasah" class="list-group-item list-group-item-action">Kenaikan Pangkat Pilihan Penyesuaian Ijazah</a>
+                        <a href="/upload/fungsional" class="list-group-item list-group-item-action">Kenaikan Pangkat Pilihan Fungsional</a>
+                        <a href="/upload/tugas-belajar" class="list-group-item list-group-item-action">Kenaikan Pangkat Karena Sedang Menjalankan Tugas Belajar</a>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.upload-btn').on('click', function() {
+                var nip = $(this).data('nip');
+                var nama = $(this).data('nama');
+                // Menampilkan data karyawan yang dipilih di modal
+                $('#uploadModalLabel').text('Upload Berkas untuk ' + nama + ' (NIP: ' + nip + ')');
+            });
+        });
+    </script>
+    
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
