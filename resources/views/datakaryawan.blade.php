@@ -208,102 +208,108 @@
                 gap: 5px;
             }
         }
+        
         .modal-content {
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        overflow: hidden;
-        animation: fadeInModal 0.3s ease-out;
-    }
-
-    .modal-header {
-        background-color: #0056b3;
-        color: white;
-        border-bottom: 1px solid #dee2e6;
-    }
-
-    .modal-header h5 {
-        font-size: 18px;
-        font-weight: bold;
-    }
-
-    .modal-header .close {
-        color: white;
-        opacity: 0.9;
-    }
-
-    .modal-header .close:hover {
-        opacity: 1;
-    }
-
-    .modal-body {
-        padding: 20px;
-        background-color: #f7f7f7;
-    }
-
-    .modal-footer {
-        background-color: #f1f1f1;
-        padding: 15px;
-        border-top: 1px solid #dee2e6;
-    }
-
-    .list-group-item {
-        border: 1px solid #ddd;
-        margin-bottom: 10px;
-        border-radius: 5px;
-        transition: background-color 0.2s ease;
-    }
-
-    .list-group-item:hover {
-        background-color: #e9ecef;
-        cursor: pointer;
-    }
-
-    .list-group-item-action {
-        text-align: center;
-        font-size: 14px;
-        padding: 10px;
-    }
-
-    .modal-footer .btn-secondary {
-        background-color: #6c757d;
-        border: none;
-    }
-
-    .modal-footer .btn-secondary:hover {
-        background-color: #5a6268;
-    }
-
-    /* Animasi Modal */
-    @keyframes fadeInModal {
-        from {
-            opacity: 0;
-            transform: scale(0.9);
+            .modal-content {
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            animation: fadeInModal 0.3s ease-out;
         }
-        to {
-            opacity: 1;
-            transform: scale(1);
-        }
-    }
 
-    /* Responsif untuk layar kecil */
-    @media (max-width: 768px) {
-        .modal-dialog {
-            margin: 10px;
+        .modal-header {
+            background-color: #0056b3;
+            color: white;
+            border-bottom: 1px solid #dee2e6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .modal-header h5 {
-            font-size: 16px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .modal-header .close {
+            color: white;
+            opacity: 0.9;
+        }
+
+        .modal-header .close:hover {
+            opacity: 1;
+        }
+
+        .modal-body {
+            padding: 20px;
+            background-color: #f7f7f7;
+        }
+
+        .modal-footer {
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .list-group-item {
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            transition: background-color 0.2s ease;
+        }
+
+        .list-group-item:hover {
+            background-color: #e9ecef;
+            cursor: pointer;
         }
 
         .list-group-item-action {
-            font-size: 12px;
-            padding: 8px;
+            text-align: center;
+            font-size: 14px;
+            padding: 10px;
         }
 
         .modal-footer .btn-secondary {
-            font-size: 14px;
+            background-color: #6c757d;
+            border: none;
         }
-    }
+
+        .modal-footer .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        /* Animasi Modal */
+        @keyframes fadeInModal {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Responsif untuk layar kecil */
+        @media (max-width: 768px) {
+            .modal-dialog {
+                margin: 10px;
+            }
+
+            .modal-header h5 {
+                font-size: 16px;
+            }
+
+            .list-group-item-action {
+                font-size: 12px;
+                padding: 8px;
+            }
+
+            .modal-footer .btn-secondary {
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 
@@ -364,9 +370,15 @@
                             <td class="jabatan">{{ $karyawan->jabatan }}</td>
                             <td class="action-buttons">
                                 <div style="display: flex; gap: 5px; justify-content: center;">
-                                    <a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#uploadModal">
+                                    <a href="#" 
+                                        class="btn btn-success btn-sm upload-btn" 
+                                        data-toggle="modal" 
+                                        data-target="#uploadModal"
+                                        data-nip="{{ $karyawan->nip }}"
+                                        data-nama="{{ $karyawan->nama }}">
                                         Upload Berkas Pengajuan
                                     </a>
+
                                     <a href="{{ route('edit_karyawan', $karyawan->id) }}" class="btn btn-warning btn-sm">
                                         Edit
                                     </a>
@@ -379,29 +391,44 @@
         </div>
     </div>
     <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="uploadModalLabel">Pilih Jenis Kenaikan Pangkat</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="uploadModalLabel">Upload Berkas Pengajuan Kenaikan Pangkat</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="employee-info"></div> <!-- Tempat untuk menampilkan informasi karyawan -->
+                    <div class="employee-info mb-4">
+                        <h6>Informasi Karyawan</h6>
+                        <table class="table table-bordered table-striped">
+                            <tbody>
+                                <tr>
+                                    <td><strong>NIP:</strong></td>
+                                    <td><input type="text" class="form-control" id="nipInput" disabled /></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Nama:</strong></td>
+                                    <td><input type="text" class="form-control" id="namaInput" disabled /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h6 class="mb-3">Pilih Jenis Kenaikan Pangkat:</h6>
                     <div class="list-group">
-                        <a href="/upload/kpo" class="list-group-item list-group-item-action">Kenaikan Pangkat Reguler (KPO)</a>
-                        <a href="/upload/struktural" class="list-group-item list-group-item-action">Kenaikan Pangkat Pilihan Struktural</a>
-                        <a href="/upload/penyesuaian-ijasah" class="list-group-item list-group-item-action">Kenaikan Pangkat Pilihan Penyesuaian Ijazah</a>
-                        <a href="/upload/fungsional" class="list-group-item list-group-item-action">Kenaikan Pangkat Pilihan Fungsional</a>
-                        <a href="/upload/tugas-belajar" class="list-group-item list-group-item-action">Kenaikan Pangkat Karena Sedang Menjalankan Tugas Belajar</a>
+                        <a href="/upload/kpo" class="list-group-item list-group-item-action list-group-item-primary">Kenaikan Pangkat Reguler (KPO)</a>
+                        <a href="/upload/struktural" class="list-group-item list-group-item-action list-group-item-success">Kenaikan Pangkat Pilihan Struktural</a>
+                        <a href="/upload/penyesuaian-ijasah" class="list-group-item list-group-item-action list-group-item-warning">Kenaikan Pangkat Pilihan Penyesuaian Ijazah</a>
+                        <a href="/upload/fungsional" class="list-group-item list-group-item-action list-group-item-info">Kenaikan Pangkat Pilihan Fungsional</a>
+                        <a href="/upload/tugas-belajar" class="list-group-item list-group-item-action list-group-item-danger">Kenaikan Pangkat Karena Sedang Menjalankan Tugas Belajar</a>
                     </div>
                 </div>
-                
-                
+            
             </div>
         </div>
     </div>
+    
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -411,9 +438,11 @@
                 var nip = $(this).data('nip');
                 var nama = $(this).data('nama');
                 // Menampilkan data karyawan yang dipilih di modal
-                $('#uploadModalLabel').text('Upload Berkas untuk ' + nama + ' (NIP: ' + nip + ')');
+                $('#uploadModalLabel').text('Upload Berkas untuk ');
+                $('.employee-info').html('<strong>NIP:</strong> ' + nip + '<br><strong>Nama:</strong> ' + nama);
             });
         });
+
     </script>
     
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
