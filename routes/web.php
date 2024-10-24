@@ -178,3 +178,6 @@ Route::post('/tambah-karyawan', [KaryawanController::class, 'store'])->name('kar
 
 Route::get('/karyawan', [KaryawanController::class, 'index'])->name('karyawan.index');
 Route::post('/karyawan/store', [KaryawanController::class, 'store'])->name('karyawan.store');
+
+//route cek nip
+Route::post('/check-nip', [KaryawanController::class, 'checkNip'])->name('karyawan.checkNip');

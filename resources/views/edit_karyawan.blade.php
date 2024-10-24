@@ -103,6 +103,11 @@
                 <input type="text" class="form-control" id="jabatan" name="jabatan" value="{{ old('jabatan', $karyawan->jabatan) }}" required>
             </div>
 
+            <div class="form-group">
+                <label for="no_telp">Nomor Telepon:</label>
+                <input type="text" class="form-control" id="no_telp" name="no_telp" value="{{ old('no_telp', $karyawan->no_telp) }}" required>
+            </div>
+
             <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
         </form>
     </div>

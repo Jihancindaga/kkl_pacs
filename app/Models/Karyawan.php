@@ -20,5 +20,6 @@ class Karyawan extends Model
         'golongan',
         'pangkat',
         'jabatan',
+        'no_telp',
     ];
 }

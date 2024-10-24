@@ -118,7 +118,6 @@
             color: rgb(253, 251, 251);
             border: 1px solid #dee2e6;
             font-size: 12px;
-            /* Reduced font size */
         }
 
         .table th,
@@ -127,13 +126,9 @@
             vertical-align: middle;
             border: 1px solid #dee2e6;
             font-size: 12px;
-            /* Reduced font size */
             padding: 8px;
-            /* Reduced padding */
             white-space: normal;
-            /* Allow content to wrap */
             word-break: break-word;
-            /* Prevent long words from breaking the layout */
         }
 
         .table .jabatan {
@@ -141,12 +136,10 @@
             word-wrap: break-word;
             word-break: break-word;
             max-width: 150px;
-            /* Set a maximum width for the Jabatan column */
         }
 
         .table .nama {
             max-width: 150px;
-            /* Limit width of Nama column */
             white-space: normal;
             word-wrap: break-word;
             word-break: break-word;
@@ -155,7 +148,13 @@
         .action-buttons {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-sm {
+            font-size: 0.75rem;
+            padding: 5px 10px;
         }
 
         .search-box {
@@ -333,7 +332,7 @@
             <div class="btn-container">
                 <div class="button-group">
                     <button class="btn btn-1" onclick="navigateTo('/datakaryawan')">Data Pokok Karyawan</button>
-                    <button class=" btn btn-2" onclick="navigateTo('/tambah-karyawan')">Tambah Karyawan Baru</button>
+                    <button class="btn btn-2" onclick="navigateTo('/tambah-karyawan')">Tambah Karyawan Baru</button>
                     <button class="btn btn-3">Riwayat Kenaikan</button>
                     <a href="/hapus-data-karyawan" class="btn btn-danger">Hapus Karyawan</a>
                     <a href="/daftar-hapus-karyawan" class="btn btn-success">Riwayat Karyawan Non-aktif</a>
@@ -353,9 +352,15 @@
                             <th>No</th>
                             <th>NIP</th>
                             <th>Nama</th>
+<<<<<<< HEAD
+                            <th>Tahun Kenaikan</th>
+                            <th>Gol</th>
+=======
                             <th>Golongan</th>
+>>>>>>> 6084b741b4305a3998cd89c5b430629dc5cc7afa
                             <th>Pangkat</th>
                             <th>Jabatan</th>
+                            <th>Nomor Telepon</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -368,7 +373,12 @@
                             <td>{{ $karyawan->golongan }}</td>
                             <td>{{ $karyawan->pangkat }}</td>
                             <td class="jabatan">{{ $karyawan->jabatan }}</td>
+                            <td>{{ $karyawan->no_telp }}</td>
                             <td class="action-buttons">
+<<<<<<< HEAD
+                                <a href="#" class="btn btn-success btn-sm">Upload Berkas Pengajuan</a>
+                                <a href="{{ route('edit_karyawan', $karyawan->id) }}" class="btn btn-warning btn-sm">Edit</a>
+=======
                                 <div style="display: flex; gap: 5px; justify-content: center;">
                                     <a href="#" 
                                         class="btn btn-success btn-sm upload-btn" 
@@ -382,6 +392,7 @@
                                     <a href="{{ route('edit_karyawan', $karyawan->id) }}" class="btn btn-warning btn-sm">
                                         Edit
                                     </a>
+>>>>>>> 6084b741b4305a3998cd89c5b430629dc5cc7afa
                             </td>
                         </tr>
                         @endforeach
@@ -451,19 +462,14 @@
         function navigateTo(page) {
             window.location.href = page;
         }
+
         document.getElementById('searchInput').addEventListener('keyup', function() {
             let searchValue = this.value.toLowerCase();
             let rows = document.querySelectorAll('#karyawanTableBody tr');
 
             rows.forEach(function(row) {
-                let nama = row.querySelector('.nama').textContent.toLowerCase();
-                let nip = row.cells[1].textContent.toLowerCase();
-
-                if (nama.includes(searchValue) || nip.includes(searchValue)) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
+                let rowData = row.innerText.toLowerCase();
+                row.style.display = rowData.includes(searchValue) ? '' : 'none';
             });
         });
     </script>

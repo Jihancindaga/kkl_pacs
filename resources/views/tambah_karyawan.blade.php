@@ -128,6 +128,10 @@
         .input-group-text {
             background-color: #f4f4f4;
         }
+
+        .text-danger {
+            color: red;
+        }
     </style>
 </head>
 
@@ -165,6 +169,7 @@
                 <div class="form-group">
                     <label for="nip">NIP</label>
                     <input type="text" class="form-control" id="nip" name="nip" placeholder="Nomor Induk Pegawai" required>
+                    <span id="nip-error" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label for="nama">Nama</label>
@@ -186,19 +191,48 @@
                     <label for="jabatan">Jabatan</label>
                     <input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Jabatan" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Tambah Karyawan</button>
-            </form>
-        </div>
+                <div class="form-group">
+                    <label for="no_telp">Nomor Telepon</label>
+                    <input type="text" class="form-control" id="no_telp" name="no_telp" placeholder="Nomor Telepon" required>
+                </div>
+        <button type="submit" class="btn btn-primary" id="submit-btn" disabled>Tambah Karyawan</button>
+        </form>
+    </div>
     </div>
 
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <!-- Include Bootstrap JS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         function navigateTo(url) {
             window.location.href = url;
         }
+
+        $(document).ready(function() {
+            $('#nip').on('blur', function() {
+                let nip = $(this).val();
+
+                $.ajax({
+                    url: '{{ route("karyawan.checkNip") }}', // Ganti dengan route untuk pengecekan NIP
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        nip: nip
+                    },
+                    success: function(response) {
+                        if (response.exists) {
+                            $('#nip-error').text('NIP sudah digunakan, silahkan menggunakan NIP yang belum terdaftar.');
+                            $('#submit-btn').attr('disabled', true);
+                        } else {
+                            $('#nip-error').text('');
+                            $('#submit-btn').attr('disabled', false);
+                        }
+                    }
+                });
+            });
+        });
     </script>
 </body>
 
