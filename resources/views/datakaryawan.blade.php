@@ -385,15 +385,9 @@
                             <td>{{ $karyawan->no_telp }}</td>
                             <td class="action-buttons">
                                 <div style="display: flex; gap: 5px; justify-content: center;">
-                                    <a href="#" 
-                                        class="btn btn-success btn-sm upload-btn" 
-                                        data-toggle="modal" 
-                                        data-target="#uploadModal"
-                                        data-nip="{{ $karyawan->nip }}"
-                                        data-nama="{{ $karyawan->nama }}">
-                                        Upload 
+                                    <a href="{{ route('kenaikan.pangkat', ['id' => $karyawan->id]) }}" class="btn btn-success btn-sm">
+                                        upload
                                     </a>
-
                                     <a href="{{ route('edit_karyawan', $karyawan->id) }}" class="btn btn-warning btn-sm">
                                         Edit
                                     </a>

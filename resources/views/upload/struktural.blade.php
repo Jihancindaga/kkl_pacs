@@ -94,7 +94,8 @@
 
     <div class="container">
         <h3>Kenaikan Pangkat Pilihan Struktural</h3>
-
+        <p><strong>Nama:</strong> {{ $karyawan->nama }}</p>
+        <p><strong>NIP:</strong> {{ $karyawan->nip }}</p>
         <table class="table table-bordered">
             <thead>
                 <tr>

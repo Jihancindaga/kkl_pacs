@@ -10,6 +10,7 @@ use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\VehicleDeletionController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\KenaikanController;
 
 Route::get('/', function () {
     return view('/admin/dashboard');
@@ -34,22 +35,27 @@ Route::get('/tambahadmin', function () {
     return view('tambahadmin');
 })->name('tambah.admin');
 
-Route::get('/upload/kpo', function () {
-    return view('/upload/kpo');
-});
-Route::get('/upload/struktural', function () {
-    return view('/upload/struktural');
-});
-Route::get('/upload/penyesuaian-ijasah', function () {
-    return view('/upload/penyesuaian-ijasah');
-});
-Route::get('/upload/fungsional', function () {
-    return view('/upload/fungsional');
-});
-Route::get('/upload/tugas-belajar', function () {
-    return view('/upload/tugas-belajar');
-});
-
+// Route::get('/upload/kpo', function () {
+//     return view('/upload/kpo');
+// });
+// Route::get('/upload/struktural', function () {
+//     return view('/upload/struktural');
+// });
+// Route::get('/upload/penyesuaian-ijasah', function () {
+//     return view('/upload/penyesuaian-ijasah');
+// });
+// Route::get('/upload/fungsional', function () {
+//     return view('/upload/fungsional');
+// });
+// Route::get('/upload/tugas-belajar', function () {
+//     return view('/upload/tugas-belajar');
+// });
+Route::get('/upload/kpo/{id}', [KenaikanController::class, 'kpo'])->name('upload.kpo');
+Route::get('/upload/struktural/{id}', [KenaikanController::class, 'struktural'])->name('upload.struktural');
+Route::get('/upload/penyesuaian/{id}', [KenaikanController::class, 'penyesuaian'])->name('upload.penyesuaian');
+Route::get('/upload/fungsional/{id}', [KenaikanController::class, 'fungsional'])->name('upload.fungsional');
+Route::get('/upload/tugas-belajar/{id}', [KenaikanController::class, 'tugasBelajar'])->name('upload.tugas-belajar');
+Route::get('/kenaikan-pangkat/{id}', [KenaikanController::class, 'pilihan'])->name('kenaikan.pangkat');
 // web.php
 Route::get('/tambahadmin', [AdminDashboardController::class, 'create'])->name('admin.tambah');
 
