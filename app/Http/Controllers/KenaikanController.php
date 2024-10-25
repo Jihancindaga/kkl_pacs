@@ -27,7 +27,7 @@ class KenaikanController extends Controller
     public function penyesuaian($id)
     {
         $karyawan = Karyawan::findOrFail($id);
-        return view('upload.penyesuaian', compact('karyawan'));
+        return view('upload.penyesuaian-ijasah', compact('karyawan'));
     }
 
     public function fungsional($id)

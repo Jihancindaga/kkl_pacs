@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
-         body {
+        body {
             background-color: #f8f9fa;
         }
 
@@ -36,7 +36,7 @@
             font-size: 24px;
             cursor: pointer;
         }
-        
+
         .container {
             margin-top: 70px; /* Menambahkan margin atas untuk memberi jarak dari navbar */
             padding: 20px;
@@ -77,6 +77,11 @@
         .navbar {
             margin-bottom: 20px;
         }
+
+        .btn-success:disabled {
+            background-color: #c0c0c0; /* Warna abu-abu untuk tombol non-aktif */
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body>
@@ -111,7 +116,7 @@
                     <td>SK CPNS dan SK PNS</td>
                     <td>
                         <div class="d-flex align-items-center">
-                            <input type="file" name="file1" class="form-control" required style="flex: 1;">
+                            <input type="file" name="file1" class="form-control" required style="flex: 1;" id="file1">
                             <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile(1)">Upload</button>
                         </div>
                     </td>
@@ -122,10 +127,10 @@
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td>SK Ploting Terakhir (SK Penempatan pada unit kerja terakhir)</td>
+                    <td>SK Ploting Terakhir</td>
                     <td>
                         <div class="d-flex align-items-center">
-                            <input type="file" name="file2" class="form-control" style="flex: 1;">
+                            <input type="file" name="file2" class="form-control" style="flex: 1;" id="file2" disabled>
                             <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile(2)">Upload</button>
                         </div>
                     </td>
@@ -139,7 +144,7 @@
                     <td>SK Pengangkatan Pertama Jabatan Fungsional</td>
                     <td>
                         <div class="d-flex align-items-center">
-                            <input type="file" name="file3" class="form-control" style="flex: 1;">
+                            <input type="file" name="file3" class="form-control" style="flex: 1;" id="file3" disabled>
                             <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile(3)">Upload</button>
                         </div>
                     </td>
@@ -153,7 +158,7 @@
                     <td>SK Kenaikan Pangkat Terakhir</td>
                     <td>
                         <div class="d-flex align-items-center">
-                            <input type="file" name="file4" class="form-control" style="flex: 1;">
+                            <input type="file" name="file4" class="form-control" style="flex: 1;" id="file4" disabled>
                             <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile(4)">Upload</button>
                         </div>
                     </td>
@@ -167,7 +172,7 @@
                     <td>Ijazah dan Transkrip Nilai</td>
                     <td>
                         <div class="d-flex align-items-center">
-                            <input type="file" name="file5" class="form-control" style="flex: 1;">
+                            <input type="file" name="file5" class="form-control" style="flex: 1;" id="file5" disabled>
                             <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile(5)">Upload</button>
                         </div>
                     </td>
@@ -181,7 +186,7 @@
                     <td>SK PMK (Peninjauan Masa Kerja)</td>
                     <td>
                         <div class="d-flex align-items-center">
-                            <input type="file" name="file6" class="form-control" style="flex: 1;">
+                            <input type="file" name="file6" class="form-control" style="flex: 1;" id="file6" disabled>
                             <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile(6)">Upload</button>
                         </div>
                     </td>
@@ -192,10 +197,10 @@
                 </tr>
                 <tr>
                     <td>7</td>
-                    <td>Penilaian Kinerja Pegawai selama 2 (dua) Tahun Terakhir (2022 dan 2023)</td>
+                    <td>Penilaian Kinerja Pegawai (2 tahun terakhir)</td>
                     <td>
                         <div class="d-flex align-items-center">
-                            <input type="file" name="file7" class="form-control" style="flex: 1;">
+                            <input type="file" name="file7" class="form-control" style="flex: 1;" id="file7" disabled>
                             <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile(7)">Upload</button>
                         </div>
                     </td>
@@ -209,7 +214,7 @@
                     <td>Sertifikat Uji Kompetensi</td>
                     <td>
                         <div class="d-flex align-items-center">
-                            <input type="file" name="file8" class="form-control" style="flex: 1;">
+                            <input type="file" name="file8" class="form-control" style="flex: 1;" id="file8" disabled>
                             <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile(8)">Upload</button>
                         </div>
                     </td>
@@ -220,10 +225,10 @@
                 </tr>
                 <tr>
                     <td>9</td>
-                    <td>PAK disusun/gabung urut jadi satu file</td>
+                    <td>PAK (disusun urut satu file)</td>
                     <td>
                         <div class="d-flex align-items-center">
-                            <input type="file" name="file9" class="form-control" style="flex: 1;">
+                            <input type="file" name="file9" class="form-control" style="flex: 1;" id="file9" disabled>
                             <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile(9)">Upload</button>
                         </div>
                     </td>
@@ -237,7 +242,7 @@
                     <td>PAK Integrasi dan PAK Konversi</td>
                     <td>
                         <div class="d-flex align-items-center">
-                            <input type="file" name="file10" class="form-control" style="flex: 1;">
+                            <input type="file" name="file10" class="form-control" style="flex: 1;" id="file10" disabled>
                             <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile(10)">Upload</button>
                         </div>
                     </td>
@@ -251,7 +256,7 @@
                     <td>SK Pengangkatan Pertama dalam Jabatan Fungsional</td>
                     <td>
                         <div class="d-flex align-items-center">
-                            <input type="file" name="file11" class="form-control" style="flex: 1;">
+                            <input type="file" name="file11" class="form-control" style="flex: 1;" id="file11" disabled>
                             <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile(11)">Upload</button>
                         </div>
                     </td>
@@ -265,7 +270,7 @@
                     <td>SK Kenaikan Jabatan Fungsional Terakhir</td>
                     <td>
                         <div class="d-flex align-items-center">
-                            <input type="file" name="file12" class="form-control" style="flex: 1;">
+                            <input type="file" name="file12" class="form-control" style="flex: 1;" id="file12" disabled>
                             <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile(12)">Upload</button>
                         </div>
                     </td>
@@ -279,7 +284,7 @@
                     <td>Rekomendasi dari Kepala Instansi</td>
                     <td>
                         <div class="d-flex align-items-center">
-                            <input type="file" name="file13" class="form-control" style="flex: 1;">
+                            <input type="file" name="file13" class="form-control" style="flex: 1;" id="file13" disabled>
                             <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile(13)">Upload</button>
                         </div>
                     </td>
@@ -290,13 +295,41 @@
                 </tr>
             </tbody>
         </table>
+        <div class="text-center">
+            <button type="button" class="btn btn-success" id="saveButton" disabled onclick="saveData()">Simpan</button>
+        </div>
     </div>
 
     <script>
         function uploadFile(fileNumber) {
             // Logic to upload the file for the corresponding document
             alert('File ' + fileNumber + ' berhasil diunggah!');
-            document.getElementById('checkbox' + fileNumber).checked = true; // Simulate file upload status
+
+            // Simulate file upload status
+            document.getElementById('checkbox' + fileNumber).checked = true;
+            document.getElementById('checkbox' + fileNumber).disabled = false; // Enable checkbox
+
+            // Enable the next file input and button
+            if (fileNumber < 13) {
+                document.getElementById('file' + (fileNumber + 1)).disabled = false; // Enable the next file input
+            }
+
+            checkAllFilesUploaded(); // Cek jika semua file sudah diupload
+        }
+
+        function checkAllFilesUploaded() {
+            const checkboxes = [];
+            for (let i = 1; i <= 13; i++) {
+                checkboxes.push(document.getElementById('checkbox' + i));
+            }
+            const allUploaded = checkboxes.every(checkbox => checkbox.checked);
+            const saveButton = document.getElementById('saveButton');
+            saveButton.disabled = !allUploaded; // Aktifkan atau non-aktifkan tombol simpan
+        }
+
+        function saveData() {
+            // Logic to save the data
+            alert('Data berhasil disimpan!');
         }
 
         function navigateTo(page) {

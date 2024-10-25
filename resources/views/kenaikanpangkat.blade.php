@@ -112,7 +112,7 @@
         <!-- Pilihan Kenaikan Pangkat -->
         <a href="{{ route('upload.kpo', $karyawan->id) }}" class="btn soft-button">1) Kenaikan Pangkat Reguler (KPO)</a>
         <a href="{{ route('upload.struktural', $karyawan->id) }}" class="btn soft-button">2) Kenaikan Pangkat Pilihan Struktural</a>
-        <a href="{{ route('upload.penyesuaian', $karyawan->id) }}" class="btn soft-button">3) Kenaikan Pangkat Pilihan Penyesuaian Ijasah</a>
+        <a href="{{ route('upload.penyesuaian-ijasah', $karyawan->id) }}" class="btn soft-button">3) Kenaikan Pangkat Pilihan Penyesuaian Ijasah</a>
         <a href="{{ route('upload.fungsional', $karyawan->id) }}" class="btn soft-button">4) Kenaikan Pangkat Pilihan Fungsional</a>
         <a href="{{ route('upload.tugas-belajar', $karyawan->id) }}" class="btn soft-button">5) Kenaikan Pangkat Karena Sedang Menjalankan Tugas Belajar</a>
 

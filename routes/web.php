@@ -52,7 +52,7 @@ Route::get('/tambahadmin', function () {
 // });
 Route::get('/upload/kpo/{id}', [KenaikanController::class, 'kpo'])->name('upload.kpo');
 Route::get('/upload/struktural/{id}', [KenaikanController::class, 'struktural'])->name('upload.struktural');
-Route::get('/upload/penyesuaian/{id}', [KenaikanController::class, 'penyesuaian'])->name('upload.penyesuaian');
+Route::get('/upload/penyesuaian/{id}', [KenaikanController::class, 'penyesuaian'])->name('upload.penyesuaian-ijasah');
 Route::get('/upload/fungsional/{id}', [KenaikanController::class, 'fungsional'])->name('upload.fungsional');
 Route::get('/upload/tugas-belajar/{id}', [KenaikanController::class, 'tugasBelajar'])->name('upload.tugas-belajar');
 Route::get('/kenaikan-pangkat/{id}', [KenaikanController::class, 'pilihan'])->name('kenaikan.pangkat');
