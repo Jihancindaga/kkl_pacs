@@ -207,3 +207,11 @@ Route::get('/karyawan/hapus', [KaryawanController::class, 'showDeleteForm'])->na
 
 // Route untuk halaman riwayat karyawan nonaktif
 Route::get('/riwayat-karyawan-nonaktif', [KaryawanController::class, 'riwayatKaryawanNonaktif'])->name('riwayat.karyawan.nonaktif');
+
+Route::get('/riwayat-kenaikan', function () {
+    return view('riwayat_kenaikan');
+})->name('riwayat.kenaikan'); // Pastikan ini ditambahkan
+
+Route::get('/detail-kenaikan', function () {
+    return view('detail-kenaikan');
+})->name('detail-kenaikan');

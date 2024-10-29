@@ -342,7 +342,7 @@
                 <div class="button-group">
                     <button class="btn btn-1" onclick="navigateTo('/datakaryawan')">Data Pokok Karyawan</button>
                     <button class="btn btn-2" onclick="navigateTo('/tambah-karyawan')">Tambah Karyawan Baru</button>
-                    <button class="btn btn-3">Riwayat Kenaikan</button>
+                    <button class="btn btn-3" onclick="navigateTo('/riwayat-kenaikan')">Riwayat Kenaikan</button>
                     <a href="/hapus-karyawan" class="btn btn-danger">Hapus Karyawan</a>
                     <a href="/riwayat_karyawan_nonaktif" class="btn btn-success">Riwayat Karyawan Non-aktif</a>
                 </div>
