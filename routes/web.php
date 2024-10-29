@@ -11,6 +11,8 @@ use App\Http\Controllers\VehicleDeletionController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\KenaikanController;
+use App\Http\Controllers\TugasBelajarController;
+use App\Http\Controllers\KenaikanPangkatKpoController;
 
 Route::get('/', function () {
     return view('/admin/dashboard');
@@ -35,21 +37,10 @@ Route::get('/tambahadmin', function () {
     return view('tambahadmin');
 })->name('tambah.admin');
 
-// Route::get('/upload/kpo', function () {
-//     return view('/upload/kpo');
-// });
-// Route::get('/upload/struktural', function () {
-//     return view('/upload/struktural');
-// });
-// Route::get('/upload/penyesuaian-ijasah', function () {
-//     return view('/upload/penyesuaian-ijasah');
-// });
-// Route::get('/upload/fungsional', function () {
-//     return view('/upload/fungsional');
-// });
-// Route::get('/upload/tugas-belajar', function () {
-//     return view('/upload/tugas-belajar');
-// });
+Route::get('/riwayatkaryawan', function () {
+    return view('riwayatkaryawan');
+});
+
 Route::get('/upload/kpo/{id}', [KenaikanController::class, 'kpo'])->name('upload.kpo');
 Route::get('/upload/struktural/{id}', [KenaikanController::class, 'struktural'])->name('upload.struktural');
 Route::get('/upload/penyesuaian/{id}', [KenaikanController::class, 'penyesuaian'])->name('upload.penyesuaian-ijasah');
@@ -184,6 +175,23 @@ Route::post('/tambah-karyawan', [KaryawanController::class, 'store'])->name('kar
 
 Route::get('/karyawan', [KaryawanController::class, 'index'])->name('karyawan.index');
 Route::post('/karyawan/store', [KaryawanController::class, 'store'])->name('karyawan.store');
+Route::get('/karyawan/{nip}', [KaryawanController::class, 'show'])->name('karyawan.show');
+
 
 //route cek nip
 Route::post('/check-nip', [KaryawanController::class, 'checkNip'])->name('karyawan.checkNip');
+
+Route::get('/tugas-belajar/{karyawan_id}', [TugasBelajarController::class, 'show'])->name('tugas-belajar.show');
+Route::post('/tugas-belajar/{karyawan_id}', [TugasBelajarController::class, 'store'])->name('tugas-belajar.store');
+
+Route::get('/kpo/{karyawan_id}', [KenaikanPangkatKpoController::class, 'show'])->name('kpo.show');
+Route::post('/kpo/{karyawan_id}', [KenaikanPangkatKpoController::class, 'store'])->name('kpo.store');
+Route::get('/hapus-karyawan', [KaryawanController::class, 'showDeleteForm'])->name('hapus_karyawan');
+Route::post('/hapus-karyawan', [KaryawanController::class, 'delete'])->name('karyawan.hapus');
+
+Route::get('/riwayat_karyawan_nonaktif', [KaryawanController::class, 'riwayatKaryawanNonaktif'])->name('riwayat_karyawan_nonaktif');
+// Jika memang diperlukan, tambahkan route untuk showDeleteForm
+Route::get('/karyawan/hapus', [KaryawanController::class, 'showDeleteForm'])->name('karyawan.showDeleteForm');
+
+// Route untuk halaman riwayat karyawan nonaktif
+Route::get('/riwayat-karyawan-nonaktif', [KaryawanController::class, 'riwayatKaryawanNonaktif'])->name('riwayat.karyawan.nonaktif');

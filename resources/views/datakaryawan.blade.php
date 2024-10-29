@@ -217,9 +217,8 @@
                 gap: 5px;
             }
         }
-        
+
         .modal-content {
-            .modal-content {
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             overflow: hidden;
@@ -344,8 +343,8 @@
                     <button class="btn btn-1" onclick="navigateTo('/datakaryawan')">Data Pokok Karyawan</button>
                     <button class="btn btn-2" onclick="navigateTo('/tambah-karyawan')">Tambah Karyawan Baru</button>
                     <button class="btn btn-3">Riwayat Kenaikan</button>
-                    <a href="/hapus-data-karyawan" class="btn btn-danger">Hapus Karyawan</a>
-                    <a href="/daftar-hapus-karyawan" class="btn btn-success">Riwayat Karyawan Non-aktif</a>
+                    <a href="/hapus-karyawan" class="btn btn-danger">Hapus Karyawan</a>
+                    <a href="/riwayat_karyawan_nonaktif" class="btn btn-success">Riwayat Karyawan Non-aktif</a>
                 </div>
             </div>
 
@@ -433,11 +432,11 @@
                         <a href="/upload/tugas-belajar" class="list-group-item list-group-item-action list-group-item-danger">Kenaikan Pangkat Karena Sedang Menjalankan Tugas Belajar</a>
                     </div>
                 </div>
-            
+
             </div>
         </div>
     </div>
-    
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -451,7 +450,6 @@
                 $('.employee-info').html('<strong>NIP:</strong> ' + nip + '<br><strong>Nama:</strong> ' + nama);
             });
         });
-
     </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

@@ -101,133 +101,51 @@
         <h3>Kenaikan Pangkat Reguler (KPO)</h3>
         <p><strong>Nama:</strong> {{ $karyawan->nama }}</p>
         <p><strong>NIP:</strong> {{ $karyawan->nip }}</p>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Dokumen</th>
-                    <th>Unggah Berkas</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>SK Kenaikan Pangkat Terakhir</td>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <input type="file" name="file1" class="form-control" required style="flex: 1;" id="file1">
-                            <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile(1)">Upload</button>
-                        </div>
-                    </td>
-                    <td>
-                        <input type="checkbox" id="checkbox1" disabled>
-                        <label for="checkbox1" class="checkbox-label">Syarat ini telah diunggah</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>SK PMK (Peninjauan Masa Kerja)</td>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <input type="file" name="file2" class="form-control" style="flex: 1;" id="file2" disabled>
-                            <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile(2)">Upload</button>
-                        </div>
-                    </td>
-                    <td>
-                        <input type="checkbox" id="checkbox2" disabled>
-                        <label for="checkbox2" class="checkbox-label">Syarat ini telah diunggah</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>SK Jabatan Pelaksana Terakhir</td>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <input type="file" name="file3" class="form-control" style="flex: 1;" id="file3" disabled>
-                            <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile(3)">Upload</button>
-                        </div>
-                    </td>
-                    <td>
-                        <input type="checkbox" id="checkbox3" disabled>
-                        <label for="checkbox3" class="checkbox-label">Syarat ini telah diunggah</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Penilaian Kinerja Pegawai (2022 & 2023)</td>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <input type="file" name="file4" class="form-control" style="flex: 1;" id="file4" disabled>
-                            <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile(4)">Upload</button>
-                        </div>
-                    </td>
-                    <td>
-                        <input type="checkbox" id="checkbox4" disabled>
-                        <label for="checkbox4" class="checkbox-label">Syarat ini telah diunggah</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Ijazah Terakhir & Transkrip Nilai</td>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <input type="file" name="file5" class="form-control" style="flex: 1;" id="file5" disabled>
-                            <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile(5)">Upload</button>
-                        </div>
-                    </td>
-                    <td>
-                        <input type="checkbox" id="checkbox5" disabled>
-                        <label for="checkbox5" class="checkbox-label">Syarat ini telah diunggah</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Surat Pencantuman Gelar dari BKN</td>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <input type="file" name="file6" class="form-control" style="flex: 1;" id="file6" disabled>
-                            <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile(6)">Upload</button>
-                        </div>
-                    </td>
-                    <td>
-                        <input type="checkbox" id="checkbox6" disabled>
-                        <label for="checkbox6" class="checkbox-label">Syarat ini telah diunggah</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>STLUD untuk Pindah Golongan II/d ke III/a</td>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <input type="file" name="file7" class="form-control" style="flex: 1;" id="file7" disabled>
-                            <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile(7)">Upload</button>
-                        </div>
-                    </td>
-                    <td>
-                        <input type="checkbox" id="checkbox7" disabled>
-                        <label for="checkbox7" class="checkbox-label">Syarat ini telah diunggah</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td>Rekomendasi dari Kepala Instansi</td>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <input type="file" name="file8" class="form-control" style="flex: 1;" id="file8" disabled>
-                            <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile(8)">Upload</button>
-                        </div>
-                    </td>
-                    <td>
-                        <input type="checkbox" id="checkbox8" disabled>
-                        <label for="checkbox8" class="checkbox-label">Syarat ini telah diunggah</label>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+
+        <form action="{{ route('kpo.store', $karyawan->id) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Dokumen</th>
+                        <th>Unggah Berkas</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ([
+                        'sk_kenaikan_pangkat_terakhir',
+                        'sk_pmk',
+                        'sk_jabatan_pelaksana_terakhir',
+                        'penilaian_kinerja',
+                        'ijazah_terakhir',
+                        'transkrip_nilai',
+                        'surat_gelar_bkn',
+                        'stlud',
+                        'rekomendasi_kepala_instansi'
+                    ] as $index => $dokumen)
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $dokumen }}</td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <input type="file" name="file{{ $index + 1 }}" class="form-control" required style="flex: 1;" id="file{{ $index + 1 }}">
+                                <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile({{ $index + 1 }})">Upload</button>
+                            </div>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="checkbox{{ $index + 1 }}" disabled>
+                            <label for="checkbox{{ $index + 1 }}" class="checkbox-label">Syarat ini telah diunggah</label>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         <div class="text-center">
-            <button type="button" class="btn btn-success" id="saveButton" disabled onclick="saveData()">Simpan</button>
+            <button type="submit" class="btn btn-success" id="saveButton" disabled>Simpan</button>
         </div>
+    </form>
     </div>
 
     <script>

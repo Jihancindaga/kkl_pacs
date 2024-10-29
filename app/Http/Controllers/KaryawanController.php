@@ -4,16 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Karyawan;
+use App\Models\RiwayatKaryawanNonaktif;
+use Carbon\Carbon;
 
 class KaryawanController extends Controller
 {
     // Menampilkan data karyawan
     public function index()
     {
-        // Ambil semua data karyawan dari database
         $karyawans = Karyawan::all();
-
-        // Pastikan data karyawan ada dan dikirim ke view
         return view('datakaryawan', compact('karyawans'));
     }
 
@@ -36,16 +35,7 @@ class KaryawanController extends Controller
             'no_telp' => 'required|string|max:255',
         ]);
 
-        Karyawan::create([
-            'nama' => $validateData['nama'],
-            'nip' => $validateData['nip'],
-            'tahun_kenaikan_gaji' => $validateData['tahun_kenaikan_gaji'],
-            'tahun_kenaikan_pangkat' => $validateData['tahun_kenaikan_pangkat'],
-            'jabatan' => $validateData['jabatan'],
-            'golongan' => $validateData['golongan'],
-            'pangkat' => $validateData['pangkat'],
-            'no_telp' => $validateData['no_telp'],
-        ]);
+        Karyawan::create($validateData);
 
         return redirect()->route('karyawan.index')->with('success', 'Karyawan berhasil ditambahkan!');
     }
@@ -63,8 +53,8 @@ class KaryawanController extends Controller
         $request->validate([
             'nip' => 'required',
             'nama' => 'required',
-            'tahun_kenikan_gaji' => 'required',
-            'tahun_kenikan_pangkat' => 'required',
+            'tahun_kenaikan_gaji' => 'required',
+            'tahun_kenaikan_pangkat' => 'required',
             'golongan' => 'required',
             'pangkat' => 'required',
             'jabatan' => 'required',
@@ -72,33 +62,54 @@ class KaryawanController extends Controller
         ]);
 
         $karyawan = Karyawan::findOrFail($id);
-        $karyawan->update([
-            'nip' => $request->nip,
-            'nama' => $request->nama,
-            'tahun_kenaikan_gaji' => $request->tahun_kenaikan_gaji,
-            'tahun_kenaikan_pangkat' => $request->tahun_kenaikan_pangkat,
-            'golongan' => $request->golongan,
-            'pangkat' => $request->pangkat,
-            'jabatan' => $request->jabatan,
-            'no_telp' => $request->no_telp,
-        ]);
+        $karyawan->update($request->all());
 
         return redirect()->route('karyawan.index')->with('success', 'Data Karyawan berhasil diperbarui');
     }
 
-
-    // Menghapus data karyawan
-    public function destroy($id)
+    // Menghapus data karyawan dan memasukkannya ke tabel riwayat
+    public function delete(Request $request)
     {
-        // Mengambil data karyawan berdasarkan id dan menghapus
-        $karyawan = Karyawan::findOrFail($id);
-        $karyawan->delete();
+        $request->validate([
+            'nip' => 'required|exists:karyawans,nip',
+            'alasan' => 'required|string',
+            'tanggal_penghapusan' => 'required|date',
+        ]);
 
-        // Redirect ke halaman data karyawan setelah berhasil dihapus
-        return redirect()->route('karyawan.index')->with('success', 'Karyawan berhasil dihapus!');
+        $karyawan = Karyawan::where('nip', $request->nip)->first();
+
+        if ($karyawan) {
+            RiwayatKaryawanNonaktif::create([
+                'nip' => $karyawan->nip,
+                'nama' => $karyawan->nama,
+                'jabatan' => $karyawan->jabatan,
+                'alasan' => $request->alasan,
+                'tanggal_penghapusan' => Carbon::now()->toDateString(),
+            ]);
+
+            $karyawan->delete();
+
+            return redirect()->route('riwayat.karyawan.nonaktif')->with('success', 'Data karyawan berhasil dihapus.');
+        }
+
+        return redirect()->back()->with('error', 'Data karyawan tidak ditemukan.');
     }
 
-    //Mengecek validasi NIP
+    // Menampilkan riwayat karyawan nonaktif
+    public function riwayatKaryawanNonaktif()
+    {
+        $riwayatKaryawans = RiwayatKaryawanNonaktif::all();
+        return view('riwayat_karyawan_nonaktif', compact('riwayatKaryawans'));
+    }
+
+    public function showDeleteForm()
+    {
+        $karyawans = Karyawan::all();
+        return view('hapus_karyawan', compact('karyawans'));
+    }
+
+
+    // Mengecek validasi NIP
     public function checkNip(Request $request)
     {
         $exists = Karyawan::where('nip', $request->nip)->exists();

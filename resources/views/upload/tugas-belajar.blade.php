@@ -101,91 +101,48 @@
         <h3>Kenaikan Pangkat Karena Sedang Menjalankan Tugas Belajar</h3>
         <p><strong>Nama:</strong> {{ $karyawan->nama }}</p>
         <p><strong>NIP:</strong> {{ $karyawan->nip }}</p>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Dokumen</th>
-                    <th>Unggah Berkas</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>SK Kenaikan Pangkat Terakhir</td>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <input type="file" name="file1" class="form-control" required style="flex: 1;" id="file1">
-                            <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile(1)">Upload</button>
-                        </div>
-                    </td>
-                    <td>
-                        <input type="checkbox" id="checkbox1" disabled>
-                        <label for="checkbox1" class="checkbox-label">Syarat ini telah diunggah</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Surat Tugas Belajar</td>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <input type="file" name="file2" class="form-control" style="flex: 1;" id="file2" disabled>
-                            <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile(2)">Upload</button>
-                        </div>
-                    </td>
-                    <td>
-                        <input type="checkbox" id="checkbox2" disabled>
-                        <label for="checkbox2" class="checkbox-label">Syarat ini telah diunggah</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Penilaian Kinerja</td>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <input type="file" name="file3" class="form-control" style="flex: 1;" id="file3" disabled>
-                            <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile(3)">Upload</button>
-                        </div>
-                    </td>
-                    <td>
-                        <input type="checkbox" id="checkbox3" disabled>
-                        <label for="checkbox3" class="checkbox-label">Syarat ini telah diunggah</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Ijazah Terakhir & Transkrip Nilai</td>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <input type="file" name="file4" class="form-control" style="flex: 1;" id="file4" disabled>
-                            <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile(4)">Upload</button>
-                        </div>
-                    </td>
-                    <td>
-                        <input type="checkbox" id="checkbox4" disabled>
-                        <label for="checkbox4" class="checkbox-label">Syarat ini telah diunggah</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>SK Pemberhentian dari Jabatan</td>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <input type="file" name="file5" class="form-control" style="flex: 1;" id="file5" disabled>
-                            <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile(5)">Upload</button>
-                        </div>
-                    </td>
-                    <td>
-                        <input type="checkbox" id="checkbox5" disabled>
-                        <label for="checkbox5" class="checkbox-label">Syarat ini telah diunggah</label>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="text-center">
-            <button type="button" class="btn btn-success" id="saveButton" disabled onclick="saveData()">Simpan</button>
-        </div>
+
+        <!-- Form untuk mengupload berkas -->
+        <form action="{{ route('tugas-belajar.store', $karyawan->id) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Dokumen</th>
+                        <th>Unggah Berkas</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ([
+                        'SK Kenaikan Pangkat Terakhir',
+                        'Surat Tugas Belajar',
+                        'Penilaian Kinerja',
+                        'Ijazah Terakhir & Transkrip Nilai',
+                        'SK Pemberhentian dari Jabatan'
+                    ] as $index => $dokumen)
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $dokumen }}</td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <input type="file" name="file{{ $index + 1 }}" class="form-control" required style="flex: 1;" id="file{{ $index + 1 }}">
+                                <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile({{ $index + 1 }})">Upload</button>
+                            </div>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="checkbox{{ $index + 1 }}" disabled>
+                            <label for="checkbox{{ $index + 1 }}" class="checkbox-label">Syarat ini telah diunggah</label>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            <div class="text-center">
+                <button type="submit" class="btn btn-success" id="saveButton" disabled>Simpan</button>
+            </div>
+        </form>
     </div>
 
     <script>
@@ -216,11 +173,6 @@
             const allUploaded = checkboxes.every(checkbox => checkbox.checked);
             const saveButton = document.getElementById('saveButton');
             saveButton.disabled = !allUploaded; // Aktifkan atau non-aktifkan tombol simpan
-        }
-
-        function saveData() {
-            // Logic to save the data
-            alert('Data berhasil disimpan!');
         }
 
         function navigateTo(page) {
