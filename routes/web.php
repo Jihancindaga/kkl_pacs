@@ -13,7 +13,9 @@ use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\KenaikanController;
 use App\Http\Controllers\TugasBelajarController;
 use App\Http\Controllers\KenaikanPangkatKpoController;
-
+use App\Http\Controllers\PenyesuaianIjazahController;
+use App\Http\Controllers\PilihanStrukturalController;
+use App\Http\Controllers\FungsionalController;
 Route::get('/', function () {
     return view('/admin/dashboard');
 });
@@ -186,6 +188,16 @@ Route::post('/tugas-belajar/{karyawan_id}', [TugasBelajarController::class, 'sto
 
 Route::get('/kpo/{karyawan_id}', [KenaikanPangkatKpoController::class, 'show'])->name('kpo.show');
 Route::post('/kpo/{karyawan_id}', [KenaikanPangkatKpoController::class, 'store'])->name('kpo.store');
+
+Route::get('/penyesuaian-ijazah/{karyawan_id}', [PenyesuaianIjazahController::class, 'show'])->name('penyesuaian-ijazah.show');
+Route::post('/penyesuaian-ijazah/{karyawan_id}', [PenyesuaianIjazahController::class, 'store'])->name('penyesuaian-ijazah.store');
+
+Route::get('/pilihan-struktural/{karyawan_id}', [PilihanStrukturalController::class, 'show'])->name('pilihan-struktural.show');
+Route::post('/pilihan-struktural/{karyawan_id}', [PilihanStrukturalController::class, 'store'])->name('pilihan-struktural.store');
+
+Route::get('/fungsional/{karyawan_id}', [FungsionalController::class, 'show'])->name('fungsional.show');
+Route::post('/fungsional/{karyawan_id}', [FungsionalController::class, 'store'])->name('fungsional.store');
+
 Route::get('/hapus-karyawan', [KaryawanController::class, 'showDeleteForm'])->name('hapus_karyawan');
 Route::post('/hapus-karyawan', [KaryawanController::class, 'delete'])->name('karyawan.hapus');
 
