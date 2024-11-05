@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
         body {
             background-color: #f8f9fa;
         }
+
         .navbar {
             background-color: #007bff;
             color: #fff;
@@ -22,10 +24,12 @@
             top: 0;
             z-index: 1000;
         }
+
         .navbar .logo img {
             height: 40px;
             margin: 0 5px;
         }
+
         .navbar .home-btn {
             background: none;
             border: none;
@@ -33,6 +37,7 @@
             font-size: 24px;
             cursor: pointer;
         }
+
         .container {
             margin-top: 70px;
             padding: 20px;
@@ -42,21 +47,26 @@
             width: 90%;
             max-width: 1200px;
         }
+
         h3 {
             text-align: center;
             margin-bottom: 20px;
             color: #343a40;
             font-size: 24px;
         }
-        .table th, .table td {
+
+        .table th,
+        .table td {
             vertical-align: middle;
             font-size: 14px;
         }
+
         .btn-primary {
             margin-top: 5px;
         }
     </style>
 </head>
+
 <body>
 
     <div class="navbar">
@@ -76,74 +86,80 @@
         <p><strong>NIP:</strong> {{ $karyawan->nip }}</p>
 
         @if($tugasBelajar)
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Dokumen</th>
-                        <th>Link Berkas</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>SK Kenaikan Pangkat Terakhir</td>
-                        <td>
-                            @if($tugasBelajar->sk_kenaikan_pangkat_terakhir)
-                                <a href="{{ asset('storage/' . $tugasBelajar->sk_kenaikan_pangkat_terakhir) }}" class="btn btn-primary" target="_blank">Lihat</a>
-                            @else
-                                Belum diunggah
-                            @endif
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Surat Tugas Belajar</td>
-                        <td>
-                            @if($tugasBelajar->surat_tugas_belajar)
-                                <a href="{{ asset('storage/' . $tugasBelajar->surat_tugas_belajar) }}" class="btn btn-primary" target="_blank">Lihat</a>
-                            @else
-                                Belum diunggah
-                            @endif
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Penilaian Kinerja</td>
-                        <td>
-                            @if($tugasBelajar->penilaian_kinerja)
-                                <a href="{{ asset('storage/' . $tugasBelajar->penilaian_kinerja) }}" class="btn btn-primary" target="_blank">Lihat</a>
-                            @else
-                                Belum diunggah
-                            @endif
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Ijazah Terakhir & Transkrip Nilai</td>
-                        <td>
-                            @if($tugasBelajar->ijazah_terakhir)
-                                <a href="{{ asset('storage/' . $tugasBelajar->ijazah_terakhir) }}" class="btn btn-primary" target="_blank">Lihat</a>
-                            @else
-                                Belum diunggah
-                            @endif
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>SK Pemberhentian dari Jabatan</td>
-                        <td>
-                            @if($tugasBelajar->sk_pemberhentian_jabatan)
-                                <a href="{{ asset('storage/' . $tugasBelajar->sk_pemberhentian_jabatan) }}" class="btn btn-primary" target="_blank">Lihat</a>
-                            @else
-                                Belum diunggah
-                            @endif
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Dokumen</th>
+                    <th>Link Berkas</th>
+                    <th>Tanggal Upload</th> <!-- Kolom tanggal upload -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>SK Kenaikan Pangkat Terakhir</td>
+                    <td>
+                        @if($tugasBelajar->sk_kenaikan_pangkat_terakhir)
+                        <a href="{{ asset('storage/' . $tugasBelajar->sk_kenaikan_pangkat_terakhir) }}" class="btn btn-primary" target="_blank">Lihat</a>
+                        @else
+                        Belum diunggah
+                        @endif
+                    </td>
+                    <td>{{ $tugasBelajar->tanggal_upload_sk_kenaikan_pangkat ?? 'Belum diunggah' }}</td> <!-- Tanggal upload -->
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Surat Tugas Belajar</td>
+                    <td>
+                        @if($tugasBelajar->surat_tugas_belajar)
+                        <a href="{{ asset('storage/' . $tugasBelajar->surat_tugas_belajar) }}" class="btn btn-primary" target="_blank">Lihat</a>
+                        @else
+                        Belum diunggah
+                        @endif
+                    </td>
+                    <td>{{ $tugasBelajar->tanggal_upload_surat_tugas_belajar ?? 'Belum diunggah' }}</td> <!-- Tanggal upload -->
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Penilaian Kinerja</td>
+                    <td>
+                        @if($tugasBelajar->penilaian_kinerja)
+                        <a href="{{ asset('storage/' . $tugasBelajar->penilaian_kinerja) }}" class="btn btn-primary" target="_blank">Lihat</a>
+                        @else
+                        Belum diunggah
+                        @endif
+                    </td>
+                    <td>{{ $tugasBelajar->tanggal_upload_penilaian_kinerja ?? 'Belum diunggah' }}</td> <!-- Tanggal upload -->
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Ijazah Terakhir</td>
+                    <td>
+                        @if($tugasBelajar->ijazah_terakhir)
+                        <a href="{{ asset('storage/' . $tugasBelajar->ijazah_terakhir) }}" class="btn btn-primary" target="_blank">Lihat</a>
+                        @else
+                        Belum diunggah
+                        @endif
+                    </td>
+                    <td>{{ $tugasBelajar->tanggal_upload_ijazah_terakhir ?? 'Belum diunggah' }}</td> <!-- Tanggal upload -->
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>SK Pemberhentian dari Jabatan</td>
+                    <td>
+                        @if($tugasBelajar->sk_pemberhentian_jabatan)
+                        <a href="{{ asset('storage/' . $tugasBelajar->sk_pemberhentian_jabatan) }}" class="btn btn-primary" target="_blank">Lihat</a>
+                        @else
+                        Belum diunggah
+                        @endif
+                    </td>
+                    <td>{{ $tugasBelajar->tanggal_upload_sk_pemberhentian_jabatan ?? 'Belum diunggah' }}</td> <!-- Tanggal upload -->
+                </tr>
+            </tbody>
+        </table>
         @else
-            <p>Data upload tugas belajar tidak ditemukan.</p>
+        <p>Data upload tugas belajar tidak ditemukan.</p>
         @endif
     </div>
 
@@ -154,4 +170,5 @@
     </script>
 
 </body>
+
 </html>

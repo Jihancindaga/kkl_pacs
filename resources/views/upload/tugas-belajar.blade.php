@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -54,7 +55,8 @@
             font-size: 24px;
         }
 
-        .table th, .table td {
+        .table th,
+        .table td {
             vertical-align: middle;
             font-size: 14px;
         }
@@ -87,6 +89,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="navbar">
@@ -114,16 +117,17 @@
                         <th>No</th>
                         <th>Dokumen</th>
                         <th>Unggah Berkas</th>
+                        <th>Tanggal Upload</th>
                         <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ([    
-                        'SK Kenaikan Pangkat Terakhir',
-                        'Surat Tugas Belajar',
-                        'Penilaian Kinerja',
-                        'Ijazah Terakhir & Transkrip Nilai',
-                        'SK Pemberhentian dari Jabatan'
+                    @foreach ([
+                    'SK Kenaikan Pangkat Terakhir',
+                    'Surat Tugas Belajar',
+                    'Penilaian Kinerja',
+                    'Ijazah Terakhir & Transkrip Nilai',
+                    'SK Pemberhentian dari Jabatan'
                     ] as $index => $dokumen)
                     <tr>
                         <td>{{ $index + 1 }}</td>
@@ -131,8 +135,11 @@
                         <td>
                             <div class="d-flex align-items-center">
                                 <input type="file" name="file{{ $index + 1 }}" class="form-control" required style="flex: 1;" id="file{{ $index + 1 }}" {{ $index > 0 ? 'disabled' : '' }}>
-                                <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile({{ $index + 1 }})">Upload</button>
+                                <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile({{ $index + 1 }})" {{ $index > 0 ? 'disabled' : '' }}>Upload</button>
                             </div>
+                        </td>
+                        <td>
+                            <input type="date" name="tanggal_upload{{ $index + 1 }}" class="form-control" id="tanggal_upload{{ $index + 1 }}" required {{ $index > 0 ? 'disabled' : '' }}>
                         </td>
                         <td>
                             <input type="checkbox" id="checkbox{{ $index + 1 }}" disabled>
@@ -159,9 +166,11 @@
             // Enable the next file input and button if it exists
             const nextFileInput = document.getElementById('file' + (fileNumber + 1));
             const nextUploadButton = document.querySelector('#file' + (fileNumber + 1) + ' + .btn-upload'); // Corrected selector
+            const nextDateInput = document.getElementById('tanggal_upload' + (fileNumber + 1)); // Next date input
             if (nextFileInput) {
                 nextFileInput.disabled = false;
                 nextUploadButton.disabled = false; // Enable the next upload button
+                nextDateInput.disabled = false; // Enable the next date input
             }
 
             checkAllFilesUploaded(); // Check if all files have been uploaded
@@ -179,4 +188,5 @@
     </script>
 
 </body>
+
 </html>
