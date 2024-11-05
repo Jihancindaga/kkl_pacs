@@ -11,8 +11,46 @@ class FungsionalController extends Controller
     public function show($id)
     {
         $karyawan = Karyawan::findOrFail($id);
-        $fungsional = Fungsional::where('karyawan_id', $id)->first();
-        return view('fungsional', compact('karyawan', 'fungsional'));
+
+        // Ambil semua data kenaikan pangkat fungsional dan urutkan berdasarkan tanggal upload terbaru
+        $kenaikanPangkatFungsional = Fungsional::where('karyawan_id', $id)
+            ->orderBy('tanggal_upload_sk_kenaikan_pangkat_terakhir', 'desc')
+            ->orderBy('tanggal_upload_sk_pmk', 'desc')
+            ->orderBy('tanggal_upload_penilaian_kinerja', 'desc')
+            ->orderBy('tanggal_upload_ijazah_terakhir', 'desc')
+            ->orderBy('tanggal_upload_transkrip_nilai', 'desc')
+            ->orderBy('tanggal_upload_sk_cpns', 'desc')
+            ->orderBy('tanggal_upload_sk_pns', 'desc')
+            ->orderBy('tanggal_upload_sk_ploting_terakhir', 'desc')
+            ->orderBy('tanggal_upload_sk_pengangkatan_jabatan_fungsional', 'desc')
+            ->orderBy('tanggal_upload_sertifikat_uji_kompetensi', 'desc')
+            ->orderBy('tanggal_upload_pak', 'desc')
+            ->orderBy('tanggal_upload_pak_integrasi', 'desc')
+            ->orderBy('tanggal_upload_sk_pengangkatan_pertama_fungsional', 'desc')
+            ->orderBy('tanggal_upload_sk_kenaikan_jabatan_fungsional', 'desc')
+            ->orderBy('tanggal_upload_rekomendasi_kepala_instansi', 'desc')
+            ->get();
+
+        // Urutkan data berdasarkan tanggal gabungan, dengan fallback untuk setiap kolom jika tidak ada tanggal
+        $kenaikanPangkatFungsional = $kenaikanPangkatFungsional->sortByDesc(function ($upload) {
+            return $upload->tanggal_upload_sk_kenaikan_pangkat_terakhir ??
+                $upload->tanggal_upload_sk_pmk ??
+                $upload->tanggal_upload_penilaian_kinerja ??
+                $upload->tanggal_upload_ijazah_terakhir ??
+                $upload->tanggal_upload_transkrip_nilai ??
+                $upload->tanggal_upload_sk_cpns ??
+                $upload->tanggal_upload_sk_pns ??
+                $upload->tanggal_upload_sk_ploting_terakhir ??
+                $upload->tanggal_upload_sk_pengangkatan_jabatan_fungsional ??
+                $upload->tanggal_upload_sertifikat_uji_kompetensi ??
+                $upload->tanggal_upload_pak ??
+                $upload->tanggal_upload_pak_integrasi ??
+                $upload->tanggal_upload_sk_pengangkatan_pertama_fungsional ??
+                $upload->tanggal_upload_sk_kenaikan_jabatan_fungsional ??
+                $upload->tanggal_upload_rekomendasi_kepala_instansi;
+        });
+
+        return view('fungsional', compact('karyawan', 'kenaikanPangkatFungsional'));
     }
 
     /**

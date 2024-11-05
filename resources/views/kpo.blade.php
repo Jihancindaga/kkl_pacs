@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -10,6 +10,7 @@
     <style>
         body {
             background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
         }
 
         .navbar {
@@ -39,13 +40,12 @@
         }
 
         .container {
-            margin-top: 70px;
+            margin-top: 80px;
             padding: 20px;
             background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 1200px;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+            max-width: 95%;
         }
 
         h3 {
@@ -55,14 +55,45 @@
             font-size: 24px;
         }
 
+        .info-section {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .table {
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #dee2e6;
+        }
+
+        .table-header {
+            text-align: center;
+            background-color: #007bff;
+            color: white;
+            padding: 8px;
+            font-size: 18px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
         .table th,
         .table td {
+            text-align: center;
             vertical-align: middle;
             font-size: 14px;
+            padding: 10px;
+            border: 1px solid #dee2e6;
         }
 
         .btn-primary {
-            margin-top: 5px;
+            font-size: 14px;
+            padding: 4px 10px;
+        }
+
+        .not-uploaded {
+            color: #dc3545;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -81,123 +112,60 @@
     </div>
 
     <div class="container">
-        <h3>Detail Upload Kenaikan Pangkat KPO</h3>
-        <p><strong>Nama:</strong> {{ $karyawan->nama }}</p>
-        <p><strong>NIP:</strong> {{ $karyawan->nip }}</p>
+        <h3>Detail Kenaikan Pangkat KPO</h3>
 
-        @if($kenaikanPangkatKpo)
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Dokumen</th>
-                    <th>Link Berkas</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>SK Kenaikan Pangkat Terakhir</td>
-                    <td>
-                        @if($kenaikanPangkatKpo->sk_kenaikan_pangkat_terakhir)
-                        <a href="{{ asset('storage/' . $kenaikanPangkatKpo->sk_kenaikan_pangkat_terakhir) }}" class="btn btn-primary" target="_blank">Lihat</a>
-                        @else
-                        Belum diunggah
-                        @endif
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>SK PMK</td>
-                    <td>
-                        @if($kenaikanPangkatKpo->sk_pmk)
-                        <a href="{{ asset('storage/' . $kenaikanPangkatKpo->sk_pmk) }}" class="btn btn-primary" target="_blank">Lihat</a>
-                        @else
-                        Belum diunggah
-                        @endif
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>SK Jabatan Pelaksana Terakhir</td>
-                    <td>
-                        @if($kenaikanPangkatKpo->sk_jabatan_pelaksana_terakhir)
-                        <a href="{{ asset('storage/' . $kenaikanPangkatKpo->sk_jabatan_pelaksana_terakhir) }}" class="btn btn-primary" target="_blank">Lihat</a>
-                        @else
-                        Belum diunggah
-                        @endif
-                    </td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Penilaian Kinerja</td>
-                    <td>
-                        @if($kenaikanPangkatKpo->penilaian_kinerja)
-                        <a href="{{ asset('storage/' . $kenaikanPangkatKpo->penilaian_kinerja) }}" class="btn btn-primary" target="_blank">Lihat</a>
-                        @else
-                        Belum diunggah
-                        @endif
-                    </td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Ijazah Terakhir</td>
-                    <td>
-                        @if($kenaikanPangkatKpo->ijazah_terakhir)
-                        <a href="{{ asset('storage/' . $kenaikanPangkatKpo->ijazah_terakhir) }}" class="btn btn-primary" target="_blank">Lihat</a>
-                        @else
-                        Belum diunggah
-                        @endif
-                    </td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Transkrip Nilai</td>
-                    <td>
-                        @if($kenaikanPangkatKpo->transkrip_nilai)
-                        <a href="{{ asset('storage/' . $kenaikanPangkatKpo->transkrip_nilai) }}" class="btn btn-primary" target="_blank">Lihat</a>
-                        @else
-                        Belum diunggah
-                        @endif
-                    </td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>Surat Gelar BKN</td>
-                    <td>
-                        @if($kenaikanPangkatKpo->surat_gelar_bkn)
-                        <a href="{{ asset('storage/' . $kenaikanPangkatKpo->surat_gelar_bkn) }}" class="btn btn-primary" target="_blank">Lihat</a>
-                        @else
-                        Belum diunggah
-                        @endif
-                    </td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td>STLUD</td>
-                    <td>
-                        @if($kenaikanPangkatKpo->stlud)
-                        <a href="{{ asset('storage/' . $kenaikanPangkatKpo->stlud) }}" class="btn btn-primary" target="_blank">Lihat</a>
-                        @else
-                        Belum diunggah
-                        @endif
-                    </td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td>Rekomendasi Kepala Instansi</td>
-                    <td>
-                        @if($kenaikanPangkatKpo->rekomendasi_kepala_instansi)
-                        <a href="{{ asset('storage/' . $kenaikanPangkatKpo->rekomendasi_kepala_instansi) }}" class="btn btn-primary" target="_blank">Lihat</a>
-                        @else
-                        Belum diunggah
-                        @endif
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="info-section">
+            <p><strong>Nama:</strong> {{ $karyawan->nama }}</p>
+            <p><strong>NIP:</strong> {{ $karyawan->nip }}</p>
+        </div>
+
+        @if($kenaikanPangkatKpo->isNotEmpty())
+        @php
+        $uploads = [
+        ['name' => 'SK Kenaikan Pangkat Terakhir', 'file' => 'sk_kenaikan_pangkat_terakhir', 'date' => 'tanggal_upload_sk_kenaikan_pangkat_terakhir'],
+        ['name' => 'Surat PMK', 'file' => 'sk_pmk', 'date' => 'tanggal_upload_sk_pmk'],
+        ['name' => 'SK Jabatan Pelaksana Terakhir', 'file' => 'sk_jabatan_pelaksana_terakhir', 'date' => 'tanggal_upload_sk_jabatan_pelaksana_terakhir'],
+        ['name' => 'Penilaian Kinerja', 'file' => 'penilaian_kinerja', 'date' => 'tanggal_upload_penilaian_kinerja'],
+        ['name' => 'Ijazah Terakhir', 'file' => 'ijazah_terakhir', 'date' => 'tanggal_upload_ijazah_terakhir'],
+        ['name' => 'Transkrip Nilai', 'file' => 'transkrip_nilai', 'date' => 'tanggal_upload_transkrip_nilai'],
+        ['name' => 'Surat Gelar BKN', 'file' => 'surat_gelar_bkn', 'date' => 'tanggal_upload_surat_gelar_bkn'],
+        ['name' => 'STLUD', 'file' => 'stlud', 'date' => 'tanggal_upload_stlud'],
+        ['name' => 'Rekomendasi Kepala Instansi', 'file' => 'rekomendasi_kepala_instansi', 'date' => 'tanggal_upload_rekomendasi_kepala_instansi'],
+        ];
+        @endphp
+
+        @foreach($uploads as $upload)
+        <div class="table">
+            <div class="table-header">{{ $upload['name'] }}</div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Link Berkas</th>
+                        <th>Tanggal Upload</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($kenaikanPangkatKpo as $index => $pangkat)
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>
+                            @if($pangkat->{$upload['file']})
+                            <a href="{{ asset('storage/' . $pangkat->{$upload['file']}) }}" class="btn btn-primary btn-sm" target="_blank">Lihat</a>
+                            @else
+                            <span class="not-uploaded">Belum diunggah</span>
+                            @endif
+                        </td>
+                        <td>{{ $pangkat->{$upload['date']} ?? 'Belum diunggah' }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        @endforeach
+
         @else
-        <p>Data Kenaikan Pangkat KPO tidak ditemukan.</p>
+        <p>Data upload kenaikan pangkat tidak ditemukan.</p>
         @endif
     </div>
 

@@ -15,9 +15,39 @@ class PenyesuaianIjazahController extends Controller
     public function show($id)
     {
         $karyawan = Karyawan::findOrFail($id);
-        $penyesuaianIjazah = PenyesuaianIjazah::where('karyawan_id', $id)->first();
+
+        // Ambil semua data penyesuaian ijazah berdasarkan karyawan_id
+        $penyesuaianIjazah = PenyesuaianIjazah::where('karyawan_id', $id)
+            ->orderBy('tanggal_upload_sk_kenaikan_pangkat_terakhir', 'desc')
+            ->orderBy('tanggal_upload_sk_jabatan_terakhir', 'desc')
+            ->orderBy('tanggal_upload_ijazah_terakhir', 'desc')
+            ->orderBy('tanggal_upload_transkrip_nilai', 'desc')
+            ->orderBy('tanggal_upload_surat_akreditasi', 'desc')
+            ->orderBy('tanggal_upload_surat_ijin_belajar', 'desc')
+            ->orderBy('tanggal_upload_stl_ujian_kenaikan', 'desc')
+            ->orderBy('tanggal_upload_penilaian_kinerja', 'desc')
+            ->orderBy('tanggal_upload_surat_uraian_tugas', 'desc')
+            ->orderBy('tanggal_upload_rekomendasi_kepala_instansi', 'desc')
+            ->get();
+
+        // Jika Anda ingin mengurutkan berdasarkan satu tanggal gabungan atau lain
+        // Anda bisa menggunakan Collection setelah mengambil datanya
+        $penyesuaianIjazah = $penyesuaianIjazah->sortByDesc(function ($upload) {
+            return $upload->tanggal_upload_sk_kenaikan_pangkat_terakhir ??
+                $upload->tanggal_upload_sk_jabatan_terakhir ??
+                $upload->tanggal_upload_ijazah_terakhir ??
+                $upload->tanggal_upload_transkrip_nilai ??
+                $upload->tanggal_upload_surat_akreditasi ??
+                $upload->tanggal_upload_surat_ijin_belajar ??
+                $upload->tanggal_upload_stl_ujian_kenaikan ??
+                $upload->tanggal_upload_penilaian_kinerja ??
+                $upload->tanggal_upload_surat_uraian_tugas ??
+                $upload->tanggal_upload_rekomendasi_kepala_instansi;
+        });
+
         return view('penyesuaian-ijazah', compact('karyawan', 'penyesuaianIjazah'));
     }
+
 
     /**
      * Simpan file persyaratan tugas belajar.

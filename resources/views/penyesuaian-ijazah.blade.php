@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Kenaikan Pangkat Penyesuaian Ijazah - {{ $karyawan->nama }}</title>
+    <title>Detail Penyesuaian Ijazah - {{ $karyawan->nama }}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
         body {
             background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
         }
 
         .navbar {
@@ -39,13 +40,12 @@
         }
 
         .container {
-            margin-top: 70px;
+            margin-top: 80px;
             padding: 20px;
             background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 1200px;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+            max-width: 95%;
         }
 
         h3 {
@@ -55,14 +55,45 @@
             font-size: 24px;
         }
 
+        .info-section {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .table {
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #dee2e6;
+        }
+
+        .table-header {
+            text-align: center;
+            background-color: #007bff;
+            color: white;
+            padding: 8px;
+            font-size: 18px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
         .table th,
         .table td {
+            text-align: center;
             vertical-align: middle;
             font-size: 14px;
+            padding: 10px;
+            border: 1px solid #dee2e6;
         }
 
         .btn-primary {
-            margin-top: 5px;
+            font-size: 14px;
+            padding: 4px 10px;
+        }
+
+        .not-uploaded {
+            color: #dc3545;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -81,134 +112,61 @@
     </div>
 
     <div class="container">
-        <h3>Detail Upload Kenaikan Pangkat Penyesuaian Ijazah</h3>
-        <p><strong>Nama:</strong> {{ $karyawan->nama }}</p>
-        <p><strong>NIP:</strong> {{ $karyawan->nip }}</p>
+        <h3>Detail Penyesuaian Ijazah</h3>
 
-        @if($penyesuaianIjazah)
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Dokumen</th>
-                    <th>Link Berkas</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>SK Kenaikan Pangkat Terakhir</td>
-                    <td>
-                        @if($penyesuaianIjazah->sk_kenaikan_pangkat_terakhir)
-                        <a href="{{ asset('storage/' . $penyesuaianIjazah->sk_kenaikan_pangkat_terakhir) }}" class="btn btn-primary" target="_blank">Lihat</a>
-                        @else
-                        Belum diunggah
-                        @endif
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>SK Jabatan Terakhir</td>
-                    <td>
-                        @if($penyesuaianIjazah->sk_jabatan_terakhir)
-                        <a href="{{ asset('storage/' . $penyesuaianIjazah->sk_jabatan_terakhir) }}" class="btn btn-primary" target="_blank">Lihat</a>
-                        @else
-                        Belum diunggah
-                        @endif
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Ijazah Terakhir</td>
-                    <td>
-                        @if($penyesuaianIjazah->ijazah_terakhir)
-                        <a href="{{ asset('storage/' . $penyesuaianIjazah->ijazah_terakhir) }}" class="btn btn-primary" target="_blank">Lihat</a>
-                        @else
-                        Belum diunggah
-                        @endif
-                    </td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Transkrip Nilai</td>
-                    <td>
-                        @if($penyesuaianIjazah->transkrip_nilai)
-                        <a href="{{ asset('storage/' . $penyesuaianIjazah->transkrip_nilai) }}" class="btn btn-primary" target="_blank">Lihat</a>
-                        @else
-                        Belum diunggah
-                        @endif
-                    </td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Surat Akreditasi</td>
-                    <td>
-                        @if($penyesuaianIjazah->surat_akreditasi)
-                        <a href="{{ asset('storage/' . $penyesuaianIjazah->surat_akreditasi) }}" class="btn btn-primary" target="_blank">Lihat</a>
-                        @else
-                        Belum diunggah
-                        @endif
-                    </td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Surat Ijin Belajar</td>
-                    <td>
-                        @if($penyesuaianIjazah->surat_ijin_belajar)
-                        <a href="{{ asset('storage/' . $penyesuaianIjazah->surat_ijin_belajar) }}" class="btn btn-primary" target="_blank">Lihat</a>
-                        @else
-                        Belum diunggah
-                        @endif
-                    </td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>STL Ujian Kenaikan</td>
-                    <td>
-                        @if($penyesuaianIjazah->stl_ujian_kenaikan)
-                        <a href="{{ asset('storage/' . $penyesuaianIjazah->stl_ujian_kenaikan) }}" class="btn btn-primary" target="_blank">Lihat</a>
-                        @else
-                        Belum diunggah
-                        @endif
-                    </td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td>Penilaian Kinerja</td>
-                    <td>
-                        @if($penyesuaianIjazah->penilaian_kinerja)
-                        <a href="{{ asset('storage/' . $penyesuaianIjazah->penilaian_kinerja) }}" class="btn btn-primary" target="_blank">Lihat</a>
-                        @else
-                        Belum diunggah
-                        @endif
-                    </td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td>Surat Uraian Tugas</td>
-                    <td>
-                        @if($penyesuaianIjazah->surat_uraian_tugas)
-                        <a href="{{ asset('storage/' . $penyesuaianIjazah->surat_uraian_tugas) }}" class="btn btn-primary" target="_blank">Lihat</a>
-                        @else
-                        Belum diunggah
-                        @endif
-                    </td>
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td>Rekomendasi Kepala Instansi</td>
-                    <td>
-                        @if($penyesuaianIjazah->rekomendasi_kepala_instansi)
-                        <a href="{{ asset('storage/' . $penyesuaianIjazah->rekomendasi_kepala_instansi) }}" class="btn btn-primary" target="_blank">Lihat</a>
-                        @else
-                        Belum diunggah
-                        @endif
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="info-section">
+            <p><strong>Nama:</strong> {{ $karyawan->nama }}</p>
+            <p><strong>NIP:</strong> {{ $karyawan->nip }}</p>
+        </div>
+
+        @if($penyesuaianIjazah->isNotEmpty())
+        @php
+        $uploads = [
+        ['name' => 'SK Kenaikan Pangkat Terakhir', 'file' => 'sk_kenaikan_pangkat_terakhir', 'date' => 'tanggal_upload_sk_kenaikan_pangkat_terakhir'],
+        ['name' => 'SK Jabatan Terakhir', 'file' => 'sk_jabatan_terakhir', 'date' => 'tanggal_upload_sk_jabatan_terakhir'],
+        ['name' => 'Ijazah Terakhir', 'file' => 'ijazah_terakhir', 'date' => 'tanggal_upload_ijazah_terakhir'],
+        ['name' => 'Transkrip Nilai', 'file' => 'transkrip_nilai', 'date' => 'tanggal_upload_transkrip_nilai'],
+        ['name' => 'Surat Akreditasi', 'file' => 'surat_akreditasi', 'date' => 'tanggal_upload_surat_akreditasi'],
+        ['name' => 'Surat Ijin Belajar', 'file' => 'surat_ijin_belajar', 'date' => 'tanggal_upload_surat_ijin_belajar'],
+        ['name' => 'STL Ujian Kenaikan', 'file' => 'stl_ujian_kenaikan', 'date' => 'tanggal_upload_stl_ujian_kenaikan'],
+        ['name' => 'Penilaian Kinerja', 'file' => 'penilaian_kinerja', 'date' => 'tanggal_upload_penilaian_kinerja'],
+        ['name' => 'Surat Uraian Tugas', 'file' => 'surat_uraian_tugas', 'date' => 'tanggal_upload_surat_uraian_tugas'],
+        ['name' => 'Rekomendasi Kepala Instansi', 'file' => 'rekomendasi_kepala_instansi', 'date' => 'tanggal_upload_rekomendasi_kepala_instansi'],
+        ];
+        @endphp
+
+        @foreach($uploads as $upload)
+        <div class="table">
+            <div class="table-header">{{ $upload['name'] }}</div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Link Berkas</th>
+                        <th>Tanggal Upload</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($penyesuaianIjazah as $index => $ijazah)
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>
+                            @if($ijazah->{$upload['file']})
+                            <a href="{{ asset('storage/' . $ijazah->{$upload['file']}) }}" class="btn btn-primary btn-sm" target="_blank">Lihat</a>
+                            @else
+                            <span class="not-uploaded">Belum diunggah</span>
+                            @endif
+                        </td>
+                        <td>{{ $ijazah->{$upload['date']} ?? 'Belum diunggah' }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        @endforeach
+
         @else
-        <p>Data Penyesuaian Ijazah tidak ditemukan.</p>
+        <p>Data upload penyesuaian ijazah tidak ditemukan.</p>
         @endif
     </div>
 

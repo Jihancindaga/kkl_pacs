@@ -11,9 +11,36 @@ class KenaikanPangkatKpoController extends Controller
     public function show($id)
     {
         $karyawan = Karyawan::findOrFail($id);
-        $kenaikanPangkatKpo = KenaikanPangkatKpo::where('karyawan_id', $id)->first(); // Ambil data tugas belajar jika ada
+
+        // Ambil semua data kenaikan pangkat KPO dan urutkan berdasarkan tanggal upload terbaru
+        $kenaikanPangkatKpo = KenaikanPangkatKpo::where('karyawan_id', $id)
+            ->orderBy('tanggal_upload_sk_kenaikan_pangkat_terakhir', 'desc')
+            ->orderBy('tanggal_upload_sk_pmk', 'desc')
+            ->orderBy('tanggal_upload_sk_jabatan_pelaksana_terakhir', 'desc')
+            ->orderBy('tanggal_upload_penilaian_kinerja', 'desc')
+            ->orderBy('tanggal_upload_ijazah_terakhir', 'desc')
+            ->orderBy('tanggal_upload_transkrip_nilai', 'desc')
+            ->orderBy('tanggal_upload_surat_gelar_bkn', 'desc')
+            ->orderBy('tanggal_upload_stlud', 'desc')
+            ->orderBy('tanggal_upload_rekomendasi_kepala_instansi', 'desc')
+            ->get();
+
+        // Urutkan data berdasarkan tanggal gabungan, dengan fallback untuk setiap kolom jika tidak ada tanggal
+        $kenaikanPangkatKpo = $kenaikanPangkatKpo->sortByDesc(function ($upload) {
+            return $upload->tanggal_upload_sk_kenaikan_pangkat_terakhir ??
+                $upload->tanggal_upload_sk_pmk ??
+                $upload->tanggal_upload_sk_jabatan_pelaksana_terakhir ??
+                $upload->tanggal_upload_penilaian_kinerja ??
+                $upload->tanggal_upload_ijazah_terakhir ??
+                $upload->tanggal_upload_transkrip_nilai ??
+                $upload->tanggal_upload_surat_gelar_bkn ??
+                $upload->tanggal_upload_stlud ??
+                $upload->tanggal_upload_rekomendasi_kepala_instansi;
+        });
+
         return view('kpo', compact('karyawan', 'kenaikanPangkatKpo'));
     }
+
 
     public function store(Request $request, $karyawan_id)
     {

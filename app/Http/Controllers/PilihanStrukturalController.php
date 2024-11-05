@@ -15,9 +15,39 @@ class PilihanStrukturalController extends Controller
     public function show($id)
     {
         $karyawan = Karyawan::findOrFail($id);
-        $pilihanStruktural = PilihanStruktural::where('karyawan_id', $id)->first();
+
+        // Ambil semua data pilihan struktural dan urutkan berdasarkan tanggal upload terbaru
+        $pilihanStruktural = PilihanStruktural::where('karyawan_id', $id)
+            ->orderBy('tanggal_upload_sk_kenaikan_pangkat_terakhir', 'desc')
+            ->orderBy('tanggal_upload_ijazah_terakhir', 'desc')
+            ->orderBy('tanggal_upload_transkrip_nilai', 'desc')
+            ->orderBy('tanggal_upload_sk_jabatan_spmt', 'desc')
+            ->orderBy('tanggal_upload_berita_acara_pelantikan', 'desc')
+            ->orderBy('tanggal_upload_surat_pernyataan_pelantikan', 'desc')
+            ->orderBy('tanggal_upload_penilaian_kinerja', 'desc')
+            ->orderBy('tanggal_upload_surat_gelar_bkn', 'desc')
+            ->orderBy('tanggal_upload_sttpp_diklatpim_iii', 'desc')
+            ->orderBy('tanggal_upload_rekomendasi_kepala_instansi', 'desc')
+            ->get();
+
+        // Jika Anda ingin membuat urutan berdasarkan satu tanggal gabungan atau lain 
+        // Anda bisa menggunakan Collection setelah mengambil datanya
+        $pilihanStruktural = $pilihanStruktural->sortByDesc(function ($upload) {
+            return $upload->tanggal_upload_sk_kenaikan_pangkat_terakhir ??
+                $upload->tanggal_upload_ijazah_terakhir ??
+                $upload->tanggal_upload_transkrip_nilai ??
+                $upload->tanggal_upload_sk_jabatan_spmt ??
+                $upload->tanggal_upload_berita_acara_pelantikan ??
+                $upload->tanggal_upload_surat_pernyataan_pelantikan ??
+                $upload->tanggal_upload_penilaian_kinerja ??
+                $upload->tanggal_upload_surat_gelar_bkn ??
+                $upload->tanggal_upload_sttpp_diklatpim_iii ??
+                $upload->tanggal_upload_rekomendasi_kepala_instansi;
+        });
+
         return view('pilihan-struktural', compact('karyawan', 'pilihanStruktural'));
     }
+
 
     /**
      * Simpan file persyaratan tugas belajar.

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -54,7 +55,8 @@
             font-size: 24px;
         }
 
-        .table th, .table td {
+        .table th,
+        .table td {
             vertical-align: middle;
             font-size: 14px;
         }
@@ -84,37 +86,38 @@
         }
     </style>
 </head>
+
 <body>
 
-<div class="navbar">
-    <button class="home-btn" onclick="navigateTo('/datakaryawan')">
-        <i class="fas fa-arrow-left"></i>
-    </button>
-    <div class="logo">
-        <img src="/images/pacs.png" alt="Logo PACS">
-        <img src="/images/logo_kundha_kabudayan.png" alt="Logo Kundha Kabudayan">
-        <img src="/images/logo_sleman.jpeg" alt="Logo Sleman">
+    <div class="navbar">
+        <button class="home-btn" onclick="navigateTo('/datakaryawan')">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <div class="logo">
+            <img src="/images/pacs.png" alt="Logo PACS">
+            <img src="/images/logo_kundha_kabudayan.png" alt="Logo Kundha Kabudayan">
+            <img src="/images/logo_sleman.jpeg" alt="Logo Sleman">
+        </div>
     </div>
-</div>
 
-<div class="container">
-    <h3>Kenaikan Pangkat Reguler (KPO)</h3>
-    <p><strong>Nama:</strong> {{ $karyawan->nama }}</p>
-    <p><strong>NIP:</strong> {{ $karyawan->nip }}</p>
+    <div class="container">
+        <h3>Kenaikan Pangkat Fungsional</h3>
+        <p><strong>Nama:</strong> {{ $karyawan->nama }}</p>
+        <p><strong>NIP:</strong> {{ $karyawan->nip }}</p>
 
-    <form action="{{ route('fungsional.store', $karyawan->id) }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Dokumen</th>
-                    <th>Unggah Berkas</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ([
+        <form action="{{ route('fungsional.store', $karyawan->id) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Dokumen</th>
+                        <th>Unggah Berkas</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ([
                     'SK CPNS',
                     'SK PNS',
                     'SK Ploting Terakhir',
@@ -130,54 +133,55 @@
                     'SK Pengangkatan Pertama Fungsional',
                     'SK Kenaikan Jabatan Fungsional',
                     'Rekomendasi Kepala Instansi'
-                ] as $index => $dokumen)
-                <tr>
-                    <td>{{ $index + 1 }}</td>
-                    <td>{{ $dokumen }}</td>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <input type="file" name="file{{ $index + 1 }}" class="form-control" style="flex: 1;" id="file{{ $index + 1 }}" {{ $index === 0 ? '' : 'disabled' }}>
-                            <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile({{ $index + 1 }})" {{ $index === 0 ? '' : 'disabled' }}>Upload</button>
-                        </div>
-                    </td>
-                    <td>
-                        <input type="checkbox" id="checkbox{{ $index + 1 }}" disabled>
-                        <label for="checkbox{{ $index + 1 }}" class="checkbox-label">Syarat ini telah diunggah</label>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-        <div class="text-center">
-            <button type="submit" class="btn btn-success" id="saveButton" disabled>Simpan</button>
-        </div>
-    </form>
-</div>
+                    ] as $index => $dokumen)
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $dokumen }}</td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <input type="file" name="file{{ $index + 1 }}" class="form-control" style="flex: 1;" id="file{{ $index + 1 }}" {{ $index === 0 ? '' : 'disabled' }}>
+                                <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile({{ $index + 1 }})" {{ $index === 0 ? '' : 'disabled' }}>Upload</button>
+                            </div>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="checkbox{{ $index + 1 }}" disabled>
+                            <label for="checkbox{{ $index + 1 }}" class="checkbox-label">Syarat ini telah diunggah</label>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            <div class="text-center">
+                <button type="submit" class="btn btn-success" id="saveButton" disabled>Simpan</button>
+            </div>
+        </form>
+    </div>
 
-<script>
-    function uploadFile(fileNumber) {
-        alert('File ' + fileNumber + ' berhasil diunggah!');
+    <script>
+        function uploadFile(fileNumber) {
+            alert('File ' + fileNumber + ' berhasil diunggah!');
 
-        document.getElementById('checkbox' + fileNumber).checked = true;
-        document.getElementById('checkbox' + fileNumber).disabled = false;
+            document.getElementById('checkbox' + fileNumber).checked = true;
+            document.getElementById('checkbox' + fileNumber).disabled = false;
 
-        if (fileNumber < 15) {
-            document.getElementById('file' + (fileNumber + 1)).disabled = false;
-            document.querySelectorAll('.btn-upload')[fileNumber].disabled = false;
+            if (fileNumber < 15) {
+                document.getElementById('file' + (fileNumber + 1)).disabled = false;
+                document.querySelectorAll('.btn-upload')[fileNumber].disabled = false;
+            }
+
+            checkAllFilesUploaded();
         }
 
-        checkAllFilesUploaded();
-    }
+        function checkAllFilesUploaded() {
+            const allUploaded = [...Array(15)].every((_, i) => document.getElementById('checkbox' + (i + 1)).checked);
+            document.getElementById('saveButton').disabled = !allUploaded;
+        }
 
-    function checkAllFilesUploaded() {
-        const allUploaded = [...Array(15)].every((_, i) => document.getElementById('checkbox' + (i + 1)).checked);
-        document.getElementById('saveButton').disabled = !allUploaded;
-    }
-
-    function navigateTo(page) {
-        window.location.href = page;
-    }
-</script>
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+    </script>
 
 </body>
+
 </html>

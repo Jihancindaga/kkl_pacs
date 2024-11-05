@@ -28,19 +28,19 @@ class FormDataController extends Controller
             'cc' => 'required|integer',
             'nomor_telepon' => 'nullable|string'
         ]);
-    // Tentukan prefix kode kendaraan berdasarkan jenis kendaraan
-    $prefix = ($request->jenis_kendaraan == 'Motor') ? 'mtr-' : 'mbl-';
+        // Tentukan prefix kode kendaraan berdasarkan jenis kendaraan
+        $prefix = ($request->jenis_kendaraan == 'Motor') ? 'mtr-' : 'mbl-';
 
-    // Hitung jumlah kendaraan dari jenis yang sama untuk menentukan nomor urut
-    $lastVehicle = Vehicle::where('jenis_kendaraan', $request->jenis_kendaraan)
-                        ->orderBy('id', 'desc')
-                        ->first();
+        // Hitung jumlah kendaraan dari jenis yang sama untuk menentukan nomor urut
+        $lastVehicle = Vehicle::where('jenis_kendaraan', $request->jenis_kendaraan)
+            ->orderBy('id', 'desc')
+            ->first();
 
-    $nextNumber = $lastVehicle ? ((int)str_replace($prefix, '', $lastVehicle->kode_kendaraan) + 1) : 1;
+        $nextNumber = $lastVehicle ? ((int)str_replace($prefix, '', $lastVehicle->kode_kendaraan) + 1) : 1;
 
-    // Buat kode kendaraan dengan format: prefix + nomor urut
-    $kodeKendaraan = $prefix . $nextNumber;
-    
+        // Buat kode kendaraan dengan format: prefix + nomor urut
+        $kodeKendaraan = $prefix . $nextNumber;
+
         // Simpan data kendaraan dengan kode_kendaraan
         $vehicle = Vehicle::create([
             'plat' => $request->plat,
@@ -54,10 +54,8 @@ class FormDataController extends Controller
             'nomor_telepon' => $request->nomor_telepon,
             'kode_kendaraan' => $kodeKendaraan // Tambahkan kode kendaraan sebelum penyimpanan
         ]);
-    
+
         // Redirect ke halaman daftar kendaraan dengan pesan sukses
         return redirect()->route('vehicles.index')->with('success', 'Kendaraan berhasil ditambahkan.');
     }
-    
-    
 }
