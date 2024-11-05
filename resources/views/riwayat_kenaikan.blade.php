@@ -208,7 +208,7 @@
                                     <a class="dropdown-item" href="#">2) Kenaikan Pangkat Pilihan Struktural</a>
                                     <a class="dropdown-item" href="#">3) Kenaikan Pangkat Pilihan Penyesuaian Ijasah</a>
                                     <a class="dropdown-item" href="#">4) Kenaikan Pangkat Pilihan Fungsional</a>
-                                    <a class="dropdown-item" href="#">5) Kenaikan Pangkat Karena Sedang Menjalankan Tugas Belajar</a>
+                                    <a class="dropdown-item" href="{{ route('tugas-belajar.show', $karyawan->id) }}">5) Kenaikan Pangkat Karena Sedang Menjalankan Tugas Belajar</a>
                                 </div>
                             </div>
                         </td>

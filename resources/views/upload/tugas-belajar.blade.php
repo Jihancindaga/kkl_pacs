@@ -150,29 +150,27 @@
 
     <script>
         function uploadFile(fileNumber) {
+            // Simulate file upload and enable checkbox and next input
             alert('File ' + fileNumber + ' berhasil diunggah!');
-
-            // Enable checkbox after "upload"
             const checkbox = document.getElementById('checkbox' + fileNumber);
             checkbox.checked = true;
-            checkbox.disabled = false;
+            checkbox.disabled = false; // Enable checkbox
 
-            // Disable current file input
-            const currentFileInput = document.getElementById('file' + fileNumber);
-            currentFileInput.disabled = true;
-
-            // Enable the next file input
+            // Enable the next file input and button if it exists
             const nextFileInput = document.getElementById('file' + (fileNumber + 1));
+            const nextUploadButton = document.querySelector('#file' + (fileNumber + 1) + ' + .btn-upload'); // Corrected selector
             if (nextFileInput) {
-                nextFileInput.disabled = false; // Enable the next file input
+                nextFileInput.disabled = false;
+                nextUploadButton.disabled = false; // Enable the next upload button
             }
 
-            checkAllFilesUploaded();
+            checkAllFilesUploaded(); // Check if all files have been uploaded
         }
 
         function checkAllFilesUploaded() {
-            const allUploaded = [1, 2, 3, 4, 5].every(num => document.getElementById('checkbox' + num).checked);
-            document.getElementById('saveButton').disabled = !allUploaded;
+            const checkboxes = Array.from(document.querySelectorAll('input[type="checkbox"]'));
+            const allUploaded = checkboxes.every(checkbox => checkbox.checked);
+            document.getElementById('saveButton').disabled = !allUploaded; // Enable or disable the save button
         }
 
         function navigateTo(page) {

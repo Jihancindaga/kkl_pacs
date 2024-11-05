@@ -9,14 +9,14 @@ use Illuminate\Support\Facades\Storage;
 
 class TugasBelajarController extends Controller
 {
-    /**
-     * Menampilkan halaman tugas belajar.
-     */
-    public function show($karyawan_id)
-    {
-        $karyawan = Karyawan::findOrFail($karyawan_id);
-        return view('tugas-belajar', compact('karyawan'));
-    }
+    public function show($id)
+{
+    $karyawan = Karyawan::findOrFail($id);
+    $tugasBelajar = TugasBelajar::where('karyawan_id', $id)->first(); // Ambil data tugas belajar jika ada
+
+    return view('tugas-belajar', compact('karyawan', 'tugasBelajar'));
+}
+
 
     /**
      * Simpan file persyaratan tugas belajar.
