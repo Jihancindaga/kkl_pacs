@@ -108,6 +108,11 @@ class KaryawanController extends Controller
         return view('hapus_karyawan', compact('karyawans'));
     }
 
+    public function showRiwayatKenaikan()
+    {
+        $karyawans = Karyawan::all();
+        return view('riwayat_kenaikan', compact('karyawans'));
+    }
 
     // Mengecek validasi NIP
     public function checkNip(Request $request)

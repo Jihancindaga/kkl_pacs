@@ -79,7 +79,7 @@
 
     <!-- Navbar -->
     <div class="navbar">
-        <button class="home-btn" onclick="navigateTo('/datakaryawan')">
+        <button class="home-btn" onclick="navigateTo('/riwayat-kenaikan')">
             <i class="fas fa-arrow-left"></i>
         </button>
         <div class="logo">

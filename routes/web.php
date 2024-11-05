@@ -215,3 +215,5 @@ Route::get('/riwayat-kenaikan', function () {
 Route::get('/detail-kenaikan', function () {
     return view('detail-kenaikan');
 })->name('detail-kenaikan');
+
+Route::get('/riwayat-kenaikan', [KaryawanController::class, 'showRiwayatKenaikan']);
