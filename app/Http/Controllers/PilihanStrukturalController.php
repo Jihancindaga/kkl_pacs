@@ -12,10 +12,11 @@ class PilihanStrukturalController extends Controller
     /**
      * Menampilkan halaman tugas belajar.
      */
-    public function show($karyawan_id)
+    public function show($id)
     {
-        $karyawan = Karyawan::findOrFail($karyawan_id);
-        return view('pilihan-struktural', compact('karyawan'));
+        $karyawan = Karyawan::findOrFail($id);
+        $pilihanStruktural = PilihanStruktural::where('karyawan_id', $id)->first();
+        return view('pilihan-struktural', compact('karyawan', 'pilihanStruktural'));
     }
 
     /**

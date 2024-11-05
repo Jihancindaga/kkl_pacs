@@ -12,10 +12,11 @@ class PenyesuaianIjazahController extends Controller
     /**
      * Menampilkan halaman tugas belajar.
      */
-    public function show($karyawan_id)
+    public function show($id)
     {
-        $karyawan = Karyawan::findOrFail($karyawan_id);
-        return view('penyesuaian-ijazah', compact('karyawan'));
+        $karyawan = Karyawan::findOrFail($id);
+        $penyesuaianIjazah = PenyesuaianIjazah::where('karyawan_id', $id)->first();
+        return view('penyesuaian-ijazah', compact('karyawan', 'penyesuaianIjazah'));
     }
 
     /**
@@ -51,16 +52,16 @@ class PenyesuaianIjazahController extends Controller
         // Simpan data ke tabel tugas_belajar
         PenyesuaianIjazah::create([
             'karyawan_id' => $karyawan->id,
-           'sk_kenaikan_pangkat_terakhir'=> $files['file1'] ?? null,
-           'sk_jabatan_terakhir'=> $files['file2'] ?? null,
-           'ijazah_terakhir'=> $files['file3'] ?? null,
-            'transkrip_nilai'=> $files['file4'] ?? null,
-            'surat_akreditasi'=> $files['file5'] ?? null,
-            'surat_ijin_belajar'=> $files['file6'] ?? null,
-            'stl_ujian_kenaikan'=> $files['file7'] ?? null,
-            'penilaian_kinerja'=> $files['file8'] ?? null,
-           'surat_uraian_tugas'=> $files['file9'] ?? null,
-            'rekomendasi_kepala_instansi'=> $files['file1'] ?? null,
+            'sk_kenaikan_pangkat_terakhir' => $files['file1'] ?? null,
+            'sk_jabatan_terakhir' => $files['file2'] ?? null,
+            'ijazah_terakhir' => $files['file3'] ?? null,
+            'transkrip_nilai' => $files['file4'] ?? null,
+            'surat_akreditasi' => $files['file5'] ?? null,
+            'surat_ijin_belajar' => $files['file6'] ?? null,
+            'stl_ujian_kenaikan' => $files['file7'] ?? null,
+            'penilaian_kinerja' => $files['file8'] ?? null,
+            'surat_uraian_tugas' => $files['file9'] ?? null,
+            'rekomendasi_kepala_instansi' => $files['file1'] ?? null,
         ]);
 
         return redirect()->route('penyesuaian-ijazah.show', $karyawan_id)->with('success', 'Data berhasil disimpan!');

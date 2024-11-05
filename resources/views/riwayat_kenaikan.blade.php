@@ -204,10 +204,10 @@
                                     Pilih Berkas
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton{{ $loop->index }}">
-                                    <a class="dropdown-item" href="#">1) Kenaikan Pangkat Reguler (KPO)</a>
-                                    <a class="dropdown-item" href="#">2) Kenaikan Pangkat Pilihan Struktural</a>
-                                    <a class="dropdown-item" href="#">3) Kenaikan Pangkat Pilihan Penyesuaian Ijasah</a>
-                                    <a class="dropdown-item" href="#">4) Kenaikan Pangkat Pilihan Fungsional</a>
+                                    <a class="dropdown-item" href="{{ route('kpo.show', $karyawan->id) }}">1) Kenaikan Pangkat Reguler (KPO)</a>
+                                    <a class="dropdown-item" href="{{ route('pilihan-struktural.show', $karyawan->id) }}">2) Kenaikan Pangkat Pilihan Struktural</a>
+                                    <a class="dropdown-item" href="{{ route('penyesuaian-ijazah.show', $karyawan->id) }}">3) Kenaikan Pangkat Pilihan Penyesuaian Ijasah</a>
+                                    <a class="dropdown-item" href="{{ route('fungsional.show', $karyawan->id) }}">4) Kenaikan Pangkat Pilihan Fungsional</a>
                                     <a class="dropdown-item" href="{{ route('tugas-belajar.show', $karyawan->id) }}">5) Kenaikan Pangkat Karena Sedang Menjalankan Tugas Belajar</a>
                                 </div>
                             </div>

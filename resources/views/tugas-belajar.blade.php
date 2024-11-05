@@ -10,6 +10,7 @@
     <style>
         body {
             background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
         }
 
         .navbar {
@@ -39,13 +40,13 @@
         }
 
         .container {
-            margin-top: 70px;
+            margin-top: 80px;
             padding: 20px;
             background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 1200px;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+            max-width: 95%;
+            /* Diperbesar menjadi 95% dari lebar layar */
         }
 
         h3 {
@@ -55,14 +56,48 @@
             font-size: 24px;
         }
 
+        .info-section {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .table {
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #dee2e6;
+            /* Menambahkan tepi pada tabel */
+        }
+
+        .table-header {
+            text-align: center;
+            background-color: #007bff;
+            color: white;
+            padding: 8px;
+            font-size: 18px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
         .table th,
         .table td {
+            text-align: center;
             vertical-align: middle;
             font-size: 14px;
+            padding: 10px;
+            /* Menambahkan padding untuk kolom */
+            border: 1px solid #dee2e6;
+            /* Menambahkan border pada kolom */
         }
 
         .btn-primary {
-            margin-top: 5px;
+            font-size: 14px;
+            padding: 4px 10px;
+        }
+
+        .not-uploaded {
+            color: #dc3545;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -82,82 +117,53 @@
 
     <div class="container">
         <h3>Detail Upload Tugas Belajar</h3>
-        <p><strong>Nama:</strong> {{ $karyawan->nama }}</p>
-        <p><strong>NIP:</strong> {{ $karyawan->nip }}</p>
 
-        @if($tugasBelajar)
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Dokumen</th>
-                    <th>Link Berkas</th>
-                    <th>Tanggal Upload</th> <!-- Kolom tanggal upload -->
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>SK Kenaikan Pangkat Terakhir</td>
-                    <td>
-                        @if($tugasBelajar->sk_kenaikan_pangkat_terakhir)
-                        <a href="{{ asset('storage/' . $tugasBelajar->sk_kenaikan_pangkat_terakhir) }}" class="btn btn-primary" target="_blank">Lihat</a>
-                        @else
-                        Belum diunggah
-                        @endif
-                    </td>
-                    <td>{{ $tugasBelajar->tanggal_upload_sk_kenaikan_pangkat ?? 'Belum diunggah' }}</td> <!-- Tanggal upload -->
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Surat Tugas Belajar</td>
-                    <td>
-                        @if($tugasBelajar->surat_tugas_belajar)
-                        <a href="{{ asset('storage/' . $tugasBelajar->surat_tugas_belajar) }}" class="btn btn-primary" target="_blank">Lihat</a>
-                        @else
-                        Belum diunggah
-                        @endif
-                    </td>
-                    <td>{{ $tugasBelajar->tanggal_upload_surat_tugas_belajar ?? 'Belum diunggah' }}</td> <!-- Tanggal upload -->
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Penilaian Kinerja</td>
-                    <td>
-                        @if($tugasBelajar->penilaian_kinerja)
-                        <a href="{{ asset('storage/' . $tugasBelajar->penilaian_kinerja) }}" class="btn btn-primary" target="_blank">Lihat</a>
-                        @else
-                        Belum diunggah
-                        @endif
-                    </td>
-                    <td>{{ $tugasBelajar->tanggal_upload_penilaian_kinerja ?? 'Belum diunggah' }}</td> <!-- Tanggal upload -->
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Ijazah Terakhir</td>
-                    <td>
-                        @if($tugasBelajar->ijazah_terakhir)
-                        <a href="{{ asset('storage/' . $tugasBelajar->ijazah_terakhir) }}" class="btn btn-primary" target="_blank">Lihat</a>
-                        @else
-                        Belum diunggah
-                        @endif
-                    </td>
-                    <td>{{ $tugasBelajar->tanggal_upload_ijazah_terakhir ?? 'Belum diunggah' }}</td> <!-- Tanggal upload -->
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>SK Pemberhentian dari Jabatan</td>
-                    <td>
-                        @if($tugasBelajar->sk_pemberhentian_jabatan)
-                        <a href="{{ asset('storage/' . $tugasBelajar->sk_pemberhentian_jabatan) }}" class="btn btn-primary" target="_blank">Lihat</a>
-                        @else
-                        Belum diunggah
-                        @endif
-                    </td>
-                    <td>{{ $tugasBelajar->tanggal_upload_sk_pemberhentian_jabatan ?? 'Belum diunggah' }}</td> <!-- Tanggal upload -->
-                </tr>
-            </tbody>
-        </table>
+        <div class="info-section">
+            <p><strong>Nama:</strong> {{ $karyawan->nama }}</p>
+            <p><strong>NIP:</strong> {{ $karyawan->nip }}</p>
+        </div>
+
+        @if($tugasBelajar->isNotEmpty())
+        @php
+        $uploads = [
+        ['name' => 'SK Kenaikan Pangkat Terakhir', 'file' => 'sk_kenaikan_pangkat_terakhir', 'date' => 'tanggal_upload_sk_kenaikan_pangkat'],
+        ['name' => 'Surat Tugas Belajar', 'file' => 'surat_tugas_belajar', 'date' => 'tanggal_upload_surat_tugas_belajar'],
+        ['name' => 'Penilaian Kinerja', 'file' => 'penilaian_kinerja', 'date' => 'tanggal_upload_penilaian_kinerja'],
+        ['name' => 'Ijazah Terakhir', 'file' => 'ijazah_terakhir', 'date' => 'tanggal_upload_ijazah_terakhir'],
+        ['name' => 'SK Pemberhentian dari Jabatan', 'file' => 'sk_pemberhentian_jabatan', 'date' => 'tanggal_upload_sk_pemberhentian_jabatan'],
+        ];
+        @endphp
+
+        @foreach($uploads as $upload)
+        <div class="table">
+            <div class="table-header">{{ $upload['name'] }}</div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Link Berkas</th>
+                        <th>Tanggal Upload</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($tugasBelajar as $index => $tugas)
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>
+                            @if($tugas->{$upload['file']})
+                            <a href="{{ asset('storage/' . $tugas->{$upload['file']}) }}" class="btn btn-primary btn-sm" target="_blank">Lihat</a>
+                            @else
+                            <span class="not-uploaded">Belum diunggah</span>
+                            @endif
+                        </td>
+                        <td>{{ $tugas->{$upload['date']} ?? 'Belum diunggah' }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        @endforeach
+
         @else
         <p>Data upload tugas belajar tidak ditemukan.</p>
         @endif

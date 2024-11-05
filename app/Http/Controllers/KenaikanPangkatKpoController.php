@@ -8,10 +8,11 @@ use Illuminate\Http\Request;
 
 class KenaikanPangkatKpoController extends Controller
 {
-    public function show($karyawan_id)
+    public function show($id)
     {
-        $karyawan = Karyawan::findOrFail($karyawan_id);
-        return view('kpo', compact('karyawan'));
+        $karyawan = Karyawan::findOrFail($id);
+        $kenaikanPangkatKpo = KenaikanPangkatKpo::where('karyawan_id', $id)->first(); // Ambil data tugas belajar jika ada
+        return view('kpo', compact('karyawan', 'kenaikanPangkatKpo'));
     }
 
     public function store(Request $request, $karyawan_id)
@@ -47,7 +48,7 @@ class KenaikanPangkatKpoController extends Controller
             'sk_kenaikan_pangkat_terakhir' => $files['file1'] ?? null,
             'sk_pmk' => $files['file2'] ?? null,
             'sk_jabatan_pelaksana_terakhir' => $files['file3'] ?? null,
-            'penilaian_kinerja' =>$files['file4'] ?? null,
+            'penilaian_kinerja' => $files['file4'] ?? null,
             'ijazah_terakhir' => $files['file5'] ?? null,
             'transkrip_nilai' => $files['file6'] ?? null,
             'surat_gelar_bkn' => $files['file7'] ?? null,
