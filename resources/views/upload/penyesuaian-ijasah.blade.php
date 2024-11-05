@@ -38,7 +38,7 @@
         }
 
         .container {
-            margin-top: 70px; /* Menambahkan margin atas untuk memberi jarak dari navbar */
+            margin-top: 70px;
             padding: 20px;
             background-color: white;
             border-radius: 8px;
@@ -79,7 +79,7 @@
         }
 
         .btn-success:disabled {
-            background-color: #c0c0c0; /* Warna abu-abu untuk tombol non-aktif */
+            background-color: #c0c0c0;
             cursor: not-allowed;
         }
     </style>
@@ -116,23 +116,23 @@
                 <tbody>
                     @foreach ([
                         'SK Kenaikan Pangkat Terakhir',
-                        'sk_jabatan_terakhir',
-                        'ijazah_terakhir',
-                        'transkrip_nilai',
-                        'surat_akreditasi',
-                        'surat_ijin_belajar',
-                        'stl_ujian_kenaikan',
-                        'penilaian_kinerja',
-                        'surat_uraian_tugas',
-                        'rekomendasi_kepala_instansi'
+                        'SK Jabatan Terakhir',
+                        'Ijazah Terakhir',
+                        'Transkrip Nilai',
+                        'Surat Akreditasi',
+                        'Surat Ijin Belajar',
+                        'STL Ujian Kenaikan',
+                        'Penilaian Kinerja',
+                        'Surat Uraian Tugas',
+                        'Rekomendasi Kepala Instansi'
                     ] as $index => $dokumen)
                     <tr>
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $dokumen }}</td>
                         <td>
                             <div class="d-flex align-items-center">
-                                <input type="file" name="file{{ $index + 1 }}" class="form-control" required style="flex: 1;" id="file{{ $index + 1 }}">
-                                <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile({{ $index + 1 }})">Upload</button>
+                                <input type="file" name="file{{ $index + 1 }}" class="form-control" {{ $index > 0 ? 'disabled' : '' }} style="flex: 1;" id="file{{ $index + 1 }}">
+                                <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile({{ $index + 1 }})" {{ $index > 0 ? 'disabled' : '' }}>Upload</button>
                             </div>
                         </td>
                         <td>
@@ -151,19 +151,22 @@
 
     <script>
         function uploadFile(fileNumber) {
-            // Logic to upload the file for the corresponding document
             alert('File ' + fileNumber + ' berhasil diunggah!');
 
-            // Simulate file upload status
+            // Tandai checkbox sebagai tercentang dan aktifkan checkbox
             document.getElementById('checkbox' + fileNumber).checked = true;
-            document.getElementById('checkbox' + fileNumber).disabled = false; // Enable checkbox
+            document.getElementById('checkbox' + fileNumber).disabled = false;
 
-            // Enable the next file input and button
-            if (fileNumber < 9) {
-                document.getElementById('file' + (fileNumber + 1)).disabled = false; // Enable the next file input
+            // Aktifkan input file dan tombol upload berikutnya
+            const nextFileInput = document.getElementById('file' + (fileNumber + 1));
+            const nextUploadButton = document.querySelector(`#file${fileNumber + 1} ~ .btn-upload`);
+            
+            if (nextFileInput && nextUploadButton) {
+                nextFileInput.disabled = false;
+                nextUploadButton.disabled = false;
             }
 
-            checkAllFilesUploaded(); // Cek jika semua file sudah diupload
+            checkAllFilesUploaded(); // Periksa jika semua file telah diunggah
         }
 
         function checkAllFilesUploaded() {
@@ -180,12 +183,7 @@
             ];
             const allUploaded = checkboxes.every(checkbox => checkbox.checked);
             const saveButton = document.getElementById('saveButton');
-            saveButton.disabled = !allUploaded; // Aktifkan atau non-aktifkan tombol simpan
-        }
-
-        function saveData() {
-            // Logic to save the data
-            alert('Data berhasil disimpan!');
+            saveButton.disabled = !allUploaded; // Aktifkan tombol simpan jika semua file diunggah
         }
 
         function navigateTo(page) {

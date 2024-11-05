@@ -12,19 +12,22 @@ class Fungsional extends Model
     protected $table = 'kenaikan_pangkat_fungsional';
 
     protected $fillable = [
-        'karyawan_id',
-        
+            'karyawan_id',
             'sk_cpns',
             'sk_pns',
             'sk_ploting_terakhir',
             'sk_pengangkatan_jabatan_fungsional',
-            'berita_acara_pelantikan',
+            'sk_kenaikan_pangkat_terakhir',
+            'ijazah',
+            'transkip_nilai',
+            'sk_pmk',
             'penilaian_kinerja',
+            'sertifikat_uji_kompetensi',
             'pak',
             'pak_integrasi',
             'sk_pengangkatan_pertama_fungsional',
             'sk_kenaikan_jabatan_fungsional',
-            'rekomendasi_kepala_instansi',
+            'rekomendasi_kepala_instansi'
     ];
     public function karyawan()
     {

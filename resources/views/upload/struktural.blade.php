@@ -40,7 +40,6 @@
 
         .container {
             margin-top: 70px;
-            /* Menambahkan margin atas untuk memberi jarak dari navbar */
             padding: 20px;
             background-color: white;
             border-radius: 8px;
@@ -77,13 +76,8 @@
             padding: 5px;
         }
 
-        .navbar {
-            margin-bottom: 20px;
-        }
-
         .btn-success:disabled {
             background-color: #c0c0c0;
-            /* Warna abu-abu untuk tombol non-aktif */
             cursor: not-allowed;
         }
     </style>
@@ -119,24 +113,24 @@
                 </thead>
                 <tbody>
                     @foreach ([
-                    'sk_kenaikan_pangkat_terakhir',
-                    'ijazah_terakhir',
-                    'transkrip_nilai',
-                    'sk_jabatan_spmt',
-                    'berita_acara_pelantikan',
-                    'surat_pernyataan_pelantikan',
-                    'penilaian_kinerja',
-                    'surat_gelar_bkn',
-                    'sttpp_diklatpim_iii',
-                    'rekomendasi_kepala_instansi'
+                        'SK Kenaikan Pangkat terakhir',
+                        'Ijasah terakhir',
+                        'Transkrip nilai terakhir',
+                        'SK Jabatan & SPMT',
+                        'Berita Acara Pelantikan',
+                        'Surat Pernyataan Pelantikan',
+                        'Penilaian Kinerja Pegawai selama 2 (dua) tahun terakhir',
+                        'Surat Pencantuman Gelar (Peningkatan Pendidikan) dari BKN bagi yang memperoleh ijazah lebih tinggi',
+                        'STTPP DIKLATPIM III',
+                        'Rekomendasi Kepala Instansi'
                     ] as $index => $dokumen)
                     <tr>
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $dokumen }}</td>
                         <td>
                             <div class="d-flex align-items-center">
-                                <input type="file" name="file{{ $index + 1 }}" class="form-control" required style="flex: 1;" id="file{{ $index + 1 }}">
-                                <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile({{ $index + 1 }})">Upload</button>
+                                <input type="file" name="file{{ $index + 1 }}" class="form-control file-input" required style="flex: 1;" id="file{{ $index + 1 }}" {{ $index > 0 ? 'disabled' : '' }}>
+                                <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile({{ $index + 1 }})" {{ $index > 0 ? 'disabled' : '' }}>Upload</button>
                             </div>
                         </td>
                         <td>
@@ -155,40 +149,27 @@
 
     <script>
         function uploadFile(fileNumber) {
-            // Logic to upload the file for the corresponding document
+            // Simulate file upload and enable checkbox and next input
             alert('File ' + fileNumber + ' berhasil diunggah!');
+            const checkbox = document.getElementById('checkbox' + fileNumber);
+            checkbox.checked = true;
+            checkbox.disabled = false; // Enable checkbox
 
-            // Simulate file upload status
-            document.getElementById('checkbox' + fileNumber).checked = true;
-            document.getElementById('checkbox' + fileNumber).disabled = false; // Enable checkbox
-
-            // Enable the next file input and button
-            if (fileNumber < 8) {
-                document.getElementById('file' + (fileNumber + 1)).disabled = false; // Enable the next file input
+            // Enable the next file input and button if it exists
+            const nextFileInput = document.getElementById('file' + (fileNumber + 1));
+            const nextUploadButton = document.querySelector(`#file${fileNumber + 1} ~ .btn-upload`);
+            if (nextFileInput) {
+                nextFileInput.disabled = false;
+                nextUploadButton.disabled = false; // Enable the next upload button
             }
 
-            checkAllFilesUploaded(); // Cek jika semua file sudah diupload
+            checkAllFilesUploaded(); // Check if all files have been uploaded
         }
 
         function checkAllFilesUploaded() {
-            const checkboxes = [
-                document.getElementById('checkbox1'),
-                document.getElementById('checkbox2'),
-                document.getElementById('checkbox3'),
-                document.getElementById('checkbox4'),
-                document.getElementById('checkbox5'),
-                document.getElementById('checkbox6'),
-                document.getElementById('checkbox7'),
-                document.getElementById('checkbox8')
-            ];
+            const checkboxes = Array.from(document.querySelectorAll('input[type="checkbox"]'));
             const allUploaded = checkboxes.every(checkbox => checkbox.checked);
-            const saveButton = document.getElementById('saveButton');
-            saveButton.disabled = !allUploaded; // Aktifkan atau non-aktifkan tombol simpan
-        }
-
-        function saveData() {
-            // Logic to save the data
-            alert('Data berhasil disimpan!');
+            document.getElementById('saveButton').disabled = !allUploaded; // Enable or disable the save button
         }
 
         function navigateTo(page) {

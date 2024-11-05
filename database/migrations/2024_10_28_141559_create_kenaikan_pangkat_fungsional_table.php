@@ -15,8 +15,12 @@ class CreateKenaikanPangkatFungsionalTable extends Migration
             $table->string('sk_pns')->nullable();
             $table->string('sk_ploting_terakhir')->nullable();
             $table->string('sk_pengangkatan_jabatan_fungsional')->nullable();
-            $table->string('berita_acara_pelantikan')->nullable();
+            $table->string('sk_kenaikan_pangkat_terakhir')->nullable();
+            $table->string('ijazah')->nullable();
+            $table->string('transkip_nilai')->nullable();
+            $table->string('sk_pmk')->nullable();
             $table->string('penilaian_kinerja')->default(false);
+            $table->string('sertifikat_uji_kompetensi')->nullable();
             $table->string('pak')->nullable();
             $table->string('pak_integrasi')->nullable();
             $table->string('sk_pengangkatan_pertama_fungsional')->nullable();

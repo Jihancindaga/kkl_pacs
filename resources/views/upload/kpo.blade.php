@@ -38,7 +38,7 @@
         }
 
         .container {
-            margin-top: 70px; /* Menambahkan margin atas untuk memberi jarak dari navbar */
+            margin-top: 70px;
             padding: 20px;
             background-color: white;
             border-radius: 8px;
@@ -79,7 +79,7 @@
         }
 
         .btn-success:disabled {
-            background-color: #c0c0c0; /* Warna abu-abu untuk tombol non-aktif */
+            background-color: #c0c0c0;
             cursor: not-allowed;
         }
     </style>
@@ -115,22 +115,22 @@
                 </thead>
                 <tbody>
                     @foreach ([
-                        'sk_kenaikan_pangkat_terakhir',
-                        'sk_pmk',
-                        'sk_jabatan_pelaksana_terakhir',
-                        'penilaian_kinerja',
-                        'ijazah_terakhir',
-                        'transkrip_nilai',
-                        'surat_gelar_bkn',
-                        'stlud',
-                        'rekomendasi_kepala_instansi'
+                    'SK Kenaikan Pangkat terakhir',
+                    'SK PMK (Peninjauan Masa Kerja) bagi yang memiliki',
+                    'SK Jabatan Pelaksana terakhir (SK Penempatan pada unit kerja terakhir)',
+                    'Penilaian Kinerja Pegawai selama 2 (dua) tahun terakhir',
+                    'Ijazah terakhir', 
+                    'transkrip nilai',
+                    'Surat pencantuman gelar dari BKN bagi yang mengusulkan peningkatan Pendidikan',
+                    'STLUD bagi yang akan pindah golongan II/d ke III/a (pendidikan SLTA s/d DIII)',
+                    'Rekomendasi dari Kepala Instansi'
                     ] as $index => $dokumen)
                     <tr>
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $dokumen }}</td>
                         <td>
                             <div class="d-flex align-items-center">
-                                <input type="file" name="file{{ $index + 1 }}" class="form-control" required style="flex: 1;" id="file{{ $index + 1 }}">
+                                <input type="file" name="file{{ $index + 1 }}" class="form-control" required style="flex: 1;" id="file{{ $index + 1 }}" {{ $index > 0 ? 'disabled' : '' }}>
                                 <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile({{ $index + 1 }})">Upload</button>
                             </div>
                         </td>
@@ -142,48 +142,30 @@
                     @endforeach
                 </tbody>
             </table>
-        <div class="text-center">
-            <button type="submit" class="btn btn-success" id="saveButton" disabled>Simpan</button>
-        </div>
-    </form>
+            <div class="text-center">
+                <button type="submit" class="btn btn-success" id="saveButton" disabled>Simpan</button>
+            </div>
+        </form>
     </div>
 
     <script>
         function uploadFile(fileNumber) {
-            // Logic to upload the file for the corresponding document
             alert('File ' + fileNumber + ' berhasil diunggah!');
 
-            // Simulate file upload status
             document.getElementById('checkbox' + fileNumber).checked = true;
-            document.getElementById('checkbox' + fileNumber).disabled = false; // Enable checkbox
+            document.getElementById('checkbox' + fileNumber).disabled = false;
 
-            // Enable the next file input and button
-            if (fileNumber < 8) {
-                document.getElementById('file' + (fileNumber + 1)).disabled = false; // Enable the next file input
+            if (fileNumber < 9) {
+                document.getElementById('file' + (fileNumber + 1)).disabled = false;
             }
 
-            checkAllFilesUploaded(); // Cek jika semua file sudah diupload
+            checkAllFilesUploaded();
         }
 
         function checkAllFilesUploaded() {
-            const checkboxes = [
-                document.getElementById('checkbox1'),
-                document.getElementById('checkbox2'),
-                document.getElementById('checkbox3'),
-                document.getElementById('checkbox4'),
-                document.getElementById('checkbox5'),
-                document.getElementById('checkbox6'),
-                document.getElementById('checkbox7'),
-                document.getElementById('checkbox8')
-            ];
+            const checkboxes = Array.from(document.querySelectorAll('input[type="checkbox"]'));
             const allUploaded = checkboxes.every(checkbox => checkbox.checked);
-            const saveButton = document.getElementById('saveButton');
-            saveButton.disabled = !allUploaded; // Aktifkan atau non-aktifkan tombol simpan
-        }
-
-        function saveData() {
-            // Logic to save the data
-            alert('Data berhasil disimpan!');
+            document.getElementById('saveButton').disabled = !allUploaded;
         }
 
         function navigateTo(page) {
