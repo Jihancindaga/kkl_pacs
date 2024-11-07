@@ -12,7 +12,7 @@ class TugasBelajarController extends Controller
     public function show($id)
     {
         $karyawan = Karyawan::findOrFail($id);
-
+    
         // Ambil semua data tugas belajar dan urutkan berdasarkan tanggal upload terbaru
         $tugasBelajar = TugasBelajar::where('karyawan_id', $id)
             ->orderBy('tanggal_upload_sk_kenaikan_pangkat', 'desc')
@@ -21,19 +21,22 @@ class TugasBelajarController extends Controller
             ->orderBy('tanggal_upload_ijazah_terakhir', 'desc')
             ->orderBy('tanggal_upload_sk_pemberhentian_jabatan', 'desc')
             ->get();
-
+            
+    
         // Jika Anda ingin membuat urutan berdasarkan satu tanggal gabungan atau lain 
         // Anda bisa menggunakan Collection setelah mengambil datanya
-        $tugasBelajar = $tugasBelajar->sortByDesc(function ($upload) {
-            return $upload->tanggal_upload_sk_kenaikan_pangkat ??
-                $upload->tanggal_upload_surat_tugas_belajar ??
-                $upload->tanggal_upload_penilaian_kinerja ??
-                $upload->tanggal_upload_ijazah_terakhir ??
-                $upload->tanggal_upload_sk_pemberhentian_jabatan;
+        $tugasBelajar = $tugasBelajar->sortByDesc(function($upload) {
+            return $upload->tanggal_upload_sk_kenaikan_pangkat ?? 
+                   $upload->tanggal_upload_surat_tugas_belajar ?? 
+                   $upload->tanggal_upload_penilaian_kinerja ?? 
+                   $upload->tanggal_upload_ijazah_terakhir ?? 
+                   $upload->tanggal_upload_sk_pemberhentian_jabatan;
         });
-
+    
         return view('tugas-belajar', compact('karyawan', 'tugasBelajar'));
     }
+    
+    
 
     /**
      * Simpan file persyaratan tugas belajar.
