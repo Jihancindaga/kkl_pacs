@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\KenaikanPangkatKpo;
 use App\Models\Karyawan; // Tambahkan ini
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class KenaikanPangkatKpoController extends Controller
@@ -77,7 +78,7 @@ class KenaikanPangkatKpoController extends Controller
                 $files[$fileField] = $path;
             }
         }
-
+    
         // Menyimpan data ke tabel
         KenaikanPangkatKpo::create([
             'karyawan_id' => $karyawan->id,

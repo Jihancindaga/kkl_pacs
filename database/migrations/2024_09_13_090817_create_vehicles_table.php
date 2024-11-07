@@ -15,7 +15,7 @@ class CreateVehiclesTable extends Migration
         $table->string('plat')->unique(); // Kolom plat sebagai unique key
         $table->string('pengguna'); // Pengguna kendaraan
         $table->date('waktu_pajak'); // Waktu pajak
-        $table->string('ganti_plat')->nullable(); // Ganti plat, bisa kosong
+        $table->date('ganti_plat')->nullable(); // Ganti plat, bisa kosong
         $table->integer('usia_kendaraan'); // Usia kendaraan
         $table->integer('cc'); // Kapasitas mesin
         $table->timestamps(); // Kolom created_at dan updated_at
