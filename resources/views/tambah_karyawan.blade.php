@@ -154,11 +154,11 @@
             <!-- Tombol Navigasi dan Aksi dalam satu baris -->
             <div class="btn-container">
                 <div class="button-group">
-                    <button class="btn btn-1" onclick="navigateTo('/datakaryawan')">Data Pokok Karyawan </button>
+                    <button class="btn btn-1" onclick="navigateTo('/datakaryawan')">Data Pokok Karyawan</button>
                     <button class="btn btn-2" onclick="navigateTo('/tambah-karyawan')">Tambah Karyawan Baru</button>
-                    <button class="btn btn-3">Riwayat Kenaikan</button>
-                    <a href="/hapus-data-karyawan" class="btn btn-danger">Hapus Karyawan</a>
-                    <a href="/daftar-hapus-karyawan" class="btn btn-success">Riwayat Karyawan Non-aktif</a>
+                    <button class="btn btn-3" onclick="navigateTo('/riwayat-kenaikan')">Riwayat Kenaikan</button>
+                    <a href="/hapus-karyawan" class="btn btn-danger">Hapus Karyawan</a>
+                    <a href="/riwayat_karyawan_nonaktif" class="btn btn-success">Riwayat Karyawan Non-aktif</a>
                 </div>
             </div>
 
@@ -176,12 +176,12 @@
                     <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Karyawan" required>
                 </div>
                 <div class="form-group">
-                    <label for="tahun_kenaikan_gaji">Tahun Kenaikan Gaji</label>
-                    <input type="text" class="form-control" id="tahun_kenaikan_gaji" name="tahun_kenaikan_gaji" placeholder="Tahun Kenaikan Gaji" required>
+                    <label for="tanggal_kenaikan_gaji">Tanggal Kenaikan Gaji</label>
+                    <input type="date" class="form-control" id="tanggal_kenaikan_gaji" name="tanggal_kenaikan_gaji" placeholder="Tanggal Kenaikan Gaji" required>
                 </div>
                 <div class="form-group">
-                    <label for="tahun_kenaikan_pangkat">Tahun Kenaikan Pangkat</label>
-                    <input type="text" class="form-control" id="tahun_kenaikan_pangkat" name="tahun_kenaikan_pangkat" placeholder="Tahun Kenaikan Pangkat" required>
+                    <label for="tanggal_kenaikan_pangkat">Tanggal Kenaikan Pangkat</label>
+                    <input type="date" class="form-control" id="tanggal_kenaikan_pangkat" name="tanggal_kenaikan_pangkat" placeholder="Tanggal Kenaikan Pangkat" required>
                 </div>
                 <div class="form-group">
                     <label for="golongan">Golongan</label>

@@ -19,11 +19,13 @@ class TugasBelajar extends Model
         'surat_tugas_belajar',
         'penilaian_kinerja',
         'ijazah_terakhir',
+        'transkrip_nilai',
         'sk_pemberhentian_jabatan',
         'tanggal_upload_sk_kenaikan_pangkat',
         'tanggal_upload_surat_tugas_belajar',
         'tanggal_upload_penilaian_kinerja',
         'tanggal_upload_ijazah_terakhir',
+        'tanggal_upload_transkrip_nilai',
         'tanggal_upload_sk_pemberhentian_jabatan',
     ];
 

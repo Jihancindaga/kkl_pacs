@@ -17,8 +17,8 @@ class CreateKaryawansTable extends Migration
             $table->id();
             $table->string('nip')->unique();
             $table->string('nama');
-            $table->string('tahun_kenaikan_gaji');
-            $table->string('tahun_kenaikan_pangkat');
+            $table->date('tanggal_kenaikan_gaji');
+            $table->date('tanggal_kenaikan_pangkat');
             $table->string('golongan');
             $table->string('pangkat');
             $table->string('jabatan');

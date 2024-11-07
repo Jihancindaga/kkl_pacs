@@ -27,8 +27,8 @@ class KaryawanController extends Controller
         $validateData = $request->validate([
             'nama' => 'required|string|max:255',
             'nip' => 'required|string|max:20|unique:karyawans',
-            'tahun_kenaikan_gaji' => 'required|string|max:255',
-            'tahun_kenaikan_pangkat' => 'required|string|max:255',
+            'tanggal_kenaikan_gaji' => 'required|string|max:255',
+            'tanggal_kenaikan_pangkat' => 'required|string|max:255',
             'jabatan' => 'required|string|max:255',
             'golongan' => 'required|string|max:255',
             'pangkat' => 'required|string|max:255',
@@ -53,8 +53,8 @@ class KaryawanController extends Controller
         $request->validate([
             'nip' => 'required',
             'nama' => 'required',
-            'tahun_kenaikan_gaji' => 'required',
-            'tahun_kenaikan_pangkat' => 'required',
+            'tanggal_kenaikan_gaji' => 'required',
+            'tanggal_kenaikan_pangkat' => 'required',
             'golongan' => 'required',
             'pangkat' => 'required',
             'jabatan' => 'required',

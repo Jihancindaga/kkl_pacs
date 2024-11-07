@@ -106,6 +106,8 @@
         }
 
         .table thead th {
+            text-align: center;
+            vertical-align: middle;
             background-color: #007bff;
             color: rgb(253, 251, 251);
             border: 1px solid #dee2e6;
@@ -119,8 +121,19 @@
             border: 1px solid #dee2e6;
             font-size: 12px;
             padding: 5px;
-            white-space: normal;
+            white-space: nowrap;
             word-break: break-word;
+        }
+
+        .table td.jabatan {
+            white-space: normal;
+            /* Memungkinkan teks pada kolom jabatan untuk di-break */
+        }
+
+        .table th.jabatan,
+        .table td.jabatan {
+            width: 200px;
+            /* Atur lebar kolom jabatan sesuai kebutuhan */
         }
 
         @media (max-width: 768px) {
@@ -160,9 +173,9 @@
             <i class="fas fa-arrow-left"></i>
         </button>
         <div class="logo">
-            <img src="/images/pacs.png" alt="Logo PACS">
-            <img src="/images/logo_kundha_kabudayan.png" alt="Logo Kundha Kabudayan">
-            <img src="/images/logo_sleman.jpeg" alt="Logo Sleman">
+            <img src="/images/pacs.png" alt="Logo PACS" style="height: 40px; margin-right: 520px;">
+            <img src="/images/logo_kundha_kabudayan.png" alt="Logo Kundha Kabudayan" style="height: 40px; margin-right: 5px; margin-left: 5px;">
+            <img src="/images/logo_sleman.jpeg" alt="Logo Sleman" style="height: 40px; margin-right: 5px; margin-left: 10px;">
         </div>
     </div>
 
@@ -180,9 +193,9 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
+                        <th>NO</th>
                         <th>NIP</th>
                         <th>Nama</th>
-                        <th>Tahun Kenaikan</th>
                         <th>Golongan</th>
                         <th>Pangkat</th>
                         <th>Jabatan</th>
@@ -190,14 +203,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($karyawans as $karyawan)
+                    @foreach($karyawans as $index => $karyawan)
                     <tr>
+                        <td>{{ $index + 1 }}</td>
                         <td>{{ $karyawan->nip }}</td>
                         <td>{{ $karyawan->nama }}</td>
-                        <td>{{ $karyawan->tahun_kenaikan_pangkat }}</td>
                         <td>{{ $karyawan->golongan }}</td>
                         <td>{{ $karyawan->pangkat }}</td>
-                        <td>{{ $karyawan->jabatan }}</td>
+                        <td class="jabatan">{{ $karyawan->jabatan }}</td>
                         <td>
                             <div class="dropdown">
                                 <button class="btn btn-info btn-sm dropdown-toggle" type="button" id="dropdownMenuButton{{ $loop->index }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

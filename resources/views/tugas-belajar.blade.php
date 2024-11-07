@@ -109,9 +109,9 @@
             <i class="fas fa-arrow-left"></i>
         </button>
         <div class="logo">
-            <img src="/images/pacs.png" alt="Logo PACS">
-            <img src="/images/logo_kundha_kabudayan.png" alt="Logo Kundha Kabudayan">
-            <img src="/images/logo_sleman.jpeg" alt="Logo Sleman">
+            <img src="/images/pacs.png" alt="Logo PACS" style="height: 40px; margin-right: 520px;">
+            <img src="/images/logo_kundha_kabudayan.png" alt="Logo Kundha Kabudayan" style="height: 40px; margin-right: 5px; margin-left: 5px;">
+            <img src="/images/logo_sleman.jpeg" alt="Logo Sleman" style="height: 40px; margin-right: 5px; margin-left: 10px;">
         </div>
     </div>
 
@@ -130,6 +130,7 @@
         ['name' => 'Surat Tugas Belajar', 'file' => 'surat_tugas_belajar', 'date' => 'tanggal_upload_surat_tugas_belajar'],
         ['name' => 'Penilaian Kinerja', 'file' => 'penilaian_kinerja', 'date' => 'tanggal_upload_penilaian_kinerja'],
         ['name' => 'Ijazah Terakhir', 'file' => 'ijazah_terakhir', 'date' => 'tanggal_upload_ijazah_terakhir'],
+        ['name' => 'Transkrip Nilai', 'file' => 'transkrip_nilai', 'date' => 'tanggal_upload_transkrip_nilai'],
         ['name' => 'SK Pemberhentian dari Jabatan', 'file' => 'sk_pemberhentian_jabatan', 'date' => 'tanggal_upload_sk_pemberhentian_jabatan'],
         ];
         @endphp

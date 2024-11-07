@@ -242,7 +242,7 @@ class VehicleSeeder extends Seeder
             [
                 'kode_kendaraan' => 'mtr-13',
                 'plat' => 'AB 2091 ZP',
-                'pengguna' => 'Jihan Cindaga S.Kom',
+                'pengguna' => 'Jihan Cindaga',
                 'jenis_kendaraan' => 'Motor',
                 'merk_kendaraan' => 'Vario',
                 'waktu_pajak' => '2024-11-16',

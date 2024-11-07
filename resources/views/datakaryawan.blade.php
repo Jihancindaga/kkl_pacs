@@ -115,6 +115,8 @@
 
         .table thead th {
             background-color: #007bff;
+            text-align: center;
+            vertical-align: middle;
             color: rgb(253, 251, 251);
             border: 1px solid #dee2e6;
             font-size: 12px;
@@ -150,8 +152,8 @@
             /* Memecah kata jika terlalu panjang */
         }
 
-        .table .tahun {
-            width: 50px;
+        .table .tanggal {
+            width: 120px;
             /* Lebar kolom yang lebih kecil */
         }
 
@@ -361,8 +363,8 @@
                             <th>No</th>
                             <th>NIP</th>
                             <th>Nama</th>
-                            <th>Tahun Kenaikan Gaji</th>
-                            <th>Tahun Kenaikan Pangkat</th>
+                            <th class="tanggal">Tanggal Kenaikan Gaji</th>
+                            <th class="tanggal">Tanggal Kenaikan Pangkat</th>
                             <th>Gol</th>
                             <th>Pangkat</th>
                             <th>Jabatan</th>
@@ -376,8 +378,8 @@
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $karyawan->nip }}</td>
                             <td class="nama">{{ $karyawan->nama }}</td>
-                            <td>{{ $karyawan->tahun_kenaikan_gaji }}</td>
-                            <td>{{ $karyawan->tahun_kenaikan_pangkat }}</td>
+                            <td>{{ $karyawan->tanggal_kenaikan_gaji }}</td>
+                            <td>{{ $karyawan->tanggal_kenaikan_pangkat }}</td>
                             <td>{{ $karyawan->golongan }}</td>
                             <td>{{ $karyawan->pangkat }}</td>
                             <td class="jabatan">{{ $karyawan->jabatan }}</td>
