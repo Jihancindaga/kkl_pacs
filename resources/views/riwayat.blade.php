@@ -98,16 +98,31 @@
         }
 
         .btn-1 {
-            background-color: #17a2b8; /* Teal */
+            background-color: #17a2b8;
+            /* Teal */
         }
+
         .btn-2 {
-            background-color: #665cc0; /* Ungu */
+            background-color: #665cc0;
+            /* Ungu */
         }
+
         .btn-3 {
-            background-color: #aa1c9e; /* Oranye */
+            background-color: #aa1c9e;
+            /* Oranye */
         }
-        .btn-warning, .btn-danger, .btn-success {
-            color: white; /* Set warna teks tombol */
+        .btn-4 {
+            background-color: #ec2300;
+            /* Oranye */
+        }
+        .btn-5 {
+            background-color: #26eb0c;
+            /* Oranye */
+        }
+        .btn-warning,
+         {
+            color: white;
+            /* Set warna teks tombol */
         }
         .btn:hover {
             opacity: 0.8;
@@ -152,12 +167,12 @@
             <!-- Tombol Navigasi dan Aksi dalam satu baris -->
             <div class="btn-container">
                 <div class="button-group">
-                    <button class="btn btn-1 {{ Request::is('pajak') ? 'active' : '' }}" onclick="navigateTo('/pajak')">Data Pokok Kendaraan</button>
-                    <button class="btn btn-2 {{ Request::is('riwayat') ? 'active' : '' }}" onclick="navigateTo('/riwayat')">Riwayat Pembayaran Pajak</button>
-                    <a href="{{ route('vehicles.create') }}" class="btn btn-3">Tambah Kendaraan</a>
-                    <a href="/hapus-kendaraan" class="btn btn-danger {{ Request::is('hapus-kendaraan') ? 'active' : '' }}">Hapus Kendaraan</a>
-                    <a href="/daftar-hapus-kendaraan" class="btn btn-success {{ Request::is('daftar-hapus-kendaraan') ? 'active' : '' }}">Riwayat Kendaraan Non-aktif</a>
-            </div>
+                    <button class="btn btn-1 {{ Request::is('pajak') ? 'active' : '' }}" onclick="setActive(this, '/pajak')">Data Pokok Kendaraan</button>
+                    <button class="btn btn-2 {{ Request::is('riwayat') ? 'active' : '' }}" onclick="setActive(this, '/riwayat')">Riwayat Pembayaran Pajak</button>
+                    <button class="btn btn-3 {{ Request::is('vehicles/create') ? 'active' : '' }}" onclick="setActive(this, '{{ route('vehicles.create') }}')">Tambah Kendaraan</button>
+                    <button class="btn btn-4 {{ Request::is('hapus-kendaraan') ? 'active' : '' }}" onclick="setActive(this, '/hapus-kendaraan')">Hapus Kendaraan</button>
+                    <button class="btn btn-5 {{ Request::is('daftar-hapus-kendaraan') ? 'active' : '' }}" onclick="setActive(this, '/daftar-hapus-kendaraan')">Riwayat Kendaraan Non-aktif</button>
+                </div>
             </div>
 
             <!-- Box Pencarian -->
@@ -191,16 +206,7 @@
                             <td>
                                 <a href="{{ route('riwayat.detail', ['id' => $vehicle->id]) }}" class="btn btn-info btn-sm" onclick="toggleDetails({{ $vehicle->id }})">Lihat Detail</a>
                             </td>
-                        </tr>
-                        <tr id="details-{{ $vehicle->id }}" style="display:none;">
-                            <td colspan="5">
-                                <strong>Waktu Pajak:</strong> {{ optional($vehicle->riwayat)->waktu_pajak ? \Carbon\Carbon::parse($vehicle->riwayat->waktu_pajak)->format('j F Y') : '-' }}<br>
-                                <strong>Tanggal Bayar:</strong> {{ optional($vehicle->riwayat)->tanggal_bayar ? \Carbon\Carbon::parse($vehicle->riwayat->tanggal_bayar)->format('j F Y') : '-' }}<br>
-                                <strong>Total Bayar:</strong> Rp {{ optional($vehicle->riwayat)->total_bayar ? number_format($vehicle->riwayat->total_bayar, 2) : '-' }}<br>
-                                <strong>Bukti Pembayaran:</strong>
-                                <a href="{{ optional($vehicle->riwayat)->bukti_pembayaran ? asset('storage/' . $vehicle->riwayat->bukti_pembayaran) : '#' }}" target="_blank">Lihat Bukti</a>
-                            </td>
-                        </tr>
+                        
                     @endforeach
                 </tbody>
             </table>
@@ -208,17 +214,26 @@
     </div>
 
     <script>
-        function navigateTo(url) {
-            window.location.href = url;
-        }
-
-        // Fungsi untuk mengatur tombol aktif
-        function setActive(button) {
+          // Fungsi untuk mengatur tombol aktif
+          function setActive(button, url) {
+            // Mengambil semua tombol dalam grup tombol
             const buttons = document.querySelectorAll('.button-group .btn');
+
+            // Menghapus kelas 'active' dari semua tombol
             buttons.forEach(btn => {
                 btn.classList.remove('active');
             });
+
+            // Menambahkan kelas 'active' ke tombol yang dipilih
             button.classList.add('active');
+
+            // Mengarahkan ke URL yang ditentukan
+            navigateTo(url);
+        }
+
+        // Fungsi untuk navigasi ke halaman lain
+        function navigateTo(page) {
+            window.location.href = page;
         }
 
         // Fungsi untuk menampilkan atau menyembunyikan detail

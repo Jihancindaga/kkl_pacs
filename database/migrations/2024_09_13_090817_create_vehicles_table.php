@@ -10,7 +10,7 @@ class CreateVehiclesTable extends Migration
 {
     Schema::create('vehicles', function (Blueprint $table) {
         $table->id(); // Kolom auto-increment
-        $table->string('kode_kendaraan')->nullable()->unique();
+        $table->string('kode_kendaraan')->unique();
         $table->string('jenis_kendaraan'); // Jenis kendaraan
         $table->string('plat')->unique(); // Kolom plat sebagai unique key
         $table->string('pengguna'); // Pengguna kendaraan

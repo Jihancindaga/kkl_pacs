@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Vehicle;
 use App\Models\RiwayatPembayaran;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str; 
 
 class VehicleController extends Controller
 {
@@ -59,59 +60,50 @@ class VehicleController extends Controller
             $vehicles = Vehicle::all();
             return view('form_data', compact('vehicles'));
         }
-    
-        /**
-         * Menyimpan data kendaraan baru ke dalam database.
-         */
         public function store(Request $request)
-{
-    // Validasi data yang masuk
-    $request->validate([
-        'plat' => 'required|string|max:20',
-        'pengguna' => 'required|string|max:100',
-        'jenis_kendaraan' => 'required|string|max:50',
-        'merk_kendaraan' => 'required|string|max:255',
-        'waktu_pajak' => 'required|date',
-        'ganti_plat' => 'nullable|date',
-        'usia_kendaraan' => 'required|integer|min:0',
-        'cc' => 'required|integer|min:0',
-        'nomor_telepon' => 'nullable|string|max:15'
-    ]);
-
-    // Logika untuk generate kode_kendaraan berdasarkan jenis kendaraan
-    $kodeKendaraanPrefix = '';
-    if ($request->jenis_kendaraan == 'Motor') {
-        $kodeKendaraanPrefix = 'mtr-';
-    } elseif ($request->jenis_kendaraan == 'Mobil') {
-        $kodeKendaraanPrefix = 'mbl-';
-    }
-
-    // Cari jumlah kendaraan dengan jenis yang sama
-    $count = Vehicle::where('jenis_kendaraan', $request->jenis_kendaraan)->count();
+        {
+            // Validasi data kendaraan
+            $validatedData = $request->validate([
+                'plat' => 'required|string|max:15',
+                'pengguna' => 'required|string|max:255',
+                'jenis_kendaraan' => 'required|string|max:255',  // Jenis kendaraan: Motor atau Mobil
+                'merk_kendaraan' => 'required|string|max:255',
+                'waktu_pajak' => 'required|date',
+                'ganti_plat' => 'required|date',
+                'usia_kendaraan' => 'required|integer',
+                'cc' => 'required|integer',
+                'nomor_telepon' => 'required|string|max:15',
+            ]);
     
-    // Generate nomor urut berdasarkan jumlah kendaraan yang sudah ada
-    $nomorUrut = str_pad($count + 1, 3, '0', STR_PAD_LEFT); // Membuat angka urut dengan 3 digit
-
-    // Gabungkan prefix dengan nomor urut
-    $kodeKendaraan = $kodeKendaraanPrefix . $nomorUrut;
-
-    // Buat dan simpan data kendaraan baru
-    $vehicle = new Vehicle();
-    $vehicle->kode_kendaraan = $kodeKendaraan;
-    $vehicle->plat = $request->input('plat');
-    $vehicle->pengguna = $request->input('pengguna');
-    $vehicle->jenis_kendaraan = $request->input('jenis_kendaraan');
-    $vehicle->merk_kendaraan = $request->input('merk_kendaraan');
-    $vehicle->waktu_pajak = $request->input('waktu_pajak');
-    $vehicle->ganti_plat = $request->input('ganti_plat');
-    $vehicle->usia_kendaraan = $request->input('usia_kendaraan');
-    $vehicle->cc = $request->input('cc');
-    $vehicle->nomor_telepon = $request->input('nomor_telepon');
-    $vehicle->save();
-
-    // Redirect ke halaman daftar kendaraan dengan pesan sukses
-    return redirect()->route('vehicles.index')->with('success', 'Kendaraan berhasil ditambahkan.');
-}
+            // Tentukan prefix berdasarkan jenis kendaraan
+            $jenisKendaraanPrefix = ($request->jenis_kendaraan == 'Motor') ? 'MT' : 'MB'; // 'MT' untuk motor, 'MB' untuk mobil
+    
+            // Generate angka acak dua digit
+            $randomNumber = rand(10, 99);
+    
+            // Gabungkan prefix dengan angka acak
+            $kodeKendaraan = "{$jenisKendaraanPrefix}-{$randomNumber}";
+    
+            // Cek apakah kendaraan dengan kode ini sudah ada
+            $existingVehicle = Vehicle::where('kode_kendaraan', $kodeKendaraan)->first();
+    
+            // Jika kendaraan dengan kode ini sudah ada, buat kode baru
+            while ($existingVehicle) {
+                $randomNumber = rand(10, 99);  // Generate angka acak lagi jika duplikat
+                $kodeKendaraan = "{$jenisKendaraanPrefix}-{$randomNumber}";
+                $existingVehicle = Vehicle::where('kode_kendaraan', $kodeKendaraan)->first();
+            }
+    
+            // Set kode kendaraan ke validatedData
+            $validatedData['kode_kendaraan'] = $kodeKendaraan;
+    
+            // Simpan data kendaraan baru ke database
+            Vehicle::create($validatedData);
+    
+            // Redirect ke halaman daftar kendaraan dengan pesan sukses
+            return redirect()->route('vehicles.index')->with('success', 'Kendaraan berhasil ditambahkan dengan kode: ' . $kodeKendaraan);
+        }
+         
 
 
     // Menampilkan form edit kendaraan

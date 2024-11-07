@@ -189,7 +189,9 @@
                 <a href="/hapus-karyawan" class="btn btn-danger">Hapus Karyawan</a>
                 <a href="/riwayat_karyawan_nonaktif" class="btn btn-success">Riwayat Karyawan Non-aktif</a>
             </div>
-
+            <div class="search-box mb-3">
+                <input type="text" id="searchInput" class="form-control" placeholder="Cari data karyawan...">
+            </div>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -202,7 +204,7 @@
                         <th>Berkas</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="karyawanTableBody">
                     @foreach($karyawans as $index => $karyawan)
                     <tr>
                         <td>{{ $index + 1 }}</td>
@@ -231,17 +233,27 @@
             </table>
         </div>
     </div>
-
-    <script>
-        function navigateTo(url) {
-            window.location.href = url;
-        }
-    </script>
-
-    <!-- Include Bootstrap JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Include Bootstrap JS -->
+   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            let searchValue = this.value.toLowerCase();
+            let rows = document.querySelectorAll('#karyawanTableBody tr');
+
+            rows.forEach(function(row) {
+                let rowData = row.innerText.toLowerCase();
+                row.style.display = rowData.includes(searchValue) ? '' : 'none';
+            });
+        });
+    </script>
 </body>
 
 </html>

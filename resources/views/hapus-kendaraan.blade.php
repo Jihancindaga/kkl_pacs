@@ -98,24 +98,41 @@
             cursor: pointer;
             display: inline-block;
         }
+        .button-group .btn.active {
+            background-color: #0056b3; /* Warna gelap untuk tombol aktif */
+            color: white; /* Warna teks tetap putih */
+            border: 1px solid black; /* Tambahkan border hitam */
+            transform: scale(1.05); /* Sedikit memperbesar tombol aktif */
+        }
 
         /* Specific Button Colors */
         .btn-1 {
-            background-color: #17a2b8; /* Teal */
-        }
-        .btn-2 {
-            background-color: #665cc0; /* Ungu */
-        }
-        .btn-3 {
-            background-color: #aa1c9e; /* Oranye */
-        }
-        .btn-danger {
-            background-color: #dc3545; /* Warna Bootstrap untuk danger */
-        }
-        .btn-success {
-            background-color: #28a745; /* Warna Bootstrap untuk success */
+            background-color: #17a2b8;
+            /* Teal */
         }
 
+        .btn-2 {
+            background-color: #665cc0;
+            /* Ungu */
+        }
+
+        .btn-3 {
+            background-color: #aa1c9e;
+            /* Oranye */
+        }
+        .btn-4 {
+            background-color: #ec2300;
+            /* Oranye */
+        }
+        .btn-5 {
+            background-color: #26eb0c;
+            /* Oranye */
+        }
+        .btn-warning,
+         {
+            color: white;
+            /* Set warna teks tombol */
+        }
         /* Button Hover Effects */
         .btn:hover {
             opacity: 0.8;
@@ -262,11 +279,11 @@
             <!-- Tombol Navigasi dan Aksi dalam satu baris -->
             <div class="btn-container">
                 <div class="button-group">
-                    <button class="btn btn-1" data-page="data-kendaraan" onclick="setActive(this); navigateTo('/pajak')">Data Pokok Kendaraan</button>
-                    <button class="btn btn-2" data-page="riwayat" onclick="setActive(this); navigateTo('/riwayat')">Riwayat Pembayaran Pajak</button>
-                    <a href="{{ route('vehicles.create') }}" class="btn btn-3">Tambah Kendaraan</a>
-                    <a href="/hapus-kendaraan" class="btn btn-danger" data-page="hapus-kendaraan" onclick="setActive(this);">Hapus Kendaraan</a>
-                    <a href="/daftar-hapus-kendaraan" class="btn btn-success" data-page="riwayat-non-aktif" onclick="setActive(this);">Riwayat Kendaraan Non-aktif</a>
+                    <button class="btn btn-1 {{ Request::is('pajak') ? 'active' : '' }}" onclick="setActive(this, '/pajak')">Data Pokok Kendaraan</button>
+                    <button class="btn btn-2 {{ Request::is('riwayat') ? 'active' : '' }}" onclick="setActive(this, '/riwayat')">Riwayat Pembayaran Pajak</button>
+                    <button class="btn btn-3 {{ Request::is('vehicles/create') ? 'active' : '' }}" onclick="setActive(this, '{{ route('vehicles.create') }}')">Tambah Kendaraan</button>
+                    <button class="btn btn-4 {{ Request::is('hapus-kendaraan') ? 'active' : '' }}" onclick="setActive(this, '/hapus-kendaraan')">Hapus Kendaraan</button>
+                    <button class="btn btn-5 {{ Request::is('daftar-hapus-kendaraan') ? 'active' : '' }}" onclick="setActive(this, '/daftar-hapus-kendaraan')">Riwayat Kendaraan Non-aktif</button>
                 </div>
             </div>
 
@@ -306,17 +323,26 @@
 
     <!-- Scripts -->
     <script>
-        function navigateTo(url) {
-            window.location.href = url;
-        }
-
-        // Fungsi untuk mengatur tombol aktif
-        function setActive(button) {
+         // Fungsi untuk mengatur tombol aktif
+         function setActive(button, url) {
+            // Mengambil semua tombol dalam grup tombol
             const buttons = document.querySelectorAll('.button-group .btn');
+
+            // Menghapus kelas 'active' dari semua tombol
             buttons.forEach(btn => {
                 btn.classList.remove('active');
             });
+
+            // Menambahkan kelas 'active' ke tombol yang dipilih
             button.classList.add('active');
+
+            // Mengarahkan ke URL yang ditentukan
+            navigateTo(url);
+        }
+
+        // Fungsi untuk navigasi ke halaman lain
+        function navigateTo(page) {
+            window.location.href = page;
         }
 
         // Fungsi untuk menampilkan atau menyembunyikan detail (Jika diperlukan)

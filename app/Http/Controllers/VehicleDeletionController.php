@@ -15,7 +15,8 @@ class VehicleDeletionController extends Controller
     }
 
     // Menyimpan penghapusan kendaraan
-    public function store(Request $request)
+   // Menyimpan penghapusan kendaraan
+public function store(Request $request)
 {
     // Validasi input
     $request->validate([
@@ -23,28 +24,26 @@ class VehicleDeletionController extends Controller
         'alasan' => 'required|string|max:255',
     ]);
 
-    // Cek apakah kendaraan dengan kode_kendaraan sudah ada tapi soft deleted
-    $vehicle = Vehicle::withTrashed()->where('kode_kendaraan', $request->input('kode_kendaraan'))->first();
-    if ($vehicle && $vehicle->trashed()) {
-        // Restore kendaraan yang sudah soft deleted
-        $vehicle->restore();
-    } else {
-        // Jika tidak ada, simpan data penghapusan kendaraan
+    // Cek apakah kendaraan dengan kode_kendaraan sudah ada
+    $vehicle = Vehicle::where('kode_kendaraan', $request->input('kode_kendaraan'))->first();
+
+    if ($vehicle) {
+        // Hapus data di vehicle_deletions terlebih dahulu
+        VehicleDeletion::where('kode_kendaraan', $vehicle->kode_kendaraan)->delete();
+
+        // Lakukan soft delete kendaraan
+        $vehicle->deleted_at = now();
+        $vehicle->save();
+
+        // Simpan data penghapusan kendaraan
         $vehicleDeletion = new VehicleDeletion();
-        $vehicleDeletion->kode_kendaraan = $request->input('kode_kendaraan');
+        $vehicleDeletion->kode_kendaraan = $vehicle->kode_kendaraan;
         $vehicleDeletion->alasan = $request->input('alasan');
         $vehicleDeletion->tanggal_hapus = now();
         $vehicleDeletion->save();
-
-        // Soft delete kendaraan dari tabel vehicles
-        $vehicle = Vehicle::where('kode_kendaraan', $request->input('kode_kendaraan'))->first();
-        if ($vehicle) {
-            $vehicle->deleted_at = now();
-            $vehicle->save();
-        }
     }
 
-    return redirect()->route('daftar.hapus.kendaraan')->with('success', 'Kendaraan berhasil dihapus atau dipulihkan jika sudah ada.');
+    return redirect()->route('daftar.hapus.kendaraan')->with('success', 'Kendaraan berhasil dihapus.');
 }
 
 
@@ -53,7 +52,6 @@ class VehicleDeletionController extends Controller
     {
         // Mengambil semua data penghapusan
         $vehicles = VehicleDeletion::withTrashed()->with('vehicle')->get();
-        // dd($vehicles);
         return view('daftar-hapus-kendaraan', compact('vehicles'));
     }
 }
