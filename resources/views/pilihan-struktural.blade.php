@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Kenaikan Pangkat KPO - {{ $karyawan->nama }}</title>
+    <title>Detail Kenaikan Pangkat Pilihan Struktural - {{ $karyawan->nama }}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
@@ -123,16 +123,19 @@
         @php
         $uploads = [
         ['name' => 'SK Kenaikan Pangkat Terakhir', 'file' => 'sk_kenaikan_pangkat_terakhir', 'date' => 'tanggal_upload_sk_kenaikan_pangkat_terakhir'],
-        ['name' => 'SK PMK', 'file' => 'sk_pmk', 'date' => 'tanggal_upload_sk_pmk'],
-        ['name' => 'SK Jabatan Pelaksana Terakhir', 'file' => 'sk_jabatan_pelaksana_terakhir', 'date' => 'tanggal_upload_sk_jabatan_pelaksana_terakhir'],
-        ['name' => 'Penilaian Kinerja', 'file' => 'penilaian_kinerja', 'date' => 'tanggal_upload_penilaian_kinerja'],
         ['name' => 'Ijazah Terakhir', 'file' => 'ijazah_terakhir', 'date' => 'tanggal_upload_ijazah_terakhir'],
         ['name' => 'Transkrip Nilai', 'file' => 'transkrip_nilai', 'date' => 'tanggal_upload_transkrip_nilai'],
+        ['name' => 'SK Jabatan', 'file' => 'sk_jabatan', 'date' => 'tanggal_upload_sk_jabatan'],
+        ['name' => 'SPMT', 'file' => 'spmt', 'date' => 'tanggal_upload_spmt'],
+        ['name' => 'Berita Acara Pelantikan', 'file' => 'berita_acara_pelantikan', 'date' => 'tanggal_upload_berita_acara_pelantikan'],
+        ['name' => 'Surat Pernyataan Pelantikan', 'file' => 'surat_pernyataan_pelantikan', 'date' => 'tanggal_upload_surat_pernyataan_pelantikan'],
+        ['name' => 'Penilaian Kinerja', 'file' => 'penilaian_kinerja', 'date' => 'tanggal_upload_penilaian_kinerja'],
         ['name' => 'Surat Gelar BKN', 'file' => 'surat_gelar_bkn', 'date' => 'tanggal_upload_surat_gelar_bkn'],
-        ['name' => 'STLUD', 'file' => 'stlud', 'date' => 'tanggal_upload_stlud'],
+        ['name' => 'STTPP Diklatpim III', 'file' => 'sttpp_diklatpim_iii', 'date' => 'tanggal_upload_sttpp_diklatpim_iii'],
         ['name' => 'Rekomendasi Kepala Instansi', 'file' => 'rekomendasi_kepala_instansi', 'date' => 'tanggal_upload_rekomendasi_kepala_instansi'],
         ];
         @endphp
+       
 
         @foreach($uploads as $upload)
         <div class="table">

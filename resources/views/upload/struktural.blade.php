@@ -114,16 +114,17 @@
                 </thead>
                 <tbody>
                     @foreach ([
-                        'SK Kenaikan Pangkat terakhir',
-                        'Ijasah terakhir',
-                        'Transkrip nilai terakhir',
-                        'SK Jabatan & SPMT',
-                        'Berita Acara Pelantikan',
-                        'Surat Pernyataan Pelantikan',
-                        'Penilaian Kinerja Pegawai selama 2 (dua) tahun terakhir',
-                        'Surat Pencantuman Gelar (Peningkatan Pendidikan) dari BKN bagi yang memperoleh ijazah lebih tinggi',
-                        'STTPP DIKLATPIM III',
-                        'Rekomendasi Kepala Instansi'
+                    'SK Kenaikan Pangkat terakhir',
+                    'Ijasah terakhir',
+                    'Transkrip nilai terakhir',
+                    'SK Jabatan',
+                    'SPMT',
+                    'Berita Acara Pelantikan',
+                    'Surat Pernyataan Pelantikan',
+                    'Penilaian Kinerja Pegawai selama 2 (dua) tahun terakhir',
+                    'Surat Gelar BKN ',
+                    'STTPP DIKLATPIM III',
+                    'Rekomendasi Kepala Instansi'
                     ] as $index => $dokumen)
                     <tr>
                         <td>{{ $index + 1 }}</td>

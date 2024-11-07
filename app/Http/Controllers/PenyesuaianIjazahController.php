@@ -64,6 +64,17 @@ class PenyesuaianIjazahController extends Controller
             'file7' => 'required|file|mimes:pdf',
             'file8' => 'required|file|mimes:pdf',
             'file9' => 'required|file|mimes:pdf',
+            'file10' => 'required|file|mimes:pdf',
+            'tanggal_upload1' => 'required|date',
+            'tanggal_upload2' => 'required|date',
+            'tanggal_upload3' => 'required|date',
+            'tanggal_upload4' => 'required|date',
+            'tanggal_upload5' => 'required|date',
+            'tanggal_upload6' => 'required|date',
+            'tanggal_upload7' => 'required|date',
+            'tanggal_upload8' => 'required|date',
+            'tanggal_upload9' => 'required|date',
+            'tanggal_upload10' => 'required|date',
         ]);
 
         // Mengambil data karyawan terkait
@@ -71,7 +82,7 @@ class PenyesuaianIjazahController extends Controller
 
         // Menyimpan file persyaratan
         $files = [];
-        for ($i = 1; $i <= 9; $i++) {
+        for ($i = 1; $i <= 10; $i++) {
             $fileField = "file{$i}";
             if ($request->hasFile($fileField)) {
                 $path = $request->file($fileField)->store("kenaikan_pangkat_penyesuaian_ijazah/{$karyawan->nip}", 'public');
@@ -91,7 +102,17 @@ class PenyesuaianIjazahController extends Controller
             'stl_ujian_kenaikan' => $files['file7'] ?? null,
             'penilaian_kinerja' => $files['file8'] ?? null,
             'surat_uraian_tugas' => $files['file9'] ?? null,
-            'rekomendasi_kepala_instansi' => $files['file1'] ?? null,
+            'rekomendasi_kepala_instansi' => $files['file10'] ?? null,
+            'tanggal_upload_sk_kenaikan_pangkat_terakhir'=> $request->input('tanggal_upload1'),
+            'tanggal_upload_sk_jabatan_terakhir'=> $request->input('tanggal_upload2'),
+            'tanggal_upload_ijazah_terakhir'=> $request->input('tanggal_upload3'),
+            'tanggal_upload_transkrip_nilai'=> $request->input('tanggal_upload4'),
+            'tanggal_upload_surat_akreditasi'=> $request->input('tanggal_upload5'),
+            'tanggal_upload_surat_ijin_belajar'=> $request->input('tanggal_upload6'),
+            'tanggal_upload_stl_ujian_kenaikan'=> $request->input('tanggal_upload7'),
+            'tanggal_upload_penilaian_kinerja'=> $request->input('tanggal_upload8'),
+            'tanggal_upload_surat_uraian_tugas'=> $request->input('tanggal_upload9'),
+            'tanggal_upload_rekomendasi_kepala_instansi'=> $request->input('tanggal_upload10'),
         ]);
 
         return redirect()->route('penyesuaian-ijazah.show', $karyawan_id)->with('success', 'Data berhasil disimpan!');
