@@ -48,6 +48,7 @@ Route::get('/upload/struktural/{id}', [KenaikanController::class, 'struktural'])
 Route::get('/upload/penyesuaian/{id}', [KenaikanController::class, 'penyesuaian'])->name('upload.penyesuaian-ijasah');
 Route::get('/upload/fungsional/{id}', [KenaikanController::class, 'fungsional'])->name('upload.fungsional');
 Route::get('/upload/tugas-belajar/{id}', [KenaikanController::class, 'tugasBelajar'])->name('upload.tugas-belajar');
+
 Route::get('/kenaikan-pangkat/{id}', [KenaikanController::class, 'pilihan'])->name('kenaikan.pangkat');
 // web.php
 Route::get('/tambahadmin', [AdminDashboardController::class, 'create'])->name('admin.tambah');
