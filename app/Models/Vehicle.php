@@ -20,6 +20,7 @@ class Vehicle extends Model
 
     protected $fillable = [
         'id',
+        'plat',
         'kode_kendaraan', 
         'plat', 'pengguna', 
         'jenis_kendaraan', 

@@ -53,63 +53,61 @@ class VehicleController extends Controller
         return view('riwayat_detail', compact('vehicle', 'riwayatPembayaran'));
     }
 
-    // Menampilkan form tambah kendaraan
-    public function create()
-    {
-        return view('vehicles.create');
-    }
-
-    // Menyimpan kendaraan baru
-    public function store(Request $request)
+        public function create()
+        {
+            // Ambil semua data kendaraan untuk ditampilkan di view
+            $vehicles = Vehicle::all();
+            return view('form_data', compact('vehicles'));
+        }
+    
+        /**
+         * Menyimpan data kendaraan baru ke dalam database.
+         */
+        public function store(Request $request)
 {
-    // Validasi input
+    // Validasi data yang masuk
     $request->validate([
-        'plat' => 'required|string',
-        'pengguna' => 'required|string',
-        'jenis_kendaraan' => 'required|string',
+        'plat' => 'required|string|max:20',
+        'pengguna' => 'required|string|max:100',
+        'jenis_kendaraan' => 'required|string|max:50',
+        'merk_kendaraan' => 'required|string|max:255',
         'waktu_pajak' => 'required|date',
         'ganti_plat' => 'nullable|date',
-        'usia_kendaraan' => 'required|integer',
-        'cc' => 'required|integer',
-        'nomor_telepon' => 'nullable|string',
+        'usia_kendaraan' => 'required|integer|min:0',
+        'cc' => 'required|integer|min:0',
+        'nomor_telepon' => 'nullable|string|max:15'
     ]);
 
-    // Cek apakah kendaraan dengan plat dan pengguna yang sama sudah ada
-    $kendaraan = Vehicle::withTrashed()
-        ->where('plat', $request->plat)
-        ->where('pengguna', $request->pengguna)
-        ->where('jenis_kendaraan', $request->jenis_kendaraan)
-        ->first();
-
-    // Jika kendaraan ditemukan
-    if ($kendaraan) {
-        // Jika kendaraan di-soft delete, restore
-        if ($kendaraan->trashed()) {
-            $kendaraan->restore(); // Mengembalikan kendaraan
-
-            // Update data kendaraan setelah restore
-            $kendaraan->update($request->all());
-
-            return redirect()->route('vehicles.index')->with('success', 'Kendaraan berhasil dipulihkan dan datanya diperbarui.');
-        } else {
-            // Jika kendaraan ditemukan dan tidak dihapus, beri pesan error
-            return redirect()->back()->with('error', 'Kendaraan dengan plat ini sudah ada dan tidak dihapus.');
-        }
+    // Logika untuk generate kode_kendaraan berdasarkan jenis kendaraan
+    $kodeKendaraanPrefix = '';
+    if ($request->jenis_kendaraan == 'Motor') {
+        $kodeKendaraanPrefix = 'mtr-';
+    } elseif ($request->jenis_kendaraan == 'Mobil') {
+        $kodeKendaraanPrefix = 'mbl-';
     }
 
-    // Generate kode_kendaraan yang unik
-    do {
-        // Tentukan prefix kode kendaraan berdasarkan jenis kendaraan
-        $prefix = (strtolower($request->jenis_kendaraan) === 'motor') ? 'mtr-' : 'mbl-';
+    // Cari jumlah kendaraan dengan jenis yang sama
+    $count = Vehicle::where('jenis_kendaraan', $request->jenis_kendaraan)->count();
+    
+    // Generate nomor urut berdasarkan jumlah kendaraan yang sudah ada
+    $nomorUrut = str_pad($count + 1, 3, '0', STR_PAD_LEFT); // Membuat angka urut dengan 3 digit
 
-        // Ambil ID kendaraan terbaru
-        $latestId = Vehicle::withTrashed()->count() + 1; // atau bisa menggunakan Vehicle::max('id') + 1
-        $kodeKendaraan = $prefix . $latestId;
+    // Gabungkan prefix dengan nomor urut
+    $kodeKendaraan = $kodeKendaraanPrefix . $nomorUrut;
 
-    } while (Vehicle::where('kode_kendaraan', $kodeKendaraan)->exists());
-
-    // Jika kendaraan tidak ditemukan, simpan kendaraan baru
-    $vehicle = Vehicle::create($request->all() + ['kode_kendaraan' => $kodeKendaraan]);
+    // Buat dan simpan data kendaraan baru
+    $vehicle = new Vehicle();
+    $vehicle->kode_kendaraan = $kodeKendaraan;
+    $vehicle->plat = $request->input('plat');
+    $vehicle->pengguna = $request->input('pengguna');
+    $vehicle->jenis_kendaraan = $request->input('jenis_kendaraan');
+    $vehicle->merk_kendaraan = $request->input('merk_kendaraan');
+    $vehicle->waktu_pajak = $request->input('waktu_pajak');
+    $vehicle->ganti_plat = $request->input('ganti_plat');
+    $vehicle->usia_kendaraan = $request->input('usia_kendaraan');
+    $vehicle->cc = $request->input('cc');
+    $vehicle->nomor_telepon = $request->input('nomor_telepon');
+    $vehicle->save();
 
     // Redirect ke halaman daftar kendaraan dengan pesan sukses
     return redirect()->route('vehicles.index')->with('success', 'Kendaraan berhasil ditambahkan.');

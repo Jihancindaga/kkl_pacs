@@ -148,11 +148,18 @@
                     <a href="/daftar-hapus-kendaraan" class="btn btn-success {{ Request::is('daftar-hapus-kendaraan') ? 'active' : '' }}">Riwayat Kendaraan Non-aktif</a>
                 </div>
             </div>
-
-            <!-- Menambahkan garis di bawah grup tombol -->
             <hr>
-
-            <form action="{{ route('form_data.store') }}" method="POST">
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        
+            <form action="{{ route('vehicles.store') }}" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="pengguna">Pengguna</label>

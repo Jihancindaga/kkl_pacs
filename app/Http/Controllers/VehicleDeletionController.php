@@ -16,30 +16,37 @@ class VehicleDeletionController extends Controller
 
     // Menyimpan penghapusan kendaraan
     public function store(Request $request)
-    {
-        // Validasi input
-        $request->validate([
-            'kode_kendaraan' => 'required|exists:vehicles,kode_kendaraan',
-            'alasan' => 'required|string|max:255',
-            // 'tanggal_hapus' => 'required|date',
-        ]);
+{
+    // Validasi input
+    $request->validate([
+        'kode_kendaraan' => 'required|exists:vehicles,kode_kendaraan',
+        'alasan' => 'required|string|max:255',
+    ]);
 
-        // Simpan data penghapusan
+    // Cek apakah kendaraan dengan kode_kendaraan sudah ada tapi soft deleted
+    $vehicle = Vehicle::withTrashed()->where('kode_kendaraan', $request->input('kode_kendaraan'))->first();
+    if ($vehicle && $vehicle->trashed()) {
+        // Restore kendaraan yang sudah soft deleted
+        $vehicle->restore();
+    } else {
+        // Jika tidak ada, simpan data penghapusan kendaraan
         $vehicleDeletion = new VehicleDeletion();
         $vehicleDeletion->kode_kendaraan = $request->input('kode_kendaraan');
         $vehicleDeletion->alasan = $request->input('alasan');
         $vehicleDeletion->tanggal_hapus = now();
         $vehicleDeletion->save();
 
-        // Menghapus kendaraan dari tabel vehicles menggunakan soft deletes
+        // Soft delete kendaraan dari tabel vehicles
         $vehicle = Vehicle::where('kode_kendaraan', $request->input('kode_kendaraan'))->first();
         if ($vehicle) {
-            $vehicle->deleted_at = now(); // Mengisi deleted_at secara manual
+            $vehicle->deleted_at = now();
             $vehicle->save();
         }
-
-        return redirect()->route('daftar.hapus.kendaraan')->with('success', 'Kendaraan berhasil dihapus dan dicatat.');
     }
+
+    return redirect()->route('daftar.hapus.kendaraan')->with('success', 'Kendaraan berhasil dihapus atau dipulihkan jika sudah ada.');
+}
+
 
     // Menampilkan daftar kendaraan yang dihapus
     public function index()

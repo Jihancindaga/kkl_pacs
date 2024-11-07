@@ -231,7 +231,7 @@
                 <div class="button-group">
                     <button class="btn btn-1 {{ Request::is('pajak') ? 'active' : '' }}" onclick="navigateTo('/pajak')">Data Pokok Kendaraan</button>
                     <button class="btn btn-2 {{ Request::is('riwayat') ? 'active' : '' }}" onclick="navigateTo('/riwayat')">Riwayat Pembayaran Pajak</button>
-                    <button class="btn btn-3 {{ Request::is('form_data') ? 'active' : '' }}" onclick="navigateTo('/form_data')">Tambah Data Kendaraan</button>
+                    <a href="{{ route('vehicles.create') }}" class="btn btn-3">Tambah Kendaraan</a>
                     <a href="/hapus-kendaraan" class="btn btn-danger {{ Request::is('hapus-kendaraan') ? 'active' : '' }}">Hapus Kendaraan</a>
                     <a href="/daftar-hapus-kendaraan" class="btn btn-success {{ Request::is('daftar-hapus-kendaraan') ? 'active' : '' }}">Riwayat Kendaraan Non-aktif</a>
                 </div>
