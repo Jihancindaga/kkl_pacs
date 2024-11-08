@@ -157,7 +157,7 @@
                             <span class="not-uploaded">Belum diunggah</span>
                             @endif
                         </td>
-                        <td>{{ $pangkat->tanggal_upload ?? 'Belum diunggah' }}</td>
+                        <td>{{ $ijazah->tanggal_upload ?? 'Belum diunggah' }}</td>
                     </tr>
                     @endforeach
                 </tbody>

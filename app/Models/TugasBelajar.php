@@ -21,6 +21,7 @@ class TugasBelajar extends Model
         'ijazah_terakhir',
         'transkrip_nilai',
         'sk_pemberhentian_jabatan',
+        'tanggal_upload',
     ];
 
     /**
