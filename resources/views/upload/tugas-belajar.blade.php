@@ -116,10 +116,6 @@
                     <tr>
                         <th>No</th>
                         <th>Dokumen</th>
-<<<<<<< HEAD
-=======
-                        <th>Tanggal Upload</th>
->>>>>>> ddd632bd71a3616ab73a1e1e8018c1d8b1cc657e
                         <th>Unggah Berkas</th>
                         <th>Status</th>
                     </tr>
@@ -136,9 +132,6 @@
                     <tr>
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $dokumen }}</td>
-                        <td>
-                            <input type="date" name="tanggal_upload{{ $index + 1 }}" class="form-control" id="tanggal_upload{{ $index + 1 }}" required {{ $index > 0 ? 'disabled' : '' }}>
-                        </td>
                         <td>
                             <div class="d-flex align-items-center">
                                 <input type="file" name="file{{ $index + 1 }}" class="form-control" required style="flex: 1;" id="file{{ $index + 1 }}" {{ $index > 0 ? 'disabled' : '' }}>
