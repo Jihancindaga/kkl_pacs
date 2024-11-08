@@ -19,7 +19,7 @@
         }
 
         .navbar {
-            background-color: #007bff; /* Biru */
+            background-color: #007bff;
             color: #fff;
             padding: 10px;
             display: flex;
@@ -44,7 +44,7 @@
         }
 
         .content {
-            margin-top: 70px; /* Sesuaikan berdasarkan tinggi navbar */
+            margin-top: 70px;
             padding: 20px;
         }
 
@@ -57,21 +57,20 @@
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            max-width: 2000px; /* Atur lebar maksimum */
-            width: 90%; /* Atur lebar menjadi 90% dari viewport */
-            margin: auto; /* Pusatkan kontainer */
+            max-width: 2000px;
+            width: 90%;
+            margin: auto;
         }
 
         .container h2 {
-            margin-bottom: 40px; /* Jarak lebih jauh dari tombol */
-            text-align: center; /* Pusatkan teks */
-            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-            font-weight: bold; /* Font tebal */
-            font-size: 50px; /* Ukuran font lebih besar */
-            color: #0056b3; /* Opsional: ubah warna font */
+            margin-bottom: 40px;
+            text-align: center;
+            font-family: 'Trebuchet MS', sans-serif;
+            font-weight: bold;
+            font-size: 50px;
+            color: #0056b3;
         }
 
-        /* Kelas untuk tombol */
         .button-group {
             display: flex;
             justify-content: space-between;
@@ -80,68 +79,95 @@
 
         .button-group .btn {
             flex: 1;
-            padding: 8px; /* Mengurangi padding untuk tombol */
-            font-size: 12px; /* Ukuran font lebih kecil */
-            color: white; /* Set warna teks menjadi putih */
+            padding: 8px;
+            font-size: 12px;
+            color: white;
             transition: transform 0.3s, background-color 0.3s;
-            border: none; /* Hapus border default */
+            border: none;
+        }
+
+        .button-group .btn.active {
+            background-color: #0056b3;
+            color: white;
+            border: 1px solid black;
+            transform: scale(1.05);
         }
 
         .btn-1 {
-            background-color: #17a2b8; /* Teal */
+            background-color: #17a2b8;
         }
 
         .btn-2 {
-            background-color: #665cc0; /* Ungu */
+            background-color: #665cc0;
         }
 
         .btn-3 {
-            background-color: #aa1c9e; /* Oranye */
+            background-color: #aa1c9e;
         }
 
-        .btn:hover {
-            opacity: 0.8;
-            transform: scale(1.05); /* Efek hover: sedikit memperbesar tombol */
+        .btn-4 {
+            background-color: #ec2300;
         }
 
-        .btn.active {
-            background-color: #0056b3; /* Ubah warna tombol aktif */
-            color: white; /* Set warna teks tombol aktif menjadi putih */
-            transform: scale(1.1); /* Sedikit memperbesar tombol aktif */
+        .btn-5 {
+            background-color: #26eb0c;
         }
 
-        /* Style untuk tabel */
         .table thead th {
-            background-color: #007bff; /* Biru */
-            color: rgb(253, 251, 251);
-            border: 1px solid #dee2e6; /* Garis tepi pada header tabel */
-            font-size: 16px; /* Ukuran font untuk header tabel */
+            background-color: #007bff;
+            color: #fff;
+            border: 1px solid #dee2e6;
+            font-size: 16px;
         }
 
         .table th,
         .table td {
             text-align: center;
             vertical-align: middle;
-            border: 1px solid #dee2e6; /* Garis tepi pada sel tabel */
-            font-size: 16px; /* Ukuran font tabel lebih besar */
+            border: 1px solid #dee2e6;
+            font-size: 16px;
         }
 
-        /* Search Box */
         .search-box {
-            margin: 20px 0; /* Jarak atas dan bawah box pencarian */
+            margin: 20px 0;
         }
 
         .search-box input[type="text"] {
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            width: 100%; /* Lebar input pencarian */
+            width: 100%;
             transition: border-color 0.3s ease;
         }
 
         .search-box input[type="text"]:focus {
             border-color: #ff0022;
             outline: none;
+        }
+
+        .alasan-row {
+            background-color: #f9f9f9;
+            padding: 10px 15px;
+        }
+
+        .alasan-box {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #e9f5ff;
+            border-left: 4px solid #007bff;
+        }
+
+        .alasan-icon {
+            font-size: 20px;
+            color: #007bff;
+            margin-right: 10px;
+        }
+
+        .alasan-text {
+            font-size: 16px;
+            color: #333;
         }
 
         @media (max-width: 768px) {
@@ -151,7 +177,7 @@
 
             .container {
                 padding: 10px;
-                width: 100%; /* Sesuaikan untuk layar lebih kecil */
+                width: 100%;
             }
 
             .table td,
@@ -172,9 +198,9 @@
             <i class="fas fa-arrow-left"></i>
         </button>
         <div class="logo">
-        <img src="/images/pacs.png" alt="Logo PACS" style="height: 40px; margin-right: 500px;"> <!-- Logo PACS -->
-        <img src="/images/logo_kundha_kabudayan.png" alt="Logo Kundha Kabudayan" style="height: 40px; margin-right: 5px; margin-left: 5px;"> <!-- Logo Sleman -->
-        <img src="/images/logo_sleman.jpeg" alt="Logo Sleman" style="height: 40px; margin-right: 5px; margin-left: 10px;"> <!-- Logo Sleman -->
+            <img src="/images/pacs.png" alt="Logo PACS" style="height: 40px; margin-right: 500px;">
+            <img src="/images/logo_kundha_kabudayan.png" alt="Logo Kundha Kabudayan" style="height: 40px; margin-right: 5px; margin-left: 5px;">
+            <img src="/images/logo_sleman.jpeg" alt="Logo Sleman" style="height: 40px; margin-right: 5px; margin-left: 10px;">
         </div>
     </div>
 
@@ -186,18 +212,16 @@
             <div class="alert alert-success success-message">{{ session('success') }}</div>
             @endif
 
-            <!-- Tombol Navigasi dan Aksi dalam satu baris -->
             <div class="btn-container">
                 <div class="button-group">
-                    <button class="btn btn-1" data-page="data-kendaraan" onclick="setActive(this); navigateTo('/pajak')">Data Pokok Kendaraan</button>
-                    <button class="btn btn-2" data-page="riwayat" onclick="setActive(this); navigateTo('/riwayat')">Riwayat Pembayaran Pajak</button>
-                    <a href="{{ route('vehicles.create') }}" class="btn btn-3">Tambah Kendaraan</a>
-                    <a href="/hapus-kendaraan" class="btn btn-danger" data-page="hapus-kendaraan" onclick="setActive(this);">Hapus Kendaraan</a>
-                    <a href="/daftar-hapus-kendaraan" class="btn btn-success" data-page="riwayat-non-aktif" onclick="setActive(this);">Riwayat Kendaraan Non-aktif</a>
+                    <button class="btn btn-1 {{ Request::is('pajak') ? 'active' : '' }}" onclick="setActive(this, '/pajak')">Data Pokok Kendaraan</button>
+                    <button class="btn btn-2 {{ Request::is('riwayat') ? 'active' : '' }}" onclick="setActive(this, '/riwayat')">Riwayat Pembayaran Pajak</button>
+                    <button class="btn btn-3 {{ Request::is('vehicles/create') ? 'active' : '' }}" onclick="setActive(this, '{{ route('vehicles.create') }}')">Tambah Kendaraan</button>
+                    <button class="btn btn-4 {{ Request::is('hapus-kendaraan') ? 'active' : '' }}" onclick="setActive(this, '/hapus-kendaraan')">Hapus Kendaraan</button>
+                    <button class="btn btn-5 {{ Request::is('daftar-hapus-kendaraan') ? 'active' : '' }}" onclick="setActive(this, '/daftar-hapus-kendaraan')">Riwayat Kendaraan Non-aktif</button>
                 </div>
             </div>
 
-            <!-- Box Pencarian -->
             <div class="search-box mb-3">
                 <input type="text" id="searchInput" class="form-control" placeholder="Cari data kendaraan...">
             </div>
@@ -207,9 +231,9 @@
                     <tr>
                         <th>ID</th>
                         <th>Kode Kendaraan</th>
-                        <th>Jenis Kendaraan</th>
                         <th>Plat</th>
-                        <th>Alasan</th>
+                        <th>Nama</th>
+                        <th>Jenis Kendaraan</th>
                         <th>Tanggal Hapus</th>
                     </tr>
                 </thead>
@@ -218,10 +242,18 @@
                     <tr>
                         <td>{{ $item->id }}</td>
                         <td>{{ $item->kode_kendaraan }}</td>
-                        <td>{{ $item->vehicle->jenis_kendaraan }}</td>
                         <td>{{ $item->vehicle->plat }}</td>
-                        <td>{{ $item->alasan }}</td>
+                        <td>{{ $item->vehicle->pengguna }}</td>
+                        <td>{{ $item->vehicle->jenis_kendaraan }}</td>
                         <td>{{ \Carbon\Carbon::parse($item->tanggal_hapus)->format('j F Y') }}</td>
+                    </tr>
+                    <tr class="detail-row">
+                        <td colspan="6" class="alasan-row">
+                            <div class="alasan-box">
+                                <i class="fas fa-info-circle alasan-icon"></i>
+                                <span class="alasan-text"><strong>Alasan Penghapusan:</strong> {{ $item->alasan }}</span>
+                            </div>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -230,37 +262,16 @@
     </div>
 
     <script>
-        function navigateTo(url) {
-            window.location.href = url;
-        }
-
-        function setActive(btn) {
+        function setActive(button, url) {
             const buttons = document.querySelectorAll('.button-group .btn');
-            buttons.forEach(button => button.classList.remove('active'));
-            btn.classList.add('active');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            navigateTo(url);
         }
 
-        document.getElementById('searchInput').addEventListener('keyup', function() {
-            const value = this.value.toLowerCase();
-            const rows = document.querySelectorAll('#vehiclesTable tbody tr');
-
-            rows.forEach(row => {
-                const cells = row.querySelectorAll('td');
-                let match = false;
-
-                cells.forEach(cell => {
-                    if (cell.textContent.toLowerCase().includes(value)) {
-                        match = true;
-                    }
-                });
-
-                if (match) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
-        });
+        function navigateTo(page) {
+            window.location.href = page;
+        }
     </script>
 </body>
 
