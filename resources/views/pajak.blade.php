@@ -147,8 +147,7 @@
             background-color: #26eb0c;
             /* Oranye */
         }
-        .btn-warning,
-         {
+        .btn-warning {
             color: white;
             /* Set warna teks tombol */
         }
@@ -182,8 +181,9 @@
             vertical-align: middle;
             border: 1px solid #dee2e6;
             /* Garis tepi pada sel tabel */
-            font-size: 14px;
+            font-size: 12px;
             /* Ukuran font tabel lebih kecil */
+            
         }
 
         .action-buttons {
@@ -256,7 +256,6 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>ID Kendaraan</th>
                                 <th>Plat</th>
                                 <th>Jenis Kendaraan</th>
                                 <th>Merk Kendaraan</th>
@@ -273,7 +272,6 @@
                             @foreach($vehicles as $index => $vehicle)
                             <tr>
                                 <td>{{ $index + 1 }}</td>
-                                <td>{{ $vehicle->kode_kendaraan }}</td>
                                 <td>{{ $vehicle->plat }}</td>
                                 <td>{{ $vehicle->jenis_kendaraan }}</td>
                                 <td>{{ $vehicle->merk_kendaraan }}</td>

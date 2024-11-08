@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +16,7 @@
             height: 100vh;
             margin: 0;
         }
+
         .container-wrapper {
             background-color: #ffffff;
             border-radius: 15px;
@@ -24,6 +26,7 @@
             display: flex;
             overflow: hidden;
         }
+
         .logo-container {
             background-color: #007bff;
             display: flex;
@@ -33,6 +36,7 @@
             height: auto;
             padding: 10px;
         }
+
         .logo-container img {
             max-width: 100%;
             height: auto;
@@ -40,6 +44,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease;
         }
+
         .form-container {
             padding: 40px;
             width: 65%;
@@ -47,33 +52,39 @@
             flex-direction: column;
             justify-content: center;
         }
+
         .form-container h2 {
             text-align: center;
             margin-bottom: 30px;
             color: #12457c;
             font-weight: bold;
         }
+
         .form-container p {
             margin-bottom: 5px;
             font-weight: bold;
             color: #12457c;
         }
+
         .form-control {
             margin-bottom: 20px;
             padding: 12px;
             border-radius: 8px;
             border: 1px solid #ccc;
         }
+
         .password-container {
             position: relative;
         }
+
         .password-container input[type="password"],
         .password-container input[type="text"] {
             padding-right: 45px;
         }
+
         .password-container .toggle-password {
             position: absolute;
-            top: 70%; /* Menurunkan posisi ikon mata sedikit lebih ke bawah */
+            top: 70%;
             right: 15px;
             transform: translateY(-50%);
             cursor: pointer;
@@ -81,9 +92,11 @@
             color: #5b065e;
             transition: color 0.3s ease;
         }
+
         .password-container .toggle-password:hover {
             color: #b849a0;
         }
+
         .btn-primary {
             background-color: #007bff;
             border: none;
@@ -93,12 +106,14 @@
             font-size: 16px;
             transition: background-color 0.3s ease, transform 0.2s;
         }
+
         .btn-primary:hover {
             background-color: #0056b3;
             transform: scale(1.05);
         }
     </style>
 </head>
+
 <body>
     <div class="container-wrapper">
         <div class="logo-container">
@@ -107,6 +122,14 @@
 
         <div class="form-container">
             <h2>Admin Login</h2>
+
+            <!-- Menampilkan pesan error -->
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                {{ $errors->first('nip') }}
+            </div>
+            @endif
+
             <form action="{{ route('admin.login.post') }}" method="POST">
                 @csrf
                 <div class="form-group">
@@ -142,4 +165,5 @@
         }
     </script>
 </body>
+
 </html>
