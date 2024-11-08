@@ -344,7 +344,7 @@
                 <div class="button-group">
                     <button class="btn btn-1" onclick="navigateTo('/datakaryawan')">Data Pokok Karyawan</button>
                     <button class="btn btn-2" onclick="navigateTo('/tambah-karyawan')">Tambah Karyawan Baru</button>
-                    <button class="btn btn-3" onclick="navigateTo('/riwayat-kenaikan')">Riwayat Kenaikan</button>
+                    <button class="btn btn-3" onclick="navigateTo('/riwayat-kenaikan')">Riwayat Kenaikan Pangkat</button>
                     <a href="/hapus-karyawan" class="btn btn-danger">Hapus Karyawan</a>
                     <a href="/riwayat_karyawan_nonaktif" class="btn btn-success">Riwayat Karyawan Non-aktif</a>
                 </div>
@@ -387,7 +387,7 @@
                             <td class="action-buttons">
                                 <div style="display: flex; gap: 5px; justify-content: center;">
                                     <a href="{{ route('kenaikan.pangkat', ['id' => $karyawan->id]) }}" class="btn btn-success btn-sm">
-                                        upload
+                                        Ajukan Kenaikan
                                     </a>
                                     <a href="{{ route('edit_karyawan', $karyawan->id) }}" class="btn btn-warning btn-sm">
                                         Edit

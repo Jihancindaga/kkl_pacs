@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Karyawan; // Model untuk tabel karyawans
 use App\Models\PilihanStruktural;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class PilihanStrukturalController extends Controller
 {
@@ -18,33 +19,13 @@ class PilihanStrukturalController extends Controller
 
         // Ambil semua data pilihan struktural dan urutkan berdasarkan tanggal upload terbaru
         $pilihanStruktural = PilihanStruktural::where('karyawan_id', $id)
-            ->orderBy('tanggal_upload_sk_kenaikan_pangkat_terakhir', 'desc')
-            ->orderBy('tanggal_upload_ijazah_terakhir', 'desc')
-            ->orderBy('tanggal_upload_transkrip_nilai', 'desc')
-            ->orderBy('tanggal_upload_sk_jabatan', 'desc')
-            ->orderBy('tanggal_upload_spmt', 'desc')
-            ->orderBy('tanggal_upload_berita_acara_pelantikan', 'desc')
-            ->orderBy('tanggal_upload_surat_pernyataan_pelantikan', 'desc')
-            ->orderBy('tanggal_upload_penilaian_kinerja', 'desc')
-            ->orderBy('tanggal_upload_surat_gelar_bkn', 'desc')
-            ->orderBy('tanggal_upload_sttpp_diklatpim_iii', 'desc')
-            ->orderBy('tanggal_upload_rekomendasi_kepala_instansi', 'desc')
+            ->orderBy('tanggal_upload', 'desc')
             ->get();
 
         // Jika Anda ingin membuat urutan berdasarkan satu tanggal gabungan atau lain 
         // Anda bisa menggunakan Collection setelah mengambil datanya
         $pilihanStruktural = $pilihanStruktural->sortByDesc(function ($upload) {
-            return $upload->tanggal_upload_sk_kenaikan_pangkat_terakhir ??
-                $upload->tanggal_upload_ijazah_terakhir ??
-                $upload->tanggal_upload_transkrip_nilai ??
-                $upload->tanggal_upload_sk_jabatan ??
-                $upload->tanggal_upload_spmt ??
-                $upload->tanggal_upload_berita_acara_pelantikan ??
-                $upload->tanggal_upload_surat_pernyataan_pelantikan ??
-                $upload->tanggal_upload_penilaian_kinerja ??
-                $upload->tanggal_upload_surat_gelar_bkn ??
-                $upload->tanggal_upload_sttpp_diklatpim_iii ??
-                $upload->tanggal_upload_rekomendasi_kepala_instansi;
+            return $upload->tanggal_upload;
         });
 
         return view('pilihan-struktural', compact('karyawan', 'pilihanStruktural'));
@@ -68,17 +49,6 @@ class PilihanStrukturalController extends Controller
             'file9' => 'required|file|mimes:pdf',
             'file10' => 'required|file|mimes:pdf',
             'file11' => 'required|file|mimes:pdf',
-            'tanggal_upload1' => 'required|date',
-            'tanggal_upload2' => 'required|date',
-            'tanggal_upload3' => 'required|date',
-            'tanggal_upload4' => 'required|date',
-            'tanggal_upload5' => 'required|date',
-            'tanggal_upload6' => 'required|date',
-            'tanggal_upload7' => 'required|date',
-            'tanggal_upload8' => 'required|date',
-            'tanggal_upload9' => 'required|date',
-            'tanggal_upload10' => 'required|date',
-            'tanggal_upload11' => 'required|date',
         ]);
 
         // Mengambil data karyawan terkait
@@ -108,17 +78,7 @@ class PilihanStrukturalController extends Controller
             'surat_gelar_bkn' => $files['file9'] ?? null,
             'sttpp_diklatpim_iii' => $files['file10'] ?? null,
             'rekomendasi_kepala_instansi' => $files['file11'] ?? null,
-            'tanggal_upload_sk_kenaikan_pangkat_terakhir' => $request->input('tanggal_upload1'),
-            'tanggal_upload_ijazah_terakhir' => $request->input('tanggal_upload2'),
-            'tanggal_upload_transkrip_nilai' => $request->input('tanggal_upload3'),
-            'tanggal_upload_sk_jabatan' => $request->input('tanggal_upload4'),
-            'tanggal_upload_spmt'=> $request->input('tanggal_upload5'),
-            'tanggal_upload_berita_acara_pelantikan' => $request->input('tanggal_upload6'),
-            'tanggal_upload_surat_pernyataan_pelantikan' => $request->input('tanggal_upload7'),
-            'tanggal_upload_penilaian_kinerja' => $request->input('tanggal_upload8'),
-            'tanggal_upload_surat_gelar_bkn'=> $request->input('tanggal_upload9'),
-            'tanggal_upload_sttpp_diklatpim_iii' => $request->input('tanggal_upload10'),
-            'tanggal_upload_rekomendasi_kepala_instansi'=> $request->input('tanggal_upload11'),
+            'tanggal_upload' => Carbon::now(),
         ]);
 
         return redirect()->route('pilihan-struktural.show', $karyawan_id)->with('success', 'Data berhasil disimpan!');

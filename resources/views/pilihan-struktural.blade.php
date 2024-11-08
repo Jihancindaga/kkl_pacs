@@ -122,17 +122,17 @@
         @if($pilihanStruktural->isNotEmpty())
         @php
         $uploads = [
-        ['name' => 'SK Kenaikan Pangkat Terakhir', 'file' => 'sk_kenaikan_pangkat_terakhir', 'date' => 'tanggal_upload_sk_kenaikan_pangkat_terakhir'],
-        ['name' => 'Ijazah Terakhir', 'file' => 'ijazah_terakhir', 'date' => 'tanggal_upload_ijazah_terakhir'],
-        ['name' => 'Transkrip Nilai', 'file' => 'transkrip_nilai', 'date' => 'tanggal_upload_transkrip_nilai'],
-        ['name' => 'SK Jabatan', 'file' => 'sk_jabatan', 'date' => 'tanggal_upload_sk_jabatan'],
-        ['name' => 'SPMT', 'file' => 'spmt', 'date' => 'tanggal_upload_spmt'],
-        ['name' => 'Berita Acara Pelantikan', 'file' => 'berita_acara_pelantikan', 'date' => 'tanggal_upload_berita_acara_pelantikan'],
-        ['name' => 'Surat Pernyataan Pelantikan', 'file' => 'surat_pernyataan_pelantikan', 'date' => 'tanggal_upload_surat_pernyataan_pelantikan'],
-        ['name' => 'Penilaian Kinerja', 'file' => 'penilaian_kinerja', 'date' => 'tanggal_upload_penilaian_kinerja'],
-        ['name' => 'Surat Gelar BKN', 'file' => 'surat_gelar_bkn', 'date' => 'tanggal_upload_surat_gelar_bkn'],
-        ['name' => 'STTPP Diklatpim III', 'file' => 'sttpp_diklatpim_iii', 'date' => 'tanggal_upload_sttpp_diklatpim_iii'],
-        ['name' => 'Rekomendasi Kepala Instansi', 'file' => 'rekomendasi_kepala_instansi', 'date' => 'tanggal_upload_rekomendasi_kepala_instansi'],
+        ['name' => 'SK Kenaikan Pangkat Terakhir', 'file' => 'sk_kenaikan_pangkat_terakhir'],
+        ['name' => 'Ijazah Terakhir', 'file' => 'ijazah_terakhir'],
+        ['name' => 'Transkrip Nilai', 'file' => 'transkrip_nilai'],
+        ['name' => 'SK Jabatan', 'file' => 'sk_jabatan'],
+        ['name' => 'SPMT', 'file' => 'spmt'],
+        ['name' => 'Berita Acara Pelantikan', 'file' => 'berita_acara_pelantikan'],
+        ['name' => 'Surat Pernyataan Pelantikan', 'file' => 'surat_pernyataan_pelantikan'],
+        ['name' => 'Penilaian Kinerja', 'file' => 'penilaian_kinerja'],
+        ['name' => 'Surat Gelar BKN', 'file' => 'surat_gelar_bkn'],
+        ['name' => 'STTPP Diklatpim III', 'file' => 'sttpp_diklatpim_iii'],
+        ['name' => 'Rekomendasi Kepala Instansi', 'file' => 'rekomendasi_kepala_instansi'],
         ];
         @endphp
 
@@ -159,7 +159,7 @@
                             <span class="not-uploaded">Belum diunggah</span>
                             @endif
                         </td>
-                        <td>{{ $kenaikan->{$upload['date']} ?? 'Belum diunggah' }}</td>
+                        <td>{{ $kenaikan->tanggal_upload ?? 'Belum diunggah' }}</td>
                     </tr>
                     @endforeach
                 </tbody>

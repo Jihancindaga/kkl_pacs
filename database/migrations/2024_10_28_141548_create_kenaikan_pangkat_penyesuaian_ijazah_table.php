@@ -23,16 +23,7 @@ class CreateKenaikanPangkatPenyesuaianIjazahTable extends Migration
             $table->string('rekomendasi_kepala_instansi')->nullable();
 
             // Tambahkan kolom untuk tanggal upload
-            $table->date('tanggal_upload_sk_kenaikan_pangkat_terakhir')->nullable();
-            $table->date('tanggal_upload_sk_jabatan_terakhir')->nullable();
-            $table->date('tanggal_upload_ijazah_terakhir')->nullable();
-            $table->date('tanggal_upload_transkrip_nilai')->nullable();
-            $table->date('tanggal_upload_surat_akreditasi')->nullable();
-            $table->date('tanggal_upload_surat_ijin_belajar')->nullable();
-            $table->date('tanggal_upload_stl_ujian_kenaikan')->nullable();
-            $table->date('tanggal_upload_penilaian_kinerja')->nullable();
-            $table->date('tanggal_upload_surat_uraian_tugas')->nullable();
-            $table->date('tanggal_upload_rekomendasi_kepala_instansi')->nullable();
+            $table->date('tanggal_upload')->nullable();
 
             $table->timestamps();
         });

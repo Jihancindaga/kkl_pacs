@@ -26,17 +26,7 @@ class PilihanStruktural extends Model
         'surat_gelar_bkn',
         'sttpp_diklatpim_iii',
         'rekomendasi_kepala_instansi',
-        'tanggal_upload_sk_kenaikan_pangkat_terakhir',
-        'tanggal_upload_ijazah_terakhir',
-        'tanggal_upload_transkrip_nilai',
-        'tanggal_upload_sk_jabatan',
-        'tanggal_upload_spmt',
-        'tanggal_upload_berita_acara_pelantikan',
-        'tanggal_upload_surat_pernyataan_pelantikan',
-        'tanggal_upload_penilaian_kinerja',
-        'tanggal_upload_surat_gelar_bkn',
-        'tanggal_upload_sttpp_diklatpim_iii',
-        'tanggal_upload_rekomendasi_kepala_instansi',
+        'tanggal_upload',
     ];
 
     /**

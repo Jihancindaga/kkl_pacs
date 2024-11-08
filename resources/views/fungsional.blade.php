@@ -122,21 +122,21 @@
         @if($kenaikanPangkatFungsional->isNotEmpty())
         @php
         $uploads = [
-        ['name' => 'SK CPNS', 'file' => 'sk_cpns', 'date' => 'tanggal_upload_sk_cpns'],
-        ['name' => 'SK PNS', 'file' => 'sk_pns', 'date' => 'tanggal_upload_sk_pns'],
-        ['name' => 'SK Plotting Terakhir', 'file' => 'sk_ploting_terakhir', 'date' => 'tanggal_upload_sk_ploting_terakhir'],
-        ['name' => 'SK Pengangkatan Jabatan Fungsional', 'file' => 'sk_pengangkatan_jabatan_fungsional', 'date' => 'tanggal_upload_sk_pengangkatan_jabatan_fungsional'],
-        ['name' => 'SK Kenaikan Pangkat Terakhir', 'file' => 'sk_kenaikan_pangkat_terakhir', 'date' => 'tanggal_upload_sk_kenaikan_pangkat_terakhir'],
-        ['name' => 'Ijazah Terakhir', 'file' => 'ijazah_terakhir', 'date' => 'tanggal_upload_ijazah_terakhir'],
-        ['name' => 'Transkrip Nilai', 'file' => 'transkrip_nilai', 'date' => 'tanggal_upload_transkrip_nilai'],
+        ['name' => 'SK CPNS', 'file' => 'sk_cpns'],
+        ['name' => 'SK PNS', 'file' => 'sk_pns'],
+        ['name' => 'SK Plotting Terakhir', 'file' => 'sk_ploting_terakhir'],
+        ['name' => 'SK Pengangkatan Jabatan Fungsional', 'file' => 'sk_pengangkatan_jabatan_fungsional'],
+        ['name' => 'SK Kenaikan Pangkat Terakhir', 'file' => 'sk_kenaikan_pangkat_terakhir'],
+        ['name' => 'Ijazah Terakhir', 'file' => 'ijazah_terakhir'],
+        ['name' => 'Transkrip Nilai', 'file' => 'transkrip_nilai'],
         ['name' => 'SK PMK', 'file' => 'sk_pmk', 'date' => 'tanggal_upload_sk_pmk'],
-        ['name' => 'Penilaian Kinerja', 'file' => 'penilaian_kinerja', 'date' => 'tanggal_upload_penilaian_kinerja'],
-        ['name' => 'Sertifikat Uji Kompetensi', 'file' => 'sertifikat_uji_kompetensi', 'date' => 'tanggal_upload_sertifikat_uji_kompetensi'],
-        ['name' => 'PAK', 'file' => 'pak', 'date' => 'tanggal_upload_pak'],
-        ['name' => 'PAK Integrasi', 'file' => 'pak_integrasi', 'date' => 'tanggal_upload_pak_integrasi'],
-        ['name' => 'SK Pengangkatan Pertama Fungsional', 'file' => 'sk_pengangkatan_pertama_fungsional', 'date' => 'tanggal_upload_sk_pengangkatan_pertama_fungsional'],
-        ['name' => 'SK Kenaikan Jabatan Fungsional', 'file' => 'sk_kenaikan_jabatan_fungsional', 'date' => 'tanggal_upload_sk_kenaikan_jabatan_fungsional'],
-        ['name' => 'Rekomendasi Kepala Instansi', 'file' => 'rekomendasi_kepala_instansi', 'date' => 'tanggal_upload_rekomendasi_kepala_instansi'],
+        ['name' => 'Penilaian Kinerja', 'file' => 'penilaian_kinerja'],
+        ['name' => 'Sertifikat Uji Kompetensi', 'file' => 'sertifikat_uji_kompetensi'],
+        ['name' => 'PAK', 'file' => 'pak'],
+        ['name' => 'PAK Integrasi', 'file' => 'pak_integrasi'],
+        ['name' => 'SK Pengangkatan Pertama Fungsional', 'file' => 'sk_pengangkatan_pertama_fungsional'],
+        ['name' => 'SK Kenaikan Jabatan Fungsional', 'file' => 'sk_kenaikan_jabatan_fungsional'],
+        ['name' => 'Rekomendasi Kepala Instansi', 'file' => 'rekomendasi_kepala_instansi'],
         ];
         @endphp
 
@@ -162,7 +162,7 @@
                             <span class="not-uploaded">Belum diunggah</span>
                             @endif
                         </td>
-                        <td>{{ $data->{$upload['date']} ?? 'Belum diunggah' }}</td>
+                        <td>{{ $pangkat->tanggal_upload ?? 'Belum diunggah' }}</td>
                     </tr>
                     @endforeach
                 </tbody>

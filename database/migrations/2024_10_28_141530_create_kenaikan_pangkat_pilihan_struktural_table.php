@@ -24,17 +24,7 @@ class CreateKenaikanPangkatPilihanStrukturalTable extends Migration
             $table->string('rekomendasi_kepala_instansi')->nullable();
 
             // Tambahkan kolom untuk tanggal upload
-            $table->date('tanggal_upload_sk_kenaikan_pangkat_terakhir')->nullable();
-            $table->date('tanggal_upload_ijazah_terakhir')->nullable();
-            $table->date('tanggal_upload_transkrip_nilai')->nullable();
-            $table->date('tanggal_upload_sk_jabatan')->nullable();
-            $table->date('tanggal_upload_spmt')->nullable();
-            $table->date('tanggal_upload_berita_acara_pelantikan')->nullable();
-            $table->date('tanggal_upload_surat_pernyataan_pelantikan')->nullable();
-            $table->date('tanggal_upload_penilaian_kinerja')->nullable();
-            $table->date('tanggal_upload_surat_gelar_bkn')->nullable();
-            $table->date('tanggal_upload_sttpp_diklatpim_iii')->nullable();
-            $table->date('tanggal_upload_rekomendasi_kepala_instansi')->nullable();
+            $table->date('tanggal_upload')->nullable();
 
             $table->timestamps();
         });

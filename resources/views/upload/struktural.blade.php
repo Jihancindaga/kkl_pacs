@@ -108,7 +108,6 @@
                         <th>No</th>
                         <th>Dokumen</th>
                         <th>Unggah Berkas</th>
-                        <th>Tanggal Upload</th>
                         <th>Status</th>
                     </tr>
                 </thead>
@@ -136,9 +135,6 @@
                             </div>
                         </td>
                         <td>
-                            <input type="date" name="tanggal_upload{{ $index + 1 }}" class="form-control" id="tanggal_upload{{ $index + 1 }}" required {{ $index > 0 ? 'disabled' : '' }}>
-                        </td>
-                        <td>
                             <input type="checkbox" id="checkbox{{ $index + 1 }}" disabled>
                             <label for="checkbox{{ $index + 1 }}" class="checkbox-label">Syarat ini telah diunggah</label>
                         </td>
@@ -163,7 +159,6 @@
             // Enable the next file input and button if it exists
             const nextFileInput = document.getElementById('file' + (fileNumber + 1));
             const nextUploadButton = document.querySelector('#file' + (fileNumber + 1) + ' + .btn-upload'); // Corrected selector
-            const nextDateInput = document.getElementById('tanggal_upload' + (fileNumber + 1)); // Next date input
             if (nextFileInput) {
                 nextFileInput.disabled = false;
                 nextUploadButton.disabled = false; // Enable the next upload button

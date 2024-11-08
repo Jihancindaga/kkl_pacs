@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\TugasBelajar; // Model untuk tabel tugas_belajar
 use App\Models\Karyawan; // Model untuk tabel karyawans
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class TugasBelajarController extends Controller
 {
@@ -15,24 +16,14 @@ class TugasBelajarController extends Controller
 
         // Ambil semua data tugas belajar dan urutkan berdasarkan tanggal upload terbaru
         $tugasBelajar = TugasBelajar::where('karyawan_id', $id)
-            ->orderBy('tanggal_upload_sk_kenaikan_pangkat', 'desc')
-            ->orderBy('tanggal_upload_surat_tugas_belajar', 'desc')
-            ->orderBy('tanggal_upload_penilaian_kinerja', 'desc')
-            ->orderBy('tanggal_upload_ijazah_terakhir', 'desc')
-            ->orderBy('tanggal_upload_transkrip_nilai', 'desc')
-            ->orderBy('tanggal_upload_sk_pemberhentian_jabatan', 'desc')
+            ->orderBy('tanggal_upload', 'desc')
             ->get();
 
 
         // Jika Anda ingin membuat urutan berdasarkan satu tanggal gabungan atau lain 
         // Anda bisa menggunakan Collection setelah mengambil datanya
         $tugasBelajar = $tugasBelajar->sortByDesc(function ($upload) {
-            return $upload->tanggal_upload_sk_kenaikan_pangkat ??
-                $upload->tanggal_upload_surat_tugas_belajar ??
-                $upload->tanggal_upload_penilaian_kinerja ??
-                $upload->tanggal_upload_ijazah_terakhir ??
-                $upload->tanggal_upload_transkrip_nilai ??
-                $upload->tanggal_upload_sk_pemberhentian_jabatan;
+            return $upload->tanggal_upload;
         });
 
         return view('tugas-belajar', compact('karyawan', 'tugasBelajar'));
@@ -52,12 +43,6 @@ class TugasBelajarController extends Controller
             'file4' => 'required|file|mimes:pdf',
             'file5' => 'required|file|mimes:pdf',
             'file6' => 'required|file|mimes:pdf',
-            'tanggal_upload1' => 'required|date',
-            'tanggal_upload2' => 'required|date',
-            'tanggal_upload3' => 'required|date',
-            'tanggal_upload4' => 'required|date',
-            'tanggal_upload5' => 'required|date',
-            'tanggal_upload6' => 'required|date',
         ]);
 
         // Mengambil data karyawan terkait
@@ -82,12 +67,7 @@ class TugasBelajarController extends Controller
             'ijazah_terakhir' => $files['file4'] ?? null,
             'transkrip_nilai' => $files['file5'] ?? null,
             'sk_pemberhentian_jabatan' => $files['file6'] ?? null,
-            'tanggal_upload_sk_kenaikan_pangkat' => $request->input('tanggal_upload1'),
-            'tanggal_upload_surat_tugas_belajar' => $request->input('tanggal_upload2'),
-            'tanggal_upload_penilaian_kinerja' => $request->input('tanggal_upload3'),
-            'tanggal_upload_ijazah_terakhir' => $request->input('tanggal_upload4'),
-            'tanggal_upload_transkrip_nilai' => $request->input('tanggal_upload5'),
-            'tanggal_upload_sk_pemberhentian_jabatan' => $request->input('tanggal_upload6'),
+            'tanggal_upload' => Carbon::now(),
         ]);
 
         return redirect()->route('tugas-belajar.show', $karyawan_id)->with('success', 'Data berhasil disimpan!');

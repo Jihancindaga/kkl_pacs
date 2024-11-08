@@ -126,12 +126,12 @@
         @if($tugasBelajar->isNotEmpty())
         @php
         $uploads = [
-        ['name' => 'SK Kenaikan Pangkat Terakhir', 'file' => 'sk_kenaikan_pangkat_terakhir', 'date' => 'tanggal_upload_sk_kenaikan_pangkat'],
-        ['name' => 'Surat Tugas Belajar', 'file' => 'surat_tugas_belajar', 'date' => 'tanggal_upload_surat_tugas_belajar'],
-        ['name' => 'Penilaian Kinerja', 'file' => 'penilaian_kinerja', 'date' => 'tanggal_upload_penilaian_kinerja'],
-        ['name' => 'Ijazah Terakhir', 'file' => 'ijazah_terakhir', 'date' => 'tanggal_upload_ijazah_terakhir'],
-        ['name' => 'Transkrip Nilai', 'file' => 'transkrip_nilai', 'date' => 'tanggal_upload_transkrip_nilai'],
-        ['name' => 'SK Pemberhentian dari Jabatan', 'file' => 'sk_pemberhentian_jabatan', 'date' => 'tanggal_upload_sk_pemberhentian_jabatan'],
+        ['name' => 'SK Kenaikan Pangkat Terakhir', 'file' => 'sk_kenaikan_pangkat_terakhir'],
+        ['name' => 'Surat Tugas Belajar', 'file' => 'surat_tugas_belajar'],
+        ['name' => 'Penilaian Kinerja', 'file' => 'penilaian_kinerja'],
+        ['name' => 'Ijazah Terakhir', 'file' => 'ijazah_terakhir'],
+        ['name' => 'Transkrip Nilai', 'file' => 'transkrip_nilai'],
+        ['name' => 'SK Pemberhentian dari Jabatan', 'file' => 'sk_pemberhentian_jabatan'],
         ];
         @endphp
 
@@ -157,7 +157,7 @@
                             <span class="not-uploaded">Belum diunggah</span>
                             @endif
                         </td>
-                        <td>{{ $tugas->{$upload['date']} ?? 'Belum diunggah' }}</td>
+                        <td>{{ $pangkat->tanggal_upload ?? 'Belum diunggah' }}</td>
                     </tr>
                     @endforeach
                 </tbody>

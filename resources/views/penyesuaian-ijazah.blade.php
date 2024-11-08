@@ -122,16 +122,16 @@
         @if($penyesuaianIjazah->isNotEmpty())
         @php
         $uploads = [
-        ['name' => 'SK Kenaikan Pangkat Terakhir', 'file' => 'sk_kenaikan_pangkat_terakhir', 'date' => 'tanggal_upload_sk_kenaikan_pangkat_terakhir'],
-        ['name' => 'SK Jabatan Terakhir', 'file' => 'sk_jabatan_terakhir', 'date' => 'tanggal_upload_sk_jabatan_terakhir'],
-        ['name' => 'Ijazah Terakhir', 'file' => 'ijazah_terakhir', 'date' => 'tanggal_upload_ijazah_terakhir'],
-        ['name' => 'Transkrip Nilai', 'file' => 'transkrip_nilai', 'date' => 'tanggal_upload_transkrip_nilai'],
-        ['name' => 'Surat Akreditasi', 'file' => 'surat_akreditasi', 'date' => 'tanggal_upload_surat_akreditasi'],
-        ['name' => 'Surat Ijin Belajar', 'file' => 'surat_ijin_belajar', 'date' => 'tanggal_upload_surat_ijin_belajar'],
-        ['name' => 'STL Ujian Kenaikan', 'file' => 'stl_ujian_kenaikan', 'date' => 'tanggal_upload_stl_ujian_kenaikan'],
-        ['name' => 'Penilaian Kinerja', 'file' => 'penilaian_kinerja', 'date' => 'tanggal_upload_penilaian_kinerja'],
-        ['name' => 'Surat Uraian Tugas', 'file' => 'surat_uraian_tugas', 'date' => 'tanggal_upload_surat_uraian_tugas'],
-        ['name' => 'Rekomendasi Kepala Instansi', 'file' => 'rekomendasi_kepala_instansi', 'date' => 'tanggal_upload_rekomendasi_kepala_instansi'],
+        ['name' => 'SK Kenaikan Pangkat Terakhir', 'file' => 'sk_kenaikan_pangkat_terakhir'],
+        ['name' => 'SK Jabatan Terakhir', 'file' => 'sk_jabatan_terakhir'],
+        ['name' => 'Ijazah Terakhir', 'file' => 'ijazah_terakhir'],
+        ['name' => 'Transkrip Nilai', 'file' => 'transkrip_nilai'],
+        ['name' => 'Surat Akreditasi', 'file' => 'surat_akreditasi'],
+        ['name' => 'Surat Ijin Belajar', 'file' => 'surat_ijin_belajar'],
+        ['name' => 'STL Ujian Kenaikan', 'file' => 'stl_ujian_kenaikan'],
+        ['name' => 'Penilaian Kinerja', 'file' => 'penilaian_kinerja'],
+        ['name' => 'Surat Uraian Tugas', 'file' => 'surat_uraian_tugas'],
+        ['name' => 'Rekomendasi Kepala Instansi', 'file' => 'rekomendasi_kepala_instansi'],
         ];
         @endphp
 
@@ -157,7 +157,7 @@
                             <span class="not-uploaded">Belum diunggah</span>
                             @endif
                         </td>
-                        <td>{{ $ijazah->{$upload['date']} ?? 'Belum diunggah' }}</td>
+                        <td>{{ $pangkat->tanggal_upload ?? 'Belum diunggah' }}</td>
                     </tr>
                     @endforeach
                 </tbody>

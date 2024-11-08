@@ -28,22 +28,7 @@ class CreateKenaikanPangkatFungsionalTable extends Migration
             $table->string('rekomendasi_kepala_instansi')->nullable();
 
             // Tambahkan kolom untuk tanggal upload
-            $table->date('tanggal_upload_sk_cpns')->nullable();
-            $table->date('tanggal_upload_sk_pns')->nullable();
-            $table->date('tanggal_upload_sk_ploting_terakhir')->nullable();
-            $table->date('tanggal_upload_sk_pengangkatan_jabatan_fungsional')->nullable();
-            $table->date('tanggal_upload_sk_kenaikan_pangkat_terakhir')->nullable();
-            $table->date('tanggal_upload_ijazah_terakhir')->nullable();
-            $table->date('tanggal_upload_transkrip_nilai')->nullable();
-            $table->date('tanggal_upload_sk_pmk')->nullable();
-            $table->date('tanggal_upload_penilaian_kinerja')->nullable();
-            $table->date('tanggal_upload_sertifikat_uji_kompetensi')->nullable();
-            $table->date('tanggal_upload_pak')->nullable();
-            $table->date('tanggal_upload_pak_integrasi')->nullable();
-            $table->date('tanggal_upload_sk_pengangkatan_pertama_fungsional')->nullable();
-            $table->date('tanggal_upload_sk_kenaikan_jabatan_fungsional')->nullable();
-            $table->date('tanggal_upload_rekomendasi_kepala_instansi')->nullable();
-
+            $table->date('tanggal_upload')->nullable();
             $table->timestamps();
         });
     }

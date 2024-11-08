@@ -17,12 +17,9 @@ class CreateKenaikanPangkatTugasBelajarTable extends Migration
             $table->string('ijazah_terakhir')->nullable();
             $table->string('transkrip_nilai')->nullable();
             $table->string('sk_pemberhentian_jabatan')->nullable();
-            $table->date('tanggal_upload_sk_kenaikan_pangkat')->nullable(); // Tambahkan kolom untuk tanggal upload
-            $table->date('tanggal_upload_surat_tugas_belajar')->nullable(); // Tambahkan kolom untuk tanggal upload
-            $table->date('tanggal_upload_penilaian_kinerja')->nullable(); // Tambahkan kolom untuk tanggal upload
-            $table->date('tanggal_upload_ijazah_terakhir')->nullable(); // Tambahkan kolom untuk tanggal upload
-            $table->date('tanggal_upload_transkrip_nilai')->nullable(); // Tambahkan kolom untuk tanggal upload
-            $table->date('tanggal_upload_sk_pemberhentian_jabatan')->nullable(); // Tambahkan kolom untuk tanggal upload
+            
+            // Tambahkan kolom untuk tanggal upload
+            $table->date('tanggal_upload')->nullable();
             $table->timestamps();
         });
     }
