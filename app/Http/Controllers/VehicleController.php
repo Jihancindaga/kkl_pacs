@@ -10,26 +10,7 @@ use Illuminate\Support\Str;
 
 class VehicleController extends Controller
 {
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($model) {
-            // Tentukan prefix berdasarkan jenis kendaraan
-            if ($model->jenis_kendaraan === 'motor') {
-                $prefix = 'mtr-';
-            } elseif ($model->jenis_kendaraan === 'mobil') {
-                $prefix = 'mbl-';
-            } else {
-                $prefix = 'unk-'; // Jika jenis kendaraan tidak diketahui
-            }
-
-            // Ambil ID auto-increment dan tambahkan prefix
-            $model->kode_kendaraan = $prefix . $model->id;
-            $model->save(); // Simpan perubahan ke database
-        });
-    }
-
+    
     // Menampilkan semua kendaraan (tabel pajak)
     public function index()
     {
@@ -141,7 +122,6 @@ class VehicleController extends Controller
         return redirect()->route('vehicles.index')->with('success', 'Data kendaraan berhasil diperbarui.');
 
         // Log data request untuk debugging
-        \Log::info('Request Data:', $request->all());
         $request->validate([
             'pengguna' => 'required|string',
             'jenis_kendaraan' => 'required|string',
