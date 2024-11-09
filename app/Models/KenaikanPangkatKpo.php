@@ -23,6 +23,9 @@ class KenaikanPangkatKpo extends Model
         'stlud',
         'rekomendasi_kepala_instansi',
         'tanggal_upload',
+        'golongan',
+        'pangkat',
+        'tahun_pengajuan',   
     ];
     public function karyawan()
     {

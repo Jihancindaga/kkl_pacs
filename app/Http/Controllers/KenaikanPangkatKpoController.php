@@ -15,7 +15,7 @@ class KenaikanPangkatKpoController extends Controller
 
         // Ambil semua data kenaikan pangkat KPO dan urutkan berdasarkan tanggal upload terbaru
         $kenaikanPangkatKpo = KenaikanPangkatKpo::where('karyawan_id', $id)
-            ->orderBy('tanggal_upload', 'desc')
+            ->orderBy('tahun_pengajuan', 'desc')
             ->get();
 
         // Urutkan data berdasarkan tanggal gabungan, dengan fallback untuk setiap kolom jika tidak ada tanggal
@@ -30,6 +30,9 @@ class KenaikanPangkatKpoController extends Controller
     public function store(Request $request, $karyawan_id)
     {
         $request->validate([
+            'golongan' => 'required|string',
+            'pangkat' => 'required|string',
+            'tahun_pengajuan' => 'required|integer',
             'file1' => 'required|file|mimes:pdf',
             'file2' => 'required|file|mimes:pdf',
             'file3' => 'required|file|mimes:pdf',
@@ -57,6 +60,9 @@ class KenaikanPangkatKpoController extends Controller
         // Menyimpan data ke tabel
         KenaikanPangkatKpo::create([
             'karyawan_id' => $karyawan->id,
+            'golongan' => $request->golongan,
+            'pangkat' => $request->pangkat,
+            'tahun_pengajuan' => $request->tahun_pengajuan,
             'sk_kenaikan_pangkat_terakhir' => $files['file1'] ?? null,
             'sk_pmk' => $files['file2'] ?? null,
             'sk_jabatan_pelaksana_terakhir' => $files['file3'] ?? null,

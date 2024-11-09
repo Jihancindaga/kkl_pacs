@@ -119,60 +119,55 @@
             <p><strong>NIP:</strong> {{ $karyawan->nip }}</p>
         </div>
 
-        @if($kenaikanPangkatFungsional->isNotEmpty())
-        @php
-        $uploads = [
-        ['name' => 'SK CPNS', 'file' => 'sk_cpns'],
-        ['name' => 'SK PNS', 'file' => 'sk_pns'],
-        ['name' => 'SK Plotting Terakhir', 'file' => 'sk_ploting_terakhir'],
-        ['name' => 'SK Pengangkatan Jabatan Fungsional', 'file' => 'sk_pengangkatan_jabatan_fungsional'],
-        ['name' => 'SK Kenaikan Pangkat Terakhir', 'file' => 'sk_kenaikan_pangkat_terakhir'],
-        ['name' => 'Ijazah Terakhir', 'file' => 'ijazah_terakhir'],
-        ['name' => 'Transkrip Nilai', 'file' => 'transkrip_nilai'],
-        ['name' => 'SK PMK', 'file' => 'sk_pmk', 'date' => 'tanggal_upload_sk_pmk'],
-        ['name' => 'Penilaian Kinerja', 'file' => 'penilaian_kinerja'],
-        ['name' => 'Sertifikat Uji Kompetensi', 'file' => 'sertifikat_uji_kompetensi'],
-        ['name' => 'PAK', 'file' => 'pak'],
-        ['name' => 'PAK Integrasi', 'file' => 'pak_integrasi'],
-        ['name' => 'SK Pengangkatan Pertama Fungsional', 'file' => 'sk_pengangkatan_pertama_fungsional'],
-        ['name' => 'SK Kenaikan Jabatan Fungsional', 'file' => 'sk_kenaikan_jabatan_fungsional'],
-        ['name' => 'Rekomendasi Kepala Instansi', 'file' => 'rekomendasi_kepala_instansi'],
-        ];
-        @endphp
-
-        @foreach($uploads as $upload)
+        @foreach ($kenaikanPangkatFungsional as $index => $item)
+        <p><strong>No {{ $index + 1 }}:</strong> Mengajukan kenaikan ke golongan {{ $item->golongan }}, pangkat {{ $item->pangkat }}, tahun pengajuan {{ $item->tahun_pengajuan }}.</p>
         <div class="table">
-            <div class="table-header">{{ $upload['name'] }}</div>
+            <div class="table-header">Detail Berkas Tugas Belajar</div>
             <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Link Berkas</th>
+                        <th>Nama Berkas</th>
+                        <th>Link Lihat Berkas</th>
                         <th>Tanggal Upload</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($kenaikanPangkatFungsional as $index => $data)
+                    @foreach ([
+                    'SK CPNS' => $item->sk_cpns,
+                    'SK PNS' => $item->sk_pns,
+                    'SK Plotting Terakhir' => $item->sk_ploting_terakhir,
+                    'SK Pengangkatan Jabatan Fungsional' => $item->sk_pengangkatan_jabatan_fungsional,
+                    'SK Kenaikan Pangkat Terakhir' => $item->sk_kenaikan_pangkat_terakhir,
+                    'Ijazah Terakhir' => $item->ijazah_terakhir,
+                    'Transkrip Nilai' => $item->transkrip_nilai,
+                    'SK PMK' => $item->sk_pmk,
+                    'Penilaian Kinerja' => $item->penilaian_kinerja,
+                    'Sertifikat Uji Kompetensi' => $item->sertifikat_uji_kompetensi,
+                    'PAK' => $item->pak,
+                    'PAK Integrasi' => $item->pak_integrasi,
+                    'SK Pengangkatan Pertama Fungsional' => $item->sk_pengangkatan_pertama_fungsional,
+                    'SK Kenaikan Jabatan Fungsional' => $item->sk_kenaikan_jabatan_fungsional,
+                    'Rekomendasi Kepala Instansi' => $item->rekomendasi_kepala_instansi
+                    ] as $namaBerkas => $filePath)
                     <tr>
-                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $namaBerkas }}</td>
                         <td>
-                            @if($data->{$upload['file']})
-                            <a href="{{ asset('storage/' . $data->{$upload['file']}) }}" class="btn btn-primary btn-sm" target="_blank">Lihat</a>
+                            @if ($filePath)
+                            <a href="{{ Storage::url($filePath) }}" class="btn btn-primary btn-sm" target="_blank">Lihat Berkas</a>
                             @else
                             <span class="not-uploaded">Belum diunggah</span>
                             @endif
                         </td>
-                        <td>{{ $data->tanggal_upload ?? 'Belum diunggah' }}</td>
+                        <td>{{ $item->tanggal_upload ?? 'Belum diunggah' }}</td>
                     </tr>
                     @endforeach
                 </tbody>
+
             </table>
         </div>
         @endforeach
-
-        @else
-        <p>Data upload kenaikan pangkat fungsional tidak ditemukan.</p>
-        @endif
     </div>
 
     <script>
@@ -180,7 +175,6 @@
             window.location.href = page;
         }
     </script>
-
 </body>
 
 </html>

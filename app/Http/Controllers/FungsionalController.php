@@ -13,9 +13,11 @@ class FungsionalController extends Controller
     {
         $karyawan = Karyawan::findOrFail($id);
 
+
+
         // Ambil semua data kenaikan pangkat fungsional dan urutkan berdasarkan tanggal upload terbaru
         $kenaikanPangkatFungsional = Fungsional::where('karyawan_id', $id)
-            ->orderBy('tanggal_upload', 'desc')
+            ->orderBy('tahun_pengajuan', 'desc')
             ->get();
 
         // Urutkan data berdasarkan tanggal gabungan, dengan fallback untuk setiap kolom jika tidak ada tanggal
@@ -32,6 +34,9 @@ class FungsionalController extends Controller
     public function store(Request $request, $karyawan_id)
     {
         $request->validate([
+            'golongan' => 'required|string',
+            'pangkat' => 'required|string',
+            'tahun_pengajuan' => 'required|integer',
             'file1' => 'required|file|mimes:pdf',
             'file2' => 'required|file|mimes:pdf',
             'file3' => 'required|file|mimes:pdf',
@@ -64,6 +69,9 @@ class FungsionalController extends Controller
         // Simpan data ke tabel tugas_belajar
         Fungsional::create([
             'karyawan_id' => $karyawan->id,
+            'golongan' => $request->golongan,
+            'pangkat' => $request->pangkat,
+            'tahun_pengajuan' => $request->tahun_pengajuan,
             'sk_cpns' => $files['file1'] ?? null,
             'sk_pns' => $files['file2'] ?? null,
             'sk_ploting_terakhir' => $files['file3'] ?? null,

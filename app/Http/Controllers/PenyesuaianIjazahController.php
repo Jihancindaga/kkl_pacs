@@ -19,7 +19,7 @@ class PenyesuaianIjazahController extends Controller
 
         // Ambil semua data penyesuaian ijazah berdasarkan karyawan_id
         $penyesuaianIjazah = PenyesuaianIjazah::where('karyawan_id', $id)
-            ->orderBy('tanggal_upload', 'desc')
+            ->orderBy('tahun_pengajuan', 'desc')
             ->get();
 
         // Jika Anda ingin mengurutkan berdasarkan satu tanggal gabungan atau lain
@@ -38,6 +38,9 @@ class PenyesuaianIjazahController extends Controller
     public function store(Request $request, $karyawan_id)
     {
         $request->validate([
+            'golongan' => 'required|string',
+            'pangkat' => 'required|string',
+            'tahun_pengajuan' => 'required|integer',
             'file1' => 'required|file|mimes:pdf',
             'file2' => 'required|file|mimes:pdf',
             'file3' => 'required|file|mimes:pdf',
@@ -66,6 +69,9 @@ class PenyesuaianIjazahController extends Controller
         // Simpan data ke tabel tugas_belajar
         PenyesuaianIjazah::create([
             'karyawan_id' => $karyawan->id,
+            'golongan' => $request->golongan,
+            'pangkat' => $request->pangkat,
+            'tahun_pengajuan' => $request->tahun_pengajuan,
             'sk_kenaikan_pangkat_terakhir' => $files['file1'] ?? null,
             'sk_jabatan_terakhir' => $files['file2'] ?? null,
             'ijazah_terakhir' => $files['file3'] ?? null,

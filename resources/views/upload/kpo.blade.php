@@ -107,6 +107,18 @@
 
         <form action="{{ route('kpo.store', $karyawan->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
+            <div class="form-group">
+                <label for="golongan">Golongan</label>
+                <input type="text" name="golongan" id="golongan" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="pangkat">Pangkat</label>
+                <input type="text" name="pangkat" id="pangkat" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="tahun_pengajuan">Tahun Pengajuan</label>
+                <input type="number" name="tahun_pengajuan" id="tahun_pengajuan" class="form-control" required>
+            </div>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -133,9 +145,10 @@
                         <td>{{ $dokumen }}</td>
                         <td>
                             <div class="d-flex align-items-center">
-                                <input type="file" name="file{{ $index + 1 }}" class="form-control" required style="flex: 1;" id="file{{ $index + 1 }}" {{ $index > 0 ? 'disabled' : '' }}>
+                                <input type="file" name="file{{ $index + 1 }}" class="form-control" required style="flex: 1;" id="file{{ $index + 1 }}" onchange="showPreview({{ $index + 1 }})">
                                 <button type="button" class="btn btn-primary btn-upload" onclick="uploadFile({{ $index + 1 }})">Upload</button>
                             </div>
+                            <div class="preview" id="preview{{ $index + 1 }}"></div>
                         </td>
                         <td>
                             <input type="checkbox" id="checkbox{{ $index + 1 }}" disabled>
@@ -153,27 +166,30 @@
 
     <script>
         function uploadFile(fileNumber) {
-            // Simulate file upload and enable checkbox and next input
+            // Simulasi pengunggahan file
             alert('File ' + fileNumber + ' berhasil diunggah!');
             const checkbox = document.getElementById('checkbox' + fileNumber);
             checkbox.checked = true;
-            checkbox.disabled = false; // Enable checkbox
-            
-            // Enable the next file input and button if it exists
-            const nextFileInput = document.getElementById('file' + (fileNumber + 1));
-            const nextUploadButton = document.querySelector('#file' + (fileNumber + 1) + ' + .btn-upload'); // Corrected selector
-            if (nextFileInput) {
-                nextFileInput.disabled = false;
-                nextUploadButton.disabled = false; // Enable the next upload button
-                nextDateInput.disabled = false; // Enable the next date input
-            }
-            checkAllFilesUploaded(); // Check if all files have been uploaded
+            checkbox.disabled = false;
+
+            checkAllFilesUploaded(); // Memeriksa apakah semua file telah diunggah
         }
 
         function checkAllFilesUploaded() {
             const checkboxes = Array.from(document.querySelectorAll('input[type="checkbox"]'));
             const allUploaded = checkboxes.every(checkbox => checkbox.checked);
-            document.getElementById('saveButton').disabled = !allUploaded; // Enable or disable the save button
+            document.getElementById('saveButton').disabled = !allUploaded; // Aktifkan tombol simpan jika semua file sudah diunggah
+        }
+
+        function showPreview(fileNumber) {
+            const fileInput = document.getElementById('file' + fileNumber);
+            const preview = document.getElementById('preview' + fileNumber);
+
+            if (fileInput.files && fileInput.files[0]) {
+                const fileURL = URL.createObjectURL(fileInput.files[0]);
+                const fileName = fileInput.files[0].name;
+                preview.innerHTML = `<strong>Pratinjau:</strong> <a href="${fileURL}" target="_blank">${fileName}</a>`;
+            }
         }
 
         function navigateTo(page) {

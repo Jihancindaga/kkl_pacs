@@ -24,6 +24,9 @@ class PenyesuaianIjazah extends Model
         'surat_uraian_tugas',
         'rekomendasi_kepala_instansi',
         'tanggal_upload',
+        'golongan',
+        'pangkat',
+        'tahun_pengajuan',
     ];
     public function karyawan()
     {

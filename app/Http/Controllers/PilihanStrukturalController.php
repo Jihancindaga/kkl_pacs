@@ -19,7 +19,7 @@ class PilihanStrukturalController extends Controller
 
         // Ambil semua data pilihan struktural dan urutkan berdasarkan tanggal upload terbaru
         $pilihanStruktural = PilihanStruktural::where('karyawan_id', $id)
-            ->orderBy('tanggal_upload', 'desc')
+            ->orderBy('tahun_pengajuan', 'desc')
             ->get();
 
         // Jika Anda ingin membuat urutan berdasarkan satu tanggal gabungan atau lain 
@@ -38,6 +38,9 @@ class PilihanStrukturalController extends Controller
     public function store(Request $request, $karyawan_id)
     {
         $request->validate([
+            'golongan' => 'required|string',
+            'pangkat' => 'required|string',
+            'tahun_pengajuan' => 'required|integer',
             'file1' => 'required|file|mimes:pdf',
             'file2' => 'required|file|mimes:pdf',
             'file3' => 'required|file|mimes:pdf',
@@ -67,6 +70,9 @@ class PilihanStrukturalController extends Controller
         // Simpan data ke tabel tugas_belajar
         PilihanStruktural::create([
             'karyawan_id' => $karyawan->id,
+            'golongan' => $request->golongan,
+            'pangkat' => $request->pangkat,
+            'tahun_pengajuan' => $request->tahun_pengajuan,
             'sk_kenaikan_pangkat_terakhir' => $files['file1'] ?? null,
             'ijazah_terakhir' => $files['file2'] ?? null,
             'transkrip_nilai' => $files['file3'] ?? null,

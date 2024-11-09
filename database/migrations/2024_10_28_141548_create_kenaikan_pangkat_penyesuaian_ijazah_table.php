@@ -11,6 +11,9 @@ class CreateKenaikanPangkatPenyesuaianIjazahTable extends Migration
         Schema::create('kenaikan_pangkat_penyesuaian_ijazah', function (Blueprint $table) {
             $table->id();
             $table->foreignId('karyawan_id')->constrained('karyawans')->onDelete('cascade');
+            $table->string('golongan');
+            $table->string('pangkat');
+            $table->year('tahun_pengajuan');
             $table->string('sk_kenaikan_pangkat_terakhir')->nullable();
             $table->string('sk_jabatan_terakhir')->nullable();
             $table->string('ijazah_terakhir')->nullable();

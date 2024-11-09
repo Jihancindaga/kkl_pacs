@@ -12,24 +12,27 @@ class Fungsional extends Model
     protected $table = 'kenaikan_pangkat_fungsional';
 
     protected $fillable = [
-            'karyawan_id',
-            'sk_cpns',
-            'sk_pns',
-            'sk_ploting_terakhir',
-            'sk_pengangkatan_jabatan_fungsional',
-            'sk_kenaikan_pangkat_terakhir',
-            'ijazah_terakhir',
-            'transkrip_nilai',
-            'sk_pmk',
-            'penilaian_kinerja',
-            'sertifikat_uji_kompetensi',
-            'pak',
-            'pak_integrasi',
-            'sk_pengangkatan_pertama_fungsional',
-            'sk_kenaikan_jabatan_fungsional',
-            'rekomendasi_kepala_instansi',
-            'tanggal_upload',
-            ];
+        'karyawan_id',
+        'sk_cpns',
+        'sk_pns',
+        'sk_ploting_terakhir',
+        'sk_pengangkatan_jabatan_fungsional',
+        'sk_kenaikan_pangkat_terakhir',
+        'ijazah_terakhir',
+        'transkrip_nilai',
+        'sk_pmk',
+        'penilaian_kinerja',
+        'sertifikat_uji_kompetensi',
+        'pak',
+        'pak_integrasi',
+        'sk_pengangkatan_pertama_fungsional',
+        'sk_kenaikan_jabatan_fungsional',
+        'rekomendasi_kepala_instansi',
+        'tanggal_upload',
+        'golongan',
+        'pangkat',
+        'tahun_pengajuan',
+    ];
     public function karyawan()
     {
         return $this->belongsTo(Karyawan::class);

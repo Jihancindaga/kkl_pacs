@@ -11,6 +11,9 @@ class CreateKenaikanPangkatFungsionalTable extends Migration
         Schema::create('kenaikan_pangkat_fungsional', function (Blueprint $table) {
             $table->id();
             $table->foreignId('karyawan_id')->constrained('karyawans')->onDelete('cascade');
+            $table->string('golongan');
+            $table->string('pangkat');
+            $table->year('tahun_pengajuan');
             $table->string('sk_cpns')->nullable();
             $table->string('sk_pns')->nullable();
             $table->string('sk_ploting_terakhir')->nullable();

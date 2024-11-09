@@ -119,55 +119,49 @@
             <p><strong>NIP:</strong> {{ $karyawan->nip }}</p>
         </div>
 
-        @if($penyesuaianIjazah->isNotEmpty())
-        @php
-        $uploads = [
-        ['name' => 'SK Kenaikan Pangkat Terakhir', 'file' => 'sk_kenaikan_pangkat_terakhir'],
-        ['name' => 'SK Jabatan Terakhir', 'file' => 'sk_jabatan_terakhir'],
-        ['name' => 'Ijazah Terakhir', 'file' => 'ijazah_terakhir'],
-        ['name' => 'Transkrip Nilai', 'file' => 'transkrip_nilai'],
-        ['name' => 'Surat Akreditasi', 'file' => 'surat_akreditasi'],
-        ['name' => 'Surat Ijin Belajar', 'file' => 'surat_ijin_belajar'],
-        ['name' => 'STL Ujian Kenaikan', 'file' => 'stl_ujian_kenaikan'],
-        ['name' => 'Penilaian Kinerja', 'file' => 'penilaian_kinerja'],
-        ['name' => 'Surat Uraian Tugas', 'file' => 'surat_uraian_tugas'],
-        ['name' => 'Rekomendasi Kepala Instansi', 'file' => 'rekomendasi_kepala_instansi'],
-        ];
-        @endphp
-
-        @foreach($uploads as $upload)
+        @foreach ($penyesuaianIjazah as $index => $item)
+        <p><strong>No {{ $index + 1 }}:</strong> Mengajukan kenaikan ke golongan {{ $item->golongan }}, pangkat {{ $item->pangkat }}, tahun pengajuan {{ $item->tahun_pengajuan }}.</p>
         <div class="table">
-            <div class="table-header">{{ $upload['name'] }}</div>
+            <div class="table-header">Detail Berkas Penyesuaian Ijazah</div>
             <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Link Berkas</th>
+                        <th>Nama Berkas</th>
+                        <th>Link Lihat Berkas</th>
                         <th>Tanggal Upload</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($penyesuaianIjazah as $index => $ijazah)
+                    @foreach ([
+                    'SK Kenaikan Pangkat Terakhir' => $item->sk_kenaikan_pangkat_terakhir,
+                    'SK Jabatan Terakhir' => $item->sk_jabatan_terakhir,
+                    'Ijazah Terakhir' => $item->ijazah_terakhir,
+                    'Transkrip Nilai' => $item->transkrip_nilai,
+                    'Surat Akreditasi' => $item->surat_akreditasi,
+                    'Surat Ijin Belajar' => $item->surat_ijin_belajar,
+                    'STL Ujian Kenaikan' => $item->stl_ujian_kenaikan,
+                    'Penilaian Kinerja' => $item->penilaian_kinerja,
+                    'Surat Uraian Tugas' => $item->surat_uraian_tugas,
+                    'Rekomendasi Kepala Instansi' => $item->rekomendasi_kepala_instansi
+                    ] as $namaBerkas => $filePath)
                     <tr>
-                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $namaBerkas }}</td>
                         <td>
-                            @if($ijazah->{$upload['file']})
-                            <a href="{{ asset('storage/' . $ijazah->{$upload['file']}) }}" class="btn btn-primary btn-sm" target="_blank">Lihat</a>
+                            @if ($filePath)
+                            <a href="{{ Storage::url($filePath) }}" class="btn btn-primary btn-sm" target="_blank">Lihat Berkas</a>
                             @else
                             <span class="not-uploaded">Belum diunggah</span>
                             @endif
                         </td>
-                        <td>{{ $ijazah->tanggal_upload ?? 'Belum diunggah' }}</td>
+                        <td>{{ $item->tanggal_upload ?? 'Belum diunggah' }}</td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
         @endforeach
-
-        @else
-        <p>Data upload penyesuaian ijazah tidak ditemukan.</p>
-        @endif
     </div>
 
     <script>
@@ -175,7 +169,6 @@
             window.location.href = page;
         }
     </script>
-
 </body>
 
 </html>

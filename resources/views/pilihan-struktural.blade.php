@@ -119,57 +119,51 @@
             <p><strong>NIP:</strong> {{ $karyawan->nip }}</p>
         </div>
 
-        @if($pilihanStruktural->isNotEmpty())
-        @php
-        $uploads = [
-        ['name' => 'SK Kenaikan Pangkat Terakhir', 'file' => 'sk_kenaikan_pangkat_terakhir'],
-        ['name' => 'Ijazah Terakhir', 'file' => 'ijazah_terakhir'],
-        ['name' => 'Transkrip Nilai', 'file' => 'transkrip_nilai'],
-        ['name' => 'SK Jabatan', 'file' => 'sk_jabatan'],
-        ['name' => 'SPMT', 'file' => 'spmt'],
-        ['name' => 'Berita Acara Pelantikan', 'file' => 'berita_acara_pelantikan'],
-        ['name' => 'Surat Pernyataan Pelantikan', 'file' => 'surat_pernyataan_pelantikan'],
-        ['name' => 'Penilaian Kinerja', 'file' => 'penilaian_kinerja'],
-        ['name' => 'Surat Gelar BKN', 'file' => 'surat_gelar_bkn'],
-        ['name' => 'STTPP Diklatpim III', 'file' => 'sttpp_diklatpim_iii'],
-        ['name' => 'Rekomendasi Kepala Instansi', 'file' => 'rekomendasi_kepala_instansi'],
-        ];
-        @endphp
-
-
-        @foreach($uploads as $upload)
+        @foreach ($pilihanStruktural as $index => $item)
+        <p><strong>No {{ $index + 1 }}:</strong> Mengajukan kenaikan ke golongan {{ $item->golongan }}, pangkat {{ $item->pangkat }}, tahun pengajuan {{ $item->tahun_pengajuan }}.</p>
         <div class="table">
-            <div class="table-header">{{ $upload['name'] }}</div>
+            <div class="table-header">Detail Berkas Kenaikan Pangkat Pilihan Struktural</div>
             <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Link Berkas</th>
+                        <th>Nama Berkas</th>
+                        <th>Link Lihat Berkas</th>
                         <th>Tanggal Upload</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($pilihanStruktural as $index => $kenaikan)
+                    @foreach ([
+                    'SK Kenaikan Pangkat Terakhir' => $item->sk_kenaikan_pangkat_terakhir,
+                    'Ijazah Terakhir' => $item->ijazah_terakhir,
+                    'Transkrip Nilai' => $item->transkrip_nilai,
+                    'SK Jabatan' => $item->sk_jabatan,
+                    'SPMT' => $item->spmt,
+                    'Berita Acara Pelantikan' => $item->berita_acara_pelantikan,
+                    'Surat Pernyataan Pelantikan' => $item->surat_pernyataan_pelantikan,
+                    'Penilaian Kinerja' => $item->penilaian_kinerja,
+                    'Surat Gelar BKN' => $item->surat_gelar_bkn,
+                    'STTPP Diklatpim III' => $item->sttpp_diklatpim_iii,
+                    'Rekomendasi Kepala Instansi' => $item->rekomendasi_kepala_instansi
+                    ] as $namaBerkas => $filePath)
                     <tr>
-                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $namaBerkas }}</td>
                         <td>
-                            @if($kenaikan->{$upload['file']})
-                            <a href="{{ asset('storage/' . $kenaikan->{$upload['file']}) }}" class="btn btn-primary btn-sm" target="_blank">Lihat</a>
+                            @if ($filePath)
+                            <a href="{{ Storage::url($filePath) }}" class="btn btn-primary btn-sm" target="_blank">Lihat Berkas</a>
                             @else
                             <span class="not-uploaded">Belum diunggah</span>
                             @endif
                         </td>
-                        <td>{{ $kenaikan->tanggal_upload ?? 'Belum diunggah' }}</td>
+                        <td>{{ $item->tanggal_upload ?? 'Belum diunggah' }}</td>
                     </tr>
                     @endforeach
                 </tbody>
+
             </table>
         </div>
         @endforeach
-
-        @else
-        <p>Data kenaikan pangkat Struktural tidak ditemukan.</p>
-        @endif
     </div>
 
     <script>
@@ -177,7 +171,6 @@
             window.location.href = page;
         }
     </script>
-
 </body>
 
 </html>

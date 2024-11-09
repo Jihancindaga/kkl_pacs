@@ -27,6 +27,9 @@ class PilihanStruktural extends Model
         'sttpp_diklatpim_iii',
         'rekomendasi_kepala_instansi',
         'tanggal_upload',
+        'golongan',
+        'pangkat',
+        'tahun_pengajuan',
     ];
 
     /**
