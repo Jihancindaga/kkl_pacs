@@ -117,6 +117,18 @@
         <!-- Form untuk mengupload berkas -->
         <form action="{{ route('tugas-belajar.store', $karyawan->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
+            <div class="form-group">
+                <label for="golongan">Golongan</label>
+                <input type="text" name="golongan" id="golongan" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="pangkat">Pangkat</label>
+                <input type="text" name="pangkat" id="pangkat" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="tahun_pengajuan">Tahun Pengajuan</label>
+                <input type="number" name="tahun_pengajuan" id="tahun_pengajuan" class="form-control" required>
+            </div>
             <table class="table table-bordered">
                 <thead>
                     <tr>

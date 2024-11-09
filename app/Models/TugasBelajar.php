@@ -22,6 +22,9 @@ class TugasBelajar extends Model
         'transkrip_nilai',
         'sk_pemberhentian_jabatan',
         'tanggal_upload',
+        'golongan',          
+        'pangkat',           
+        'tahun_pengajuan',   
     ];
 
     /**

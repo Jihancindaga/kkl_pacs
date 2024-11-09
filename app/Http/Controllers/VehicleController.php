@@ -60,49 +60,52 @@ class VehicleController extends Controller
             $vehicles = Vehicle::all();
             return view('form_data', compact('vehicles'));
         }
-        public function store(Request $request)
-        {
-            // Validasi data kendaraan
-            $validatedData = $request->validate([
-                'plat' => 'required|string|max:15',
-                'pengguna' => 'required|string|max:255',
-                'jenis_kendaraan' => 'required|string|max:255',  // Jenis kendaraan: Motor atau Mobil
-                'merk_kendaraan' => 'required|string|max:255',
-                'waktu_pajak' => 'required|date',
-                'ganti_plat' => 'required|date',
-                'usia_kendaraan' => 'required|integer',
-                'cc' => 'required|integer',
-                'nomor_telepon' => 'required|string|max:15',
-            ]);
-    
-            // Tentukan prefix berdasarkan jenis kendaraan
-            $jenisKendaraanPrefix = ($request->jenis_kendaraan == 'Motor') ? 'MT' : 'MB'; // 'MT' untuk motor, 'MB' untuk mobil
-    
-            // Generate angka acak dua digit
-            $randomNumber = rand(10, 99);
-    
-            // Gabungkan prefix dengan angka acak
-            $kodeKendaraan = "{$jenisKendaraanPrefix}-{$randomNumber}";
-    
-            // Cek apakah kendaraan dengan kode ini sudah ada
+    public function store(Request $request)
+    {
+        // Validasi data kendaraan
+        $validatedData = $request->validate([
+            'plat' => 'required|string|max:15',
+            'pengguna' => 'required|string|max:255',
+            'jenis_kendaraan' => 'required|string|max:255',  // Jenis kendaraan: Motor atau Mobil
+            'merk_kendaraan' => 'required|string|max:255',
+            'waktu_pajak' => 'required|date',
+            'ganti_plat' => 'required|date',
+            'usia_kendaraan' => 'required|integer',
+            'cc' => 'required|integer',
+            'nomor_telepon' => 'required|string|max:15',
+        ]);
+
+        // Tentukan prefix berdasarkan jenis kendaraan
+        $jenisKendaraanPrefix = ($request->jenis_kendaraan == 'Motor') ? 'mtr' : 'mbl';
+
+        // Dapatkan angka terbesar yang ada untuk kode dengan prefix tersebut
+        $lastVehicle = Vehicle::where('kode_kendaraan', 'LIKE', "{$jenisKendaraanPrefix}-%")
+        ->orderByRaw("CAST(SUBSTRING(kode_kendaraan, 5) AS UNSIGNED) DESC")
+        ->first();
+
+        // Tentukan angka selanjutnya
+        $nextNumber = $lastVehicle ? ((int)substr($lastVehicle->kode_kendaraan, 4) + 1) : 10;
+
+        // Pastikan kode kendaraan baru tidak duplikat
+        do {
+            $kodeKendaraan = "{$jenisKendaraanPrefix}-{$nextNumber}";
             $existingVehicle = Vehicle::where('kode_kendaraan', $kodeKendaraan)->first();
-    
-            // Jika kendaraan dengan kode ini sudah ada, buat kode baru
-            while ($existingVehicle) {
-                $randomNumber = rand(10, 99);  // Generate angka acak lagi jika duplikat
-                $kodeKendaraan = "{$jenisKendaraanPrefix}-{$randomNumber}";
-                $existingVehicle = Vehicle::where('kode_kendaraan', $kodeKendaraan)->first();
-            }
-    
-            // Set kode kendaraan ke validatedData
-            $validatedData['kode_kendaraan'] = $kodeKendaraan;
-    
-            // Simpan data kendaraan baru ke database
-            Vehicle::create($validatedData);
-    
-            // Redirect ke halaman daftar kendaraan dengan pesan sukses
-            return redirect()->route('vehicles.index')->with('success', 'Kendaraan berhasil ditambahkan dengan kode: ' . $kodeKendaraan);
-        }
+            $nextNumber++; // Jika duplikat, tambahkan angka dan periksa lagi
+        } while ($existingVehicle);
+
+        // Buat kode kendaraan baru
+        $kodeKendaraan = "{$jenisKendaraanPrefix}-{$nextNumber}";
+
+        // Set kode kendaraan ke validatedData
+        $validatedData['kode_kendaraan'] = $kodeKendaraan;
+
+        // Simpan data kendaraan baru ke database
+        Vehicle::create($validatedData);
+
+        // Redirect ke halaman daftar kendaraan dengan pesan sukses
+        return redirect()->route('vehicles.index')->with('success', 'Kendaraan berhasil ditambahkan dengan kode: ' . $kodeKendaraan);
+    }
+
          
 
 

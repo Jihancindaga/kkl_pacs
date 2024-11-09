@@ -11,6 +11,9 @@ class CreateKenaikanPangkatTugasBelajarTable extends Migration
         Schema::create('kenaikan_pangkat_tugas_belajar', function (Blueprint $table) {
             $table->id();
             $table->foreignId('karyawan_id')->constrained('karyawans')->onDelete('cascade');
+            $table->string('golongan');
+            $table->string('pangkat');
+            $table->year('tahun_pengajuan');
             $table->string('sk_kenaikan_pangkat_terakhir')->nullable();
             $table->string('surat_tugas_belajar')->nullable();
             $table->string('penilaian_kinerja')->nullable();

@@ -139,14 +139,17 @@
             background-color: #aa1c9e;
             /* Oranye */
         }
+
         .btn-4 {
             background-color: #ec2300;
             /* Oranye */
         }
+
         .btn-5 {
             background-color: #26eb0c;
             /* Oranye */
         }
+
         .btn-warning {
             color: white;
             /* Set warna teks tombol */
@@ -183,7 +186,7 @@
             /* Garis tepi pada sel tabel */
             font-size: 12px;
             /* Ukuran font tabel lebih kecil */
-            
+
         }
 
         .action-buttons {
@@ -241,7 +244,7 @@
                     <button class="btn btn-4 {{ Request::is('hapus-kendaraan') ? 'active' : '' }}" onclick="setActive(this, '/hapus-kendaraan')">Hapus Kendaraan</button>
                     <button class="btn btn-5 {{ Request::is('daftar-hapus-kendaraan') ? 'active' : '' }}" onclick="setActive(this, '/daftar-hapus-kendaraan')">Riwayat Kendaraan Non-aktif</button>
                 </div>
-                
+
             </div>
 
             <!-- Box Pencarian -->
@@ -256,6 +259,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Kode Kendaraan</th>
                                 <th>Plat</th>
                                 <th>Jenis Kendaraan</th>
                                 <th>Merk Kendaraan</th>
@@ -272,6 +276,7 @@
                             @foreach($vehicles as $index => $vehicle)
                             <tr>
                                 <td>{{ $index + 1 }}</td>
+                                <td>{{ $vehicle->kode_kendaraan}}</td>
                                 <td>{{ $vehicle->plat }}</td>
                                 <td>{{ $vehicle->jenis_kendaraan }}</td>
                                 <td>{{ $vehicle->merk_kendaraan }}</td>
