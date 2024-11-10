@@ -88,33 +88,51 @@
         }
 
         .button-group .btn.active {
-            background-color: #0056b3;
-            color: white;
-            border: 1px solid black;
-            transform: scale(1.05);
+            background-color: #0056b3; /* Warna gelap untuk tombol aktif */
+            color: white; /* Warna teks tetap putih */
+            border: 1px solid black; /* Tambahkan border hitam */
+            transform: scale(1.05); /* Sedikit memperbesar tombol aktif */
         }
 
+        /* Specific Button Colors */
         .btn-1 {
             background-color: #17a2b8;
+            /* Teal */
         }
 
         .btn-2 {
             background-color: #665cc0;
+            /* Ungu */
         }
 
         .btn-3 {
             background-color: #aa1c9e;
+            /* Oranye */
         }
-
+        .btn-4 {
+            background-color: #ec2300;
+            /* Oranye */
+        }
+        .btn-5 {
+            background-color: #26eb0c;
+            /* Oranye */
+        }
+        .btn-warning,
+         {
+            color: white;
+            /* Set warna teks tombol */
+        }
+        /* Button Hover Effects */
         .btn:hover {
             opacity: 0.8;
-            transform: scale(1.05);
+            transform: scale(1.05); /* Efek hover: sedikit memperbesar tombol */
         }
 
+        /* Active Button Styles */
         .btn.active {
-            background-color: #0056b3;
+            background-color: #0056b3; /* Ubah warna tombol aktif */
             color: white;
-            transform: scale(1.1);
+            transform: scale(1.1); /* Sedikit memperbesar tombol aktif */
         }
 
         h2 {
@@ -154,11 +172,11 @@
             <!-- Tombol Navigasi dan Aksi dalam satu baris -->
             <div class="btn-container">
                 <div class="button-group">
-                    <button class="btn btn-1" onclick="navigateTo('/datakaryawan')">Data Pokok Karyawan</button>
-                    <button class="btn btn-2" onclick="navigateTo('/tambah-karyawan')">Tambah Karyawan Baru</button>
-                    <button class="btn btn-3" onclick="navigateTo('/riwayat-kenaikan')">Riwayat Kenaikan</button>
-                    <a href="/hapus-karyawan" class="btn btn-danger">Hapus Karyawan</a>
-                    <a href="/riwayat_karyawan_nonaktif" class="btn btn-success">Riwayat Karyawan Non-aktif</a>
+                    <button class="btn btn-1 {{ Request::is('datakaryawan') ? 'active' : '' }}" onclick="navigateTo('/datakaryawan')">Data Pokok Karyawan</button>
+                    <button class="btn btn-2 {{ Request::is('tambah-karyawan') ? 'active' : '' }}" onclick="navigateTo('/tambah-karyawan')">Tambah Karyawan Baru</button>
+                    <button class="btn btn-3 {{ Request::is('riwayat-kenaikan') ? 'active' : '' }}" onclick="navigateTo('/riwayat-kenaikan')">Riwayat Kenaikan Pangkat</button>
+                    <button class="btn btn-4 {{ Request::is('hapus-karyawan') ? 'active' : '' }}" onclick="navigateTo('/hapus-karyawan')">Hapus Karyawan</button>
+                    <button class="btn btn-5 {{ Request::is('riwayat_karyawan_nonaktif') ? 'active' : '' }}" onclick="navigateTo('/riwayat_karyawan_nonaktif')">Riwayat Karyawan Non-aktif</button>
                 </div>
             </div>
 
@@ -238,6 +256,35 @@
             });
         });
     </script>
+    <script>
+        // Fungsi untuk mengatur tombol aktif
+        function setActive(button, url) {
+           // Mengambil semua tombol dalam grup tombol
+           const buttons = document.querySelectorAll('.button-group .btn');
+
+           // Menghapus kelas 'active' dari semua tombol
+           buttons.forEach(btn => {
+               btn.classList.remove('active');
+           });
+
+           // Menambahkan kelas 'active' ke tombol yang dipilih
+           button.classList.add('active');
+
+           // Mengarahkan ke URL yang ditentukan
+           navigateTo(url);
+       }
+
+       // Fungsi untuk navigasi ke halaman lain
+       function navigateTo(page) {
+           window.location.href = page;
+       }
+
+       // Fungsi untuk menampilkan atau menyembunyikan detail (Jika diperlukan)
+       function toggleDetails(id) {
+           const detailsRow = document.getElementById('details-' + id);
+           detailsRow.style.display = detailsRow.style.display === 'none' ? 'table-row' : 'none';
+       }
+   </script>
 </body>
 
 </html>
