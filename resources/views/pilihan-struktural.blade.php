@@ -12,88 +12,44 @@
             background-color: #f8f9fa;
             font-family: 'Arial', sans-serif;
         }
-
         .navbar {
             background-color: #007bff;
             color: #fff;
             padding: 10px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
         }
-
         .navbar .logo img {
             height: 40px;
             margin: 0 5px;
         }
-
         .navbar .home-btn {
             background: none;
             border: none;
             color: #fff;
             font-size: 24px;
             cursor: pointer;
+            margin-right: auto;
         }
-
         .container {
             margin-top: 80px;
             padding: 20px;
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
-            max-width: 95%;
+            max-width: 90%;
         }
-
         h3 {
             text-align: center;
-            margin-bottom: 20px;
             color: #343a40;
             font-size: 24px;
         }
-
-        .info-section {
-            font-size: 16px;
+        .table-section {
             margin-bottom: 20px;
-        }
-
-        .table {
-            margin-bottom: 20px;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid #dee2e6;
-        }
-
-        .table-header {
-            text-align: center;
-            background-color: #007bff;
-            color: white;
-            padding: 8px;
-            font-size: 18px;
-            border-top-left-radius: 8px;
-            border-top-right-radius: 8px;
-        }
-
-        .table th,
-        .table td {
-            text-align: center;
-            vertical-align: middle;
-            font-size: 14px;
-            padding: 10px;
-            border: 1px solid #dee2e6;
-        }
-
-        .btn-primary {
-            font-size: 14px;
-            padding: 4px 10px;
-        }
-
-        .not-uploaded {
-            color: #dc3545;
-            font-weight: bold;
         }
     </style>
 </head>
@@ -120,9 +76,31 @@
         </div>
 
         @foreach ($pilihanStruktural as $index => $item)
-        <p><strong>No {{ $index + 1 }}:</strong> Mengajukan kenaikan ke golongan {{ $item->golongan }}, pangkat {{ $item->pangkat }}, tahun pengajuan {{ $item->tahun_pengajuan }}.</p>
-        <div class="table">
-            <div class="table-header">Detail Berkas Kenaikan Pangkat Pilihan Struktural</div>
+        <table class="table table-bordered">
+            <thead>
+                <!-- Judul Riwayat dengan Latar Belakang Biru Penuh -->
+                <tr style="background-color: #84b0df; color: white;">
+                    <th colspan="5" class="text-center">Riwayat {{ $index + 1 }}</th>
+                </tr>
+                <!-- Tabel Kolom -->
+                <tr>
+                    <th>Golongan Lama</th>
+                    <th>Golongan Baru</th>
+                    <th>Pangkat Lama</th>
+                    <th>Pangkat Baru</th>
+                    <th>Tahun Pengajuan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ $karyawan->golongan }}</td>
+                    <td>{{ $item->golongan }}</td>
+                    <td>{{ $karyawan->pangkat }}</td>
+                    <td>{{ $item->pangkat }}</td>
+                    <td>{{ $item->tahun_pengajuan }}</td>
+                </tr>
+            </tbody>
+        </table>        <div class="table">
             <table class="table table-bordered">
                 <thead>
                     <tr>
