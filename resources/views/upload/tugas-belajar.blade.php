@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -64,13 +63,6 @@
         .btn-upload {
             margin-left: 5px;
             font-size: 12px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .btn-upload:hover {
-            background-color: #0056b3;
-            color: white;
         }
 
         .checkbox-label {
@@ -83,19 +75,16 @@
             padding: 5px;
         }
 
+        .navbar {
+            margin-bottom: 20px;
+        }
+
         .btn-success:disabled {
             background-color: #c0c0c0;
             cursor: not-allowed;
         }
-
-        .preview {
-            font-size: 12px;
-            margin-top: 5px;
-            color: #007bff;
-        }
     </style>
 </head>
-
 <body>
 
     <div class="navbar">
@@ -113,24 +102,32 @@
         <h3>Kenaikan Pangkat Karena Sedang Menjalankan Tugas Belajar</h3>
         <p><strong>Nama:</strong> {{ $karyawan->nama }}</p>
         <p><strong>NIP:</strong> {{ $karyawan->nip }}</p>
-        <p><strong>Golongan saat ini :</strong> {{ $karyawan->golongan }}</p>
-        <p><strong>Pangkat saat ini:</strong> {{ $karyawan->pangkat }}</p>
 
         <!-- Form untuk mengupload berkas -->
         <form action="{{ route('tugas-belajar.store', $karyawan->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="form-group">
-                <label for="golongan">Golongan</label>
-                <input type="text" name="golongan" id="golongan" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="pangkat">Pangkat</label>
-                <input type="text" name="pangkat" id="pangkat" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="tahun_pengajuan">Tahun Pengajuan</label>
-                <input type="number" name="tahun_pengajuan" id="tahun_pengajuan" class="form-control" required>
-            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Golongan Saat Ini</th>
+                        <th>Golongan yang Akan Diajukan</th>
+                        <th>Pangkat Saat Ini</th>
+                        <th>Pangkat yang Akan Diajukan</th>
+                        <th>Tahun Pengajuan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ $karyawan->golongan }}</td>
+                        <td><input type="text" name="golongan" class="form-control" required placeholder="Masukkan Golongan yang Diajukan"></td>
+                        <td>{{ $karyawan->pangkat }}</td>
+                        <td><input type="text" name="pangkat" class="form-control" required placeholder="Masukkan Pangkat yang Diajukan"></td>
+                        <td><input type="number" name="tahun_pengajuan" class="form-control" required placeholder="Masukkan Tahun Pengajuan"></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -142,12 +139,12 @@
                 </thead>
                 <tbody>
                     @foreach ([
-                    'SK Kenaikan Pangkat Terakhir',
-                    'Surat Tugas Belajar',
-                    'Penilaian Kinerja',
-                    'Ijazah Terakhir',
-                    'Transkrip Nilai',
-                    'SK Pemberhentian dari Jabatan'
+                        'SK Kenaikan Pangkat Terakhir',
+                        'Surat Tugas Belajar',
+                        'Penilaian Kinerja',
+                        'Ijazah Terakhir',
+                        'Transkrip Nilai',
+                        'SK Pemberhentian dari Jabatan'
                     ] as $index => $dokumen)
                     <tr>
                         <td>{{ $index + 1 }}</td>
@@ -175,19 +172,17 @@
 
     <script>
         function uploadFile(fileNumber) {
-            // Simulasi pengunggahan file
             alert('File ' + fileNumber + ' berhasil diunggah!');
             const checkbox = document.getElementById('checkbox' + fileNumber);
             checkbox.checked = true;
             checkbox.disabled = false;
-
-            checkAllFilesUploaded(); // Memeriksa apakah semua file telah diunggah
+            checkAllFilesUploaded();
         }
 
         function checkAllFilesUploaded() {
             const checkboxes = Array.from(document.querySelectorAll('input[type="checkbox"]'));
             const allUploaded = checkboxes.every(checkbox => checkbox.checked);
-            document.getElementById('saveButton').disabled = !allUploaded; // Aktifkan tombol simpan jika semua file sudah diunggah
+            document.getElementById('saveButton').disabled = !allUploaded;
         }
 
         function showPreview(fileNumber) {
@@ -201,11 +196,8 @@
             }
         }
 
-        function navigateTo(page) {
-            window.location.href = page;
-        }
+        function navigateTo(page) { window.location.href = page; }
     </script>
 
 </body>
-
 </html>

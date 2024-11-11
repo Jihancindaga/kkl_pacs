@@ -107,18 +107,27 @@
 
         <form action="{{ route('kpo.store', $karyawan->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="form-group">
-                <label for="golongan">Golongan</label>
-                <input type="text" name="golongan" id="golongan" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="pangkat">Pangkat</label>
-                <input type="text" name="pangkat" id="pangkat" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="tahun_pengajuan">Tahun Pengajuan</label>
-                <input type="number" name="tahun_pengajuan" id="tahun_pengajuan" class="form-control" required>
-            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Golongan Saat Ini</th>
+                        <th>Golongan yang Akan Diajukan</th>
+                        <th>Pangkat Saat Ini</th>
+                        <th>Pangkat yang Akan Diajukan</th>
+                        <th>Tahun Pengajuan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ $karyawan->golongan }}</td>
+                        <td><input type="text" name="golongan" class="form-control" required placeholder="Masukkan Golongan yang Diajukan"></td>
+                        <td>{{ $karyawan->pangkat }}</td>
+                        <td><input type="text" name="pangkat" class="form-control" required placeholder="Masukkan Pangkat yang Diajukan"></td>
+                        <td><input type="number" name="tahun_pengajuan" class="form-control" required placeholder="Masukkan Tahun Pengajuan"></td>
+                    </tr>
+                </tbody>
+            </table>
+            
             <table class="table table-bordered">
                 <thead>
                     <tr>
