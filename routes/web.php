@@ -57,6 +57,10 @@ Route::get('/hapus-kendaraan', [VehicleDeletionController::class, 'create'])->na
 Route::post('/hapus-kendaraan', [VehicleDeletionController::class, 'store'])->name('hapus.kendaraan.store');
 Route::get('/daftar-hapus-kendaraan', [VehicleDeletionController::class, 'index'])->name('daftar.hapus.kendaraan');
 
+Route::get('/report', function () {
+    return view('/report');
+});
+
 // Rute untuk Dashboard Admin
 Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
@@ -192,6 +196,7 @@ Route::post('/fungsional/{karyawan_id}', [FungsionalController::class, 'store'])
 
 Route::get('/hapus-karyawan', [KaryawanController::class, 'showDeleteForm'])->name('hapus_karyawan');
 Route::post('/hapus-karyawan', [KaryawanController::class, 'delete'])->name('karyawan.hapus');
+
 
 Route::get('/riwayat_karyawan_nonaktif', [KaryawanController::class, 'riwayatKaryawanNonaktif'])->name('riwayat_karyawan_nonaktif');
 // Jika memang diperlukan, tambahkan route untuk showDeleteForm

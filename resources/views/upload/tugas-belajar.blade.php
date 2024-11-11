@@ -113,6 +113,8 @@
         <h3>Kenaikan Pangkat Karena Sedang Menjalankan Tugas Belajar</h3>
         <p><strong>Nama:</strong> {{ $karyawan->nama }}</p>
         <p><strong>NIP:</strong> {{ $karyawan->nip }}</p>
+        <p><strong>Golongan saat ini :</strong> {{ $karyawan->golongan }}</p>
+        <p><strong>Pangkat saat ini:</strong> {{ $karyawan->pangkat }}</p>
 
         <!-- Form untuk mengupload berkas -->
         <form action="{{ route('tugas-belajar.store', $karyawan->id) }}" method="POST" enctype="multipart/form-data">

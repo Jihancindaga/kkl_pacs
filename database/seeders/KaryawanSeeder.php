@@ -373,8 +373,8 @@ class KaryawanSeeder extends Seeder
             [
                 'nama' => 'Jihan',
                 'nip' => '22020880',
-                'tanggal_kenaikan_gaji' => '2025-01-08',
-                'tanggal_kenaikan_pangkat' => '2025-01-08',
+                'tanggal_kenaikan_gaji' => '2025-01-10',
+                'tanggal_kenaikan_pangkat' => '2025-01-10',
                 'golongan' => 'IV/A',
                 'pangkat' => 'Juru Tingkat I',
                 'jabatan' => 'Mahasiswi',

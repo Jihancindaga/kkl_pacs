@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hapus Data Karyawan</title>
+    <title>Report Kenaikan Pangkat</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
@@ -142,10 +142,75 @@
             transform: scale(1.1);
             /* Sedikit memperbesar tombol aktif */
         }
+
+        .filter-section {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .filter-section select,
+        .filter-section button {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .filter-section button {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .filter-section button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .btn-info {
+            color: #fff;
+            background-color: #17a2b8;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-info:hover {
+            background-color: #138496;
+        }
     </style>
+
 </head>
 
 <body>
+
     <div class="navbar">
         <button class="home-btn" onclick="navigateTo('/home')">
             <i class="fas fa-arrow-left"></i>
@@ -159,32 +224,63 @@
 
     <div class="content">
         <div class="container">
-            <h2>Hapus Data Karyawan</h2>
+            <h2>Report Kenaikan Pangkat</h2>
+
+            <!-- Button group navigasi -->
+            <div class="button-group">
+                <button class="btn btn-1 {{ Request::is('datakaryawan') ? 'active' : '' }}" onclick="navigateTo('/datakaryawan')">Data Pokok Karyawan</button>
+                <button class="btn btn-2 {{ Request::is('tambah-karyawan') ? 'active' : '' }}" onclick="navigateTo('/tambah-karyawan')">Tambah Karyawan Baru</button>
+                <button class="btn btn-3 {{ Request::is('riwayat-kenaikan') ? 'active' : '' }}" onclick="navigateTo('/riwayat-kenaikan')">Riwayat Kenaikan Pangkat</button>
+                <button class="btn btn-5 {{ Request::is('riwayat_karyawan_nonaktif') ? 'active' : '' }}" onclick="navigateTo('/riwayat_karyawan_nonaktif')">Riwayat Karyawan Non-aktif</button>
+                <button class="btn btn-4 {{ Request::is('report') ? 'active' : '' }}" onclick="navigateTo('/report')">Report</button>
+            </div>
 
             <hr>
 
-            <form action="{{ route('karyawan.hapus') }}" method="POST">
-                @csrf
-                <div class="form-group">
-                    <label for="nip">Pilih NIP Karyawan:</label>
-                    <select class="form-control" id="nip" name="nip" required>
-                        <option value="">Pilih NIP</option>
-                        @foreach ($karyawans as $karyawan)
-                        <option value="{{ $karyawan->nip }}">{{ $karyawan->nip }} - {{ $karyawan->nama }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="alasan">Alasan Penghapusan:</label>
-                    <textarea class="form-control" id="alasan" name="alasan" rows="3" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="tanggal">Tanggal Penghapusan:</label>
-                    <input type="date" class="form-control" id="tanggal_penghapusan" name="tanggal_penghapusan" required>
-                </div>
-                <button type="submit" class="btn btn-danger">Hapus Karyawan</button>
-                <a href="{{ route('datakaryawan') }}" class="btn btn-secondary">Kembali</a>
-            </form>
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <select name="tahun" id="tahun">
+                    <option value="">Pilih Tahun</option>
+                </select>
+                <select name="bagian" id="bagian">
+                    <option value="">Pilih Bagian</option>
+                </select>
+                <select name="pangkat" id="pangkat">
+                    <option value="">Pilih Pangkat sebelumnya</option>
+                </select>
+                <select name="pangkat" id="pangkat">
+                    <option value="">Pilih Pangkat yang Diajukan</option>
+                </select>
+                <button type="button">Cari</button>
+                <button type="button" onclick="window.location.reload()">Reset</button>
+            </div>
+
+            <!-- Table Section -->
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>NIP</th>
+                            <th>Nama</th>
+                            <th>Tahun Kenaikan</th>
+                            <th>Bagian</th>
+                            <th>Pangkat Terakhir</th>
+                            <th>Pangkat yang Diajukan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>123456</td>
+                            <td>Jane Doe</td>
+                            <td>2023</td>
+                            <td>Keuangan</td>
+                            <td>IV/a</td>
+                            <td>IV/a</td>
+                        </tr>
+                        <!-- More rows -->
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -193,42 +289,8 @@
         function navigateTo(url) {
             window.location.href = url;
         }
-
-        $('#nip').change(function() {
-            var selectedNIP = $(this).val();
-            var nama = $(this).find(':selected').text().split(' - ')[1];
-            $('#nama').val(nama || '');
-        });
     </script>
-    <script>
-        // Fungsi untuk mengatur tombol aktif
-        function setActive(button, url) {
-            // Mengambil semua tombol dalam grup tombol
-            const buttons = document.querySelectorAll('.button-group .btn');
 
-            // Menghapus kelas 'active' dari semua tombol
-            buttons.forEach(btn => {
-                btn.classList.remove('active');
-            });
-
-            // Menambahkan kelas 'active' ke tombol yang dipilih
-            button.classList.add('active');
-
-            // Mengarahkan ke URL yang ditentukan
-            navigateTo(url);
-        }
-
-        // Fungsi untuk navigasi ke halaman lain
-        function navigateTo(page) {
-            window.location.href = page;
-        }
-
-        // Fungsi untuk menampilkan atau menyembunyikan detail (Jika diperlukan)
-        function toggleDetails(id) {
-            const detailsRow = document.getElementById('details-' + id);
-            detailsRow.style.display = detailsRow.style.display === 'none' ? 'table-row' : 'none';
-        }
-    </script>
 </body>
 
 </html>

@@ -54,7 +54,7 @@ class SendReminderNotification extends Command
         foreach ($kenaikanGaji as $gaji) {
             $nowa = $gaji->no_telp;
             Carbon::setLocale('id');
-            $pesan = 'Reminder: Naik Gaji pada ' . Carbon::parse($gaji->tanggal_kenaikan_gaji)->translatedFormat('d F Y') . ".\n" . 'Dengan detail Karyawan: ' . "\n" . 'NIP: ' . $gaji->nip . "\n" . 'Nama: ' . $gaji->nama . "\n" . 'Tanggal Kenaikan: ' . $gaji->tanggal_kenaikan_gaji . "\n" . 'Golongan: ' . $gaji->golongan . "\n\n" . 'Pangkat: ' . $gaji->pangkat . "\n\n" . 'Jabatan: ' . $gaji->jabatan . "\n\n" . 'Mohon segera melengkapi berkas yang diperlukan untuk kenaikan gaji. Terima kasih😊😊.';
+            $pesan = 'Reminder: Kenaikan Gaji Anda pada ' . Carbon::parse($gaji->tanggal_kenaikan_gaji)->translatedFormat('d F Y') . ".\n" . 'Dengan detail Karyawan: ' . "\n" . 'NIP: ' . $gaji->nip . "\n" . 'Nama: ' . $gaji->nama . "\n" . 'Tanggal Kenaikan: ' . $gaji->tanggal_kenaikan_gaji . "\n" . 'Golongan: ' . $gaji->golongan . "\n" . 'Pangkat: ' . $gaji->pangkat . "\n" . 'Jabatan: ' . $gaji->jabatan . "\n\n" . 'Mohon segera melengkapi berkas yang diperlukan untuk kenaikan gaji. Terima kasih😊😊.';
 
             $this->sendNotification($nowa, $pesan);
         }
@@ -62,7 +62,7 @@ class SendReminderNotification extends Command
         foreach ($kenaikanPangkat as $pangkat) {
             $nowa = $pangkat->no_telp;
             Carbon::setLocale('id');
-            $pesan = 'Reminder: Naik Pangkat pada ' . Carbon::parse($pangkat->tanggal_kenaikan_pangkat)->translatedFormat('d F Y') . ".\n" . 'Dengan detail Karyawan: ' . "\n" . 'NIP: ' . $pangkat->nip . "\n" . 'Nama: ' . $pangkat->nama . "\n" . 'Tanggal Kenaikan: ' . $pangkat->tanggal_kenaikan_pangkat . "\n" . 'Golongan: ' . $pangkat->golongan . "\n\n" . 'Pangkat: ' . $pangkat->pangkat . "\n\n" . 'Jabatan: ' . $pangkat->jabatan . "\n\n" . 'Mohon segera melengkapi berkas yang diperlukan untuk kenaikan pangkat. Terima kasih😊😊.';
+            $pesan = 'Reminder: Kenaikan Pangkat Anda pada ' . Carbon::parse($pangkat->tanggal_kenaikan_pangkat)->translatedFormat('d F Y') . ".\n" . 'Dengan detail Karyawan: ' . "\n" . 'NIP: ' . $pangkat->nip . "\n" . 'Nama: ' . $pangkat->nama . "\n" . 'Tanggal Kenaikan: ' . $pangkat->tanggal_kenaikan_pangkat . "\n" . 'Golongan: ' . $pangkat->golongan . "\n" . 'Pangkat: ' . $pangkat->pangkat . "\n" . 'Jabatan: ' . $pangkat->jabatan . "\n\n" . 'Mohon segera melengkapi berkas yang diperlukan untuk kenaikan pangkat. Terima kasih😊😊.';
 
             $this->sendNotification($nowa, $pesan);
         }

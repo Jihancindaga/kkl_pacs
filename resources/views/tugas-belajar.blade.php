@@ -117,7 +117,9 @@
         </div>
 
         @foreach ($tugasBelajar as $index => $item)
-        <p><strong>No {{ $index + 1 }}:</strong> Mengajukan kenaikan ke golongan {{ $item->golongan }}, pangkat {{ $item->pangkat }}, tahun pengajuan {{ $item->tahun_pengajuan }}.</p>
+        <p><strong>No {{ $index + 1 }}:</strong> Mengajukan kenaikan dari {{ $karyawan->golongan }} ke golongan {{ $item->golongan }}.</p>
+        <p>Dari pangkat {{ $karyawan->pangkat }} ke pangkat {{ $item->pangkat }}.</p>
+        <p>Tahun pengajuan {{ $item->tahun_pengajuan }}.</p>
         <div class="table">
             <div class="table-header">Detail Berkas Tugas Belajar</div>
             <table class="table table-bordered">

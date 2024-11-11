@@ -15,6 +15,23 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: "";
+            background-image: url('/images/batik_megamendung.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.05;
+            z-index: -1;
         }
 
         .container-wrapper {
@@ -25,6 +42,8 @@
             width: 100%;
             display: flex;
             overflow: hidden;
+            position: relative;
+            z-index: 1;
         }
 
         .logo-container {
@@ -138,7 +157,7 @@
                 </div>
                 <div class="form-group password-container">
                     <p>KATA SANDI</p>
-                    <input type="password" name="password" id="password" class="form-control" placeholder="Masukkan Katasandi" required>
+                    <input type="password" name="password" id="password" class="form-control" placeholder="Masukkan Kata Sandi" required>
                     <span class="toggle-password" onclick="togglePassword()">
                         <i class="fas fa-eye"></i>
                     </span>

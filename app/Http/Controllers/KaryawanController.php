@@ -120,4 +120,7 @@ class KaryawanController extends Controller
         $exists = Karyawan::where('nip', $request->nip)->exists();
         return response()->json(['exists' => $exists]);
     }
+    // Controller Method
+    
+    
 }

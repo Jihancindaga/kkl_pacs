@@ -88,51 +88,62 @@
         }
 
         .button-group .btn.active {
-            background-color: #0056b3; /* Warna gelap untuk tombol aktif */
-            color: white; /* Warna teks tetap putih */
-            border: 1px solid black; /* Tambahkan border hitam */
-            transform: scale(1.05); /* Sedikit memperbesar tombol aktif */
+            background-color: #0056b3;
+            /* Warna gelap untuk tombol aktif */
+            color: white;
+            /* Warna teks tetap putih */
+            border: 1px solid black;
+            /* Tambahkan border hitam */
+            transform: scale(1.05);
+            /* Sedikit memperbesar tombol aktif */
         }
 
         /* Specific Button Colors */
+        /* Specific Button Colors */
         .btn-1 {
-            background-color: #17a2b8;
+            background-color: #808080;
             /* Teal */
         }
 
         .btn-2 {
-            background-color: #665cc0;
+            background-color: #808080;
             /* Ungu */
         }
 
         .btn-3 {
-            background-color: #aa1c9e;
+            background-color: #808080;
             /* Oranye */
         }
+
         .btn-4 {
-            background-color: #ec2300;
+            background-color: #808080;
             /* Oranye */
         }
+
         .btn-5 {
-            background-color: #26eb0c;
+            background-color: #808080;
             /* Oranye */
         }
-        .btn-warning,
-         {
+
+        .btn-warning {
             color: white;
             /* Set warna teks tombol */
         }
+
         /* Button Hover Effects */
         .btn:hover {
             opacity: 0.8;
-            transform: scale(1.05); /* Efek hover: sedikit memperbesar tombol */
+            transform: scale(1.05);
+            /* Efek hover: sedikit memperbesar tombol */
         }
 
         /* Active Button Styles */
         .btn.active {
-            background-color: #0056b3; /* Ubah warna tombol aktif */
+            background-color: #0056b3;
+            /* Ubah warna tombol aktif */
             color: white;
-            transform: scale(1.1); /* Sedikit memperbesar tombol aktif */
+            transform: scale(1.1);
+            /* Sedikit memperbesar tombol aktif */
         }
 
         h2 {
@@ -175,116 +186,115 @@
                     <button class="btn btn-1 {{ Request::is('datakaryawan') ? 'active' : '' }}" onclick="navigateTo('/datakaryawan')">Data Pokok Karyawan</button>
                     <button class="btn btn-2 {{ Request::is('tambah-karyawan') ? 'active' : '' }}" onclick="navigateTo('/tambah-karyawan')">Tambah Karyawan Baru</button>
                     <button class="btn btn-3 {{ Request::is('riwayat-kenaikan') ? 'active' : '' }}" onclick="navigateTo('/riwayat-kenaikan')">Riwayat Kenaikan Pangkat</button>
-                    <button class="btn btn-4 {{ Request::is('hapus-karyawan') ? 'active' : '' }}" onclick="navigateTo('/hapus-karyawan')">Hapus Karyawan</button>
                     <button class="btn btn-5 {{ Request::is('riwayat_karyawan_nonaktif') ? 'active' : '' }}" onclick="navigateTo('/riwayat_karyawan_nonaktif')">Riwayat Karyawan Non-aktif</button>
+                    <button class="btn btn-4 {{ Request::is('report') ? 'active' : '' }}" onclick="navigateTo('/report')">Report</button>
                 </div>
+
+                <hr>
+
+                <form action="{{ route('karyawan.store') }}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label for="nip">NIP</label>
+                        <input type="text" class="form-control" id="nip" name="nip" placeholder="Nomor Induk Pegawai" required>
+                        <span id="nip-error" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="nama">Nama</label>
+                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Karyawan" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tanggal_kenaikan_gaji">Tanggal Kenaikan Gaji</label>
+                        <input type="date" class="form-control" id="tanggal_kenaikan_gaji" name="tanggal_kenaikan_gaji" placeholder="Tanggal Kenaikan Gaji" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tanggal_kenaikan_pangkat">Tanggal Kenaikan Pangkat</label>
+                        <input type="date" class="form-control" id="tanggal_kenaikan_pangkat" name="tanggal_kenaikan_pangkat" placeholder="Tanggal Kenaikan Pangkat" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="golongan">Golongan</label>
+                        <input type="text" class="form-control" id="golongan" name="golongan" placeholder="Golongan" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pangkat">Pangkat</label>
+                        <input type="text" class="form-control" id="pangkat" name="pangkat" placeholder="Pangkat" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="jabatan">Jabatan</label>
+                        <input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Jabatan" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="no_telp">Nomor Telepon</label>
+                        <input type="text" class="form-control" id="no_telp" name="no_telp" placeholder="Nomor Telepon" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="submit-btn" disabled>Tambah Karyawan</button>
+                </form>
             </div>
-
-            <hr>
-
-            <form action="{{ route('karyawan.store') }}" method="POST">
-                @csrf
-                <div class="form-group">
-                    <label for="nip">NIP</label>
-                    <input type="text" class="form-control" id="nip" name="nip" placeholder="Nomor Induk Pegawai" required>
-                    <span id="nip-error" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label for="nama">Nama</label>
-                    <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Karyawan" required>
-                </div>
-                <div class="form-group">
-                    <label for="tanggal_kenaikan_gaji">Tanggal Kenaikan Gaji</label>
-                    <input type="date" class="form-control" id="tanggal_kenaikan_gaji" name="tanggal_kenaikan_gaji" placeholder="Tanggal Kenaikan Gaji" required>
-                </div>
-                <div class="form-group">
-                    <label for="tanggal_kenaikan_pangkat">Tanggal Kenaikan Pangkat</label>
-                    <input type="date" class="form-control" id="tanggal_kenaikan_pangkat" name="tanggal_kenaikan_pangkat" placeholder="Tanggal Kenaikan Pangkat" required>
-                </div>
-                <div class="form-group">
-                    <label for="golongan">Golongan</label>
-                    <input type="text" class="form-control" id="golongan" name="golongan" placeholder="Golongan" required>
-                </div>
-                <div class="form-group">
-                    <label for="pangkat">Pangkat</label>
-                    <input type="text" class="form-control" id="pangkat" name="pangkat" placeholder="Pangkat" required>
-                </div>
-                <div class="form-group">
-                    <label for="jabatan">Jabatan</label>
-                    <input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Jabatan" required>
-                </div>
-                <div class="form-group">
-                    <label for="no_telp">Nomor Telepon</label>
-                    <input type="text" class="form-control" id="no_telp" name="no_telp" placeholder="Nomor Telepon" required>
-                </div>
-                <button type="submit" class="btn btn-primary" id="submit-btn" disabled>Tambah Karyawan</button>
-            </form>
         </div>
-    </div>
 
-    <!-- Include jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <!-- Include Bootstrap JS -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        function navigateTo(url) {
-            window.location.href = url;
-        }
+        <!-- Include jQuery -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <!-- Include Bootstrap JS -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            function navigateTo(url) {
+                window.location.href = url;
+            }
 
-        $(document).ready(function() {
-            $('#nip').on('blur', function() {
-                let nip = $(this).val();
+            $(document).ready(function() {
+                $('#nip').on('blur', function() {
+                    let nip = $(this).val();
 
-                $.ajax({
-                    url: '{{ route("karyawan.checkNip") }}', // Ganti dengan route untuk pengecekan NIP
-                    method: 'POST',
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        nip: nip
-                    },
-                    success: function(response) {
-                        if (response.exists) {
-                            $('#nip-error').text('NIP sudah digunakan, silahkan menggunakan NIP yang belum terdaftar.');
-                            $('#submit-btn').attr('disabled', true);
-                        } else {
-                            $('#nip-error').text('');
-                            $('#submit-btn').attr('disabled', false);
+                    $.ajax({
+                        url: '{{ route("karyawan.checkNip") }}', // Ganti dengan route untuk pengecekan NIP
+                        method: 'POST',
+                        data: {
+                            _token: '{{ csrf_token() }}',
+                            nip: nip
+                        },
+                        success: function(response) {
+                            if (response.exists) {
+                                $('#nip-error').text('NIP sudah digunakan, silahkan menggunakan NIP yang belum terdaftar.');
+                                $('#submit-btn').attr('disabled', true);
+                            } else {
+                                $('#nip-error').text('');
+                                $('#submit-btn').attr('disabled', false);
+                            }
                         }
-                    }
+                    });
                 });
             });
-        });
-    </script>
-    <script>
-        // Fungsi untuk mengatur tombol aktif
-        function setActive(button, url) {
-           // Mengambil semua tombol dalam grup tombol
-           const buttons = document.querySelectorAll('.button-group .btn');
+        </script>
+        <script>
+            // Fungsi untuk mengatur tombol aktif
+            function setActive(button, url) {
+                // Mengambil semua tombol dalam grup tombol
+                const buttons = document.querySelectorAll('.button-group .btn');
 
-           // Menghapus kelas 'active' dari semua tombol
-           buttons.forEach(btn => {
-               btn.classList.remove('active');
-           });
+                // Menghapus kelas 'active' dari semua tombol
+                buttons.forEach(btn => {
+                    btn.classList.remove('active');
+                });
 
-           // Menambahkan kelas 'active' ke tombol yang dipilih
-           button.classList.add('active');
+                // Menambahkan kelas 'active' ke tombol yang dipilih
+                button.classList.add('active');
 
-           // Mengarahkan ke URL yang ditentukan
-           navigateTo(url);
-       }
+                // Mengarahkan ke URL yang ditentukan
+                navigateTo(url);
+            }
 
-       // Fungsi untuk navigasi ke halaman lain
-       function navigateTo(page) {
-           window.location.href = page;
-       }
+            // Fungsi untuk navigasi ke halaman lain
+            function navigateTo(page) {
+                window.location.href = page;
+            }
 
-       // Fungsi untuk menampilkan atau menyembunyikan detail (Jika diperlukan)
-       function toggleDetails(id) {
-           const detailsRow = document.getElementById('details-' + id);
-           detailsRow.style.display = detailsRow.style.display === 'none' ? 'table-row' : 'none';
-       }
-   </script>
+            // Fungsi untuk menampilkan atau menyembunyikan detail (Jika diperlukan)
+            function toggleDetails(id) {
+                const detailsRow = document.getElementById('details-' + id);
+                detailsRow.style.display = detailsRow.style.display === 'none' ? 'table-row' : 'none';
+            }
+        </script>
 </body>
 
 </html>

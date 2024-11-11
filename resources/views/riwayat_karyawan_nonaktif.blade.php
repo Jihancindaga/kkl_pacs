@@ -84,51 +84,61 @@
         }
 
         .button-group .btn.active {
-            background-color: #0056b3; /* Warna gelap untuk tombol aktif */
-            color: white; /* Warna teks tetap putih */
-            border: 1px solid black; /* Tambahkan border hitam */
-            transform: scale(1.05); /* Sedikit memperbesar tombol aktif */
+            background-color: #0056b3;
+            /* Warna gelap untuk tombol aktif */
+            color: white;
+            /* Warna teks tetap putih */
+            border: 1px solid black;
+            /* Tambahkan border hitam */
+            transform: scale(1.05);
+            /* Sedikit memperbesar tombol aktif */
         }
 
         /* Specific Button Colors */
         .btn-1 {
-            background-color: #17a2b8;
+            background-color: #808080;
             /* Teal */
         }
 
         .btn-2 {
-            background-color: #665cc0;
+            background-color: #808080;
             /* Ungu */
         }
 
         .btn-3 {
-            background-color: #aa1c9e;
+            background-color: #808080;
             /* Oranye */
         }
+
         .btn-4 {
-            background-color: #ec2300;
+            background-color: #808080;
             /* Oranye */
         }
+
         .btn-5 {
-            background-color: #26eb0c;
+            background-color: #808080;
             /* Oranye */
         }
-        .btn-warning,
-         {
+
+        .btn-warning {
             color: white;
             /* Set warna teks tombol */
         }
+
         /* Button Hover Effects */
         .btn:hover {
             opacity: 0.8;
-            transform: scale(1.05); /* Efek hover: sedikit memperbesar tombol */
+            transform: scale(1.05);
+            /* Efek hover: sedikit memperbesar tombol */
         }
 
         /* Active Button Styles */
         .btn.active {
-            background-color: #0056b3; /* Ubah warna tombol aktif */
+            background-color: #0056b3;
+            /* Ubah warna tombol aktif */
             color: white;
-            transform: scale(1.1); /* Sedikit memperbesar tombol aktif */
+            transform: scale(1.1);
+            /* Sedikit memperbesar tombol aktif */
         }
 
         .table thead th {
@@ -204,10 +214,11 @@
             <i class="fas fa-arrow-left"></i>
         </button>
         <div class="logo">
-            <img src="/images/pacs.png" alt="Logo PACS">
-            <img src="/images/logo_kundha_kabudayan.png" alt="Logo Kundha Kabudayan">
-            <img src="/images/logo_sleman.jpeg" alt="Logo Sleman">
+            <img src="/images/pacs.png" alt="Logo PACS" style="height: 40px; margin-right: 520px;">
+            <img src="/images/logo_kundha_kabudayan.png" alt="Logo Kundha Kabudayan" style="height: 40px; margin-right: 5px; margin-left: 5px;">
+            <img src="/images/logo_sleman.jpeg" alt="Logo Sleman" style="height: 40px; margin-right: 5px; margin-left: 10px;">
         </div>
+    </div>
     </div>
 
     <div class="content">
@@ -218,8 +229,8 @@
                     <button class="btn btn-1 {{ Request::is('datakaryawan') ? 'active' : '' }}" onclick="navigateTo('/datakaryawan')">Data Pokok Karyawan</button>
                     <button class="btn btn-2 {{ Request::is('tambah-karyawan') ? 'active' : '' }}" onclick="navigateTo('/tambah-karyawan')">Tambah Karyawan Baru</button>
                     <button class="btn btn-3 {{ Request::is('riwayat-kenaikan') ? 'active' : '' }}" onclick="navigateTo('/riwayat-kenaikan')">Riwayat Kenaikan Pangkat</button>
-                    <button class="btn btn-4 {{ Request::is('hapus-karyawan') ? 'active' : '' }}" onclick="navigateTo('/hapus-karyawan')">Hapus Karyawan</button>
                     <button class="btn btn-5 {{ Request::is('riwayat_karyawan_nonaktif') ? 'active' : '' }}" onclick="navigateTo('/riwayat_karyawan_nonaktif')">Riwayat Karyawan Non-aktif</button>
+                    <button class="btn btn-4 {{ Request::is('report') ? 'active' : '' }}" onclick="navigateTo('/report')">Report</button>
                 </div>
             </div>
             <div class="table-container">
@@ -270,31 +281,31 @@
 <script>
     // Fungsi untuk mengatur tombol aktif
     function setActive(button, url) {
-       // Mengambil semua tombol dalam grup tombol
-       const buttons = document.querySelectorAll('.button-group .btn');
+        // Mengambil semua tombol dalam grup tombol
+        const buttons = document.querySelectorAll('.button-group .btn');
 
-       // Menghapus kelas 'active' dari semua tombol
-       buttons.forEach(btn => {
-           btn.classList.remove('active');
-       });
+        // Menghapus kelas 'active' dari semua tombol
+        buttons.forEach(btn => {
+            btn.classList.remove('active');
+        });
 
-       // Menambahkan kelas 'active' ke tombol yang dipilih
-       button.classList.add('active');
+        // Menambahkan kelas 'active' ke tombol yang dipilih
+        button.classList.add('active');
 
-       // Mengarahkan ke URL yang ditentukan
-       navigateTo(url);
-   }
+        // Mengarahkan ke URL yang ditentukan
+        navigateTo(url);
+    }
 
-   // Fungsi untuk navigasi ke halaman lain
-   function navigateTo(page) {
-       window.location.href = page;
-   }
+    // Fungsi untuk navigasi ke halaman lain
+    function navigateTo(page) {
+        window.location.href = page;
+    }
 
-   // Fungsi untuk menampilkan atau menyembunyikan detail (Jika diperlukan)
-   function toggleDetails(id) {
-       const detailsRow = document.getElementById('details-' + id);
-       detailsRow.style.display = detailsRow.style.display === 'none' ? 'table-row' : 'none';
-   }
+    // Fungsi untuk menampilkan atau menyembunyikan detail (Jika diperlukan)
+    function toggleDetails(id) {
+        const detailsRow = document.getElementById('details-' + id);
+        detailsRow.style.display = detailsRow.style.display === 'none' ? 'table-row' : 'none';
+    }
 </script>
 
 </html>
