@@ -29,9 +29,10 @@ class KaryawanController extends Controller
             'nip' => 'required|string|max:20|unique:karyawans',
             'tanggal_kenaikan_gaji' => 'required|string|max:255',
             'tanggal_kenaikan_pangkat' => 'required|string|max:255',
-            'jabatan' => 'required|string|max:255',
             'golongan' => 'required|string|max:255',
             'pangkat' => 'required|string|max:255',
+            'jabatan' => 'required|string|max:255',
+            'bagian' => 'required|string|max:255',
             'no_telp' => 'required|string|max:255',
         ]);
 
@@ -58,6 +59,7 @@ class KaryawanController extends Controller
             'golongan' => 'required',
             'pangkat' => 'required',
             'jabatan' => 'required',
+            'bagian' => 'required',
             'no_telp' => 'required',
         ]);
 

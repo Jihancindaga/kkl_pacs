@@ -21,6 +21,7 @@ class Karyawan extends Model
         'golongan',
         'pangkat',
         'jabatan',
+        'bagian',
         'no_telp',
     ];
 }

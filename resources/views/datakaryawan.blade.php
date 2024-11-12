@@ -202,7 +202,7 @@
 
         .btn-sm {
             font-size: 0.75rem;
-            padding: 5px 10px;
+            padding: 5px 5px;
         }
 
         .search-box {
@@ -406,8 +406,9 @@
                             <th>Gol</th>
                             <th>Pangkat</th>
                             <th>Jabatan</th>
+                            <th>Bagian</th>
                             <th>Nomor Telepon</th>
-                            <th>Pengajuan</th>
+                            <th>Pengajuan </th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -422,6 +423,7 @@
                             <td>{{ $karyawan->golongan }}</td>
                             <td>{{ $karyawan->pangkat }}</td>
                             <td class="jabatan">{{ $karyawan->jabatan }}</td>
+                            <td>{{ $karyawan->bagian }}</td>
                             <td>{{ $karyawan->no_telp }}</td>
                             <td>
                                 <div style="display: flex; justify-content: center; align-items: center; gap: 5px;">

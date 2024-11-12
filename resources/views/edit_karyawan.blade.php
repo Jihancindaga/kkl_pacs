@@ -112,7 +112,16 @@
                 <label for="jabatan">Jabatan:</label>
                 <input type="text" class="form-control" id="jabatan" name="jabatan" value="{{ old('jabatan', $karyawan->jabatan) }}" required>
             </div>
-
+            <div class="form-group">
+                <label for="bagian">Bagian</label>
+                <select class="form-control" id="bagian" name="bagian" required>
+                    <option value="" disabled selected>Pilih Bagian</option>
+                    <option value="Kesekretariatan">Kesekretariatan</option>
+                    <option value="atlas">atlas</option>
+                    <option value="sbsp">sbsp</option>
+                    <option value="uptd">uptd</option>
+                </select>
+            </div>
             <div class="form-group">
                 <label for="no_telp">Nomor Telepon:</label>
                 <input type="text" class="form-control" id="no_telp" name="no_telp" value="{{ old('no_telp', $karyawan->no_telp) }}" required>

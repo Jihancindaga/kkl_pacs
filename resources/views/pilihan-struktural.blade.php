@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Kenaikan Pangkat Pilihan Struktural - {{ $karyawan->nama }}</title>
+    <title>Riwayat Kenaikan Pangkat Pilihan Struktural - {{ $karyawan->nama }}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
@@ -63,7 +63,7 @@
 <body>
 
     <div class="navbar">
-        <button class="home-btn" onclick="navigateTo('/datakaryawan')">
+        <button class="home-btn" onclick="navigateTo('/riwayat-kenaikan')">
             <i class="fas fa-arrow-left"></i>
         </button>
         <div class="logo">
@@ -75,7 +75,7 @@
     </div>
 
     <div class="container">
-        <h3>Detail Kenaikan Pangkat Pilihan Struktural</h3>
+        <h3>Riwayat Kenaikan Pangkat Pilihan Struktural</h3>
 
         <div class="info-section">
             <p><strong>Nama:</strong> {{ $karyawan->nama }}</p>

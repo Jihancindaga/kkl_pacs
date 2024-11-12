@@ -22,6 +22,7 @@ class CreateKaryawansTable extends Migration
             $table->string('golongan');
             $table->string('pangkat');
             $table->string('jabatan');
+            $table->string('bagian');
             $table->string('no_telp');
             $table->timestamps();
         });

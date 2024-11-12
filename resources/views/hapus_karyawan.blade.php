@@ -10,10 +10,9 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
-            transition: all 0.3s;
         }
 
         .navbar {
@@ -47,101 +46,74 @@
             padding: 20px;
         }
 
-        .btn-container {
-            margin-bottom: 20px;
-        }
-
         .container {
             background-color: white;
             border-radius: 8px;
-            padding: 20px;
+            padding: 30px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 600px;
-            /* Perkecil ukuran container */
+            max-width: 700px;
             margin: auto;
         }
 
         .container h2 {
-            margin-bottom: 30px;
             text-align: center;
             font-weight: bold;
             font-size: 30px;
             color: #0056b3;
+            margin-bottom: 20px;
         }
 
         form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
             font-size: 16px;
-            align-items: center;
-            /* Pusatkan form di tengah */
         }
 
-        form div {
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-row {
             display: flex;
-            flex-direction: column;
-            width: 100%;
-            max-width: 300px;
+            gap: 15px;
         }
 
-        form label {
+        label {
             font-weight: bold;
             color: #333;
             margin-bottom: 5px;
         }
 
-        form input[type="text"],
-        form input[type="date"],
-        form textarea {
+        input[type="text"],
+        input[type="date"],
+        textarea {
             padding: 8px;
             border: 1px solid #ccc;
             border-radius: 5px;
             width: 100%;
-            transition: border-color 0.3s, box-shadow 0.3s;
         }
 
-        form input[type="text"]:focus,
-        form input[type="date"]:focus,
-        form textarea:focus {
-            border-color: #007bff;
+        input[type="text"][readonly] {
+            background-color: #f5f5f5;
+        }
+
+        textarea {
             height: 100px;
             resize: vertical;
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-            outline: none;
-        }
-
-
-        button[type="submit"],
-        .btn-secondary {
-            font-size: 14px;
-            padding: 8px 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
         }
 
         button[type="submit"] {
+            width: 100%;
+            font-size: 16px;
+            padding: 10px;
+            border-radius: 5px;
             background-color: #dc3545;
             color: white;
             border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
 
         button[type="submit"]:hover {
             background-color: #c82333;
-            transform: scale(1.05);
-        }
-
-        .btn-secondary {
-            background-color: #6c757d;
-            color: white;
-            text-decoration: none;
-        }
-
-        .btn-secondary:hover {
-            background-color: #5a6268;
-            transform: scale(1.05);
         }
     </style>
 </head>
@@ -153,33 +125,33 @@
         </button>
         <div class="logo">
             <img src="/images/pacs.png" alt="Logo PACS" style="height: 40px; margin-right: 520px;">
-            <img src="/images/logo_amikom.png" alt="Logo AMIKOM" style="height: 40px; margin-right: 5px; margin-left: 5px;">
-            <img src="/images/logo_kundha_kabudayan.png" alt="Logo Kundha Kabudayan" style="height: 40px; margin-right: 5px; margin-left: 5px;">
-            <img src="/images/logo_sleman.jpeg" alt="Logo Sleman" style="height: 40px; margin-right: 5px; margin-left: 10px;">
+            <img src="/images/logo_amikom.png" alt="Logo AMIKOM" style="height: 40px; margin: 0 5px;">
+            <img src="/images/logo_kundha_kabudayan.png" alt="Logo Kundha Kabudayan" style="height: 40px; margin: 0 5px;">
+            <img src="/images/logo_sleman.jpeg" alt="Logo Sleman" style="height: 40px; margin-left: 10px;">
         </div>
     </div>
 
     <div class="content">
         <div class="container">
             <h2>Hapus Data Karyawan</h2>
-
             <hr>
-
             <form action="{{ route('karyawan.hapus', $karyawan->id) }}" method="POST">
                 @csrf
-                <div>
-                    <label for="nip">NIP:</label>
-                    <input type="text" id="nip" name="nip" value="{{ $karyawan->nip }}" readonly>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label for="nip">NIP:</label>
+                        <input type="text" id="nip" name="nip" value="{{ $karyawan->nip }}" readonly>
+                    </div>
+                    <div class="form-group col">
+                        <label for="nama">Nama:</label>
+                        <input type="text" id="nama" name="nama" value="{{ $karyawan->nama }}" readonly>
+                    </div>
                 </div>
-                <div>
-                    <label for="nama">Nama:</label>
-                    <input type="text" id="nama" name="nama" value="{{ $karyawan->nama }}" readonly>
-                </div>
-                <div>
+                <div class="form-group">
                     <label for="alasan">Alasan Penghapusan:</label>
-                    <textarea type="text" id="alasan" name="alasan" required></textarea>
+                    <textarea id="alasan" name="alasan" required></textarea>
                 </div>
-                <div>
+                <div class="form-group">
                     <label for="tanggal_penghapusan">Tanggal Penghapusan:</label>
                     <input type="date" id="tanggal_penghapusan" name="tanggal_penghapusan" required>
                 </div>
