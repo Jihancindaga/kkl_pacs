@@ -120,4 +120,6 @@ class KaryawanController extends Controller
         $riwayatKaryawans = RiwayatKaryawanNonaktif::all();
         return view('riwayat_karyawan_nonaktif', compact('riwayatKaryawans'));
     }
+    
+
 }

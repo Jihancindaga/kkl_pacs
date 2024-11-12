@@ -41,4 +41,5 @@ class KenaikanController extends Controller
         $karyawan = Karyawan::findOrFail($id);
         return view('upload.tugas-belajar', compact('karyawan'));
     }
+    
 }

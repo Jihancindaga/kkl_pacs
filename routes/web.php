@@ -16,6 +16,9 @@ use App\Http\Controllers\KenaikanPangkatKpoController;
 use App\Http\Controllers\PenyesuaianIjazahController;
 use App\Http\Controllers\PilihanStrukturalController;
 use App\Http\Controllers\FungsionalController;
+use App\Http\Controllers\RiwayatKenaikanPangkatController;
+
+
 Route::get('/', function () {
     return view('/admin/dashboard');
 });
@@ -212,3 +215,5 @@ Route::get('/detail-kenaikan', function () {
 })->name('detail-kenaikan');
 
 Route::get('/riwayat-kenaikan', [KaryawanController::class, 'showRiwayatKenaikan']);
+Route::get('/report', [RiwayatKenaikanPangkatController::class, 'index'])->name('report');
+

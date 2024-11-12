@@ -241,20 +241,25 @@
 
             <!-- Filter Section -->
             <div class="filter-section">
-                <select name="tahun" id="tahun">
-                    <option value="">Pilih Tahun</option>
-                </select>
-                <select name="bagian" id="bagian">
-                    <option value="">Pilih Bagian</option>
-                </select>
-                <select name="pangkat" id="pangkat">
-                    <option value="">Pilih Pangkat sebelumnya</option>
-                </select>
-                <select name="pangkat" id="pangkat">
-                    <option value="">Pilih Pangkat yang Diajukan</option>
-                </select>
-                <button type="button">Cari</button>
-                <button type="button" onclick="window.location.reload()">Reset</button>
+                <form id="filterForm">
+                    <select name="tahun" id="tahun">
+                        <option value="">Pilih Tahun</option>
+                        @foreach(range(2010, 2024) as $year)
+                            <option value="{{ $year }}" {{ request('tahun') == $year ? 'selected' : '' }}>{{ $year }}</option>
+                        @endforeach
+                    </select>
+            
+                    <select name="bagian" id="bagian">
+                        <option value="">Pilih Bagian</option>
+                        <option value="Bagian A" {{ request('bagian') == 'Kesekretariatan' ? 'selected' : '' }}>Kesekretariatan</option>
+                        <option value="Bagian B" {{ request('bagian') == 'atlas' ? 'selected' : '' }}>atlas</option>
+                        <option value="Bagian c" {{ request('bagian') == 'sbsp' ? 'selected' : '' }}>sbsp</option>
+                        <option value="Bagian d" {{ request('bagian') == 'uptd' ? 'selected' : '' }}>uptd</option>
+                    </select>
+            
+                    <button type="button" id="filterButton">Cari</button>
+                    <button type="reset" onclick="resetForm()">Reset</button>
+                </form>
             </div>
 
             <!-- Table Section -->
@@ -271,16 +276,58 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($kpo as $data)
                         <tr>
-                            <td>123456</td>
-                            <td>Jane Doe</td>
-                            <td>2023</td>
-                            <td>Keuangan</td>
-                            <td>IV/a</td>
-                            <td>IV/a</td>
+                            <td>{{ $data->karyawan->nip }}</td>
+                            <td>{{ $data->karyawan->nama }}</td>
+                            <td>{{ $data->tahun_pengajuan }}</td>
+                            <td>{{ $data->karyawan->bagian }}</td>
+                            <td>{{ $data->karyawan->pangkat }}</td>
+                            <td>{{ $data->pangkat }}</td>
                         </tr>
-                        <!-- More rows -->
+                        @endforeach
+                        @foreach ($struktural as $data)
+                        <tr>
+                            <td>{{ $data->karyawan->nip }}</td>
+                            <td>{{ $data->karyawan->nama }}</td>
+                            <td>{{ $data->tahun_pengajuan }}</td>
+                            <td>{{ $data->karyawan->bagian }}</td>
+                            <td>{{ $data->karyawan->pangkat }}</td>
+                            <td>{{ $data->pangkat }}</td>
+                        </tr>
+                        @endforeach
+                        @foreach ($penyesuaianIjazah as $data)
+                        <tr>
+                            <td>{{ $karyawan->nip }}</td>
+                            <td>{{ $data->data->karyawan->nama }}</td>
+                            <td>{{ $data->tahun_pengajuan }}</td>
+                            <td>{{ $data->karyawan->bagian }}</td>
+                            <td>{{ $data->karyawan->pangkat }}</td>
+                            <td>{{ $data->pangkat }}</td>
+                        </tr>
+                        @endforeach
+                        @foreach ($fungsional as $data)
+                        <tr>
+                            <td>{{ $data->karyawan->nip }}</td>
+                            <td>{{ $data->karyawan->nama }}</td>
+                            <td>{{ $data->tahun_pengajuan }}</td>
+                            <td>{{ $data->karyawan->bagian }}</td>
+                            <td>{{ $data->karyawan->pangkat }}</td>
+                            <td>{{ $data->pangkat }}</td>
+                        </tr>
+                        @endforeach
+                        @foreach ($tugasBelajar as $data)
+                        <tr>
+                            <td>{{ $data->karyawan->nip }}</td>
+                            <td>{{ $data->karyawan->nama }}</td>
+                            <td>{{ $data->tahun_pengajuan }}</td>
+                            <td>{{ $data->karyawan->bagian }}</td>
+                            <td>{{ $data->karyawan->pangkat }}</td>
+                            <td>{{ $data->pangkat }}</td>
+                        </tr>
+                        @endforeach
                     </tbody>
+                    
                 </table>
             </div>
         </div>
@@ -291,7 +338,26 @@
         function navigateTo(url) {
             window.location.href = url;
         }
+        document.getElementById('filterButton').addEventListener('click', function(event) {
+        event.preventDefault(); // Mencegah form melakukan submit secara normal
+
+        const tahun = document.getElementById('tahun').value;
+        const bagian = document.getElementById('bagian').value;
+
+        // Membuat URL dinamis berdasarkan input yang dipilih
+        const url = new URL(window.location.href);
+        if (tahun) url.searchParams.set('tahun', tahun);
+        else url.searchParams.delete('tahun'); // Hapus jika kosong
+        
+        if (bagian) url.searchParams.set('bagian', bagian);
+        else url.searchParams.delete('bagian'); // Hapus jika kosong
+
+        window.location.href = url.toString(); // Arahkan ulang ke URL dengan parameter filter
+    });
+
+
     </script>
+    
 
 </body>
 
