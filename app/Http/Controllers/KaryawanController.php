@@ -67,6 +67,12 @@ class KaryawanController extends Controller
         return redirect()->route('karyawan.index')->with('success', 'Data Karyawan berhasil diperbarui');
     }
 
+    public function showRiwayatKenaikan()
+    {
+        $karyawans = Karyawan::all();
+        return view('riwayat_kenaikan', compact('karyawans'));
+    }
+
     // Mengecek validasi NIP
     public function checkNip(Request $request)
     {
@@ -79,7 +85,8 @@ class KaryawanController extends Controller
     public function showHapusKaryawan($id)
     {
         $karyawan = Karyawan::findOrFail($id);
-        return view('hapus_karyawan',
+        return view(
+            'hapus_karyawan',
             compact('karyawan')
         );
     }
@@ -89,7 +96,7 @@ class KaryawanController extends Controller
     {
         $karyawan = Karyawan::findOrFail($id);
 
-        // Simpan data ke tabel `tabel_karyawan_nonaktif`
+        // Simpan data ke tabel tabel_karyawan_nonaktif
         RiwayatKaryawanNonaktif::create([
             'nip' => $karyawan->nip,
             'nama' => $karyawan->nama,
@@ -98,7 +105,7 @@ class KaryawanController extends Controller
             'tanggal_penghapusan' => $request->tanggal_penghapusan,
         ]);
 
-        // Hapus data dari tabel `karyawans`
+        // Hapus data dari tabel karyawans
         $karyawan->delete();
 
         // Redirect ke halaman riwayat_karyawan_nonaktif
@@ -110,7 +117,5 @@ class KaryawanController extends Controller
     {
         $riwayatKaryawans = RiwayatKaryawanNonaktif::all();
         return view('riwayat_karyawan_nonaktif', compact('riwayatKaryawans'));
-
     }
-    
 }

@@ -199,6 +199,10 @@ Route::get('/hapus_karyawan/{id}', [KaryawanController::class, 'showHapusKaryawa
 Route::post('/hapus_karyawan/{id}', [KaryawanController::class, 'hapusKaryawan'])->name('karyawan.hapus');
 Route::get('/riwayat_karyawan_nonaktif', [KaryawanController::class, 'riwayatKaryawanNonaktif'])->name('riwayat_karyawan_nonaktif');
 
+Route::get('/hapus_karyawan/{id}', [KaryawanController::class, 'showHapusKaryawan'])->name('hapus_karyawan');
+Route::post('/hapus_karyawan/{id}', [KaryawanController::class, 'hapusKaryawan'])->name('karyawan.hapus');
+Route::get('/riwayat_karyawan_nonaktif', [KaryawanController::class, 'riwayatKaryawanNonaktif'])->name('riwayat_karyawan_nonaktif');
+
 Route::get('/riwayat-kenaikan', function () {
     return view('riwayat_kenaikan');
 })->name('riwayat.kenaikan'); // Pastikan ini ditambahkan
