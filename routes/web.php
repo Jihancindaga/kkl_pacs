@@ -194,16 +194,10 @@ Route::post('/pilihan-struktural/{karyawan_id}', [PilihanStrukturalController::c
 Route::get('/fungsional/{karyawan_id}', [FungsionalController::class, 'show'])->name('fungsional.show');
 Route::post('/fungsional/{karyawan_id}', [FungsionalController::class, 'store'])->name('fungsional.store');
 
-Route::get('/hapus-karyawan', [KaryawanController::class, 'showDeleteForm'])->name('hapus_karyawan');
-Route::post('/hapus-karyawan', [KaryawanController::class, 'delete'])->name('karyawan.hapus');
-
-
+//Route hapus karyawan
+Route::get('/hapus_karyawan/{id}', [KaryawanController::class, 'showHapusKaryawan'])->name('hapus_karyawan');
+Route::post('/hapus_karyawan/{id}', [KaryawanController::class, 'hapusKaryawan'])->name('karyawan.hapus');
 Route::get('/riwayat_karyawan_nonaktif', [KaryawanController::class, 'riwayatKaryawanNonaktif'])->name('riwayat_karyawan_nonaktif');
-// Jika memang diperlukan, tambahkan route untuk showDeleteForm
-Route::get('/karyawan/hapus', [KaryawanController::class, 'showDeleteForm'])->name('karyawan.showDeleteForm');
-
-// Route untuk halaman riwayat karyawan nonaktif
-Route::get('/riwayat-karyawan-nonaktif', [KaryawanController::class, 'riwayatKaryawanNonaktif'])->name('riwayat.karyawan.nonaktif');
 
 Route::get('/riwayat-kenaikan', function () {
     return view('riwayat_kenaikan');

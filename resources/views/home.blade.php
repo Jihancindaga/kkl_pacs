@@ -415,7 +415,8 @@
         <div class="logo">
             <div class="hamburger" onclick="openNav()">&#9776;</div>
             <img src="/images/logo_sleman.jpeg" alt="Logo Sleman" style="height: 40px; margin-right: 5px; margin-left: 15px;"> <!-- Logo Sleman -->
-            <img src="/images/logo_kundha_kabudayan.png" alt="Logo Kundha Kabudayan" style="height: 40px; margin-right: 5px; margin-left: 10px;"> <!-- Logo Sleman -->
+            <img src="/images/logo_kundha_kabudayan.png" alt="Logo Kundha Kabudayan" style="height: 40px; margin-right: 5px; margin-left: 10px;">
+            <img src="/images/logo_amikom.png" alt="Logo Kundha Kabudayan" style="height: 40px; margin-right: 5px; margin-left: 10px;">
             <img src="/images/pacs.png" alt="Logo PACS" style="height: 40px; margin-left: 470px;"> <!-- Logo PACS -->
         </div>
         <form action="{{ route('logout') }}" method="POST">

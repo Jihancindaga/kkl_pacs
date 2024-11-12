@@ -366,6 +366,7 @@
         </button>
         <div class="logo">
             <img src="/images/pacs.png" alt="Logo PACS" style="height: 40px; margin-right: 520px;">
+            <img src="/images/logo_amikom.png" alt="Logo AMIKOM" style="height: 40px; margin-right: 5px; margin-left: 5px;">
             <img src="/images/logo_kundha_kabudayan.png" alt="Logo Kundha Kabudayan" style="height: 40px; margin-right: 5px; margin-left: 5px;">
             <img src="/images/logo_sleman.jpeg" alt="Logo Sleman" style="height: 40px; margin-right: 5px; margin-left: 10px;">
         </div>
@@ -436,9 +437,10 @@
                                     <a href="{{ route('edit_karyawan', $karyawan->id) }}" class="btn btn-warning btn-sm">
                                         Edit
                                     </a>
-                                    <button class="btn btn-danger btn-sm" onclick="navigateTo('/hapus-karyawan')">
+                                    <button onclick="window.location.href='{{ route('hapus_karyawan', $karyawan->id) }}'" class="btn btn-danger btn-sm">
                                         Hapus
                                     </button>
+
                                 </div>
                             </td>
 

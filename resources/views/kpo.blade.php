@@ -12,6 +12,7 @@
             background-color: #f8f9fa;
             font-family: 'Arial', sans-serif;
         }
+
         .navbar {
             background-color: #007bff;
             color: #fff;
@@ -23,10 +24,12 @@
             top: 0;
             z-index: 1000;
         }
+
         .navbar .logo img {
             height: 40px;
             margin: 0 5px;
         }
+
         .navbar .home-btn {
             background: none;
             border: none;
@@ -35,6 +38,7 @@
             cursor: pointer;
             margin-right: auto;
         }
+
         .container {
             margin-top: 80px;
             padding: 20px;
@@ -43,11 +47,13 @@
             box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
             max-width: 90%;
         }
+
         h3 {
             text-align: center;
             color: #343a40;
             font-size: 24px;
         }
+
         .table-section {
             margin-bottom: 20px;
         }
@@ -62,8 +68,9 @@
         </button>
         <div class="logo">
             <img src="/images/pacs.png" alt="Logo PACS" style="height: 40px; margin-right: 520px;">
-            <img src="/images/logo_kundha_kabudayan.png" alt="Logo Kundha Kabudayan" style="height: 40px; margin: 0 5px;">
-            <img src="/images/logo_sleman.jpeg" alt="Logo Sleman" style="height: 40px; margin: 0 5px;">
+            <img src="/images/logo_amikom.png" alt="Logo AMIKOM" style="height: 40px; margin-right: 5px; margin-left: 5px;">
+            <img src="/images/logo_kundha_kabudayan.png" alt="Logo Kundha Kabudayan" style="height: 40px; margin-right: 5px; margin-left: 5px;">
+            <img src="/images/logo_sleman.jpeg" alt="Logo Sleman" style="height: 40px; margin-right: 5px; margin-left: 10px;">
         </div>
     </div>
 
@@ -100,7 +107,7 @@
                     <td>{{ $item->tahun_pengajuan }}</td>
                 </tr>
             </tbody>
-        </table>        
+        </table>
         <div class="table">
             <table class="table table-bordered">
                 <thead>

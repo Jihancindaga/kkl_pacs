@@ -19,7 +19,8 @@
         }
 
         .navbar {
-            background-color: #007bff; /* Biru */
+            background-color: #007bff;
+            /* Biru */
             color: #fff;
             padding: 10px;
             display: flex;
@@ -32,23 +33,31 @@
         }
 
         .navbar .back-btn {
-            font-size: 24px; /* Ukuran font untuk panah */
-            color: white; /* Warna panah */
-            background: none; /* Menghilangkan latar belakang */
-            border: none; /* Menghilangkan border */
-            cursor: pointer; /* Menampilkan pointer saat hover */
+            font-size: 24px;
+            /* Ukuran font untuk panah */
+            color: white;
+            /* Warna panah */
+            background: none;
+            /* Menghilangkan latar belakang */
+            border: none;
+            /* Menghilangkan border */
+            cursor: pointer;
+            /* Menampilkan pointer saat hover */
         }
 
         .navbar .logo {
-            margin-left: auto; /* Memindahkan logo ke kanan */
+            margin-left: auto;
+            /* Memindahkan logo ke kanan */
         }
 
         .navbar .logo img {
-            height: 40px; /* Ukuran logo */
+            height: 40px;
+            /* Ukuran logo */
         }
 
         .content {
-            margin-top: 70px; /* Adjust based on navbar height */
+            margin-top: 70px;
+            /* Adjust based on navbar height */
             padding: 20px;
         }
 
@@ -57,25 +66,34 @@
             border-radius: 8px;
             padding: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            max-width: 2000px; /* Atur lebar maksimum */
-            width: 90%; /* Atur lebar menjadi 90% dari viewport */
-            margin: auto; /* Pusatkan kontainer */
+            max-width: 2000px;
+            /* Atur lebar maksimum */
+            width: 90%;
+            /* Atur lebar menjadi 90% dari viewport */
+            margin: auto;
+            /* Pusatkan kontainer */
         }
-        
+
         .container h2 {
-            margin-bottom: 40px; /* Jarak lebih jauh dari tombol */
-            text-align: center; /* Pusatkan teks */
+            margin-bottom: 40px;
+            /* Jarak lebih jauh dari tombol */
+            text-align: center;
+            /* Pusatkan teks */
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-            font-weight: bold; /* Font tebal */
-            font-size: 50px; /* Ukuran font lebih besar */
-            color: #0056b3; /* Opsional: ubah warna font */
+            font-weight: bold;
+            /* Font tebal */
+            font-size: 50px;
+            /* Ukuran font lebih besar */
+            color: #0056b3;
+            /* Opsional: ubah warna font */
         }
 
         .btn-container {
             margin-bottom: 20px;
         }
-         /* Kelas untuk tombol */
-         .button-group {
+
+        /* Kelas untuk tombol */
+        .button-group {
             display: flex;
             justify-content: space-between;
             gap: 10px;
@@ -83,61 +101,74 @@
 
         .button-group .btn {
             flex: 1;
-            padding: 8px; /* Mengurangi padding untuk tombol */
-            font-size: 12px; /* Ukuran font lebih kecil */
-            color: white; /* Set warna teks menjadi putih */
+            padding: 8px;
+            /* Mengurangi padding untuk tombol */
+            font-size: 12px;
+            /* Ukuran font lebih kecil */
+            color: white;
+            /* Set warna teks menjadi putih */
             transition: transform 0.3s, background-color 0.3s;
-            border: none; /* Hapus border default */
+            border: none;
+            /* Hapus border default */
         }
 
         .button-group .btn.active {
-            background-color: #0056b3; /* Warna gelap untuk tombol aktif */
-            color: white; /* Warna teks tetap putih */
-            border: 1px solid black; /* Tambahkan border hitam */
-            transform: scale(1.05); /* Sedikit memperbesar tombol aktif */
+            background-color: #0056b3;
+            /* Warna gelap untuk tombol aktif */
+            color: white;
+            /* Warna teks tetap putih */
+            border: 1px solid black;
+            /* Tambahkan border hitam */
+            transform: scale(1.05);
+            /* Sedikit memperbesar tombol aktif */
         }
 
         .btn-1 {
-            background-color: #17a2b8;
-            /* Teal */
+            background-color: #808080;
         }
 
         .btn-2 {
-            background-color: #665cc0;
-            /* Ungu */
+            background-color: #808080;
         }
 
         .btn-3 {
-            background-color: #aa1c9e;
-            /* Oranye */
+            background-color: #808080;
         }
+
         .btn-4 {
-            background-color: #ec2300;
-            /* Oranye */
+            background-color: #808080;
         }
+
         .btn-5 {
-            background-color: #26eb0c;
-            /* Oranye */
+            background-color: #808080;
         }
-        .btn-warning,
-         {
+
+        .btn-warning {
             color: white;
             /* Set warna teks tombol */
         }
+
         .btn:hover {
             opacity: 0.8;
-            transform: scale(1.05); /* Efek hover: sedikit memperbesar tombol */
+            transform: scale(1.05);
+            /* Efek hover: sedikit memperbesar tombol */
         }
+
         .btn.active {
-            background-color: #0056b3; /* Ubah warna tombol aktif */
-            color: white; /* Set warna teks tombol aktif menjadi putih */
-            transform: scale(1.1); /* Sedikit memperbesar tombol aktif */
+            background-color: #0056b3;
+            /* Ubah warna tombol aktif */
+            color: white;
+            /* Set warna teks tombol aktif menjadi putih */
+            transform: scale(1.1);
+            /* Sedikit memperbesar tombol aktif */
         }
 
         /* Style for table */
         .table thead {
-            background-color: #007bff; /* Biru untuk header tabel */
-            color: white; /* Warna teks header tabel */
+            background-color: #007bff;
+            /* Biru untuk header tabel */
+            color: white;
+            /* Warna teks header tabel */
         }
 
         .table th,
@@ -154,9 +185,10 @@
             <i class="fas fa-arrow-left" style="font-weight: bold;"></i> <!-- Panah tebal -->
         </button>
         <div class="logo">
-        <img src="/images/pacs.png" alt="Logo PACS" style="height: 40px; margin-right: 500px;"> <!-- Logo PACS -->
-            <img src="/images/logo_kundha_kabudayan.png" alt="Logo Kundha Kabudayan" style="height: 40px; margin-right: 5px; margin-left: 5px;"> <!-- Logo Sleman -->
-            <img src="/images/logo_sleman.jpeg" alt="Logo Sleman" style="height: 40px; margin-right: 5px; margin-left: 10px;"> <!-- Logo Sleman -->
+            <img src="/images/pacs.png" alt="Logo PACS" style="height: 40px; margin-right: 520px;">
+            <img src="/images/logo_amikom.png" alt="Logo AMIKOM" style="height: 40px; margin-right: 5px; margin-left: 5px;">
+            <img src="/images/logo_kundha_kabudayan.png" alt="Logo Kundha Kabudayan" style="height: 40px; margin-right: 5px; margin-left: 5px;">
+            <img src="/images/logo_sleman.jpeg" alt="Logo Sleman" style="height: 40px; margin-right: 5px; margin-left: 10px;">
         </div>
     </div>
 
@@ -181,9 +213,9 @@
             </div>
 
             @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
             @endif
 
             <table class="table table-bordered" id="vehiclesTable">
@@ -198,24 +230,23 @@
                 </thead>
                 <tbody>
                     @foreach ($vehicles as $vehicle)
-                        <tr>
-                            <td>{{ $vehicle->kode_kendaraan }}</td>
-                            <td>{{ $vehicle->plat }}</td>
-                            <td>{{ $vehicle->jenis_kendaraan }}</td>
-                            <td>{{ $vehicle->pengguna }}</td>
-                            <td>
-                                <a href="{{ route('riwayat.detail', ['id' => $vehicle->id]) }}" class="btn btn-info btn-sm" onclick="toggleDetails({{ $vehicle->id }})">Lihat Detail</a>
-                            </td>
-                        
-                    @endforeach
+                    <tr>
+                        <td>{{ $vehicle->kode_kendaraan }}</td>
+                        <td>{{ $vehicle->plat }}</td>
+                        <td>{{ $vehicle->jenis_kendaraan }}</td>
+                        <td>{{ $vehicle->pengguna }}</td>
+                        <td>
+                            <a href="{{ route('riwayat.detail', ['id' => $vehicle->id]) }}" class="btn btn-info btn-sm" onclick="toggleDetails({{ $vehicle->id }})">Lihat Detail</a>
+                        </td>
+                        @endforeach
                 </tbody>
             </table>
         </div>
     </div>
 
     <script>
-          // Fungsi untuk mengatur tombol aktif
-          function setActive(button, url) {
+        // Fungsi untuk mengatur tombol aktif
+        function setActive(button, url) {
             // Mengambil semua tombol dalam grup tombol
             const buttons = document.querySelectorAll('.button-group .btn');
 
@@ -243,7 +274,7 @@
         }
 
         // Pencarian
-        document.getElementById('searchInput').addEventListener('keyup', function () {
+        document.getElementById('searchInput').addEventListener('keyup', function() {
             const searchValue = this.value.toLowerCase();
             const rows = document.querySelectorAll('#vehiclesTable tbody tr');
 

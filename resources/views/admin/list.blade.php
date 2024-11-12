@@ -15,7 +15,8 @@
         }
 
         .navbar {
-            background-color: #007bff; /* Blue */
+            background-color: #007bff;
+            /* Blue */
             color: #fff;
             padding: 10px;
             display: flex;
@@ -26,11 +27,14 @@
             top: 0;
             z-index: 1000;
         }
+
         .navbar .logo img {
-        height: 40px;
-        position: relative;
-        left: -20px; /* Ubah nilainya sesuai kebutuhan */
+            height: 40px;
+            position: relative;
+            left: -20px;
+            /* Ubah nilainya sesuai kebutuhan */
         }
+
         .navbar .home-btn {
             background: none;
             border: none;
@@ -83,7 +87,8 @@
             position: absolute;
             top: 20px;
             left: 20px;
-            background-color: #007bff; /* Blue */
+            background-color: #007bff;
+            /* Blue */
             border: none;
             color: white;
             padding: 10px;
@@ -176,15 +181,16 @@
             <i class="fas fa-arrow-left"></i> <!-- Font Awesome arrow-left icon -->
         </button>
         <div class="logo">
-            <img src="/images/pacs.png" alt="Logo PACS" style="height: 40px; margin-right: 500px;"> <!-- Logo PACS -->
-            <img src="/images/logo_kundha_kabudayan.png" alt="Logo Kundha Kabudayan" style="height: 40px; margin-right: 5px; margin-left: 5px;"> <!-- Logo Sleman -->
-            <img src="/images/logo_sleman.jpeg" alt="Logo Sleman" style="height: 40px; margin-right: 5px; margin-left: 10px;"> <!-- Logo Sleman -->
+            <img src="/images/pacs.png" alt="Logo PACS" style="height: 40px; margin-right: 520px;">
+            <img src="/images/logo_amikom.png" alt="Logo AMIKOM" style="height: 40px; margin-right: 5px; margin-left: 5px;">
+            <img src="/images/logo_kundha_kabudayan.png" alt="Logo Kundha Kabudayan" style="height: 40px; margin-right: 5px; margin-left: 5px;">
+            <img src="/images/logo_sleman.jpeg" alt="Logo Sleman" style="height: 40px; margin-right: 5px; margin-left: 10px;">
         </div>
     </div>
     @if (session('success'))
-        <div class="alert alert-success mt-3">
-            {{ session('success') }}
-        </div>
+    <div class="alert alert-success mt-3">
+        {{ session('success') }}
+    </div>
     @endif
 
     <div class="container">
@@ -209,31 +215,31 @@
             </thead>
             <tbody>
                 @foreach ($admins as $admin)
-                    <tr>
-                        <td>{{ $admin->nip }}</td>
-                        <td>{{ $admin->nama }}</td>
-                        <td>{{ $admin->jabatan }}</td>
-                        <td>{{ $admin->alamat }}</td>
-                        <td>{{ $admin->no_telp }}</td>
-                        <td>{{ $admin->jenis_kelamin }}</td>
-                        <td class="action-buttons">
-                            <button onclick="window.location.href='{{ route('admin.edit', $admin->id) }}'">
-                                <i class="fas fa-user-edit"></i> Edit Data Pokok
+                <tr>
+                    <td>{{ $admin->nip }}</td>
+                    <td>{{ $admin->nama }}</td>
+                    <td>{{ $admin->jabatan }}</td>
+                    <td>{{ $admin->alamat }}</td>
+                    <td>{{ $admin->no_telp }}</td>
+                    <td>{{ $admin->jenis_kelamin }}</td>
+                    <td class="action-buttons">
+                        <button onclick="window.location.href='{{ route('admin.edit', $admin->id) }}'">
+                            <i class="fas fa-user-edit"></i> Edit Data Pokok
+                        </button>
+                        <button onclick="window.location.href='{{ route('admin.change_password', $admin->id) }}'">
+                            <i class="fas fa-key"></i> Ubah Password
+                        </button>
+                        <form action="{{ route('admin.delete', $admin->id) }}" method="POST"
+                            style="display:inline;"
+                            onsubmit="return confirm('Apakah Anda yakin ingin menghapus admin ini?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">
+                                <i class="fas fa-trash"></i> Hapus
                             </button>
-                            <button onclick="window.location.href='{{ route('admin.change_password', $admin->id) }}'">
-                                <i class="fas fa-key"></i> Ubah Password
-                            </button>
-                            <form action="{{ route('admin.delete', $admin->id) }}" method="POST"
-                                style="display:inline;"
-                                onsubmit="return confirm('Apakah Anda yakin ingin menghapus admin ini?');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit">
-                                    <i class="fas fa-trash"></i> Hapus
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
+                        </form>
+                    </td>
+                </tr>
                 @endforeach
             </tbody>
         </table>

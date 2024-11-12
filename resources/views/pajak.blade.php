@@ -126,28 +126,23 @@
         }
 
         .btn-1 {
-            background-color: #17a2b8;
-            /* Teal */
+            background-color: #808080;
         }
 
         .btn-2 {
-            background-color: #665cc0;
-            /* Ungu */
+            background-color: #808080;
         }
 
         .btn-3 {
-            background-color: #aa1c9e;
-            /* Oranye */
+            background-color: #808080;
         }
 
         .btn-4 {
-            background-color: #ec2300;
-            /* Oranye */
+            background-color: #808080;
         }
 
         .btn-5 {
-            background-color: #26eb0c;
-            /* Oranye */
+            background-color: #808080;
         }
 
         .btn-warning {
@@ -224,9 +219,10 @@
             <i class="fas fa-arrow-left"></i>
         </button>
         <div class="logo">
-            <img src="/images/pacs.png" alt="Logo PACS" style="height: 40px; margin-right: 500px;"> <!-- Logo PACS -->
-            <img src="/images/logo_kundha_kabudayan.png" alt="Logo Kundha Kabudayan" style="height: 40px; margin-right: 5px; margin-left: 5px;"> <!-- Logo Sleman -->
-            <img src="/images/logo_sleman.jpeg" alt="Logo Sleman" style="height: 40px; margin-right: 5px; margin-left: 10px;"> <!-- Logo Sleman -->
+            <img src="/images/pacs.png" alt="Logo PACS" style="height: 40px; margin-right: 520px;">
+            <img src="/images/logo_amikom.png" alt="Logo AMIKOM" style="height: 40px; margin-right: 5px; margin-left: 5px;">
+            <img src="/images/logo_kundha_kabudayan.png" alt="Logo Kundha Kabudayan" style="height: 40px; margin-right: 5px; margin-left: 5px;">
+            <img src="/images/logo_sleman.jpeg" alt="Logo Sleman" style="height: 40px; margin-right: 5px; margin-left: 10px;">
         </div>
 
     </div>

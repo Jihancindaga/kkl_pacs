@@ -57,101 +57,103 @@
             padding: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 1200px;
+            max-width: 600px;
+            /* Perkecil ukuran container */
             margin: auto;
         }
 
         .container h2 {
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             text-align: center;
-            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
             font-weight: bold;
-            font-size: 40px;
+            font-size: 30px;
             color: #0056b3;
         }
 
-        .button-group {
+        form {
             display: flex;
-            justify-content: space-between;
-            gap: 10px;
+            flex-direction: column;
+            gap: 15px;
+            font-size: 16px;
+            align-items: center;
+            /* Pusatkan form di tengah */
         }
 
-        .button-group .btn {
-            flex: 1;
+        form div {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        form label {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        form input[type="text"],
+        form input[type="date"],
+        form textarea {
             padding: 8px;
-            font-size: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        form input[type="text"]:focus,
+        form input[type="date"]:focus,
+        form textarea:focus {
+            border-color: #007bff;
+            height: 100px;
+            resize: vertical;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            outline: none;
+        }
+
+
+        button[type="submit"],
+        .btn-secondary {
+            font-size: 14px;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        button[type="submit"] {
+            background-color: #dc3545;
             color: white;
-            transition: transform 0.3s, background-color 0.3s;
             border: none;
         }
 
-        .button-group .btn.active {
-            background-color: #0056b3;
-            /* Warna gelap untuk tombol aktif */
-            color: white;
-            /* Warna teks tetap putih */
-            border: 1px solid black;
-            /* Tambahkan border hitam */
+        button[type="submit"]:hover {
+            background-color: #c82333;
             transform: scale(1.05);
-            /* Sedikit memperbesar tombol aktif */
         }
 
-        /* Specific Button Colors */
-        .btn-1 {
-            background-color: #808080;
-            /* Teal */
-        }
-
-        .btn-2 {
-            background-color: #808080;
-            /* Ungu */
-        }
-
-        .btn-3 {
-            background-color: #808080;
-            /* Oranye */
-        }
-
-        .btn-4 {
-            background-color: #808080;
-            /* Oranye */
-        }
-
-        .btn-5 {
-            background-color: #808080;
-            /* Oranye */
-        }
-
-        .btn-warning {
+        .btn-secondary {
+            background-color: #6c757d;
             color: white;
-            /* Set warna teks tombol */
+            text-decoration: none;
         }
 
-        /* Button Hover Effects */
-        .btn:hover {
-            opacity: 0.8;
+        .btn-secondary:hover {
+            background-color: #5a6268;
             transform: scale(1.05);
-            /* Efek hover: sedikit memperbesar tombol */
-        }
-
-        /* Active Button Styles */
-        .btn.active {
-            background-color: #0056b3;
-            /* Ubah warna tombol aktif */
-            color: white;
-            transform: scale(1.1);
-            /* Sedikit memperbesar tombol aktif */
         }
     </style>
 </head>
 
 <body>
     <div class="navbar">
-        <button class="home-btn" onclick="navigateTo('/home')">
+        <button class="home-btn" onclick="navigateTo('/datakaryawan')">
             <i class="fas fa-arrow-left"></i>
         </button>
         <div class="logo">
             <img src="/images/pacs.png" alt="Logo PACS" style="height: 40px; margin-right: 520px;">
+            <img src="/images/logo_amikom.png" alt="Logo AMIKOM" style="height: 40px; margin-right: 5px; margin-left: 5px;">
             <img src="/images/logo_kundha_kabudayan.png" alt="Logo Kundha Kabudayan" style="height: 40px; margin-right: 5px; margin-left: 5px;">
             <img src="/images/logo_sleman.jpeg" alt="Logo Sleman" style="height: 40px; margin-right: 5px; margin-left: 10px;">
         </div>
@@ -163,27 +165,25 @@
 
             <hr>
 
-            <form action="{{ route('karyawan.hapus') }}" method="POST">
+            <form action="{{ route('karyawan.hapus', $karyawan->id) }}" method="POST">
                 @csrf
-                <div class="form-group">
-                    <label for="nip">Pilih NIP Karyawan:</label>
-                    <select class="form-control" id="nip" name="nip" required>
-                        <option value="">Pilih NIP</option>
-                        @foreach ($karyawans as $karyawan)
-                        <option value="{{ $karyawan->nip }}">{{ $karyawan->nip }} - {{ $karyawan->nama }}</option>
-                        @endforeach
-                    </select>
+                <div>
+                    <label for="nip">NIP:</label>
+                    <input type="text" id="nip" name="nip" value="{{ $karyawan->nip }}" readonly>
                 </div>
-                <div class="form-group">
+                <div>
+                    <label for="nama">Nama:</label>
+                    <input type="text" id="nama" name="nama" value="{{ $karyawan->nama }}" readonly>
+                </div>
+                <div>
                     <label for="alasan">Alasan Penghapusan:</label>
-                    <textarea class="form-control" id="alasan" name="alasan" rows="3" required></textarea>
+                    <textarea type="text" id="alasan" name="alasan" required></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="tanggal">Tanggal Penghapusan:</label>
-                    <input type="date" class="form-control" id="tanggal_penghapusan" name="tanggal_penghapusan" required>
+                <div>
+                    <label for="tanggal_penghapusan">Tanggal Penghapusan:</label>
+                    <input type="date" id="tanggal_penghapusan" name="tanggal_penghapusan" required>
                 </div>
-                <button type="submit" class="btn btn-danger">Hapus Karyawan</button>
-                <a href="{{ route('datakaryawan') }}" class="btn btn-secondary">Kembali</a>
+                <button type="submit">Hapus</button>
             </form>
         </div>
     </div>
