@@ -206,11 +206,11 @@
                         <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Karyawan" required>
                     </div>
                     <div class="form-group">
-                        <label for="tanggal_kenaikan_gaji">Tanggal Kenaikan Gaji</label>
+                        <label for="tanggal_kenaikan_gaji">Tanggal Kenaikan Gaji (Mendatang)</label>
                         <input type="date" class="form-control" id="tanggal_kenaikan_gaji" name="tanggal_kenaikan_gaji" placeholder="Tanggal Kenaikan Gaji" required>
                     </div>
                     <div class="form-group">
-                        <label for="tanggal_kenaikan_pangkat">Tanggal Kenaikan Pangkat</label>
+                        <label for="tanggal_kenaikan_pangkat">Tanggal Kenaikan Pangkat (Mendatang)</label>
                         <input type="date" class="form-control" id="tanggal_kenaikan_pangkat" name="tanggal_kenaikan_pangkat" placeholder="Tanggal Kenaikan Pangkat" required>
                     </div>
                     <div class="form-group">
@@ -230,9 +230,10 @@
                         <select class="form-control" id="bagian" name="bagian" required>
                             <option value="" disabled selected>Pilih Bagian</option>
                             <option value="Kesekretariatan">Kesekretariatan</option>
-                            <option value="atlas">atlas</option>
-                            <option value="sbsp">sbsp</option>
-                            <option value="uptd">uptd</option>
+                            <option value="atlas">ATLAS</option>
+                            <option value="sbsp">SBSP</option>
+                            <option value="uptd">UPTD</option>
+                            <option value="warisanbudaya">Warisan Budaya</option>
                         </select>
                     </div>
                     

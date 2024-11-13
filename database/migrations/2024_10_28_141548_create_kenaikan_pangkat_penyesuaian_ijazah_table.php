@@ -19,6 +19,7 @@ class CreateKenaikanPangkatPenyesuaianIjazahTable extends Migration
             $table->string('ijazah_terakhir')->nullable();
             $table->string('transkrip_nilai')->nullable();
             $table->string('surat_akreditasi')->nullable();
+            $table->string('kategori')->nullable(); 
             $table->string('surat_ijin_belajar')->nullable();
             $table->string('stl_ujian_kenaikan')->nullable();
             $table->string('penilaian_kinerja')->nullable();

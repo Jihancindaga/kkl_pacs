@@ -155,7 +155,7 @@
             text-align: center;
             vertical-align: middle;
             border: 1px solid #dee2e6;
-            font-size: 12px;
+            font-size: 14px;
             padding: 5px;
             white-space: normal;
             word-break: break-word;

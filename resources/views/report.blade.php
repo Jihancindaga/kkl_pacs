@@ -170,17 +170,27 @@
         }
 
         table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        border: 1px solid #ddd; /* Menambahkan garis tepi pada tabel */
+    }
 
-        th,
-        td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border: 1px solid #ddd; /* Garis tepi pada setiap sel */
+        font-size: 14px; /* Ukuran font yang lebih kecil */
+    }
+
+    th {
+        background-color: #007bff;
+        color: white;
+    }
+
+    tr:hover {
+        background-color: #f1f1f1;
+    }
 
         th {
             background-color: #007bff;
@@ -242,14 +252,14 @@
             <!-- Filter Section -->
             <div class="filter-section">
                 <form method="GET" action="{{ route('riwayat-kenaikan-pangkat.index') }}">
-                    <input type="text" name="year" value="{{ request('year') }}" placeholder="Tahun">
+                    <input type="text" name="year" value="{{ request('year') }}" placeholder="Masukkan tahun kenaikan">
                     <select name="bagian">
                         <option value="">Pilih Bagian</option>
                         <option value="Kesekretariatan" {{ request('bagian') == 'Kesekretariatan' ? 'selected' : '' }}>Kesekretariatan</option>
                         <option value="Atlas" {{ request('bagian') == 'atlas' ? 'selected' : '' }}>Atlas</option>
                         <option value="SBSP" {{ request('bagian') == 'sbsp' ? 'selected' : '' }}>SBSP</option>
                         <option value="UPTD" {{ request('bagian') == 'uptd' ? 'selected' : '' }}>UPTD</option>
-                    </select>
+                        <option value="warisanbudaya" {{ request('bagian') == 'warisanbudaya' ? 'selected' : '' }}>Warisan Budaya</option>                    </select>
                     <button type="submit">Filter</button>
                 </form>
 
@@ -263,7 +273,8 @@
                             <th>No</th>
                             <th>NIP</th>
                             <th>Nama</th>
-                            <th>Tahun Kenaikan</th>
+                            <th>Tahun Pengajuan</th>
+                            <th>Kategori</th>
                             <th>Bagian</th>
                             <th>Pangkat Terakhir</th>
                             <th>Pangkat yang Diajukan</th>
@@ -276,6 +287,7 @@
                             <td>{{ $data->karyawan->nip }}</td>
                             <td>{{ $data->karyawan->nama }}</td>
                             <td>{{ $data->tahun_pengajuan }}</td>
+                            <td>{{ $data->kategori }}</td>
                             <td>{{ $data->karyawan->bagian }}</td>
                             <td>{{ $data->karyawan->pangkat }}</td>
                             <td>{{ $data->pangkat }}</td>
@@ -287,6 +299,7 @@
                             <td>{{ $data->karyawan->nip }}</td>
                             <td>{{ $data->karyawan->nama }}</td>
                             <td>{{ $data->tahun_pengajuan }}</td>
+                            <td>{{ $data->kategori }}</td>
                             <td>{{ $data->karyawan->bagian }}</td>
                             <td>{{ $data->karyawan->pangkat }}</td>
                             <td>{{ $data->pangkat }}</td>
@@ -298,6 +311,7 @@
                             <td>{{ $karyawan->nip }}</td>
                             <td>{{ $data->data->karyawan->nama }}</td>
                             <td>{{ $data->tahun_pengajuan }}</td>
+                            <td>{{ $data->kategori }}</td>
                             <td>{{ $data->karyawan->bagian }}</td>
                             <td>{{ $data->karyawan->pangkat }}</td>
                             <td>{{ $data->pangkat }}</td>
@@ -309,6 +323,7 @@
                             <td>{{ $data->karyawan->nip }}</td>
                             <td>{{ $data->karyawan->nama }}</td>
                             <td>{{ $data->tahun_pengajuan }}</td>
+                            <td>{{ $data->kategori }}</td>
                             <td>{{ $data->karyawan->bagian }}</td>
                             <td>{{ $data->karyawan->pangkat }}</td>
                             <td>{{ $data->pangkat }}</td>
@@ -320,6 +335,7 @@
                             <td>{{ $data->karyawan->nip }}</td>
                             <td>{{ $data->karyawan->nama }}</td>
                             <td>{{ $data->tahun_pengajuan }}</td>
+                            <td>{{ $data->kategori }}</td>
                             <td>{{ $data->karyawan->bagian }}</td>
                             <td>{{ $data->karyawan->pangkat }}</td>
                             <td>{{ $data->pangkat }}</td>

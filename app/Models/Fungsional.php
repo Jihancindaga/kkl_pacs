@@ -31,6 +31,7 @@ class Fungsional extends Model
         'tanggal_upload',
         'golongan',
         'pangkat',
+        'kategori',           
         'tahun_pengajuan',
     ];
     public function karyawan()

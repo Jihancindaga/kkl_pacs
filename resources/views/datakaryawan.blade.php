@@ -401,8 +401,8 @@
                             <th>No</th>
                             <th>NIP</th>
                             <th>Nama</th>
-                            <th class="tanggal">Tanggal Kenaikan Gaji</th>
-                            <th class="tanggal">Tanggal Kenaikan Pangkat</th>
+                            <th class="tanggal">Tanggal Kenaikan Gaji (Mendatang)</th>
+                            <th class="tanggal">Tanggal Kenaikan Pangkat (Mendatang)</th>
                             <th>Gol</th>
                             <th>Pangkat</th>
                             <th>Jabatan</th>

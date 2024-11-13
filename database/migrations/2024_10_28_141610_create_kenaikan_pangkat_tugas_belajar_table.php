@@ -20,7 +20,7 @@ class CreateKenaikanPangkatTugasBelajarTable extends Migration
             $table->string('ijazah_terakhir')->nullable();
             $table->string('transkrip_nilai')->nullable();
             $table->string('sk_pemberhentian_jabatan')->nullable();
-
+            $table->string('kategori')->nullable(); 
             // Tambahkan kolom untuk tanggal upload
             $table->date('tanggal_upload')->nullable();
             $table->timestamps();

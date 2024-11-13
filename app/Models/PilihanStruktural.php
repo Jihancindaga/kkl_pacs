@@ -30,6 +30,8 @@ class PilihanStruktural extends Model
         'golongan',
         'pangkat',
         'tahun_pengajuan',
+        'kategori',           
+
     ];
 
     /**

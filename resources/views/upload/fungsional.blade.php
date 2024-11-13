@@ -110,6 +110,12 @@
         <!-- Form untuk mengupload berkas -->
         <form action="{{ route('fungsional.store', $karyawan->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
+
+            <div class="form-group">
+                <label for="kategori">Kategori</label>
+                <input type="text" id="kategori" name="kategori" class="form-control" value="Fungsional" readonly>
+            </div> 
+            
             <table class="table table-bordered">
                 <thead>
                     <tr>

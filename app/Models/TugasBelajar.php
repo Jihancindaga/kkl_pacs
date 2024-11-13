@@ -23,7 +23,8 @@ class TugasBelajar extends Model
         'sk_pemberhentian_jabatan',
         'tanggal_upload',
         'golongan',          
-        'pangkat',           
+        'pangkat',  
+        'kategori',           
         'tahun_pengajuan',   
     ];
 

@@ -22,6 +22,7 @@ class CreateKenaikanPangkatFungsionalTable extends Migration
             $table->string('ijazah_terakhir')->nullable(); // Memperbaiki kolom ijazah
             $table->string('transkrip_nilai')->nullable(); // Memperbaiki kolom transkip_nilai
             $table->string('sk_pmk')->nullable();
+            $table->string('kategori')->nullable(); 
             $table->string('penilaian_kinerja')->nullable(); // Mengganti default(false) menjadi nullable
             $table->string('sertifikat_uji_kompetensi')->nullable();
             $table->string('pak')->nullable();

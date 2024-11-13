@@ -25,7 +25,9 @@ class PenyesuaianIjazah extends Model
         'rekomendasi_kepala_instansi',
         'tanggal_upload',
         'golongan',
+        'kategori',           
         'pangkat',
+        
         'tahun_pengajuan',
     ];
     public function karyawan()

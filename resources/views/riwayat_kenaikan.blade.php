@@ -153,6 +153,7 @@
             transform: scale(1.1);
             /* Sedikit memperbesar tombol aktif */
         }
+        
 
         .table thead th {
             text-align: center;
@@ -160,7 +161,7 @@
             background-color: #007bff;
             color: rgb(253, 251, 251);
             border: 1px solid #dee2e6;
-            font-size: 12px;
+            font-size: 14px;
         }
 
         .table th,

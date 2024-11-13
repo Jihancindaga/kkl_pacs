@@ -19,6 +19,7 @@ class CreateKenaikanPangkatPilihanStrukturalTable extends Migration
             $table->string('transkrip_nilai')->nullable();
             $table->string('sk_jabatan')->nullable();
             $table->string('spmt')->nullable();
+            $table->string('kategori')->nullable(); 
             $table->string('berita_acara_pelantikan')->nullable();
             $table->string('surat_pernyataan_pelantikan')->nullable();
             $table->string('penilaian_kinerja')->nullable();

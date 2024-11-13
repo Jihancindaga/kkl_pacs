@@ -36,9 +36,11 @@ class TugasBelajarController extends Controller
      */
     public function store(Request $request, $karyawan_id)
     {
+        
         $request->validate([
             'golongan' => 'required|string',
             'pangkat' => 'required|string',
+            'kategori' => 'required|string',
             'tahun_pengajuan' => 'required|integer',
             'file1' => 'required|file|mimes:pdf',
             'file2' => 'required|file|mimes:pdf',
@@ -66,6 +68,7 @@ class TugasBelajarController extends Controller
             'karyawan_id' => $karyawan->id,
             'golongan' => $request->golongan,
             'pangkat' => $request->pangkat,
+            'kategori' => $request->input('kategori'),
             'tahun_pengajuan' => $request->tahun_pengajuan,
             'sk_kenaikan_pangkat_terakhir' => $files['file1'] ?? null,
             'surat_tugas_belajar' => $files['file2'] ?? null,

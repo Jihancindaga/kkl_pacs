@@ -117,9 +117,10 @@
                 <select class="form-control" id="bagian" name="bagian" required>
                     <option value="" disabled selected>Pilih Bagian</option>
                     <option value="Kesekretariatan">Kesekretariatan</option>
-                    <option value="atlas">atlas</option>
-                    <option value="sbsp">sbsp</option>
-                    <option value="uptd">uptd</option>
+                    <option value="atlas">ATLAS</option>
+                    <option value="sbsp">SBSP</option>
+                    <option value="uptd">UPTD</option>
+                    <option value="warisanbudaya">Warisan Budaya</option>
                 </select>
             </div>
             <div class="form-group">

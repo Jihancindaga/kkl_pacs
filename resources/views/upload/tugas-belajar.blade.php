@@ -109,6 +109,12 @@
         <!-- Form untuk mengupload berkas -->
         <form action="{{ route('tugas-belajar.store', $karyawan->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
+
+            <div class="form-group">
+                <label for="kategori">Kategori</label>
+                <input type="text" id="kategori" name="kategori" class="form-control" value="Tugas Belajar" readonly>
+            </div>
+    
             <table class="table table-bordered">
                 <thead>
                     <tr>

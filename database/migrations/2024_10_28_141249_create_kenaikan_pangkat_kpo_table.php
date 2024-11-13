@@ -20,6 +20,7 @@ class CreateKenaikanPangkatKpoTable extends Migration
             $table->string('penilaian_kinerja')->nullable();
             $table->string('ijazah_terakhir')->nullable();
             $table->string('transkrip_nilai')->nullable();
+            $table->string('kategori')->nullable(); 
             $table->string('surat_gelar_bkn')->nullable();
             $table->string('stlud')->nullable();
             $table->string('rekomendasi_kepala_instansi')->nullable();
