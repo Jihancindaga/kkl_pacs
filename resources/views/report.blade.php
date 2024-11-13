@@ -241,25 +241,18 @@
 
             <!-- Filter Section -->
             <div class="filter-section">
-                <form id="filterForm">
-                    <select name="tahun" id="tahun">
-                        <option value="">Pilih Tahun</option>
-                        @foreach(range(2010, 2024) as $year)
-                            <option value="{{ $year }}" {{ request('tahun') == $year ? 'selected' : '' }}>{{ $year }}</option>
-                        @endforeach
-                    </select>
-            
-                    <select name="bagian" id="bagian">
+                <form method="GET" action="{{ route('riwayat-kenaikan-pangkat.index') }}">
+                    <input type="text" name="year" value="{{ request('year') }}" placeholder="Tahun">
+                    <select name="bagian">
                         <option value="">Pilih Bagian</option>
-                        <option value="Bagian A" {{ request('bagian') == 'Kesekretariatan' ? 'selected' : '' }}>Kesekretariatan</option>
-                        <option value="Bagian B" {{ request('bagian') == 'atlas' ? 'selected' : '' }}>atlas</option>
-                        <option value="Bagian c" {{ request('bagian') == 'sbsp' ? 'selected' : '' }}>sbsp</option>
-                        <option value="Bagian d" {{ request('bagian') == 'uptd' ? 'selected' : '' }}>uptd</option>
+                        <option value="Kesekretariatan" {{ request('bagian') == 'Kesekretariatan' ? 'selected' : '' }}>Kesekretariatan</option>
+                        <option value="Atlas" {{ request('bagian') == 'atlas' ? 'selected' : '' }}>Atlas</option>
+                        <option value="SBSP" {{ request('bagian') == 'sbsp' ? 'selected' : '' }}>SBSP</option>
+                        <option value="UPTD" {{ request('bagian') == 'uptd' ? 'selected' : '' }}>UPTD</option>
                     </select>
-            
-                    <button type="button" id="filterButton">Cari</button>
-                    <button type="reset" onclick="resetForm()">Reset</button>
+                    <button type="submit">Filter</button>
                 </form>
+
             </div>
 
             <!-- Table Section -->
@@ -267,6 +260,7 @@
                 <table>
                     <thead>
                         <tr>
+                            <th>No</th>
                             <th>NIP</th>
                             <th>Nama</th>
                             <th>Tahun Kenaikan</th>
@@ -276,8 +270,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($kpo as $data)
+                        @foreach ($kpo as $index => $data)
                         <tr>
+                            <td>{{ $index + 1 }}</td>
                             <td>{{ $data->karyawan->nip }}</td>
                             <td>{{ $data->karyawan->nama }}</td>
                             <td>{{ $data->tahun_pengajuan }}</td>
@@ -286,8 +281,9 @@
                             <td>{{ $data->pangkat }}</td>
                         </tr>
                         @endforeach
-                        @foreach ($struktural as $data)
+                        @foreach ($struktural as $index => $data)
                         <tr>
+                            <td>{{ $index + 1 }}</td>
                             <td>{{ $data->karyawan->nip }}</td>
                             <td>{{ $data->karyawan->nama }}</td>
                             <td>{{ $data->tahun_pengajuan }}</td>
@@ -296,8 +292,9 @@
                             <td>{{ $data->pangkat }}</td>
                         </tr>
                         @endforeach
-                        @foreach ($penyesuaianIjazah as $data)
+                        @foreach ($penyesuaianIjazah as $index => $data)
                         <tr>
+                            <td>{{ $index + 1 }}</td>
                             <td>{{ $karyawan->nip }}</td>
                             <td>{{ $data->data->karyawan->nama }}</td>
                             <td>{{ $data->tahun_pengajuan }}</td>
@@ -306,8 +303,9 @@
                             <td>{{ $data->pangkat }}</td>
                         </tr>
                         @endforeach
-                        @foreach ($fungsional as $data)
+                        @foreach ($fungsional as $index => $data)
                         <tr>
+                            <td>{{ $index + 1 }}</td>
                             <td>{{ $data->karyawan->nip }}</td>
                             <td>{{ $data->karyawan->nama }}</td>
                             <td>{{ $data->tahun_pengajuan }}</td>
@@ -316,8 +314,9 @@
                             <td>{{ $data->pangkat }}</td>
                         </tr>
                         @endforeach
-                        @foreach ($tugasBelajar as $data)
+                        @foreach ($tugasBelajar as $index => $data)
                         <tr>
+                            <td>{{ $index + 1 }}</td>
                             <td>{{ $data->karyawan->nip }}</td>
                             <td>{{ $data->karyawan->nama }}</td>
                             <td>{{ $data->tahun_pengajuan }}</td>
@@ -352,8 +351,9 @@
         if (bagian) url.searchParams.set('bagian', bagian);
         else url.searchParams.delete('bagian'); // Hapus jika kosong
 
-        window.location.href = url.toString(); // Arahkan ulang ke URL dengan parameter filter
+        window.location.href = url.toString(); // Arahkan ke URL yang telah diperbarui
     });
+
 
 
     </script>

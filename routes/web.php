@@ -217,3 +217,4 @@ Route::get('/detail-kenaikan', function () {
 Route::get('/riwayat-kenaikan', [KaryawanController::class, 'showRiwayatKenaikan']);
 Route::get('/report', [RiwayatKenaikanPangkatController::class, 'index'])->name('report');
 
+Route::get('/riwayat-kenaikan-pangkat', [RiwayatKenaikanPangkatController::class, 'index'])->name('riwayat-kenaikan-pangkat.index');
