@@ -16,6 +16,8 @@ class RiwayatKenaikanPangkatController extends Controller
     {
         $year = $request->input('year'); // Get the selected year
         $bagian = $request->input('bagian'); // Get the selected bagian (Kesekretariatan, Atlas, SBSP, UPTD)
+        $pangkat = $request->input('pangkat');
+        $pangkatterakhir = $request->input('pangkatterakhir');
 
         $kpo = KenaikanPangkatKpo::with('karyawan');
         $struktural = PilihanStruktural::with('karyawan');
@@ -49,8 +51,34 @@ class RiwayatKenaikanPangkatController extends Controller
         $tugasBelajar = $tugasBelajar->whereHas('karyawan', function($query) use ($bagian) {
             $query->where('bagian', $bagian);
         });
-    }
+     }
 
+     if ($pangkat) {
+        // Filter by bagian from the karyawans table
+        $kpo = $kpo->whereHas('karyawan', function($query) use ($pangkat) {
+            $query->where('pangkat', $pangkat);
+        });
+        $struktural = $struktural->whereHas('karyawan', function($query) use ($pangkat) {
+            $query->where('pangkat', $pangkat);
+        });
+        $penyesuaianIjazah = $penyesuaianIjazah->whereHas('karyawan', function($query) use ($pangkat) {
+            $query->where('pangkat', $pangkat);
+        });
+        $fungsional = $fungsional->whereHas('karyawan', function($query) use ($pangkat) {
+            $query->where('pangkat', $pangkat);
+        });
+        $tugasBelajar = $tugasBelajar->whereHas('karyawan', function($query) use ($pangkat) {
+            $query->where('pangkat', $pangkat);
+        });
+    }
+    if ($pangkatterakhir) {
+        $kpo = $kpo->where('pangkat', $pangkat);
+        $struktural = $struktural->where('pangkat', $pangkat);
+        $penyesuaianIjazah = $penyesuaianIjazah->where('pangkat', $pangkat);
+        $fungsional = $fungsional->where('pangkat', $pangkat);
+        $tugasBelajar = $tugasBelajar->where('pangkat', $pangkat);
+    }
+    
 
         // Get the filtered data
         $kpo = $kpo->get();

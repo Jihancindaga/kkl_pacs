@@ -260,10 +260,65 @@
                         <option value="SBSP" {{ request('bagian') == 'sbsp' ? 'selected' : '' }}>SBSP</option>
                         <option value="UPTD" {{ request('bagian') == 'uptd' ? 'selected' : '' }}>UPTD</option>
                         <option value="warisanbudaya" {{ request('bagian') == 'warisanbudaya' ? 'selected' : '' }}>Warisan Budaya</option>                    </select>
-                    <button type="submit">Filter</button>
+                    </select>
+                    <select name="pangkatterakhir">
+                        <option value="">Pilih Pangkat terakhir</option>
+                        <optgroup label="Golongan I (Juru)">
+                            <option value="Ia - Juru Muda" {{ request('pangkat') == 'Ia - Juru Muda' ? 'selected' : '' }}>Juru Muda</option>
+                            <option value="Ib - Juru Muda Tingkat I" {{ request('pangkat') == 'Ib - Juru Muda Tingkat I' ? 'selected' : '' }}>Juru Muda Tingkat I</option>
+                            <option value="Ic - Juru" {{ request('pangkat') == 'Ic - Juru' ? 'selected' : '' }}> Juru</option>
+                            <option value="Id - Juru Tingkat I" {{ request('pangkat') == 'Id - Juru Tingkat I' ? 'selected' : '' }}>Juru Tingkat I</option>
+                        </optgroup>
+                        <optgroup label="Golongan II (Pengatur)">
+                            <option value="IIa - Pengatur Muda" {{ request('pangkat') == 'IIa - Pengatur Muda' ? 'selected' : '' }}> Pengatur Muda</option>
+                            <option value="IIb - Pengatur Muda Tingkat I" {{ request('pangkat') == 'IIb - Pengatur Muda Tingkat I' ? 'selected' : '' }}> Pengatur Muda Tingkat I</option>
+                            <option value="IIc - Pengatur" {{ request('pangkat') == 'IIc - Pengatur' ? 'selected' : '' }}> Pengatur</option>
+                            <option value="IId - Pengatur Tingkat I" {{ request('pangkat') == 'IId - Pengatur Tingkat I' ? 'selected' : '' }}> Pengatur Tingkat I</option>
+                        </optgroup>
+                        <optgroup label="Golongan III (Penata)">
+                            <option value="IIIa - Penata Muda" {{ request('pangkat') == 'IIIa - Penata Muda' ? 'selected' : '' }}> Penata Muda</option>
+                            <option value="IIIb - Penata Muda Tingkat I" {{ request('pangkat') == 'IIIb - Penata Muda Tingkat I' ? 'selected' : '' }}> Penata Muda Tingkat I</option>
+                            <option value="IIIc - Penata" {{ request('pangkat') == 'IIIc - Penata' ? 'selected' : '' }}>Penata</option>
+                            <option value="IIId - Penata Tingkat I" {{ request('pangkat') == 'IIId - Penata Tingkat I' ? 'selected' : '' }}> Penata Tingkat I</option>
+                        </optgroup>
+                        <optgroup label="Golongan IV (Pembina)">
+                            <option value="IVa - Pembina" {{ request('pangkat') == 'IVa - Pembina' ? 'selected' : '' }}> Pembina</option>
+                            <option value="IVb - Pembina Tingkat I" {{ request('pangkat') == 'IVb - Pembina Tingkat I' ? 'selected' : '' }}> Pembina Tingkat I</option>
+                            <option value="IVc - Pembina Muda" {{ request('pangkat') == 'IVc - Pembina Muda' ? 'selected' : '' }}> Pembina Muda</option>
+                            <option value="IVd - Pembina Madya" {{ request('pangkat') == 'IVd - Pembina Madya' ? 'selected' : '' }}>Pembina Madya</option>
+                        </optgroup>
+                    </select>
+                    <select name="pangkat">
+                        <option value="">Pilih Pangkat yang Diajukan</option>
+                        <optgroup label="Golongan I (Juru)">
+                            <option value="Ia - Juru Muda" {{ request('pangkat') == 'Ia - Juru Muda' ? 'selected' : '' }}>Juru Muda</option>
+                            <option value="Ib - Juru Muda Tingkat I" {{ request('pangkat') == 'Ib - Juru Muda Tingkat I' ? 'selected' : '' }}>Juru Muda Tingkat I</option>
+                            <option value="Ic - Juru" {{ request('pangkat') == 'Ic - Juru' ? 'selected' : '' }}> Juru</option>
+                            <option value="Id - Juru Tingkat I" {{ request('pangkat') == 'Id - Juru Tingkat I' ? 'selected' : '' }}>Juru Tingkat I</option>
+                        </optgroup>
+                        <optgroup label="Golongan II (Pengatur)">
+                            <option value="IIa - Pengatur Muda" {{ request('pangkat') == 'IIa - Pengatur Muda' ? 'selected' : '' }}> Pengatur Muda</option>
+                            <option value="IIb - Pengatur Muda Tingkat I" {{ request('pangkat') == 'IIb - Pengatur Muda Tingkat I' ? 'selected' : '' }}> Pengatur Muda Tingkat I</option>
+                            <option value="IIc - Pengatur" {{ request('pangkat') == 'IIc - Pengatur' ? 'selected' : '' }}> Pengatur</option>
+                            <option value="IId - Pengatur Tingkat I" {{ request('pangkat') == 'IId - Pengatur Tingkat I' ? 'selected' : '' }}> Pengatur Tingkat I</option>
+                        </optgroup>
+                        <optgroup label="Golongan III (Penata)">
+                            <option value="IIIa - Penata Muda" {{ request('pangkat') == 'IIIa - Penata Muda' ? 'selected' : '' }}> Penata Muda</option>
+                            <option value="IIIb - Penata Muda Tingkat I" {{ request('pangkat') == 'IIIb - Penata Muda Tingkat I' ? 'selected' : '' }}> Penata Muda Tingkat I</option>
+                            <option value="IIIc - Penata" {{ request('pangkat') == 'IIIc - Penata' ? 'selected' : '' }}>Penata</option>
+                            <option value="IIId - Penata Tingkat I" {{ request('pangkat') == 'IIId - Penata Tingkat I' ? 'selected' : '' }}> Penata Tingkat I</option>
+                        </optgroup>
+                        <optgroup label="Golongan IV (Pembina)">
+                            <option value="IVa - Pembina" {{ request('pangkat') == 'IVa - Pembina' ? 'selected' : '' }}> Pembina</option>
+                            <option value="IVb - Pembina Tingkat I" {{ request('pangkat') == 'IVb - Pembina Tingkat I' ? 'selected' : '' }}> Pembina Tingkat I</option>
+                            <option value="IVc - Pembina Muda" {{ request('pangkat') == 'IVc - Pembina Muda' ? 'selected' : '' }}> Pembina Muda</option>
+                            <option value="IVd - Pembina Madya" {{ request('pangkat') == 'IVd - Pembina Madya' ? 'selected' : '' }}>Pembina Madya</option>
+                        </optgroup>
+                    </select>
+                        <button type="submit">Filter</button>
                 </form>
-
             </div>
+
 
             <!-- Table Section -->
             <div class="table-container">
@@ -274,8 +329,8 @@
                             <th>NIP</th>
                             <th>Nama</th>
                             <th>Tahun Pengajuan</th>
-                            <th>Kategori</th>
                             <th>Bagian</th>
+                            <th>Kategori Kenaikan</th>
                             <th>Pangkat Terakhir</th>
                             <th>Pangkat yang Diajukan</th>
                         </tr>
@@ -287,8 +342,8 @@
                             <td>{{ $data->karyawan->nip }}</td>
                             <td>{{ $data->karyawan->nama }}</td>
                             <td>{{ $data->tahun_pengajuan }}</td>
-                            <td>{{ $data->kategori }}</td>
                             <td>{{ $data->karyawan->bagian }}</td>
+                            <td>{{ $data->kategori }}</td>
                             <td>{{ $data->karyawan->pangkat }}</td>
                             <td>{{ $data->pangkat }}</td>
                         </tr>
@@ -299,8 +354,8 @@
                             <td>{{ $data->karyawan->nip }}</td>
                             <td>{{ $data->karyawan->nama }}</td>
                             <td>{{ $data->tahun_pengajuan }}</td>
-                            <td>{{ $data->kategori }}</td>
                             <td>{{ $data->karyawan->bagian }}</td>
+                            <td>{{ $data->kategori }}</td>
                             <td>{{ $data->karyawan->pangkat }}</td>
                             <td>{{ $data->pangkat }}</td>
                         </tr>
@@ -311,8 +366,8 @@
                             <td>{{ $karyawan->nip }}</td>
                             <td>{{ $data->data->karyawan->nama }}</td>
                             <td>{{ $data->tahun_pengajuan }}</td>
-                            <td>{{ $data->kategori }}</td>
                             <td>{{ $data->karyawan->bagian }}</td>
+                            <td>{{ $data->kategori }}</td>
                             <td>{{ $data->karyawan->pangkat }}</td>
                             <td>{{ $data->pangkat }}</td>
                         </tr>
@@ -323,8 +378,8 @@
                             <td>{{ $data->karyawan->nip }}</td>
                             <td>{{ $data->karyawan->nama }}</td>
                             <td>{{ $data->tahun_pengajuan }}</td>
-                            <td>{{ $data->kategori }}</td>
                             <td>{{ $data->karyawan->bagian }}</td>
+                            <td>{{ $data->kategori }}</td>
                             <td>{{ $data->karyawan->pangkat }}</td>
                             <td>{{ $data->pangkat }}</td>
                         </tr>
@@ -335,8 +390,8 @@
                             <td>{{ $data->karyawan->nip }}</td>
                             <td>{{ $data->karyawan->nama }}</td>
                             <td>{{ $data->tahun_pengajuan }}</td>
-                            <td>{{ $data->kategori }}</td>
                             <td>{{ $data->karyawan->bagian }}</td>
+                            <td>{{ $data->kategori }}</td>
                             <td>{{ $data->karyawan->pangkat }}</td>
                             <td>{{ $data->pangkat }}</td>
                         </tr>
@@ -367,6 +422,11 @@
         if (bagian) url.searchParams.set('bagian', bagian);
         else url.searchParams.delete('bagian'); // Hapus jika kosong
 
+        if (bagian) url.searchParams.set('pangkat', pangkat);
+        else url.searchParams.delete('pangkat'); // Hapus jika kosong
+
+        if (bagian) url.searchParams.set('pangkatterakhir', pangkatterakhir);
+        else url.searchParams.delete('pangkatterakhir'); // Hapus jika kosong
         window.location.href = url.toString(); // Arahkan ke URL yang telah diperbarui
     });
 
