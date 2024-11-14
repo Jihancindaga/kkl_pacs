@@ -261,60 +261,61 @@
                         <option value="UPTD" {{ request('bagian') == 'uptd' ? 'selected' : '' }}>UPTD</option>
                         <option value="warisanbudaya" {{ request('bagian') == 'warisanbudaya' ? 'selected' : '' }}>Warisan Budaya</option>                    </select>
                     </select>
-                    <select name="pangkatterakhir">
-                        <option value="">Pilih Pangkat terakhir</option>
+                    <select name="pangkat">
+                        <option value="">Pilih Pangkat Terakhir</option>
                         <optgroup label="Golongan I (Juru)">
-                            <option value="Ia - Juru Muda" {{ request('pangkat') == 'Ia - Juru Muda' ? 'selected' : '' }}>Juru Muda</option>
-                            <option value="Ib - Juru Muda Tingkat I" {{ request('pangkat') == 'Ib - Juru Muda Tingkat I' ? 'selected' : '' }}>Juru Muda Tingkat I</option>
-                            <option value="Ic - Juru" {{ request('pangkat') == 'Ic - Juru' ? 'selected' : '' }}> Juru</option>
-                            <option value="Id - Juru Tingkat I" {{ request('pangkat') == 'Id - Juru Tingkat I' ? 'selected' : '' }}>Juru Tingkat I</option>
+                            <option value="Juru Muda" {{ request('pangkat') == 'Juru Muda' ? 'selected' : '' }}>Juru Muda</option>
+                            <option value="Juru Muda Tingkat I" {{ request('pangkat') == 'Juru Muda Tingkat I' ? 'selected' : '' }}>Juru Muda Tingkat I</option>
+                            <option value="Juru" {{ request('pangkat') == 'Juru' ? 'selected' : '' }}> Juru</option>
+                            <option value="Juru Tingkat I" {{ request('pangkat') == 'Juru Tingkat I' ? 'selected' : '' }}>Juru Tingkat I</option>
                         </optgroup>
                         <optgroup label="Golongan II (Pengatur)">
-                            <option value="IIa - Pengatur Muda" {{ request('pangkat') == 'IIa - Pengatur Muda' ? 'selected' : '' }}> Pengatur Muda</option>
-                            <option value="IIb - Pengatur Muda Tingkat I" {{ request('pangkat') == 'IIb - Pengatur Muda Tingkat I' ? 'selected' : '' }}> Pengatur Muda Tingkat I</option>
-                            <option value="IIc - Pengatur" {{ request('pangkat') == 'IIc - Pengatur' ? 'selected' : '' }}> Pengatur</option>
-                            <option value="IId - Pengatur Tingkat I" {{ request('pangkat') == 'IId - Pengatur Tingkat I' ? 'selected' : '' }}> Pengatur Tingkat I</option>
+                            <option value="Pengatur Muda" {{ request('pangkat') == 'Pengatur Muda' ? 'selected' : '' }}> Pengatur Muda</option>
+                            <option value="Pengatur Muda Tingkat I" {{ request('pangkat') == 'Pengatur Muda Tingkat I' ? 'selected' : '' }}> Pengatur Muda Tingkat I</option>
+                            <option value="Pengatur" {{ request('pangkat') == 'Pengatur' ? 'selected' : '' }}> Pengatur</option>
+                            <option value="Pengatur Tingkat I" {{ request('pangkat') == 'Pengatur Tingkat I' ? 'selected' : '' }}> Pengatur Tingkat I</option>
                         </optgroup>
                         <optgroup label="Golongan III (Penata)">
-                            <option value="IIIa - Penata Muda" {{ request('pangkat') == 'IIIa - Penata Muda' ? 'selected' : '' }}> Penata Muda</option>
-                            <option value="IIIb - Penata Muda Tingkat I" {{ request('pangkat') == 'IIIb - Penata Muda Tingkat I' ? 'selected' : '' }}> Penata Muda Tingkat I</option>
-                            <option value="IIIc - Penata" {{ request('pangkat') == 'IIIc - Penata' ? 'selected' : '' }}>Penata</option>
-                            <option value="IIId - Penata Tingkat I" {{ request('pangkat') == 'IIId - Penata Tingkat I' ? 'selected' : '' }}> Penata Tingkat I</option>
+                            <option value="Penata Muda" {{ request('pangkat') == 'Penata Muda' ? 'selected' : '' }}> Penata Muda</option>
+                            <option value="Penata Muda Tingkat I" {{ request('pangkat') == 'Penata Muda Tingkat I' ? 'selected' : '' }}> Penata Muda Tingkat I</option>
+                            <option value="Penata" {{ request('pangkat') == 'Penata' ? 'selected' : '' }}>Penata</option>
+                            <option value="Penata Tingkat I" {{ request('pangkat') == 'Penata Tingkat I' ? 'selected' : '' }}> Penata Tingkat I</option>
                         </optgroup>
                         <optgroup label="Golongan IV (Pembina)">
-                            <option value="IVa - Pembina" {{ request('pangkat') == 'IVa - Pembina' ? 'selected' : '' }}> Pembina</option>
-                            <option value="IVb - Pembina Tingkat I" {{ request('pangkat') == 'IVb - Pembina Tingkat I' ? 'selected' : '' }}> Pembina Tingkat I</option>
-                            <option value="IVc - Pembina Muda" {{ request('pangkat') == 'IVc - Pembina Muda' ? 'selected' : '' }}> Pembina Muda</option>
-                            <option value="IVd - Pembina Madya" {{ request('pangkat') == 'IVd - Pembina Madya' ? 'selected' : '' }}>Pembina Madya</option>
+                            <option value="Pembina" {{ request('pangkat') == 'Pembina' ? 'selected' : '' }}> Pembina</option>
+                            <option value="Pembina Tingkat I" {{ request('pangkat') == 'Pembina Tingkat I' ? 'selected' : '' }}> Pembina Tingkat I</option>
+                            <option value="Pembina Muda" {{ request('pangkat') == 'Pembina Muda' ? 'selected' : '' }}> Pembina Muda</option>
+                            <option value="Pembina Madya" {{ request('pangkat') == 'Pembina Madya' ? 'selected' : '' }}>Pembina Madya</option>
                         </optgroup>
                     </select>
-                    <select name="pangkat">
+                    <select name="pangkatpengajuan">
                         <option value="">Pilih Pangkat yang Diajukan</option>
                         <optgroup label="Golongan I (Juru)">
-                            <option value="Ia - Juru Muda" {{ request('pangkat') == 'Ia - Juru Muda' ? 'selected' : '' }}>Juru Muda</option>
-                            <option value="Ib - Juru Muda Tingkat I" {{ request('pangkat') == 'Ib - Juru Muda Tingkat I' ? 'selected' : '' }}>Juru Muda Tingkat I</option>
-                            <option value="Ic - Juru" {{ request('pangkat') == 'Ic - Juru' ? 'selected' : '' }}> Juru</option>
-                            <option value="Id - Juru Tingkat I" {{ request('pangkat') == 'Id - Juru Tingkat I' ? 'selected' : '' }}>Juru Tingkat I</option>
+                            <option value="Juru Muda" {{ request('pangkatpengajuan') == 'Juru Muda' ? 'selected' : '' }}>Juru Muda</option>
+                            <option value="Juru Muda Tingkat I" {{ request('pangkatpengajuan') == 'Juru Muda Tingkat I' ? 'selected' : '' }}>Juru Muda Tingkat I</option>
+                            <option value="Juru" {{ request('pangkatpengajuan') == 'Juru' ? 'selected' : '' }}>Juru</option>
+                            <option value="Juru Tingkat I" {{ request('pangkatpengajuan') == 'Juru Tingkat I' ? 'selected' : '' }}>Juru Tingkat I</option>
                         </optgroup>
                         <optgroup label="Golongan II (Pengatur)">
-                            <option value="IIa - Pengatur Muda" {{ request('pangkat') == 'IIa - Pengatur Muda' ? 'selected' : '' }}> Pengatur Muda</option>
-                            <option value="IIb - Pengatur Muda Tingkat I" {{ request('pangkat') == 'IIb - Pengatur Muda Tingkat I' ? 'selected' : '' }}> Pengatur Muda Tingkat I</option>
-                            <option value="IIc - Pengatur" {{ request('pangkat') == 'IIc - Pengatur' ? 'selected' : '' }}> Pengatur</option>
-                            <option value="IId - Pengatur Tingkat I" {{ request('pangkat') == 'IId - Pengatur Tingkat I' ? 'selected' : '' }}> Pengatur Tingkat I</option>
+                            <option value="Pengatur Muda" {{ request('pangkatpengajuan') == 'Pengatur Muda' ? 'selected' : '' }}>Pengatur Muda</option>
+                            <option value="Pengatur Muda Tingkat I" {{ request('pangkatpengajuan') == 'Pengatur Muda Tingkat I' ? 'selected' : '' }}>Pengatur Muda Tingkat I</option>
+                            <option value="Pengatur" {{ request('pangkatpengajuan') == 'Pengatur' ? 'selected' : '' }}>Pengatur</option>
+                            <option value="Pengatur Tingkat I" {{ request('pangkatpengajuan') == 'Pengatur Tingkat I' ? 'selected' : '' }}>Pengatur Tingkat I</option>
                         </optgroup>
                         <optgroup label="Golongan III (Penata)">
-                            <option value="IIIa - Penata Muda" {{ request('pangkat') == 'IIIa - Penata Muda' ? 'selected' : '' }}> Penata Muda</option>
-                            <option value="IIIb - Penata Muda Tingkat I" {{ request('pangkat') == 'IIIb - Penata Muda Tingkat I' ? 'selected' : '' }}> Penata Muda Tingkat I</option>
-                            <option value="IIIc - Penata" {{ request('pangkat') == 'IIIc - Penata' ? 'selected' : '' }}>Penata</option>
-                            <option value="IIId - Penata Tingkat I" {{ request('pangkat') == 'IIId - Penata Tingkat I' ? 'selected' : '' }}> Penata Tingkat I</option>
+                            <option value="Penata Muda" {{ request('pangkatpengajuan') == 'Penata Muda' ? 'selected' : '' }}>Penata Muda</option>
+                            <option value="Penata Muda Tingkat I" {{ request('pangkatpengajuan') == 'Penata Muda Tingkat I' ? 'selected' : '' }}>Penata Muda Tingkat I</option>
+                            <option value="Penata" {{ request('pangkatpengajuan') == 'Penata' ? 'selected' : '' }}>Penata</option>
+                            <option value="Penata Tingkat I" {{ request('pangkatpengajuan') == 'Penata Tingkat I' ? 'selected' : '' }}>Penata Tingkat I</option>
                         </optgroup>
                         <optgroup label="Golongan IV (Pembina)">
-                            <option value="IVa - Pembina" {{ request('pangkat') == 'IVa - Pembina' ? 'selected' : '' }}> Pembina</option>
-                            <option value="IVb - Pembina Tingkat I" {{ request('pangkat') == 'IVb - Pembina Tingkat I' ? 'selected' : '' }}> Pembina Tingkat I</option>
-                            <option value="IVc - Pembina Muda" {{ request('pangkat') == 'IVc - Pembina Muda' ? 'selected' : '' }}> Pembina Muda</option>
-                            <option value="IVd - Pembina Madya" {{ request('pangkat') == 'IVd - Pembina Madya' ? 'selected' : '' }}>Pembina Madya</option>
+                            <option value="Pembina" {{ request('pangkatpengajuan') == 'Pembina' ? 'selected' : '' }}>Pembina</option>
+                            <option value="Pembina Tingkat I" {{ request('pangkatpengajuan') == 'Pembina Tingkat I' ? 'selected' : '' }}>Pembina Tingkat I</option>
+                            <option value="Pembina Muda" {{ request('pangkatpengajuan') == 'Pembina Muda' ? 'selected' : '' }}>Pembina Muda</option>
+                            <option value="Pembina Madya" {{ request('pangkatpengajuan') == 'Pembina Madya' ? 'selected' : '' }}>Pembina Madya</option>
                         </optgroup>
                     </select>
+                    
                         <button type="submit">Filter</button>
                 </form>
             </div>
@@ -408,31 +409,37 @@
         function navigateTo(url) {
             window.location.href = url;
         }
+    
         document.getElementById('filterButton').addEventListener('click', function(event) {
-        event.preventDefault(); // Mencegah form melakukan submit secara normal
+            event.preventDefault(); // Mencegah form melakukan submit secara normal
+    
+            const tahun = document.getElementById('tahun').value;
+            const bagian = document.getElementById('bagian').value;
+            const pangkat = document.getElementById('pangkat').value;  // Mendapatkan nilai input pangkat
+            const pangkatterakhir = document.getElementById('pangkatterakhir').value; // Mendapatkan nilai input pangkatterakhir
 
-        const tahun = document.getElementById('tahun').value;
-        const bagian = document.getElementById('bagian').value;
+            // Membuat URL dinamis berdasarkan input yang dipilih
+            const url = new URL(window.location.href);
+    
+            if (tahun) url.searchParams.set('tahun', tahun);
+            else url.searchParams.delete('tahun'); // Hapus jika kosong
+    
+            if (bagian) url.searchParams.set('bagian', bagian);
+            else url.searchParams.delete('bagian'); // Hapus jika kosong
 
-        // Membuat URL dinamis berdasarkan input yang dipilih
-        const url = new URL(window.location.href);
-        if (tahun) url.searchParams.set('tahun', tahun);
-        else url.searchParams.delete('tahun'); // Hapus jika kosong
-        
-        if (bagian) url.searchParams.set('bagian', bagian);
-        else url.searchParams.delete('bagian'); // Hapus jika kosong
+            // Menambahkan filter untuk 'pangkat' jika ada input pangkat terakhit
+            if (pangkat) url.searchParams.set('pangkat', pangkat);
+            else url.searchParams.delete('pangkat'); // Hapus jika kosong
 
-        if (bagian) url.searchParams.set('pangkat', pangkat);
-        else url.searchParams.delete('pangkat'); // Hapus jika kosong
-
-        if (bagian) url.searchParams.set('pangkatterakhir', pangkatterakhir);
-        else url.searchParams.delete('pangkatterakhir'); // Hapus jika kosong
-        window.location.href = url.toString(); // Arahkan ke URL yang telah diperbarui
-    });
-
-
-
+            // Menambahkan filter untuk 'pangkatterakhir' jika ada input diajukam
+            if (pangkatPengajuan) url.searchParams.set('pangkatPengajuan', pangkatPengajuan);
+            else url.searchParams.delete('pangkatPengajuan'); // Hapus jika kosong
+    
+    
+            window.location.href = url.toString(); // Arahkan ke URL yang telah diperbarui
+        });
     </script>
+    
     
 
 </body>

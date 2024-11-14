@@ -13,29 +13,30 @@ use Illuminate\Support\Facades\Schema;
 class RiwayatKenaikanPangkatController extends Controller
 {
     public function index(Request $request)
-    {
-        $year = $request->input('year'); // Get the selected year
-        $bagian = $request->input('bagian'); // Get the selected bagian (Kesekretariatan, Atlas, SBSP, UPTD)
-        $pangkat = $request->input('pangkat');
-        $pangkatterakhir = $request->input('pangkatterakhir');
+{
+    $year = $request->input('year'); // Get the selected year
+    $bagian = $request->input('bagian'); // Get the selected bagian (Kesekretariatan, Atlas, SBSP, UPTD)
+    $pangkat = $request->input('pangkat');
+    $pangkatPengajuan = $request->input('pangkatpengajuan');
 
-        $kpo = KenaikanPangkatKpo::with('karyawan');
-        $struktural = PilihanStruktural::with('karyawan');
-        $penyesuaianIjazah = PenyesuaianIjazah::with('karyawan');
-        $fungsional = Fungsional::with('karyawan');
-        $tugasBelajar = TugasBelajar::with('karyawan');
+    // Inisialisasi query untuk setiap model
+    $kpo = KenaikanPangkatKpo::with('karyawan');
+    $struktural = PilihanStruktural::with('karyawan');
+    $penyesuaianIjazah = PenyesuaianIjazah::with('karyawan');
+    $fungsional = Fungsional::with('karyawan');
+    $tugasBelajar = TugasBelajar::with('karyawan');
 
-        // Apply year and bagian filters if they are selected
-        if ($year) {
-            $kpo = $kpo->whereYear('tahun_pengajuan', $year);
-            $struktural = $struktural->whereYear('tahun_pengajuan', $year);
-            $penyesuaianIjazah = $penyesuaianIjazah->whereYear('tahun_pengajuan', $year);
-            $fungsional = $fungsional->whereYear('tahun_pengajuan', $year);
-            $tugasBelajar = $tugasBelajar->whereYear('tahun_pengajuan', $year);
-        }
+    // Apply year filter
+    if ($year) {
+        $kpo = $kpo->whereYear('tahun_pengajuan', $year);
+        $struktural = $struktural->whereYear('tahun_pengajuan', $year);
+        $penyesuaianIjazah = $penyesuaianIjazah->whereYear('tahun_pengajuan', $year);
+        $fungsional = $fungsional->whereYear('tahun_pengajuan', $year);
+        $tugasBelajar = $tugasBelajar->whereYear('tahun_pengajuan', $year);
+    }
 
-        if ($bagian) {
-        // Filter by bagian from the karyawans table
+    // Apply bagian filter
+    if ($bagian) {
         $kpo = $kpo->whereHas('karyawan', function($query) use ($bagian) {
             $query->where('bagian', $bagian);
         });
@@ -51,10 +52,10 @@ class RiwayatKenaikanPangkatController extends Controller
         $tugasBelajar = $tugasBelajar->whereHas('karyawan', function($query) use ($bagian) {
             $query->where('bagian', $bagian);
         });
-     }
+    }
 
-     if ($pangkat) {
-        // Filter by bagian from the karyawans table
+    // Apply pangkat filter
+    if ($pangkat) {
         $kpo = $kpo->whereHas('karyawan', function($query) use ($pangkat) {
             $query->where('pangkat', $pangkat);
         });
@@ -71,23 +72,26 @@ class RiwayatKenaikanPangkatController extends Controller
             $query->where('pangkat', $pangkat);
         });
     }
-    if ($pangkatterakhir) {
-        $kpo = $kpo->where('pangkat', $pangkat);
-        $struktural = $struktural->where('pangkat', $pangkat);
-        $penyesuaianIjazah = $penyesuaianIjazah->where('pangkat', $pangkat);
-        $fungsional = $fungsional->where('pangkat', $pangkat);
-        $tugasBelajar = $tugasBelajar->where('pangkat', $pangkat);
-    }
-    
 
-        // Get the filtered data
-        $kpo = $kpo->get();
-        $struktural = $struktural->get();
-        $penyesuaianIjazah = $penyesuaianIjazah->get();
-        $fungsional = $fungsional->get();
-        $tugasBelajar = $tugasBelajar->get();
-
-        return view('report', compact('kpo', 'struktural', 'penyesuaianIjazah', 'fungsional', 'tugasBelajar'));
+    // Apply pangkat pengajuan filter
+    if ($pangkatPengajuan) {
+        // Filter berdasarkan pangkat pengajuan di setiap model
+        $kpo = $kpo->where('pangkat', $pangkatPengajuan);
+        $struktural = $struktural->where('pangkat', $pangkatPengajuan);
+        $penyesuaianIjazah = $penyesuaianIjazah->where('pangkat', $pangkatPengajuan);
+        $fungsional = $fungsional->where('pangkat', $pangkatPengajuan);
+        $tugasBelajar = $tugasBelajar->where('pangkat', $pangkatPengajuan);
     }
+
+    // Ambil data setelah semua filter diterapkan
+    $kpo = $kpo->get();
+    $struktural = $struktural->get();
+    $penyesuaianIjazah = $penyesuaianIjazah->get();
+    $fungsional = $fungsional->get();
+    $tugasBelajar = $tugasBelajar->get();
+
+    return view('report', compact('kpo', 'struktural', 'penyesuaianIjazah', 'fungsional', 'tugasBelajar'));
+}
+
 
 }

@@ -27,7 +27,6 @@ class PenyesuaianIjazah extends Model
         'golongan',
         'kategori',           
         'pangkat',
-        
         'tahun_pengajuan',
     ];
     public function karyawan()
