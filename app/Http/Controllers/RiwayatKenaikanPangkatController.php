@@ -83,7 +83,7 @@ class RiwayatKenaikanPangkatController extends Controller
         $tugasBelajar = $tugasBelajar->where('pangkat', $pangkatPengajuan);
     }
 
-    // Ambil data setelah semua filter diterapkan
+    // Ambil data sesuai filter atau tampilkan data awal jika tidak ada filter
     $kpo = $kpo->get();
     $struktural = $struktural->get();
     $penyesuaianIjazah = $penyesuaianIjazah->get();
