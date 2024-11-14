@@ -317,6 +317,9 @@
                     </select>
                     
                         <button type="submit">Filter</button>
+                        <a href="{{ route('riwayat-kenaikan-pangkat.index') }}">
+                            <button type="button">Reset Filter</button>
+                        </a>
                 </form>
             </div>
 
