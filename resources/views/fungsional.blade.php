@@ -91,6 +91,7 @@
                 </tr>
                 <!-- Tabel Kolom -->
                 <tr>
+                    <th>Bagian</th>
                     <th>Golongan Lama</th>
                     <th>Golongan Baru</th>
                     <th>Pangkat Lama</th>
@@ -100,6 +101,7 @@
             </thead>
             <tbody>
                 <tr>
+                    <td>{{ $karyawan->bagian }}</td>
                     <td>{{ $karyawan->golongan }}</td>
                     <td>{{ $item->golongan }}</td>
                     <td>{{ $karyawan->pangkat }}</td>

@@ -150,6 +150,15 @@
             margin-bottom: 20px;
         }
 
+        .filter-section input[name="year"] {
+        border: 1px solid #b0b0b0; 
+        padding: 5px;
+        font-size: 16px;
+        border-radius: 5px;
+        width: 230px; 
+        box-sizing: border-box;
+        }
+
         .filter-section select,
         .filter-section button {
             padding: 8px;
@@ -256,10 +265,10 @@
                     <select name="bagian">
                         <option value="">Pilih Bagian</option>
                         <option value="Kesekretariatan" {{ request('bagian') == 'Kesekretariatan' ? 'selected' : '' }}>Kesekretariatan</option>
-                        <option value="Atlas" {{ request('bagian') == 'atlas' ? 'selected' : '' }}>Atlas</option>
-                        <option value="SBSP" {{ request('bagian') == 'sbsp' ? 'selected' : '' }}>SBSP</option>
-                        <option value="UPTD" {{ request('bagian') == 'uptd' ? 'selected' : '' }}>UPTD</option>
-                        <option value="warisanbudaya" {{ request('bagian') == 'warisanbudaya' ? 'selected' : '' }}>Warisan Budaya</option>                    </select>
+                        <option value="ATLAS" {{ request('bagian') == 'ATLAS' ? 'selected' : '' }}>ATLAS</option>
+                        <option value="SBSP" {{ request('bagian') == 'SBSP' ? 'selected' : '' }}>SBSP</option>
+                        <option value="UPTD" {{ request('bagian') == 'UPTD' ? 'selected' : '' }}>UPTD</option>
+                        <option value="Warisan Budaya" {{ request('bagian') == 'Warisan Budaya' ? 'selected' : '' }}>Warisan Budaya</option>                    </select>
                     </select>
                     <select name="pangkat">
                         <option value="">Pilih Pangkat Terakhir</option>
@@ -316,7 +325,8 @@
                         </optgroup>
                     </select>
                     
-                        <button type="submit">Filter</button>
+                        <button type="submit" class="btn btn-primary btn-sm" style="padding: 6px 12px;">Filter</button>
+                        <a href="{{ route('riwayat-kenaikan-pangkat.index') }}" class="btn btn-warning">Reset</a> <!-- Button Reset -->
                 </form>
             </div>
 

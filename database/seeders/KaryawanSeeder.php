@@ -172,7 +172,7 @@ class KaryawanSeeder extends Seeder
                 'golongan' => 'IV/a',
                 'pangkat' => 'Pembina',
                 'jabatan' => 'Kepala Bidang Adat, Seni Tradisi, Lembaga Budaya dan Bahasa Daerah',
-                'bagian' => 'atlas',
+                'bagian' => 'ATLAS',
                 'no_telp' => '085869278611',
             ],
             [
@@ -227,7 +227,7 @@ class KaryawanSeeder extends Seeder
                 'golongan' => 'IV/a',
                 'pangkat' => 'Pembina',
                 'jabatan' => 'Kepala Bidang Adat, Tradisi, Lembaga Budaya dan Seni (Bidang ATLAS)',
-                'bagian' => 'atlas',
+                'bagian' => 'ATLAS',
                 'no_telp' => '085869278611',
             ],
             [
@@ -238,7 +238,7 @@ class KaryawanSeeder extends Seeder
                 'golongan' => 'III/b',
                 'pangkat' => 'Penata Muda Tingkat I',
                 'jabatan' => 'Kepala Seksi Adat dan Tradisi',
-                'bagian' => 'atlas',
+                'bagian' => 'ATLAS',
                 'no_telp' => '085869278611',
             ],
             [
@@ -249,7 +249,7 @@ class KaryawanSeeder extends Seeder
                 'golongan' => 'III/d',
                 'pangkat' => 'Penata Tingkat I',
                 'jabatan' => 'Penelaah Teknis Kebijakan Pada Seksi Adat dan Tradisi Bidang ATLAS',
-                'bagian' => 'atlas',
+                'bagian' => 'ATLAS',
                 'no_telp' => '085869278611',
             ],
             [
@@ -260,7 +260,7 @@ class KaryawanSeeder extends Seeder
                 'golongan' => 'II/d',
                 'pangkat' => 'Pengatur Tingkat I',
                 'jabatan' => 'Pengolah Data dan Informasi pada Seksi Adat dan Tradisi Bidang ATLAS',
-                'bagian' => 'atlas',
+                'bagian' => 'ATLAS',
                 'no_telp' => '085869278611',
             ],
             [
@@ -271,7 +271,7 @@ class KaryawanSeeder extends Seeder
                 'golongan' => 'III/a',
                 'pangkat' => 'Penata Muda',
                 'jabatan' => 'Penelaah Teknis Kebijakan pada Seksi Lembaga Budaya Bidang ATLAS',
-                'bagian' => 'atlas',
+                'bagian' => 'ATLAS',
                 'no_telp' => '085869278611',
             ],
             [
@@ -282,7 +282,7 @@ class KaryawanSeeder extends Seeder
                 'golongan' => 'III/b',
                 'pangkat' => 'Penata Muda Tingkat I',
                 'jabatan' => 'Pengadministrasi Perkantoran Seksi Lembaga Budaya Bidang ATLAS',
-                'bagian' => 'atlas',
+                'bagian' => 'ATLAS',
                 'no_telp' => '085869278611',
             ],
             [
@@ -293,7 +293,7 @@ class KaryawanSeeder extends Seeder
                 'golongan' => 'III/d',
                 'pangkat' => 'Penata Tingkat I',
                 'jabatan' => 'Kepala Seksi Seni Bidang ATLAS',
-                'bagian' => 'atlas',
+                'bagian' => 'ATLAS',
                 'no_telp' => '085869278611',
             ],
             [
@@ -304,7 +304,7 @@ class KaryawanSeeder extends Seeder
                 'golongan' => 'III/d',
                 'pangkat' => 'Penata Tingkat I',
                 'jabatan' => 'Kepala Bidang Sejarah, Bahasa, Sastra dan Permuseuman (Bidang SBSP)',
-                'bagian' => 'sbsp',
+                'bagian' => 'SBSP',
                 'no_telp' => '085869278611',
             ],
             [
@@ -315,7 +315,7 @@ class KaryawanSeeder extends Seeder
                 'golongan' => 'III/d',
                 'pangkat' => 'Penata Tingkat I',
                 'jabatan' => 'Kepala Seksi Sejarah dan Permuseuman Bidang SBSP',
-                'bagian' => 'sbsp',
+                'bagian' => 'SBSP',
                 'no_telp' => '085869278611',
             ],
             [
@@ -326,7 +326,7 @@ class KaryawanSeeder extends Seeder
                 'golongan' => 'III/d',
                 'pangkat' => 'Penata Tingkat I',
                 'jabatan' => 'Penelaah Teknis Kebijakan pada Seksi Sejarah dan Permuseuman Bidang SBSP',
-                'bagian' => 'sbsp',
+                'bagian' => 'SBSP',
                 'no_telp' => '085869278611',
             ],
             [
@@ -337,7 +337,7 @@ class KaryawanSeeder extends Seeder
                 'golongan' => 'III/c',
                 'pangkat' => 'Penata',
                 'jabatan' => 'Kepala Seksi Bahasa dan Sastra Bidang SBSP',
-                'bagian' => 'sbsp',
+                'bagian' => 'SBSP',
                 'no_telp' => '085869278611',
             ],
             [
@@ -348,7 +348,7 @@ class KaryawanSeeder extends Seeder
                 'golongan' => 'III/a',
                 'pangkat' => 'Penata Muda',
                 'jabatan' => 'Penelaah Teknis Kebijakan pada Seksi Bahasa dan Sastra Bidang SBSP',
-                'bagian' => 'sbsp',
+                'bagian' => 'SBSP',
                 'no_telp' => '085869278611',
             ],
             [
@@ -359,7 +359,7 @@ class KaryawanSeeder extends Seeder
                 'golongan' => 'III/c',
                 'pangkat' => 'Penata',
                 'jabatan' => 'Kepala UPTD Museum Gunungapi Merapi',
-                'bagian' => 'uptd',
+                'bagian' => 'UPTD',
                 'no_telp' => '085869278611',
             ],
             [
@@ -370,7 +370,7 @@ class KaryawanSeeder extends Seeder
                 'golongan' => 'III/c',
                 'pangkat' => 'Penata',
                 'jabatan' => 'Kepala Subbagian Tata Usaha UPTD Museum Gunungapi Merapi',
-                'bagian' => 'uptd',
+                'bagian' => 'UPTD',
                 'no_telp' => '085869278611',
             ],
             [
@@ -381,7 +381,7 @@ class KaryawanSeeder extends Seeder
                 'golongan' => 'II/d',
                 'pangkat' => 'Pengatur Tingkat I',
                 'jabatan' => 'Operator Layanan Operasional pada Subbagian Tata Usaha UPTD Museum Gunungapi Merapi',
-                'bagian' => 'uptd',
+                'bagian' => 'UPTD',
                 'no_telp' => '085869278611',
             ],
             [
@@ -392,7 +392,7 @@ class KaryawanSeeder extends Seeder
                 'golongan' => 'II/c',
                 'pangkat' => 'Pengatur',
                 'jabatan' => 'Pengelola Layanan Operasional pada Subbagian Tata Usaha UPTD MGM',
-                'bagian' => 'uptd',
+                'bagian' => 'UPTD',
                 'no_telp' => '085869278611',
             ],
             [
@@ -403,18 +403,18 @@ class KaryawanSeeder extends Seeder
                 'golongan' => 'I/d',
                 'pangkat' => 'Juru Tingkat I',
                 'jabatan' => 'Pengadministrasi Perkantoran pada Subbagian Tata Usaha UPTD Museum Gunungapi Merapi',
-                'bagian' => 'uptd',
+                'bagian' => 'UPTD',
                 'no_telp' => '085869278611',
             ],
             [
                 'nama' => 'Jihan',
                 'nip' => '22020880',
-                'tanggal_kenaikan_gaji' => '2025-01-10',
-                'tanggal_kenaikan_pangkat' => '2025-01-10',
+                'tanggal_kenaikan_gaji' => '2025-01-14',
+                'tanggal_kenaikan_pangkat' => '2025-01-14',
                 'golongan' => 'IV/A',
                 'pangkat' => 'Juru Tingkat I',
-                'jabatan' => 'Mahasiswi',
-                'bagian' => 'mahasiswa',
+                'jabatan' => 'Mahasiswa',
+                'bagian' => 'ATLAS',
                 'no_telp' => '085869278611',
             ],
         ]);
