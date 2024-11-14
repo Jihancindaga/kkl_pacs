@@ -325,15 +325,10 @@
                         </optgroup>
                     </select>
                     
-<<<<<<< HEAD
-                        <button type="submit" class="btn btn-primary btn-sm" style="padding: 6px 12px;">Filter</button>
-                        <a href="{{ route('riwayat-kenaikan-pangkat.index') }}" class="btn btn-warning">Reset</a> <!-- Button Reset -->
-=======
                         <button type="submit">Filter</button>
                         <a href="{{ route('riwayat-kenaikan-pangkat.index') }}">
                             <button type="button">Reset Filter</button>
                         </a>
->>>>>>> 7bda6d873e0e0b97100e4fbfa0c5a49e09f4196b
                 </form>
             </div>
 
