@@ -185,13 +185,19 @@
         border: 1px solid #ddd; /* Menambahkan garis tepi pada tabel */
     }
 
-    th, td {
+    th {
         padding: 8px;
-        text-align: left;
+        text-align: center;
         border: 1px solid #ddd; /* Garis tepi pada setiap sel */
         font-size: 14px; /* Ukuran font yang lebih kecil */
     }
 
+    td{
+        padding: 8px;
+        text-align: left;
+        border: 1px solid #ddd; /* Garis tepi pada setiap sel */
+        font-size: 14px;
+    }
     th {
         background-color: #007bff;
         color: white;
@@ -270,33 +276,6 @@
                         <option value="UPTD" {{ request('bagian') == 'UPTD' ? 'selected' : '' }}>UPTD</option>
                         <option value="Warisan Budaya" {{ request('bagian') == 'Warisan Budaya' ? 'selected' : '' }}>Warisan Budaya</option>                    </select>
                     </select>
-                    <select name="pangkat">
-                        <option value="">Pilih Pangkat Terakhir</option>
-                        <optgroup label="Golongan I (Juru)">
-                            <option value="Juru Muda" {{ request('pangkat') == 'Juru Muda' ? 'selected' : '' }}>Juru Muda</option>
-                            <option value="Juru Muda Tingkat I" {{ request('pangkat') == 'Juru Muda Tingkat I' ? 'selected' : '' }}>Juru Muda Tingkat I</option>
-                            <option value="Juru" {{ request('pangkat') == 'Juru' ? 'selected' : '' }}> Juru</option>
-                            <option value="Juru Tingkat I" {{ request('pangkat') == 'Juru Tingkat I' ? 'selected' : '' }}>Juru Tingkat I</option>
-                        </optgroup>
-                        <optgroup label="Golongan II (Pengatur)">
-                            <option value="Pengatur Muda" {{ request('pangkat') == 'Pengatur Muda' ? 'selected' : '' }}> Pengatur Muda</option>
-                            <option value="Pengatur Muda Tingkat I" {{ request('pangkat') == 'Pengatur Muda Tingkat I' ? 'selected' : '' }}> Pengatur Muda Tingkat I</option>
-                            <option value="Pengatur" {{ request('pangkat') == 'Pengatur' ? 'selected' : '' }}> Pengatur</option>
-                            <option value="Pengatur Tingkat I" {{ request('pangkat') == 'Pengatur Tingkat I' ? 'selected' : '' }}> Pengatur Tingkat I</option>
-                        </optgroup>
-                        <optgroup label="Golongan III (Penata)">
-                            <option value="Penata Muda" {{ request('pangkat') == 'Penata Muda' ? 'selected' : '' }}> Penata Muda</option>
-                            <option value="Penata Muda Tingkat I" {{ request('pangkat') == 'Penata Muda Tingkat I' ? 'selected' : '' }}> Penata Muda Tingkat I</option>
-                            <option value="Penata" {{ request('pangkat') == 'Penata' ? 'selected' : '' }}>Penata</option>
-                            <option value="Penata Tingkat I" {{ request('pangkat') == 'Penata Tingkat I' ? 'selected' : '' }}> Penata Tingkat I</option>
-                        </optgroup>
-                        <optgroup label="Golongan IV (Pembina)">
-                            <option value="Pembina" {{ request('pangkat') == 'Pembina' ? 'selected' : '' }}> Pembina</option>
-                            <option value="Pembina Tingkat I" {{ request('pangkat') == 'Pembina Tingkat I' ? 'selected' : '' }}> Pembina Tingkat I</option>
-                            <option value="Pembina Muda" {{ request('pangkat') == 'Pembina Muda' ? 'selected' : '' }}> Pembina Muda</option>
-                            <option value="Pembina Madya" {{ request('pangkat') == 'Pembina Madya' ? 'selected' : '' }}>Pembina Madya</option>
-                        </optgroup>
-                    </select>
                     <select name="pangkatpengajuan">
                         <option value="">Pilih Pangkat yang Diajukan</option>
                         <optgroup label="Golongan I (Juru)">
@@ -329,6 +308,7 @@
                         <a href="{{ route('riwayat-kenaikan-pangkat.index') }}">
                             <button type="button">Reset Filter</button>
                         </a>
+                        <a href="{{ route('report.exportPDF') }}" class="btn btn-warning">Ekspor PDF</a>
                 </form>
             </div>
 
@@ -342,74 +322,76 @@
                             <th>NIP</th>
                             <th>Nama</th>
                             <th>Tahun Pengajuan</th>
-                            <th>Bagian</th>
                             <th>Kategori Kenaikan</th>
+                            <th>Bagian</th>
                             <th>Pangkat Terakhir</th>
                             <th>Pangkat yang Diajukan</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($kpo as $index => $data)
-                        <tr>
-                            <td>{{ $index + 1 }}</td>
-                            <td>{{ $data->karyawan->nip }}</td>
-                            <td>{{ $data->karyawan->nama }}</td>
-                            <td>{{ $data->tahun_pengajuan }}</td>
-                            <td>{{ $data->karyawan->bagian }}</td>
-                            <td>{{ $data->kategori }}</td>
-                            <td>{{ $data->karyawan->pangkat }}</td>
-                            <td>{{ $data->pangkat }}</td>
-                        </tr>
-                        @endforeach
-                        @foreach ($struktural as $index => $data)
-                        <tr>
-                            <td>{{ $index + 1 }}</td>
-                            <td>{{ $data->karyawan->nip }}</td>
-                            <td>{{ $data->karyawan->nama }}</td>
-                            <td>{{ $data->tahun_pengajuan }}</td>
-                            <td>{{ $data->karyawan->bagian }}</td>
-                            <td>{{ $data->kategori }}</td>
-                            <td>{{ $data->karyawan->pangkat }}</td>
-                            <td>{{ $data->pangkat }}</td>
-                        </tr>
-                        @endforeach
-                        @foreach ($penyesuaianIjazah as $index => $data)
-                        <tr>
-                            <td>{{ $index + 1 }}</td>
-                            <td>{{ $karyawan->nip }}</td>
-                            <td>{{ $data->data->karyawan->nama }}</td>
-                            <td>{{ $data->tahun_pengajuan }}</td>
-                            <td>{{ $data->karyawan->bagian }}</td>
-                            <td>{{ $data->kategori }}</td>
-                            <td>{{ $data->karyawan->pangkat }}</td>
-                            <td>{{ $data->pangkat }}</td>
-                        </tr>
-                        @endforeach
-                        @foreach ($fungsional as $index => $data)
-                        <tr>
-                            <td>{{ $index + 1 }}</td>
-                            <td>{{ $data->karyawan->nip }}</td>
-                            <td>{{ $data->karyawan->nama }}</td>
-                            <td>{{ $data->tahun_pengajuan }}</td>
-                            <td>{{ $data->karyawan->bagian }}</td>
-                            <td>{{ $data->kategori }}</td>
-                            <td>{{ $data->karyawan->pangkat }}</td>
-                            <td>{{ $data->pangkat }}</td>
-                        </tr>
-                        @endforeach
-                        @foreach ($tugasBelajar as $index => $data)
-                        <tr>
-                            <td>{{ $index + 1 }}</td>
-                            <td>{{ $data->karyawan->nip }}</td>
-                            <td>{{ $data->karyawan->nama }}</td>
-                            <td>{{ $data->tahun_pengajuan }}</td>
-                            <td>{{ $data->karyawan->bagian }}</td>
-                            <td>{{ $data->kategori }}</td>
-                            <td>{{ $data->karyawan->pangkat }}</td>
-                            <td>{{ $data->pangkat }}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
+                    <?php $no = 1; ?>
+                    @foreach ($kpo as $data)
+                    <tr>
+                        <td>{{ $no++ }}</td>
+                        <td>{{ $data->karyawan->nip }}</td>
+                        <td>{{ $data->karyawan->nama }}</td>
+                        <td>{{ $data->tahun_pengajuan }}</td>
+                        <td>{{ $data->kategori }}</td>
+                        <td>{{ $data->karyawan->bagian }}</td>
+                        <td>{{ $data->karyawan->pangkat }}</td>
+                        <td>{{ $data->pangkat }}</td>
+                    </tr>
+                    @endforeach
+                    @foreach ($struktural as $data)
+                    <tr>
+                        <td>{{ $no++ }}</td>
+                        <td>{{ $data->karyawan->nip }}</td>
+                        <td>{{ $data->karyawan->nama }}</td>
+                        <td>{{ $data->tahun_pengajuan }}</td>
+                        <td>{{ $data->kategori }}</td>
+                        <td>{{ $data->karyawan->bagian }}</td>
+                        <td>{{ $data->karyawan->pangkat }}</td>
+                        <td>{{ $data->pangkat }}</td>
+                    </tr>
+                    @endforeach
+                    @foreach ($penyesuaianIjazah as $data)
+                    <tr>
+                        <td>{{ $no++ }}</td>
+                        <td>{{ $data->karyawan->nip }}</td>
+                        <td>{{ $data->karyawan->nama }}</td>
+                        <td>{{ $data->tahun_pengajuan }}</td>
+                        <td>{{ $data->kategori }}</td>
+                        <td>{{ $data->karyawan->bagian }}</td>
+                        <td>{{ $data->karyawan->pangkat }}</td>
+                        <td>{{ $data->pangkat }}</td>
+                    </tr>
+                    @endforeach
+                    @foreach ($fungsional as $data)
+                    <tr>
+                        <td>{{ $no++ }}</td>
+                        <td>{{ $data->karyawan->nip }}</td>
+                        <td>{{ $data->karyawan->nama }}</td>
+                        <td>{{ $data->tahun_pengajuan }}</td>
+                        <td>{{ $data->kategori }}</td>
+                        <td>{{ $data->karyawan->bagian }}</td>
+                        <td>{{ $data->karyawan->pangkat }}</td>
+                        <td>{{ $data->pangkat }}</td>
+                    </tr>
+                    @endforeach
+                    @foreach ($tugasBelajar as $data)
+                    <tr>
+                        <td>{{ $no++ }}</td>
+                        <td>{{ $data->karyawan->nip }}</td>
+                        <td>{{ $data->karyawan->nama }}</td>
+                        <td>{{ $data->tahun_pengajuan }}</td>
+                        <td>{{ $data->kategori }}</td>
+                        <td>{{ $data->karyawan->bagian }}</td>
+                        <td>{{ $data->karyawan->pangkat }}</td>
+                        <td>{{ $data->pangkat }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+
                     
                 </table>
             </div>

@@ -193,6 +193,11 @@
             /* Lebar kolom yang lebih kecil */
         }
 
+        .table .pengajuan {
+            width: 120px;
+            /* Lebar kolom yang lebih kecil */
+        }
+
         .action-buttons {
             display: flex;
             justify-content: center;
@@ -408,7 +413,7 @@
                             <th>Jabatan</th>
                             <th>Bagian</th>
                             <th>Nomor Telepon</th>
-                            <th>Pengajuan </th>
+                            <th class="pengajuan">Pengajuan Kenaikan Pangkat</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>

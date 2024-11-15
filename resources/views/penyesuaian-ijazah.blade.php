@@ -87,7 +87,7 @@
             <thead>
                 <!-- Judul Riwayat dengan Latar Belakang Biru Penuh -->
                 <tr style="background-color: #84b0df; color: white;">
-                    <th colspan="5" class="text-center">Riwayat {{ $index + 1 }}</th>
+                    <th colspan="6" class="text-center">Riwayat {{ $index + 1 }}</th>
                 </tr>
                 <!-- Tabel Kolom -->
                 <tr>

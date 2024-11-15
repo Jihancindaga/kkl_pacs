@@ -17,7 +17,7 @@ use App\Http\Controllers\PenyesuaianIjazahController;
 use App\Http\Controllers\PilihanStrukturalController;
 use App\Http\Controllers\FungsionalController;
 use App\Http\Controllers\RiwayatKenaikanPangkatController;
-
+use App\Http\Controllers\ReportController;
 
 Route::get('/', function () {
     return view('/admin/dashboard');
@@ -218,3 +218,5 @@ Route::get('/riwayat-kenaikan', [KaryawanController::class, 'showRiwayatKenaikan
 Route::get('/report', [RiwayatKenaikanPangkatController::class, 'index'])->name('report');
 
 Route::get('/riwayat-kenaikan-pangkat', [RiwayatKenaikanPangkatController::class, 'index'])->name('riwayat-kenaikan-pangkat.index');
+
+Route::get('/report/export-pdf', [ReportController::class, 'exportPDF'])->name('report.exportPDF');

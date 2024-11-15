@@ -54,24 +54,6 @@ class RiwayatKenaikanPangkatController extends Controller
         });
     }
 
-    // Apply pangkat filter
-    if ($pangkat) {
-        $kpo = $kpo->whereHas('karyawan', function($query) use ($pangkat) {
-            $query->where('pangkat', $pangkat);
-        });
-        $struktural = $struktural->whereHas('karyawan', function($query) use ($pangkat) {
-            $query->where('pangkat', $pangkat);
-        });
-        $penyesuaianIjazah = $penyesuaianIjazah->whereHas('karyawan', function($query) use ($pangkat) {
-            $query->where('pangkat', $pangkat);
-        });
-        $fungsional = $fungsional->whereHas('karyawan', function($query) use ($pangkat) {
-            $query->where('pangkat', $pangkat);
-        });
-        $tugasBelajar = $tugasBelajar->whereHas('karyawan', function($query) use ($pangkat) {
-            $query->where('pangkat', $pangkat);
-        });
-    }
 
     // Apply pangkat pengajuan filter
     if ($pangkatPengajuan) {
@@ -92,6 +74,7 @@ class RiwayatKenaikanPangkatController extends Controller
 
     return view('report', compact('kpo', 'struktural', 'penyesuaianIjazah', 'fungsional', 'tugasBelajar'));
 }
+
 
 
 }

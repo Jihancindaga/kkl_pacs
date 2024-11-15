@@ -106,12 +106,16 @@
                 <tr>
                     <th>Nama</th>
                     <th>NIP</th>
+                    <th>Golongan</th>
+                    <th>Pangkat</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>{{ $karyawan->nama }}</td>
                     <td>{{ $karyawan->nip }}</td>
+                    <td>{{ $karyawan->golongan }}</td>
+                    <td>{{ $karyawan->pangkat }}</td>
                 </tr>
             </tbody>
         </table>

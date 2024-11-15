@@ -117,6 +117,7 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
+                        <th>Bagian</th>
                         <th>Golongan Saat Ini</th>
                         <th>Golongan yang Akan Diajukan</th>
                         <th>Pangkat Saat Ini</th>
@@ -126,6 +127,7 @@
                 </thead>
                 <tbody>
                     <tr>
+                        <td>{{ $karyawan->bagian }}</td>
                         <td>{{ $karyawan->golongan }}</td>
                         <td><input type="text" name="golongan" class="form-control" required placeholder="Masukkan Golongan yang Diajukan"></td>
                         <td>{{ $karyawan->pangkat }}</td>
