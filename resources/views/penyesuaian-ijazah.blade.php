@@ -75,7 +75,7 @@
     </div>
 
     <div class="container">
-        <h3>Detail Penyesuaian Ijazah</h3>
+        <h3>Riwayat Upload Kategori Penyesuaian Ijazah</h3>
 
         <div class="info-section">
             <p><strong>Nama:</strong> {{ $karyawan->nama }}</p>

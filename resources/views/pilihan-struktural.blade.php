@@ -75,7 +75,7 @@
     </div>
 
     <div class="container">
-        <h3>Riwayat Kenaikan Pangkat Pilihan Struktural</h3>
+        <h3>Riwayat Upload Kategori Kenaikan Pangkat Pilihan Struktural</h3>
 
         <div class="info-section">
             <p><strong>Nama:</strong> {{ $karyawan->nama }}</p>

@@ -98,7 +98,7 @@
 
     <!-- Container Pilihan -->
     <div class="container">
-        <h3>Pilih Jenis Kenaikan Pangkat</h3>
+        <h3>Pilih Jenis Kategori Kenaikan Pangkat</h3>
 
         <!-- Tabel Nama dan NIP -->
         <table class="table table-bordered">

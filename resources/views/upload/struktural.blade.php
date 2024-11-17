@@ -99,7 +99,7 @@
 
 
     <div class="container">
-        <h3>Kenaikan Pangkat Pilihan Struktural</h3>
+        <h3>Kategori Kenaikan Pangkat Pilihan Struktural</h3>
         <p><strong>Nama:</strong> {{ $karyawan->nama }}</p>
         <p><strong>NIP:</strong> {{ $karyawan->nip }}</p>
 

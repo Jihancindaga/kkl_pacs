@@ -220,3 +220,4 @@ Route::get('/report', [RiwayatKenaikanPangkatController::class, 'index'])->name(
 Route::get('/riwayat-kenaikan-pangkat', [RiwayatKenaikanPangkatController::class, 'index'])->name('riwayat-kenaikan-pangkat.index');
 
 Route::get('/report/export-pdf', [ReportController::class, 'exportPDF'])->name('report.exportPDF');
+Route::get('/report/export-excel', [ReportController::class, 'exportExcel'])->name('kenaikanPangkat.export');

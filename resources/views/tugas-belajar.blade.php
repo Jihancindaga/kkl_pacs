@@ -67,7 +67,7 @@
     </div>
 
     <div class="container">
-        <h3>Riwayat Upload Tugas Belajar</h3>
+        <h3>Riwayat Upload Kategori Tugas Belajar</h3>
        
         <div class="info-section">
             <p><strong>Nama:</strong> {{ $karyawan->nama }}</p>

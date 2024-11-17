@@ -267,7 +267,10 @@
             <!-- Filter Section -->
             <div class="filter-section">
                 <form method="GET" action="{{ route('riwayat-kenaikan-pangkat.index') }}">
-                    <input type="text" name="year" value="{{ request('year') }}" placeholder="Masukkan tahun kenaikan">
+                    <label for="year">Pilih Tahun:</label>
+                    <input type="number" name="year" value="{{ request('year') }}" placeholder="Masukkan tahun kenaikan">
+                    
+                    <label for="bagian">Pilih Bagian:</label>
                     <select name="bagian">
                         <option value="">Pilih Bagian</option>
                         <option value="Kesekretariatan" {{ request('bagian') == 'Kesekretariatan' ? 'selected' : '' }}>Kesekretariatan</option>
@@ -276,6 +279,8 @@
                         <option value="UPTD" {{ request('bagian') == 'UPTD' ? 'selected' : '' }}>UPTD</option>
                         <option value="Warisan Budaya" {{ request('bagian') == 'Warisan Budaya' ? 'selected' : '' }}>Warisan Budaya</option>                    </select>
                     </select>
+
+                    <label for="pangkatpengajuan">Pilih Pangkat yang Diajukan:</label>
                     <select name="pangkatpengajuan">
                         <option value="">Pilih Pangkat yang Diajukan</option>
                         <optgroup label="Golongan I (Juru)">
@@ -308,7 +313,9 @@
                         <a href="{{ route('riwayat-kenaikan-pangkat.index') }}">
                             <button type="button">Reset Filter</button>
                         </a>
-                        <a href="{{ route('report.exportPDF') }}" class="btn btn-warning">Ekspor PDF</a>
+                        <a href="{{ route('report.exportPDF', request()->query()) }}" class="btn btn-warning">Ekspor PDF</a>
+
+                        <!-- <a href="{{ route('kenaikanPangkat.export', request()->query()) }}" class="btn btn-success">Ekspor Excel</a> -->
                 </form>
             </div>
 

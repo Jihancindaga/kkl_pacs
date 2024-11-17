@@ -102,7 +102,7 @@
     </div>
 
     <div class="container">
-        <h3>Kenaikan Pangkat Karena Sedang Menjalankan Tugas Belajar</h3>
+        <h3>Kategori Kenaikan Pangkat Karena Sedang Menjalankan Tugas Belajar</h3>
         <p><strong>Nama:</strong> {{ $karyawan->nama }}</p>
         <p><strong>NIP:</strong> {{ $karyawan->nip }}</p>
 

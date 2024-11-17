@@ -15,7 +15,7 @@
             font-size: 16px; /* Ukuran font heading lebih besar */
         }
         table { 
-            width: 80%; /* Lebar tabel di tengah */
+            width: 100%; /* Lebar tabel di tengah */
             margin: 0 auto; /* Agar tabel berada di tengah halaman */
             border-collapse: collapse; 
         }
@@ -38,7 +38,7 @@
     </style>
 </head>
 <body>
-    <h2>Report Kenaikan Pangkat</h2>
+    <h2>{{ $title }}</h2>
     <table>
         <thead>
             <tr>
