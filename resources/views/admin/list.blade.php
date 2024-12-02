@@ -194,6 +194,14 @@
     @endif
 
     <div class="container">
+        @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
         <h1>Daftar Pengguna</h1>
 
         <!-- Box Pencarian -->
@@ -248,11 +256,16 @@
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <!-- Include Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         function navigateTo(url) {
             window.location.href = url;
         }
+
+        $(document).ready(function () {
+        $('.alert-dismissible').alert();
+    });
 
         // Fungsi Pencarian
         document.getElementById('searchInput').addEventListener('keyup', function() {

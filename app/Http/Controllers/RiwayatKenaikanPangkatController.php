@@ -20,11 +20,11 @@ class RiwayatKenaikanPangkatController extends Controller
     $pangkatPengajuan = $request->input('pangkatpengajuan');
 
     // Inisialisasi query untuk setiap model
-    $kpo = KenaikanPangkatKpo::with('karyawan');
-    $struktural = PilihanStruktural::with('karyawan');
-    $penyesuaianIjazah = PenyesuaianIjazah::with('karyawan');
-    $fungsional = Fungsional::with('karyawan');
-    $tugasBelajar = TugasBelajar::with('karyawan');
+    $kpo = KenaikanPangkatKpo::with('karyawan')->orderBy('tahun_pengajuan', 'desc');
+    $struktural = PilihanStruktural::with('karyawan')->orderBy('tahun_pengajuan', 'desc');
+    $penyesuaianIjazah = PenyesuaianIjazah::with('karyawan')->orderBy('tahun_pengajuan', 'desc');
+    $fungsional = Fungsional::with('karyawan')->orderBy('tahun_pengajuan', 'desc');
+    $tugasBelajar = TugasBelajar::with('karyawan')->orderBy('tahun_pengajuan', 'desc');
 
     // Apply year filter
     if ($year) {

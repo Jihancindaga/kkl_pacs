@@ -115,8 +115,12 @@
             <i class="fas fa-arrow-left"></i>
         </a>
         <div class="logo">
-            <img src="/images/pacs.png" alt="Logo">
+            <img src="/images/pacs.png" alt="Logo PACS" style="height: 40px; margin-right: 520px;">
+            <img src="/images/logo_amikom.png" alt="Logo AMIKOM" style="height: 40px; margin-right: 5px; margin-left: 5px;">
+            <img src="/images/logo_kundha_kabudayan.png" alt="Logo Kundha Kabudayan" style="height: 40px; margin-right: 5px; margin-left: 5px;">
+            <img src="/images/logo_sleman.jpeg" alt="Logo Sleman" style="height: 40px; margin-right: 5px; margin-left: 10px;">
         </div>
+        
     </nav>
     <!-- Akhir Navbar -->
 
@@ -140,49 +144,55 @@
             <div class="form-group">
                 <label for="jenis_kendaraan">Jenis Kendaraan</label>
                 <input type="text" name="jenis_kendaraan" class="form-control" 
-                       value="{{ old('jenis_kendaraan', $vehicle->jenis_kendaraan) }}" required readonly>
+                    value="{{ old('jenis_kendaraan', $vehicle->jenis_kendaraan) }}" required readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="merk_kendaraan">Merk Kendaraan</label>
+                <input type="text" name="merk_kendaraan" class="form-control" 
+                    value="{{ old('merk_kendaraan', $vehicle->merk_kendaraan) }}" required readonly>
             </div>
 
             <div class="form-group">
                 <label for="pengguna">Pengguna</label>
                 <input type="text" name="pengguna" class="form-control" 
-                       value="{{ old('pengguna', $vehicle->pengguna) }}" required>
+                    value="{{ old('pengguna', $vehicle->pengguna) }}" required>
             </div>
 
             <div class="form-group">
                 <label for="plat">Plat</label>
                 <input type="text" name="plat" class="form-control" 
-                       value="{{ old('plat', $vehicle->plat) }}" required>
+                    value="{{ old('plat', $vehicle->plat) }}" required>
             </div>
 
             <div class="form-group">
                 <label for="waktu_pajak">Waktu Pajak</label>
                 <input type="date" name="waktu_pajak" class="form-control" 
-                       value="{{ old('waktu_pajak', $vehicle->waktu_pajak) }}" required>
+                    value="{{ old('waktu_pajak', $vehicle->waktu_pajak) }}" required>
             </div>
 
             <div class="form-group">
                 <label for="ganti_plat">Ganti Plat (Mendatang) </label>
                 <input type="date" name="ganti_plat" class="form-control" 
-                       value="{{ old('ganti_plat', $vehicle->ganti_plat) }}" required>
+                    value="{{ old('ganti_plat', $vehicle->ganti_plat) }}" required>
             </div>
 
             <div class="form-group">
                 <label for="usia_kendaraan">Usia Kendaraan (Tahun) </label>
                 <input type="number" name="usia_kendaraan" class="form-control" 
-                       value="{{ old('usia_kendaraan', $vehicle->usia_kendaraan) }}" required>
+                    value="{{ old('usia_kendaraan', $vehicle->usia_kendaraan) }}" required>
             </div>
 
             <div class="form-group">
                 <label for="cc">CC Kendaraan</label>
                 <input type="number" name="cc" class="form-control" 
-                       value="{{ old('cc', $vehicle->cc) }}" required>
+                    value="{{ old('cc', $vehicle->cc) }}" required>
             </div>
 
             <div class="form-group">
                 <label for="nomor_telepon">Nomor Telepon</label>
                 <input type="text" name="nomor_telepon" class="form-control" 
-                       value="{{ old('nomor_telepon', $vehicle->nomor_telepon) }}">
+                    value="{{ old('nomor_telepon', $vehicle->nomor_telepon) }}">
             </div>
 
             <div class="form-group d-flex justify-content-start">

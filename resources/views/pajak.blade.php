@@ -229,6 +229,14 @@
 
     <div class="content">
         <div class="container">
+            @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
             <h2>Data Kendaraan</h2>
 
             <!-- Tombol Navigasi dan Aksi dalam satu baris -->
@@ -242,6 +250,7 @@
                 </div>
 
             </div>
+
 
             <!-- Box Pencarian -->
             <div class="search-box mb-3">
@@ -279,7 +288,7 @@
                                 <td>{{ $vehicle->pengguna }}</td>
                                 <td>{{ $vehicle->waktu_pajak }}</td>
                                 <td>{{ $vehicle->ganti_plat }}</td>
-                                <td>{{ $vehicle->usia_kendaraan +1 }}</td>
+                                <td>{{ $vehicle->usia_kendaraan }}</td>
                                 <td>{{ $vehicle->cc }}</td>
                                 <td>{{ $vehicle->nomor_telepon }}</td>
                                 <td>
@@ -304,6 +313,8 @@
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <!-- Include Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         // Fungsi untuk mengatur tombol aktif
@@ -348,6 +359,10 @@
                 }
             });
         });
+
+        $(document).ready(function () {
+        $('.alert-dismissible').alert();
+    });
     </script>
 </body>
 

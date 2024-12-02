@@ -107,13 +107,13 @@ class VehicleController extends Controller
         $validatedData = $request->validate([
             'pengguna' => 'required|string|max:255',
             'ganti_plat' => 'required|date',
+            'waktu_pajak' => 'required|date',
             'plat' => 'required|string',
             'cc' => 'required|integer',
+            'usia_kendaraan' => 'required|integer',
             'nomor_telepon' => 'nullable|string',
         ]);
 
-        // Hitung usia kendaraan saat ini berdasarkan tahun pembuatan
-        $validatedData['usia_kendaraan'] = now()->year - $vehicle->tahun_pembuatan;
 
         // Update data kendaraan
         $vehicle->update($validatedData);
@@ -222,16 +222,3 @@ class VehicleController extends Controller
         return view('riwayat_detail', compact('vehicle', 'riwayatPembayaran'));
     }
 }
-// // BELUM RAMPUNG SIK YAA
-
-//  // Temukan kendaraan berdasarkan plat
-//  $vehicle = Vehicle::where('plat', $plat)->firstOrFail();
-
-//  // Update data kendaraan
-//  $vehicle->update($validatedData);
-
-//  // Flash pesan sukses ke session
-//  session()->flash('success', 'Data kendaraan berhasil di-update!');
-
-//  // Redirect kembali ke halaman edit (atau list kendaraan)
-//  return redirect()->route('vehicles.edit', $plat);

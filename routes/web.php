@@ -45,7 +45,9 @@ Route::get('/tambahadmin', function () {
 Route::get('/riwayatkaryawan', function () {
     return view('riwayatkaryawan');
 });
-
+Route::get('admin/list', function () {
+    return view('admin/list');
+});
 Route::get('/upload/kpo/{id}', [KenaikanController::class, 'kpo'])->name('upload.kpo');
 Route::get('/upload/struktural/{id}', [KenaikanController::class, 'struktural'])->name('upload.struktural');
 Route::get('/upload/penyesuaian/{id}', [KenaikanController::class, 'penyesuaian'])->name('upload.penyesuaian-ijasah');

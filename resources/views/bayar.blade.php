@@ -102,7 +102,10 @@
             <i class="bi bi-arrow-left"></i>
         </a>
         <div class="logo">
-            <img src="/images/pacs.png" alt="Logo">
+            <img src="/images/pacs.png" alt="Logo PACS" style="height: 40px; margin-right: 520px;">
+            <img src="/images/logo_amikom.png" alt="Logo AMIKOM" style="height: 40px; margin-right: 5px; margin-left: 5px;">
+            <img src="/images/logo_kundha_kabudayan.png" alt="Logo Kundha Kabudayan" style="height: 40px; margin-right: 5px; margin-left: 5px;">
+            <img src="/images/logo_sleman.jpeg" alt="Logo Sleman" style="height: 40px; margin-right: 5px; margin-left: 10px;">
         </div>
     </nav>
 
@@ -159,18 +162,25 @@
                             value="{{ $vehicle->jenis_kendaraan }}" readonly>
                     </div>
                     <div class="col-md-6">
+                        <label for="merk_kendaraan" class="form-label">Merk Kendaraan</label>
+                        <input type="text" class="form-control readonly-field" id="merk_kendaraan"
+                            value="{{ $vehicle->merk_kendaraan }}" readonly>
+                    </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
                         <label for="pengguna" class="form-label">Pengguna</label>
                         <input type="text" class="form-control readonly-field" id="pengguna"
                             value="{{ $vehicle->pengguna }}" readonly>
                     </div>
                 </div>
-
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="waktu_pajak" class="form-label">Waktu Pajak (Mendatang)</label>
                         <input type="text" class="form-control readonly-field" id="waktu_pajak"
                             value="{{ $vehicle->waktu_pajak }}" readonly>
                     </div>
+
                     <div class="col-md-6">
                         <label for="ganti_plat" class="form-label">Ganti Plat</label>
                         <input type="text" class="form-control readonly-field" id="ganti_plat"

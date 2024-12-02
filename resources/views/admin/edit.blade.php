@@ -13,13 +13,41 @@
             padding: 0;
         }
 
+         /* Styles Navbar */
+        .navbar {
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .navbar .back-button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
         .container {
-            max-width: 500px;
-            margin: 50px auto;
+            padding: 20px;
+            position: relative;
+            max-width: 1000px;
+            /* Membatasi lebar maksimum kontainer */
+            margin: 80px auto 20px;
+            /* Menambahkan margin atas untuk menghindari konflik dengan navbar */
             background-color: #fff;
-            padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
@@ -68,6 +96,15 @@
         button:hover {
             background-color: #0056b3;
         }
+        .back-icon {
+            font-size: 24px;
+            color: white; /* Mengubah warna ikon menjadi putih */
+            text-decoration: none;
+        }
+
+        .back-icon:hover {
+            color: #e0e0e0; /* Warna saat hover */
+        }
 
         .back-link {
             display: block;
@@ -97,6 +134,19 @@
     </style>
 </head>
 <body>
+
+    <nav class="navbar navbar-light bg-primary fixed-top">
+        <a href="{{ route('admin.list') }}" class="back-icon">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <div class="logo">
+            <img src="/images/pacs.png" alt="Logo PACS" style="height: 40px; margin-right: 520px;">
+            <img src="/images/logo_amikom.png" alt="Logo AMIKOM" style="height: 40px; margin-right: 5px; margin-left: 5px;">
+            <img src="/images/logo_kundha_kabudayan.png" alt="Logo Kundha Kabudayan" style="height: 40px; margin-right: 5px; margin-left: 5px;">
+            <img src="/images/logo_sleman.jpeg" alt="Logo Sleman" style="height: 40px; margin-right: 5px; margin-left: 10px;">
+        </div>
+        
+    </nav>
 
     <div class="container">
         <h1>Edit Admin</h1>
@@ -137,7 +187,7 @@
             <!-- Form Group for Jenis Kelamin -->
             <div class="form-group">
                 <label for="jenis_kelamin">Jenis Kelamin:</label>
-                <select id="jenis_kelamin" name="jenis_kelamin" required>
+                <select id="jenis_kelamin" name="jenis_kelamin" required >
                     <option value="Laki-laki" {{ $admin->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
                     <option value="Perempuan" {{ $admin->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
                 </select>

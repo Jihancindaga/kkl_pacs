@@ -5,43 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ubah Password Admin</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
     <style>
         body {
             background-color: #f8f9fa;
         }
         .container {
-            max-width: 500px;
-            margin-top: 50px;
             padding: 20px;
-            border-radius: 8px;
+            position: relative;
+            max-width: 1000px;
+            margin: 80px auto 20px;
             background-color: #fff;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        .form-control:focus {
-            box-shadow: none;
-            border-color: #007bff;
-        }
-        .btn-primary {
+        .navbar {
             background-color: #007bff;
-            border: none;
+            color: #fff;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .btn-primary:hover {
-            background-color: #0056b3;
+
+        .navbar .logo img {
+            height: 40px;
+            margin-right: 10px;
         }
-        .btn-secondary {
-            background-color: #6c757d;
-            border: none;
+        .back-icon {
+            font-size: 24px;
+            color: white;
+            text-decoration: none;
+            margin-right: 10px;
         }
-        .btn-secondary:hover {
-            background-color: #5a6268;
+        .back-icon:hover {
+            color: #e0e0e0;
         }
-        .alert {
-            margin-bottom: 20px;
+        .logo img {
+            height: 40px;
+            margin-right: 5px;
         }
     </style>
 </head>
 <body>
-
+ <nav class="navbar navbar-light bg-primary fixed-top">
+        <a href="{{ route('admin.list') }}" class="back-icon">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <div class="logo">
+            <img src="/images/pacs.png" alt="Logo PACS" style="height: 40px; margin-right: 520px;">
+            <img src="/images/logo_amikom.png" alt="Logo AMIKOM" style="height: 40px; margin-right: 5px; margin-left: 5px;">
+            <img src="/images/logo_kundha_kabudayan.png" alt="Logo Kundha Kabudayan" style="height: 40px; margin-right: 5px; margin-left: 5px;">
+            <img src="/images/logo_sleman.jpeg" alt="Logo Sleman" style="height: 40px; margin-right: 5px; margin-left: 10px;">
+        </div>
+        
+    </nav>
 <div class="container">
     <h2 class="text-center mb-4">Ubah Password Admin</h2>
     
@@ -93,7 +112,6 @@
 
         <div class="d-flex justify-content-between">
             <button type="submit" class="btn btn-primary">Ubah Password</button>
-            <a href="{{ route('admin.index') }}" class="btn btn-secondary">Kembali</a>
         </div>
     </form>
 </div>

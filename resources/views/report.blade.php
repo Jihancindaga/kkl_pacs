@@ -326,9 +326,9 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>NIP</th>
+                            <th data-type="string">NIP</th>
                             <th>Nama</th>
-                            <th>Tahun Pengajuan</th>
+                            <th data-type="number">Tahun Pengajuan</th>
                             <th>Kategori Kenaikan</th>
                             <th>Bagian</th>
                             <th>Pangkat Terakhir</th>
@@ -440,7 +440,36 @@
             window.location.href = url.toString(); // Arahkan ke URL yang telah diperbarui
         });
     </script>
-    
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const table = document.querySelector("table");
+        const headers = table.querySelectorAll("th");
+
+        headers.forEach((header, index) => {
+            header.addEventListener("click", () => {
+                sortTable(table, index, header.dataset.type);
+            });
+        });
+    });
+
+    function sortTable(table, columnIndex, type) {
+        const rows = Array.from(table.querySelectorAll("tbody tr"));
+        const sortedRows = rows.sort((a, b) => {
+            const aData = a.cells[columnIndex].textContent.trim();
+            const bData = b.cells[columnIndex].textContent.trim();
+
+            if (type === "number") {
+                return Number(bData) - Number(aData); // Descending for numbers
+            } else {
+                return aData.localeCompare(bData); // Ascending for strings
+            }
+        });
+
+        const tbody = table.querySelector("tbody");
+        sortedRows.forEach(row => tbody.appendChild(row));
+    }
+</script>
+
     
 
 </body>
