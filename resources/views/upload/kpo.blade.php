@@ -131,7 +131,35 @@
                         <td>{{ $karyawan->golongan }}</td>
                         <td><input type="text" name="golongan" class="form-control" required placeholder="Masukkan Golongan yang Diajukan"></td>
                         <td>{{ $karyawan->pangkat }}</td>
-                        <td><input type="text" name="pangkat" class="form-control" required placeholder="Masukkan Pangkat yang Diajukan"></td>
+                        <td>
+                            <select name="pangkat" class="form-control" required>
+                                <option value="">Pilih Pangkat yang Diajukan</option>
+                                <optgroup label="Golongan I (Juru)">
+                                    <option value="Juru Muda" {{ request('pangkat') == 'Juru Muda' ? 'selected' : '' }}>Juru Muda</option>
+                                    <option value="Juru Muda Tingkat I" {{ request('pangkat') == 'Juru Muda Tingkat I' ? 'selected' : '' }}>Juru Muda Tingkat I</option>
+                                    <option value="Juru" {{ request('pangkat') == 'Juru' ? 'selected' : '' }}>Juru</option>
+                                    <option value="Juru Tingkat I" {{ request('pangkat') == 'Juru Tingkat I' ? 'selected' : '' }}>Juru Tingkat I</option>
+                                </optgroup>
+                                <optgroup label="Golongan II (Pengatur)">
+                                    <option value="Pengatur Muda" {{ request('pangkat') == 'Pengatur Muda' ? 'selected' : '' }}>Pengatur Muda</option>
+                                    <option value="Pengatur Muda Tingkat I" {{ request('pangkat') == 'Pengatur Muda Tingkat I' ? 'selected' : '' }}>Pengatur Muda Tingkat I</option>
+                                    <option value="Pengatur" {{ request('pangkat') == 'Pengatur' ? 'selected' : '' }}>Pengatur</option>
+                                    <option value="Pengatur Tingkat I" {{ request('pangkat') == 'Pengatur Tingkat I' ? 'selected' : '' }}>Pengatur Tingkat I</option>
+                                </optgroup>
+                                <optgroup label="Golongan III (Penata)">
+                                    <option value="Penata Muda" {{ request('pangkat') == 'Penata Muda' ? 'selected' : '' }}>Penata Muda</option>
+                                    <option value="Penata Muda Tingkat I" {{ request('pangkat') == 'Penata Muda Tingkat I' ? 'selected' : '' }}>Penata Muda Tingkat I</option>
+                                    <option value="Penata" {{ request('pangkat') == 'Penata' ? 'selected' : '' }}>Penata</option>
+                                    <option value="Penata Tingkat I" {{ request('pangkat') == 'Penata Tingkat I' ? 'selected' : '' }}>Penata Tingkat I</option>
+                                </optgroup>
+                                <optgroup label="Golongan IV (Pembina)">
+                                    <option value="Pembina" {{ request('pangkat') == 'Pembina' ? 'selected' : '' }}>Pembina</option>
+                                    <option value="Pembina Tingkat I" {{ request('pangkat') == 'Pembina Tingkat I' ? 'selected' : '' }}>Pembina Tingkat I</option>
+                                    <option value="Pembina Muda" {{ request('pangkat') == 'Pembina Muda' ? 'selected' : '' }}>Pembina Muda</option>
+                                    <option value="Pembina Madya" {{ request('pangkat') == 'Pembina Madya' ? 'selected' : '' }}>Pembina Madya</option>
+                                </optgroup>
+                            </select>
+                        </td>
                         <td><input type="number" name="tahun_pengajuan" class="form-control" required placeholder="Masukkan Tahun Pengajuan"></td>
                     </tr>
                 </tbody>
